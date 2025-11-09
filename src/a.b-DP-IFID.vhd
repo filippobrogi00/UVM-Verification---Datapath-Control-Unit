@@ -35,12 +35,15 @@ entity DP_IFID is
     S4_REG_ADD_WR_OUT : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);
     S5_MUX_DATAIN_OUT : in    std_logic_vector(RF_regBits - 1 downto 0);
 
-    -- Outputs
+    -- Outputs to EX Block
     S2_REG_ADD_WR_OUT : out   std_logic_vector(OPERAND_SIZE - 1 downto 0); -- Part of sequence of registers at Write-Address input of Register File.
     S2_RFILE_A_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);      -- RFILE = Register File
     S2_RFILE_B_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
     S2_REG_SE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0);
-    S2_REG_UE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0)
+    S2_REG_UE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0);
+
+    -- Outputs to MEMWB Block
+    S1_ADD_OUT     : std_logic_vector(IR_SIZE - 1 downto 0) -- Read as "Output of Stage 1 adder."
   );
 end entity DP_IFID;
 
@@ -168,7 +171,6 @@ architecture structural of DP_IFID is
   end component ALU;
 
   -- ******************************** STAGE 1 SIGNALS ********************************
-  signal S1_ADD_OUT     : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 adder."
   signal S1_REG_IR_OUT  : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "IR"."
   signal S1_REG_NPC_OUT : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "NPC."
 

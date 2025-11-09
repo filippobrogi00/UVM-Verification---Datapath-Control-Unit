@@ -32,8 +32,13 @@ entity DP_EX is
     EQ_COND       : in    std_logic;
     JMP           : in    std_logic;
     EQZ_NEQZ      : in    std_logic;
+    DP_ALU_OPCODE : in    aluOp;
 
     -- Outputs
+    DRAM_Addr : out   std_logic_vector(IR_SIZE - 1 downto 0);
+    DRAM_DATA : out   std_logic_vector(IR_SIZE - 1 downto 0);
+
+    -- Outputs to MEM+WB Block
     S3_REG_NPC_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
     S3_FF_JAL_EN_OUT  : out   std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
     S3_REG_ADD_WR_OUT : out   std_logic_vector(4 downto 0);
@@ -184,6 +189,11 @@ begin
   -- ****************************************************************************************
   -- ******************************** STAGE 3 INSTANTIATIONS ********************************
   -- ****************************************************************************************
+
+  -- NOTE: Moved from "STAGE 4 INSTANTIATIONS" original DLX placement to here because these
+  -- are actually produced by "Stage 3" internal signals.
+  DRAM_Addr <= S3_REG_ALU_OUT;  -- Connects Datapath's Stage 3 Register called "ALU_OUT" to Address input of the DRAM.
+  DRAM_DATA <= S3_REG_DATA_OUT; -- Connects Datapath's Stage 3 Register called "DATA_OUT" to Data input of the DRAM.
 
   S3_MUX_A : component NBit_2to1MUX
     generic map (
