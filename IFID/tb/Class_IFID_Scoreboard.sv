@@ -36,7 +36,7 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     * Monitor sends via Analysis Port a complete transaction to the Scoreboard
     * Here we re-compute the Expected Result and check it against DUTs'
   * */
-  virtual function void write(Class_IFID_SequenceItem p4adder_seqitem);
+  virtual function void write(Class_IFID_SequenceItem ifid_seqitem);
 
     // Expected Result variables declaration
     logic [NBITS-1:0] expectedSum;
@@ -45,11 +45,11 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     // Variables to hold conversions from DUT output bit vectors to signed types
     // (mainly for clean output error formatting)
     int signed sint_A, sint_B, sint_Cin, dut_sint_Sum, dut_sint_Cout;
-    sint_A = $signed(p4adder_seqitem.A[NBITS-1:0]);
-    sint_B = $signed(p4adder_seqitem.B[NBITS-1:0]);
-    sint_Cin = $signed(p4adder_seqitem.Cin);
-    dut_sint_Sum = $signed(p4adder_seqitem.Sum[NBITS-1:0]);
-    dut_sint_Cout = $signed(p4adder_seqitem.Cout);
+    sint_A = $signed(ifid_seqitem.A[NBITS-1:0]);
+    sint_B = $signed(ifid_seqitem.B[NBITS-1:0]);
+    sint_Cin = $signed(ifid_seqitem.Cin);
+    dut_sint_Sum = $signed(ifid_seqitem.Sum[NBITS-1:0]);
+    dut_sint_Cout = $signed(ifid_seqitem.Cout);
 
     // Compute Expected Result (on NBITS)
     {expectedCout, expectedSum} = sint_A + sint_B + sint_Cin;
@@ -61,7 +61,7 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
               UVM_MEDIUM);
 
     // Sum comparison
-    assert (expectedSum == p4adder_seqitem.Sum) begin
+    assert (expectedSum == ifid_seqitem.Sum) begin
       `uvm_info("GREEN", "Sum OK!", UVM_MEDIUM);
     end else
       `uvm_info("RED", $sformatf(
@@ -69,7 +69,7 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
                 UVM_MEDIUM);
 
     // Cout comparison
-    assert (expectedCout == p4adder_seqitem.Cout) begin
+    assert (expectedCout == ifid_seqitem.Cout) begin
       `uvm_info("GREEN", "Cout OK!", UVM_MEDIUM);
     end else
       `uvm_info("RED", $sformatf(

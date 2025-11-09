@@ -49,7 +49,7 @@ if [[ $BASENAME_CWD == "$SIM_DIR" || $BASENAME_CWD == "$SRC_DIR" || $BASENAME_CW
 fi
 
 # Script variables - Compilation
-SV_COMPILE_LIST="$TB_DIR/Iface_P4Adder.sv $TB_DIR/Module_P4Adder_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+SV_COMPILE_LIST="$TB_DIR/Iface_IFID.sv $TB_DIR/Module_ifid_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 
 ########### FUNCTIONS ###########
 

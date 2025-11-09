@@ -15,16 +15,17 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
   uvm_analysis_imp #(Class_IFID_SequenceItem, Class_IFID_CoverageTracker) analysis_port_imp;
 
   // Handle to virtual DUT interface
-  virtual Iface_IFID #(NBITS) p4adder_dut_iface;
+  virtual Iface_IFID #(NBITS) ifid_dut_iface;
 
   /*
   * COVERGROUPS for Functional Coverage
   * */
 
-  // Covergroup parameterized with transaction item
-  covergroup Covergroup_IFID with function sample (Class_IFID_SequenceItem p4adder_seqitem);
+  // NOTE: "with function sample" => Covergroup parameterized with transaction item
+  covergroup Covergroup_IFID with function sample (Class_IFID_SequenceItem ifid_seqitem);
 
-    Coverpoint_OperandA: coverpoint p4adder_seqitem.A {
+
+    Coverpoint_OperandA: coverpoint ifid_seqitem.A {
       bins min_value = {MIN_NEG_VALUE};
       bins minus_one = {MINUS_ONE};
       bins zero = {ZERO};
@@ -35,7 +36,7 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
     }
 
 
-    Coverpoint_OperandB: coverpoint p4adder_seqitem.B {
+    Coverpoint_OperandB: coverpoint ifid_seqitem.B {
       bins min_value = {MIN_NEG_VALUE};
       bins minus_one = {MINUS_ONE};
       bins zero = {ZERO};
@@ -44,7 +45,7 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
       bins others = default;
     }
 
-    Coverpoint_OperandCin: coverpoint p4adder_seqitem.Cin {bins zero = {0}; bins one = {1};}
+    Coverpoint_OperandCin: coverpoint ifid_seqitem.Cin {bins zero = {0}; bins one = {1};}
 
   endgroup : Covergroup_IFID
 
@@ -69,8 +70,8 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
   endfunction
 
   // Sample coverage at current time
-  virtual function void coverageSample(Class_IFID_SequenceItem p4adder_seqitem);
-    Covergroup_IFID.sample(p4adder_seqitem);
+  virtual function void coverageSample(Class_IFID_SequenceItem ifid_seqitem);
+    Covergroup_IFID.sample(ifid_seqitem);
   endfunction
 
   // Return coverage
@@ -89,7 +90,7 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
 
     // Get interface from config DB
     if (!uvm_config_db#(virtual Iface_IFID #(NBITS))::get(
-            this, "", "p4adder_dut_iface", p4adder_dut_iface
+            this, "", "ifid_dut_iface", ifid_dut_iface
         )) begin
       `uvm_error("[COVERAGE TRACKER]", "Failed to get DUT interface")
     end

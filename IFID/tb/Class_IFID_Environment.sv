@@ -18,11 +18,11 @@ class Class_IFID_Environment extends uvm_env;
   endfunction
 
   // Agent
-  Class_IFID_Agent p4adder_agent;
+  Class_IFID_Agent ifid_agent;
   // Scoreboard
-  Class_IFID_Scoreboard p4adder_scoreboard;
+  Class_IFID_Scoreboard ifid_scoreboard;
   // Coverage Tracker
-  Class_IFID_CoverageTracker p4adder_coverage_tracker;
+  Class_IFID_CoverageTracker ifid_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -31,9 +31,10 @@ class Class_IFID_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    p4adder_agent = Class_IFID_Agent::type_id::create("p4adder_agent", this);
-    p4adder_scoreboard = Class_IFID_Scoreboard::type_id::create("p4adder_scoreboard", this);
-    p4adder_coverage_tracker = Class_IFID_CoverageTracker::type_id::create("p4adder_coverage_tracker", this);
+    ifid_agent = Class_IFID_Agent::type_id::create("ifid_agent", this);
+    ifid_scoreboard = Class_IFID_Scoreboard::type_id::create("ifid_scoreboard", this);
+    ifid_coverage_tracker =
+        Class_IFID_CoverageTracker::type_id::create("ifid_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -45,10 +46,10 @@ class Class_IFID_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    p4adder_agent.p4adder_monitor.analysis_port.connect(p4adder_scoreboard.analysis_port_imp);
+    ifid_agent.ifid_monitor.analysis_port.connect(ifid_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    p4adder_agent.p4adder_monitor.analysis_port.connect(p4adder_coverage_tracker.analysis_port_imp);
+    ifid_agent.ifid_monitor.analysis_port.connect(ifid_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
 
 

@@ -17,10 +17,10 @@ class Class_IFID_Test extends uvm_test;
   endfunction
 
   // Environment
-  Class_IFID_Environment      p4adder_environment;
+  Class_IFID_Environment      ifid_environment;
 
   // Virtual interfaces handles
-  virtual Iface_IFID #(NBITS) p4adder_dut_iface;
+  virtual Iface_IFID #(NBITS) ifid_dut_iface;
 
   /*
   * Test BUILD PHASE : Instantiate and build components declared above
@@ -32,7 +32,7 @@ class Class_IFID_Test extends uvm_test;
 
     // Get virtual interfaces handles from DB
     if (!uvm_config_db#(virtual Iface_IFID #(NBITS))::get(
-            this, "", "p4adder_dut_iface", p4adder_dut_iface
+            this, "", "ifid_dut_iface", ifid_dut_iface
         )) begin
       `uvm_fatal("[TEST]", "Could not get DUT interface handle")
     end
@@ -40,7 +40,7 @@ class Class_IFID_Test extends uvm_test;
     // coverage on b
 
     // Create Environment
-    p4adder_environment = Class_IFID_Environment::type_id::create("p4adder_environment", this);
+    ifid_environment = Class_IFID_Environment::type_id::create("ifid_environment", this);
   endfunction : build_phase
 
 
@@ -61,8 +61,8 @@ class Class_IFID_Test extends uvm_test;
   * */
   virtual task run_phase(uvm_phase phase);
     // Create a Sequence
-    Class_IFID_Sequence p4adder_sequence = Class_IFID_Sequence::type_id::create(
-        "p4adder_sequence", this
+    Class_IFID_Sequence ifid_sequence = Class_IFID_Sequence::type_id::create(
+        "ifid_sequence", this
     );
 
     /* Start the test */
@@ -72,13 +72,13 @@ class Class_IFID_Test extends uvm_test;
     phase.raise_objection(this);
 
     // Start Coverage tracking
-    p4adder_environment.p4adder_coverage_tracker.coverageStart();
+    ifid_environment.ifid_coverage_tracker.coverageStart();
 
     // Send Sequence (list of many transactions)
-    p4adder_sequence.start(p4adder_environment.p4adder_agent.p4adder_sequencer);
+    ifid_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
 
     // Stop coverage tracking
-    p4adder_environment.p4adder_coverage_tracker.coverageStop();
+    ifid_environment.ifid_coverage_tracker.coverageStop();
 
     // Phase can now end
     phase.drop_objection(this);

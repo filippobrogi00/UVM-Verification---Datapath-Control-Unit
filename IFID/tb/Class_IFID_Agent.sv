@@ -24,9 +24,9 @@ class Class_IFID_Agent extends uvm_agent;
     * Sends them to the Driver for "execution"
   * */
   // NOTE: Since Driver is parameterized on SequenceItem, this too!
-  uvm_sequencer #(Class_IFID_SequenceItem) p4adder_sequencer;
-  Class_IFID_Driver                        p4adder_driver;
-  Class_IFID_Monitor                       p4adder_monitor;
+  uvm_sequencer #(Class_IFID_SequenceItem) ifid_sequencer;
+  Class_IFID_Driver                        ifid_driver;
+  Class_IFID_Monitor                       ifid_monitor;
 
   /*
   * BUILD PHASE : Create Monitor, and if Agent is "active", also create Sequencer and Driver
@@ -35,14 +35,14 @@ class Class_IFID_Agent extends uvm_agent;
     super.build_phase(phase);
 
     // Create Sequencer
-    p4adder_sequencer =
-        uvm_sequencer#(Class_IFID_SequenceItem)::type_id::create("p4adder_sequencer", this);
+    ifid_sequencer =
+        uvm_sequencer#(Class_IFID_SequenceItem)::type_id::create("ifid_sequencer", this);
 
     // Create Driver
-    p4adder_driver = Class_IFID_Driver::type_id::create("p4adder_driver", this);
+    ifid_driver = Class_IFID_Driver::type_id::create("ifid_driver", this);
 
     // Create Monitor
-    p4adder_monitor = Class_IFID_Monitor::type_id::create("p4adder_monitor", this);
+    ifid_monitor = Class_IFID_Monitor::type_id::create("ifid_monitor", this);
 
   endfunction : build_phase
 
@@ -53,7 +53,7 @@ class Class_IFID_Agent extends uvm_agent;
     super.connect_phase(phase);
 
     // Connect Driver's Port to Sequencer's Export
-    p4adder_driver.seq_item_port.connect(p4adder_sequencer.seq_item_export);
+    ifid_driver.seq_item_port.connect(ifid_sequencer.seq_item_export);
   endfunction : connect_phase
 endclass
 

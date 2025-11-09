@@ -26,23 +26,23 @@ int numSeqItems = 100;
 `include "Class_SimpleReportServer.sv"
 
 // Testbench Class files
-`include "Class_P4Adder_Sequence.sv"
-`include "Class_P4Adder_Driver.sv"
-`include "Class_P4Adder_Monitor.sv"
-`include "Class_P4Adder_Agent.sv"
-`include "Class_P4Adder_CoverageTracker.sv"
-`include "Class_P4Adder_Scoreboard.sv"
-`include "Class_P4Adder_Environment.sv"
-`include "Class_P4Adder_Test.sv"
+`include "Class_IFID_Sequence.sv"
+`include "Class_IFID_Driver.sv"
+`include "Class_IFID_Monitor.sv"
+`include "Class_IFID_Agent.sv"
+`include "Class_IFID_CoverageTracker.sv"
+`include "Class_IFID_Scoreboard.sv"
+`include "Class_IFID_Environment.sv"
+`include "Class_IFID_Test.sv"
 
 module Module_topTestbench;
 
   // Interfaces instantiation
   // NOTE: (parenthesis needed because these are modules!
-  Iface_P4Adder #(.NBITS(NBITS)) p4adder_dut_iface ();
+  Iface_IFID #(.NBITS(NBITS)) ifid_dut_iface ();
 
   // Instance DUT using wrapper
-  Module_P4Adder_Wrapper #(.NBITS(NBITS)) p4_adder_toplevel (.p4adder_iface(p4adder_dut_iface));
+  Module_ifid_Wrapper #(.NBITS(NBITS)) p4_adder_toplevel (.ifid_iface(ifid_dut_iface));
 
   /*
   * PROC_RunTest: Test configuration and run process
@@ -50,8 +50,8 @@ module Module_topTestbench;
   initial begin : PROC_RunTest
 
     // Install custom report server used by UVM macros for cleaner messages
-    Class_SimpleReportServer p4adder_simple_report_server = new();
-    uvm_report_server::set_server(p4adder_simple_report_server);
+    Class_SimpleReportServer ifid_simple_report_server = new();
+    uvm_report_server::set_server(ifid_simple_report_server);
 
     /* Override number of Sequence Items to generate if specified from cmdline */
     // Check if parameter was specified (numSeqItems overridden with
@@ -70,11 +70,11 @@ module Module_topTestbench;
     uvm_config_db#(int)::set(null, "*", "numSeqItems", numSeqItems);
 
     // Pass Virtual DUT interface handle down to components through Config Object
-    uvm_config_db#(virtual Iface_P4Adder #(NBITS))::set(null, "*", "p4adder_dut_iface",
-                                                        p4adder_dut_iface);
+    uvm_config_db#(virtual Iface_IFID #(NBITS))::set(null, "*", "ifid_dut_iface",
+                                                        ifid_dut_iface);
 
     // Running test...
-    run_test("Class_P4Adder_Test");
+    run_test("Class_IFID_Test");
 
     // Stop simulation
     $display("################# SIMULATION ENDED #################");

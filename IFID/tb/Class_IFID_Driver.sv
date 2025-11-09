@@ -67,6 +67,7 @@ class Class_IFID_Driver extends uvm_driver #(Class_IFID_SequenceItem);
 
       // Drive signals on DUT interface at posedge
       @(posedge ifid_dut_iface.CLK);
+      // Save DUT (interface) signals into Sequence Item
       ifid_dut_iface.DLX_PC_to_DP      = ifid_seqitem.DLX_PC_to_DP;
       ifid_dut_iface.DLX_IR_to_DP      = ifid_seqitem.DLX_IR_to_DP;
       ifid_dut_iface.IR_LATCH_EN       = ifid_seqitem.IR_LATCH_EN;
