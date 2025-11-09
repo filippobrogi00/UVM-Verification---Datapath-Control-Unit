@@ -8,21 +8,21 @@
   * Environments"
 * */
 
-class Class_P4Adder_Environment extends uvm_env;
+class Class_IFID_Environment extends uvm_env;
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Environment)
+  `uvm_component_utils(Class_IFID_Environment)
 
   // Constructor
-  function new(string name = "Class_P4Adder_Environment", uvm_component parent = null);
+  function new(string name = "Class_IFID_Environment", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Agent
-  Class_P4Adder_Agent p4adder_agent;
+  Class_IFID_Agent p4adder_agent;
   // Scoreboard
-  Class_P4Adder_Scoreboard p4adder_scoreboard;
+  Class_IFID_Scoreboard p4adder_scoreboard;
   // Coverage Tracker
-  Class_P4Adder_CoverageTracker p4adder_coverage_tracker;
+  Class_IFID_CoverageTracker p4adder_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -31,10 +31,9 @@ class Class_P4Adder_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    p4adder_agent = Class_P4Adder_Agent::type_id::create("p4adder_agent", this);
-    p4adder_scoreboard = Class_P4Adder_Scoreboard::type_id::create("p4adder_scoreboard", this);
-    p4adder_coverage_tracker =
-        Class_P4Adder_CoverageTracker::type_id::create("p4adder_coverage_tracker", this);
+    p4adder_agent = Class_IFID_Agent::type_id::create("p4adder_agent", this);
+    p4adder_scoreboard = Class_IFID_Scoreboard::type_id::create("p4adder_scoreboard", this);
+    p4adder_coverage_tracker = Class_IFID_CoverageTracker::type_id::create("p4adder_coverage_tracker", this);
   endfunction : build_phase
 
   /*

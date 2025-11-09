@@ -6,13 +6,13 @@
 * connects them via TLM interfaces.
 * */
 
-class Class_P4Adder_Agent extends uvm_agent;
+class Class_IFID_Agent extends uvm_agent;
 
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Agent)
+  `uvm_component_utils(Class_IFID_Agent)
 
   // Constructor
-  function new(string name = "Class_P4Adder_Agent", uvm_component parent = null);
+  function new(string name = "Class_IFID_Agent", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
@@ -24,9 +24,9 @@ class Class_P4Adder_Agent extends uvm_agent;
     * Sends them to the Driver for "execution"
   * */
   // NOTE: Since Driver is parameterized on SequenceItem, this too!
-  uvm_sequencer #(Class_P4Adder_SequenceItem) p4adder_sequencer;
-  Class_P4Adder_Driver                        p4adder_driver;
-  Class_P4Adder_Monitor                       p4adder_monitor;
+  uvm_sequencer #(Class_IFID_SequenceItem) p4adder_sequencer;
+  Class_IFID_Driver                        p4adder_driver;
+  Class_IFID_Monitor                       p4adder_monitor;
 
   /*
   * BUILD PHASE : Create Monitor, and if Agent is "active", also create Sequencer and Driver
@@ -36,13 +36,13 @@ class Class_P4Adder_Agent extends uvm_agent;
 
     // Create Sequencer
     p4adder_sequencer =
-        uvm_sequencer#(Class_P4Adder_SequenceItem)::type_id::create("p4adder_sequencer", this);
+        uvm_sequencer#(Class_IFID_SequenceItem)::type_id::create("p4adder_sequencer", this);
 
     // Create Driver
-    p4adder_driver = Class_P4Adder_Driver::type_id::create("p4adder_driver", this);
+    p4adder_driver = Class_IFID_Driver::type_id::create("p4adder_driver", this);
 
     // Create Monitor
-    p4adder_monitor = Class_P4Adder_Monitor::type_id::create("p4adder_monitor", this);
+    p4adder_monitor = Class_IFID_Monitor::type_id::create("p4adder_monitor", this);
 
   endfunction : build_phase
 

@@ -16,7 +16,7 @@ if [ -f /.dockerenv ]; then
   INCLUDE_DIR="/home/dockeruser/.include"
 else
   # Script running on server
-  # INCLUDE_DIR="$HOME/.config/.zshinclude"
+  INCLUDE_DIR="$HOME/.config/.zshinclude"
   # Seteldo
   source "/eda/scripts/init_amsv"
   # Setinnovus
@@ -49,7 +49,7 @@ if [[ $BASENAME_CWD == "$SIM_DIR" || $BASENAME_CWD == "$SRC_DIR" || $BASENAME_CW
 fi
 
 # Script variables - Compilation
-SV_COMPILE_LIST="$TB_DIR/Iface_P4Adder.sv $TB_DIR/Module_P4Adder_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+SV_COMPILE_LIST="$TB_DIR/pkg_constants.sv $TB_DIR/Iface_ControlUnit.sv $TB_DIR/Module_ControlUnit_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 
 ########### FUNCTIONS ###########
 

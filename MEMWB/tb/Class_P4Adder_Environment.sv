@@ -33,7 +33,8 @@ class Class_P4Adder_Environment extends uvm_env;
     // Create components
     p4adder_agent = Class_P4Adder_Agent::type_id::create("p4adder_agent", this);
     p4adder_scoreboard = Class_P4Adder_Scoreboard::type_id::create("p4adder_scoreboard", this);
-    p4adder_coverage_tracker = Class_P4Adder_CoverageTracker::type_id::create("p4adder_coverage_tracker", this);
+    p4adder_coverage_tracker =
+        Class_P4Adder_CoverageTracker::type_id::create("p4adder_coverage_tracker", this);
   endfunction : build_phase
 
   /*

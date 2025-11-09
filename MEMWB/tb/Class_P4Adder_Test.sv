@@ -29,8 +29,6 @@ class Class_P4Adder_Test extends uvm_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-    // coverage off b
-
     // Get virtual interfaces handles from DB
     if (!uvm_config_db#(virtual Iface_P4Adder #(NBITS))::get(
             this, "", "p4adder_dut_iface", p4adder_dut_iface
@@ -43,8 +41,6 @@ class Class_P4Adder_Test extends uvm_test;
         )) begin
       `uvm_fatal("[TEST]", "Could not get Mock Clock interface handle")
     end
-
-    // coverage on b
 
     // Create Environment
     p4adder_environment = Class_P4Adder_Environment::type_id::create("p4adder_environment", this);

@@ -7,52 +7,56 @@
   * Coverage Tracker, which then samples coverage.
 */
 
-class Class_P4Adder_CoverageTracker extends uvm_subscriber #(Class_P4Adder_SequenceItem);
+class Class_ControlUnit_CoverageTracker extends uvm_subscriber #(Class_ControlUnit_SequenceItem);
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_CoverageTracker)
+  `uvm_component_utils(Class_ControlUnit_CoverageTracker)
 
   // Analysis Port implementation (broadcast from Monitor)
-  uvm_analysis_imp #(Class_P4Adder_SequenceItem, Class_P4Adder_CoverageTracker) analysis_port_imp;
+  uvm_analysis_imp #(Class_ControlUnit_SequenceItem, Class_ControlUnit_CoverageTracker) analysis_port_imp;
 
   // Handle to virtual DUT interface
-  virtual Iface_P4Adder #(NBITS) p4adder_dut_iface;
+  virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
 
   /*
   * COVERGROUPS for Functional Coverage
   * */
 
   // Covergroup parameterized with transaction item
-  covergroup Covergroup_P4Adder with function sample (Class_P4Adder_SequenceItem p4adder_seqitem);
+  covergroup Covergroup_ControlUnit with function sample (
+      Class_ControlUnit_SequenceItem ctrlunit_seqitem
+  );
 
-    Coverpoint_OperandA: coverpoint p4adder_seqitem.A {
-      bins min_value = {MIN_NEG_VALUE};
-      bins minus_one = {MINUS_ONE};
-      bins zero = {ZERO};
-      bins one = {ONE};
-      bins max_value = {MAX_POS_VALUE};
+    Coverpoint_Opcode: coverpoint ctrlunit_seqitem.opcode {
+      // R-TYPE -> '0
+      bins r_type = {RTYPE};
+      // I-TYPE -> [1, 14]
+      bins i_type = {['d1 : 'd14]};
 
       bins others = default;
     }
 
+    // If instruction is R-TYPE (FUNC defined), sample it among possible
+    // values [0, 3]
+    Coverpoint_FuncIfDef: coverpoint ctrlunit_seqitem.func iff (ctrlunit_seqitem.opcode == RTYPE) {
+      // verilog_format: off
+      bins valid_alu_ops = {['d0 : 'd3]};
 
-    Coverpoint_OperandB: coverpoint p4adder_seqitem.B {
-      bins min_value = {MIN_NEG_VALUE};
-      bins minus_one = {MINUS_ONE};
-      bins zero = {ZERO};
-      bins one = {ONE};
-      bins max_value = {MAX_POS_VALUE};
       bins others = default;
+      // verilog_format: on
     }
 
-    Coverpoint_OperandCin: coverpoint p4adder_seqitem.Cin {bins zero = {0}; bins one = {1};}
+    // Else, sample 0 as hardcoded inside CW_ARRAY (pkg_const)
+    Coverpoint_FuncIfNdef: coverpoint ctrlunit_seqitem.func iff (ctrlunit_seqitem.opcode != RTYPE) {
+      bins zero = {'0};
+    }
 
-  endgroup : Covergroup_P4Adder
+  endgroup : Covergroup_ControlUnit
 
   // Constructor
-  function new(string name = "Class_P4Adder_CoverageTracker", uvm_component parent = null);
+  function new(string name = "Class_ControlUnit_CoverageTracker", uvm_component parent = null);
     super.new(name, parent);
     // Instantiate the covergroup
-    Covergroup_P4Adder = new();
+    Covergroup_ControlUnit = new();
   endfunction
 
   /*
@@ -60,22 +64,22 @@ class Class_P4Adder_CoverageTracker extends uvm_subscriber #(Class_P4Adder_Seque
   * */
   // Start coverage tracking
   virtual function void coverageStart();
-    Covergroup_P4Adder.start();
+    Covergroup_ControlUnit.start();
   endfunction
 
   // Stop coverage tracking
   virtual function void coverageStop();
-    Covergroup_P4Adder.stop();
+    Covergroup_ControlUnit.stop();
   endfunction
 
   // Sample coverage at current time
-  virtual function void coverageSample(Class_P4Adder_SequenceItem p4adder_seqitem);
-    Covergroup_P4Adder.sample(p4adder_seqitem);
+  virtual function void coverageSample(Class_ControlUnit_SequenceItem ctrlunit_seqitem);
+    Covergroup_ControlUnit.sample(ctrlunit_seqitem);
   endfunction
 
   // Return coverage
   virtual function real coverageGet();
-    return Covergroup_P4Adder.get_inst_coverage();
+    return Covergroup_ControlUnit.get_inst_coverage();
   endfunction
 
 
@@ -85,15 +89,13 @@ class Class_P4Adder_CoverageTracker extends uvm_subscriber #(Class_P4Adder_Seque
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-    // coverage off b
-
     // Get interface from config DB
-    if (!uvm_config_db#(virtual Iface_P4Adder #(NBITS))::get(
-            this, "", "p4adder_dut_iface", p4adder_dut_iface
+    // coverage off b
+    if (!uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::get(
+            this, "", "ctrlunit_dut_iface", ctrlunit_dut_iface
         )) begin
       `uvm_error("[COVERAGE TRACKER]", "Failed to get DUT interface")
     end
-
     // coverage on b
 
     // Create analysis port
@@ -109,7 +111,7 @@ class Class_P4Adder_CoverageTracker extends uvm_subscriber #(Class_P4Adder_Seque
   // NOTE: Wrong to call super.write() as uvm_subscriber class defines write()
   //  method as PURE virtual, meaning only child classes have to give it an
   //  implementation!
-  virtual function void write(Class_P4Adder_SequenceItem t);
+  virtual function void write(Class_ControlUnit_SequenceItem t);
     // super.write(t);
 
     // Sample coverage passing in the current Sequence Item broadcasted from
@@ -123,8 +125,10 @@ class Class_P4Adder_CoverageTracker extends uvm_subscriber #(Class_P4Adder_Seque
   * */
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
+    // coverage off b
     `uvm_info("COVERAGE TRACKER", $sformatf("Functional Coverage: %.2f%%", coverageGet()),
               UVM_MEDIUM);
+    // coverage on b
   endfunction : report_phase
 
 endclass

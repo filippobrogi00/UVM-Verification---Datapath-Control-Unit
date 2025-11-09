@@ -6,22 +6,21 @@
   * Starts coverage tracking before initiating a test on a transaction
 * */
 
-class Class_P4Adder_Test extends uvm_test;
+class Class_ControlUnit_Test extends uvm_test;
 
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Test);
+  `uvm_component_utils(Class_ControlUnit_Test);
 
   // Constructor
-  function new(string name = "Class_P4Adder_Test", uvm_component parent = null);
+  function new(string name = "Class_ControlUnit_Test", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Environment
-  Class_P4Adder_Environment      p4adder_environment;
+  Class_ControlUnit_Environment ctrlunit_environment;
 
   // Virtual interfaces handles
-  virtual Iface_P4Adder #(NBITS) p4adder_dut_iface;
-  virtual Iface_MockClock        p4adder_clk_iface;
+  virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
 
   /*
   * Test BUILD PHASE : Instantiate and build components declared above
@@ -30,24 +29,17 @@ class Class_P4Adder_Test extends uvm_test;
     super.build_phase(phase);
 
     // coverage off b
-
     // Get virtual interfaces handles from DB
-    if (!uvm_config_db#(virtual Iface_P4Adder #(NBITS))::get(
-            this, "", "p4adder_dut_iface", p4adder_dut_iface
+    if (!uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::get(
+            this, "", "ctrlunit_dut_iface", ctrlunit_dut_iface
         )) begin
       `uvm_fatal("[TEST]", "Could not get DUT interface handle")
     end
-
-    if (!uvm_config_db#(virtual Iface_MockClock)::get(
-            this, "", "p4adder_clk_iface", p4adder_clk_iface
-        )) begin
-      `uvm_fatal("[TEST]", "Could not get Mock Clock interface handle")
-    end
-
     // coverage on b
 
     // Create Environment
-    p4adder_environment = Class_P4Adder_Environment::type_id::create("p4adder_environment", this);
+    ctrlunit_environment =
+        Class_ControlUnit_Environment::type_id::create("ctrlunit_environment", this);
   endfunction : build_phase
 
 
@@ -68,9 +60,12 @@ class Class_P4Adder_Test extends uvm_test;
   * */
   virtual task run_phase(uvm_phase phase);
     // Create a Sequence
-    Class_P4Adder_Sequence p4adder_sequence = Class_P4Adder_Sequence::type_id::create(
-        "p4adder_sequence", this
+    Class_ControlUnit_Sequence ctrlunit_sequence = Class_ControlUnit_Sequence::type_id::create(
+        "ctrlunit_sequence", this
     );
+
+    // Before starting the test, wait until global reset is de-asserted
+    //wait (ctrlunit_dut_iface.rst_n == 1'b1);
 
     /* Start the test */
     super.run_phase(phase);
@@ -79,13 +74,13 @@ class Class_P4Adder_Test extends uvm_test;
     phase.raise_objection(this);
 
     // Start Coverage tracking
-    p4adder_environment.p4adder_coverage_tracker.coverageStart();
+    ctrlunit_environment.ctrlunit_coverage_tracker.coverageStart();
 
     // Send Sequence (list of many transactions)
-    p4adder_sequence.start(p4adder_environment.p4adder_agent.p4adder_sequencer);
+    ctrlunit_sequence.start(ctrlunit_environment.ctrlunit_agent.ctrlunit_sequencer);
 
     // Stop coverage tracking
-    p4adder_environment.p4adder_coverage_tracker.coverageStop();
+    ctrlunit_environment.ctrlunit_coverage_tracker.coverageStop();
 
     // Phase can now end
     phase.drop_objection(this);

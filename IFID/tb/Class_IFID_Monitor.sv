@@ -12,20 +12,19 @@
 // Import bins constants
 import pkg_const::*;
 
-class Class_P4Adder_Monitor extends uvm_monitor;
+class Class_IFID_Monitor extends uvm_monitor;
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Monitor);
+  `uvm_component_utils(Class_IFID_Monitor);
 
   // Virtual interface handle (later connected through ::get())
-  virtual Iface_P4Adder #(.NBITS(NBITS))          p4adder_dut_iface;
-  virtual Iface_MockClock                         p4adder_clk_iface;
+  virtual Iface_IFID #(.NBITS(NBITS))          p4adder_dut_iface;
 
   // Analysis Port for broadcasting transaction object to subscriber
   // components
-  uvm_analysis_port #(Class_P4Adder_SequenceItem) analysis_port;
+  uvm_analysis_port #(Class_IFID_SequenceItem) analysis_port;
 
   // Constructor
-  function new(string name = "Class_P4Adder_Monitor", uvm_component parent = null);
+  function new(string name = "Class_IFID_Monitor", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
@@ -42,17 +41,10 @@ class Class_P4Adder_Monitor extends uvm_monitor;
     // coverage off b
 
     // Get DUT virtual interface handle from configuration DB
-    if (!uvm_config_db#(virtual Iface_P4Adder #(NBITS))::get(
+    if (!uvm_config_db#(virtual Iface_IFID #(NBITS))::get(
             this, "", "p4adder_dut_iface", p4adder_dut_iface
         )) begin
       `uvm_error("[MONITOR]", "Could not get handle to DUT interface!")
-    end
-
-    // Get Mock CLock virtual interface handle from configuration DB
-    if (!uvm_config_db#(virtual Iface_MockClock)::get(
-            this, "", "p4adder_clk_iface", p4adder_clk_iface
-        )) begin
-      `uvm_error("[MONITOR]", "Could not get handle to Mock Clock interface!")
     end
 
     // coverage on b
@@ -72,12 +64,12 @@ class Class_P4Adder_Monitor extends uvm_monitor;
     forever begin
       // Create TLO to store transaction whole transaction after
       // DUT has calculated outputs and they're available to get from the interface
-      Class_P4Adder_SequenceItem p4adder_seqitem = Class_P4Adder_SequenceItem::type_id::create(
+      Class_IFID_SequenceItem p4adder_seqitem = Class_IFID_SequenceItem::type_id::create(
           "p4adder_seqitem", this
       );
 
       // Wait mock clock rising edge
-      @(posedge p4adder_clk_iface.mockClock);
+      @(posedge p4adder_dut_iface.CLK);
       // Save DUT (interface) signals into Sequence Item
       p4adder_seqitem.A = p4adder_dut_iface.A;
       p4adder_seqitem.B = p4adder_dut_iface.B;

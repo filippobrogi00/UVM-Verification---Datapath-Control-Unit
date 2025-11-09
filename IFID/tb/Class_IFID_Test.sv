@@ -6,22 +6,21 @@
   * Starts coverage tracking before initiating a test on a transaction
 * */
 
-class Class_P4Adder_Test extends uvm_test;
+class Class_IFID_Test extends uvm_test;
 
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Test);
+  `uvm_component_utils(Class_IFID_Test);
 
   // Constructor
-  function new(string name = "Class_P4Adder_Test", uvm_component parent = null);
+  function new(string name = "Class_IFID_Test", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Environment
-  Class_P4Adder_Environment      p4adder_environment;
+  Class_IFID_Environment      p4adder_environment;
 
   // Virtual interfaces handles
-  virtual Iface_P4Adder #(NBITS) p4adder_dut_iface;
-  virtual Iface_MockClock        p4adder_clk_iface;
+  virtual Iface_IFID #(NBITS) p4adder_dut_iface;
 
   /*
   * Test BUILD PHASE : Instantiate and build components declared above
@@ -29,21 +28,19 @@ class Class_P4Adder_Test extends uvm_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
+    // coverage off b
+
     // Get virtual interfaces handles from DB
-    if (!uvm_config_db#(virtual Iface_P4Adder #(NBITS))::get(
+    if (!uvm_config_db#(virtual Iface_IFID #(NBITS))::get(
             this, "", "p4adder_dut_iface", p4adder_dut_iface
         )) begin
       `uvm_fatal("[TEST]", "Could not get DUT interface handle")
     end
 
-    if (!uvm_config_db#(virtual Iface_MockClock)::get(
-            this, "", "p4adder_clk_iface", p4adder_clk_iface
-        )) begin
-      `uvm_fatal("[TEST]", "Could not get Mock Clock interface handle")
-    end
+    // coverage on b
 
     // Create Environment
-    p4adder_environment = Class_P4Adder_Environment::type_id::create("p4adder_environment", this);
+    p4adder_environment = Class_IFID_Environment::type_id::create("p4adder_environment", this);
   endfunction : build_phase
 
 
@@ -64,7 +61,7 @@ class Class_P4Adder_Test extends uvm_test;
   * */
   virtual task run_phase(uvm_phase phase);
     // Create a Sequence
-    Class_P4Adder_Sequence p4adder_sequence = Class_P4Adder_Sequence::type_id::create(
+    Class_IFID_Sequence p4adder_sequence = Class_IFID_Sequence::type_id::create(
         "p4adder_sequence", this
     );
 

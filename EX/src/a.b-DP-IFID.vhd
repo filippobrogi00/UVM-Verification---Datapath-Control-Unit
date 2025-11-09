@@ -30,6 +30,9 @@ entity DP_IFID is
     RegIMM_LATCH_EN : in    std_logic;
     JAL_EN          : in    std_logic;
 
+    -- Needed for PC J-TYPE instructions constrained random generation
+    JMP             : in std_logic;
+
     -- Additional RF inputs (STAGES 4 and 5)
     RF_WE             : in    std_logic;
     S4_REG_ADD_WR_OUT : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);

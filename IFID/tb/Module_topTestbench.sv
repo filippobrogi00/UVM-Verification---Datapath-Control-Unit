@@ -40,7 +40,6 @@ module Module_topTestbench;
   // Interfaces instantiation
   // NOTE: (parenthesis needed because these are modules!
   Iface_P4Adder #(.NBITS(NBITS)) p4adder_dut_iface ();
-  Iface_MockClock p4adder_clk_iface ();
 
   // Instance DUT using wrapper
   Module_P4Adder_Wrapper #(.NBITS(NBITS)) p4_adder_toplevel (.p4adder_iface(p4adder_dut_iface));
@@ -73,9 +72,6 @@ module Module_topTestbench;
     // Pass Virtual DUT interface handle down to components through Config Object
     uvm_config_db#(virtual Iface_P4Adder #(NBITS))::set(null, "*", "p4adder_dut_iface",
                                                         p4adder_dut_iface);
-
-    // Pass Virtual Mock Clock interface handle down to components through Config Object
-    uvm_config_db#(virtual Iface_MockClock)::set(null, "*", "p4adder_clk_iface", p4adder_clk_iface);
 
     // Running test...
     run_test("Class_P4Adder_Test");

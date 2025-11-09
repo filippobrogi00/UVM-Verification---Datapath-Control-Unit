@@ -8,18 +8,18 @@
   * data items from the Monitor with the "golden model".
 * */
 
-class Class_P4Adder_Scoreboard extends uvm_scoreboard;
+class Class_IFID_Scoreboard extends uvm_scoreboard;
 
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Scoreboard)
+  `uvm_component_utils(Class_IFID_Scoreboard)
 
   // Constructor
-  function new(string name = "Class_P4Adder_Scoreboard", uvm_component parent = null);
+  function new(string name = "Class_IFID_Scoreboard", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Analysis Port to receive data objects from other TB components
-  uvm_analysis_imp #(Class_P4Adder_SequenceItem, Class_P4Adder_Scoreboard) analysis_port_imp;
+  uvm_analysis_imp #(Class_IFID_SequenceItem, Class_IFID_Scoreboard) analysis_port_imp;
 
   /*
   * BUILD PHASE: Create instance of Analysis Port
@@ -36,7 +36,7 @@ class Class_P4Adder_Scoreboard extends uvm_scoreboard;
     * Monitor sends via Analysis Port a complete transaction to the Scoreboard
     * Here we re-compute the Expected Result and check it against DUTs'
   * */
-  virtual function void write(Class_P4Adder_SequenceItem p4adder_seqitem);
+  virtual function void write(Class_IFID_SequenceItem p4adder_seqitem);
 
     // Expected Result variables declaration
     logic [NBITS-1:0] expectedSum;

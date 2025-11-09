@@ -38,9 +38,9 @@ class Class_SimpleReportServer extends uvm_report_server;
     // Just return the message body without hierarchy info
     string formattedMessage = "";
 
-    // coverage off b
     // Add ANSI escape code based on severity level
     // NOTE: Severities are UVM_INFO, UVM_WARNING, UVM_ERROR, UVM_FATAL
+    // coverage off b
     case (id)
       "GREEN":   formattedMessage = $sformatf("%s%s", colors[GREEN], message);
       "BLUE":    formattedMessage = $sformatf("%s%s", colors[BLUE], message);
@@ -58,23 +58,33 @@ class Class_SimpleReportServer extends uvm_report_server;
 
   /* Redefined message reporting functions */
   //static function void uvm_report_green(string message);
+  //  // coverage off b
   //  `uvm_info("GREEN", message, UVM_MEDIUM)
+  //  // coverage on b
   //endfunction
 
   //static function void uvm_report_blue(string message);
+  //  // coverage off b
   //  `uvm_info("BLUE", message, UVM_MEDIUM)
+  //  // coverage on b
   //endfunction
 
   //static function void uvm_report_yellow(string message);
+  //  // coverage off b
   //  `uvm_info("YELLOW", message, UVM_MEDIUM)
+  //  // coverage on b
   //endfunction
 
   //static function void uvm_report_red(string message);
+  //  // coverage off b
   //  `uvm_info("RED", message, UVM_MEDIUM)
+  //  // coverage on b
   //endfunction
 
   //static function void uvm_report_bold_red(string message);
+  //  // coverage off b
   //  `uvm_info("BOLDRED", message, UVM_MEDIUM)
+  //  // coverage on b
   //endfunction
 
 endclass

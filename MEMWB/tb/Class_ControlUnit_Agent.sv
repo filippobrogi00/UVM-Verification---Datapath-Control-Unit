@@ -6,13 +6,13 @@
 * connects them via TLM interfaces.
 * */
 
-class Class_P4Adder_Agent extends uvm_agent;
+class Class_ControlUnit_Agent extends uvm_agent;
 
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Agent)
+  `uvm_component_utils(Class_ControlUnit_Agent)
 
   // Constructor
-  function new(string name = "Class_P4Adder_Agent", uvm_component parent = null);
+  function new(string name = "Class_ControlUnit_Agent", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
@@ -24,9 +24,9 @@ class Class_P4Adder_Agent extends uvm_agent;
     * Sends them to the Driver for "execution"
   * */
   // NOTE: Since Driver is parameterized on SequenceItem, this too!
-  uvm_sequencer #(Class_P4Adder_SequenceItem) p4adder_sequencer;
-  Class_P4Adder_Driver                        p4adder_driver;
-  Class_P4Adder_Monitor                       p4adder_monitor;
+  uvm_sequencer #(Class_ControlUnit_SequenceItem) ctrlunit_sequencer;
+  Class_ControlUnit_Driver                        ctrlunit_driver;
+  Class_ControlUnit_Monitor                       ctrlunit_monitor;
 
   /*
   * BUILD PHASE : Create Monitor, and if Agent is "active", also create Sequencer and Driver
@@ -35,14 +35,14 @@ class Class_P4Adder_Agent extends uvm_agent;
     super.build_phase(phase);
 
     // Create Sequencer
-    p4adder_sequencer =
-        uvm_sequencer#(Class_P4Adder_SequenceItem)::type_id::create("p4adder_sequencer", this);
+    ctrlunit_sequencer =
+        uvm_sequencer#(Class_ControlUnit_SequenceItem)::type_id::create("ctrlunit_sequencer", this);
 
     // Create Driver
-    p4adder_driver = Class_P4Adder_Driver::type_id::create("p4adder_driver", this);
+    ctrlunit_driver = Class_ControlUnit_Driver::type_id::create("ctrlunit_driver", this);
 
     // Create Monitor
-    p4adder_monitor = Class_P4Adder_Monitor::type_id::create("p4adder_monitor", this);
+    ctrlunit_monitor = Class_ControlUnit_Monitor::type_id::create("ctrlunit_monitor", this);
 
   endfunction : build_phase
 
@@ -53,7 +53,7 @@ class Class_P4Adder_Agent extends uvm_agent;
     super.connect_phase(phase);
 
     // Connect Driver's Port to Sequencer's Export
-    p4adder_driver.seq_item_port.connect(p4adder_sequencer.seq_item_export);
+    ctrlunit_driver.seq_item_port.connect(ctrlunit_sequencer.seq_item_export);
   endfunction : connect_phase
 endclass
 

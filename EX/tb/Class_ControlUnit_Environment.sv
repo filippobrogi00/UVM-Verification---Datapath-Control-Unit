@@ -8,21 +8,21 @@
   * Environments"
 * */
 
-class Class_P4Adder_Environment extends uvm_env;
+class Class_ControlUnit_Environment extends uvm_env;
   // Register to Factory
-  `uvm_component_utils(Class_P4Adder_Environment)
+  `uvm_component_utils(Class_ControlUnit_Environment)
 
   // Constructor
-  function new(string name = "Class_P4Adder_Environment", uvm_component parent = null);
+  function new(string name = "Class_ControlUnit_Environment", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Agent
-  Class_P4Adder_Agent p4adder_agent;
+  Class_ControlUnit_Agent ctrlunit_agent;
   // Scoreboard
-  Class_P4Adder_Scoreboard p4adder_scoreboard;
+  Class_ControlUnit_Scoreboard ctrlunit_scoreboard;
   // Coverage Tracker
-  Class_P4Adder_CoverageTracker p4adder_coverage_tracker;
+  Class_ControlUnit_CoverageTracker ctrlunit_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -31,9 +31,11 @@ class Class_P4Adder_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    p4adder_agent = Class_P4Adder_Agent::type_id::create("p4adder_agent", this);
-    p4adder_scoreboard = Class_P4Adder_Scoreboard::type_id::create("p4adder_scoreboard", this);
-    p4adder_coverage_tracker = Class_P4Adder_CoverageTracker::type_id::create("p4adder_coverage_tracker", this);
+    ctrlunit_agent = Class_ControlUnit_Agent::type_id::create("ctrlunit_agent", this);
+    ctrlunit_scoreboard =
+        Class_ControlUnit_Scoreboard::type_id::create("ctrlunit_scoreboard", this);
+    ctrlunit_coverage_tracker =
+        Class_ControlUnit_CoverageTracker::type_id::create("ctrlunit_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -45,10 +47,11 @@ class Class_P4Adder_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    p4adder_agent.p4adder_monitor.analysis_port.connect(p4adder_scoreboard.analysis_port_imp);
+    ctrlunit_agent.ctrlunit_monitor.analysis_port.connect(ctrlunit_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    p4adder_agent.p4adder_monitor.analysis_port.connect(p4adder_coverage_tracker.analysis_port_imp);
+    ctrlunit_agent.ctrlunit_monitor.analysis_port.connect(
+        ctrlunit_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
 
 
