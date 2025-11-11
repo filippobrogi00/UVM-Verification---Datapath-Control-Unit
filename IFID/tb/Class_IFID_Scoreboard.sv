@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 /*
 * SCOREBOARD :
@@ -31,6 +31,7 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     analysis_port_imp = new("analysis_port_imp", this);
   endfunction : build_phase
 
+
   /*
   * WRITE FUNCTION :
     * Monitor sends via Analysis Port a complete transaction to the Scoreboard
@@ -38,47 +39,196 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
   * */
   virtual function void write(Class_IFID_SequenceItem ifid_seqitem);
 
-    // Expected Result variables declaration
-    logic [NBITS-1:0] expectedSum;
-    logic expectedCout;
+    /****************************************
+    * Expected Result variables declaration *
+    *****************************************/
+    /* EX Block Outputs */
+    logic [IR_SIZE-1:0] Expected_S1_REG_NPC_OUT;
+    logic [IR_SIZE-1:0] Expected_S2_REG_NPC_OUT;
+    logic Expected_S2_FF_JAL_EN_OUT;
+    logic [OPERAND_SIZE-1:0] Expected_S2_REG_ADD_WR_OUT;
+    logic [IR_SIZE-1:0] Expected_S2_RFILE_A_OUT;
+    logic [IR_SIZE-1:0] Expected_S2_RFILE_B_OUT;
+    logic [IR_SIZE-1:0] Expected_S2_REG_SE_IMM_OUT;
+    logic [IR_SIZE-1:0] Expected_S2_REG_UE_IMM_OUT;
+    /* Outputs to MEMWB Block */
+    logic [IR_SIZE-1:0] Expected_S1_ADD_OUT;
 
-    // Variables to hold conversions from DUT output bit vectors to signed types
-    // (mainly for clean output error formatting)
-    int signed sint_A, sint_B, sint_Cin, dut_sint_Sum, dut_sint_Cout;
-    sint_A = $signed(ifid_seqitem.A[NBITS-1:0]);
-    sint_B = $signed(ifid_seqitem.B[NBITS-1:0]);
-    sint_Cin = $signed(ifid_seqitem.Cin);
-    dut_sint_Sum = $signed(ifid_seqitem.Sum[NBITS-1:0]);
-    dut_sint_Cout = $signed(ifid_seqitem.Cout);
 
-    // Compute Expected Result (on NBITS)
-    {expectedCout, expectedSum} = sint_A + sint_B + sint_Cin;
+    /*************************************************
+    * Calculate expected results (Golden Model) *
+    **************************************************/
 
-    /* Compare Expected vs DUT (compare NBITS fields) */
+    /******** Variables ********/
+    // Registers S1/S2_REG_NPC_OUT queue (2 elements)
+    static logic [IR_SIZE-1:0] s1_reg_queue[$:2] = '{0, 0};
+    // Register S2_FF_JAL_EN
+    static logic prev_ff_jal_en = 'b0;
+    // Register S2_REG_ADD_WR and logic
+    static logic [OPERAND_SIZE-1:0] prev_reg_add_wr = '0;
+    logic [OPERAND_SIZE-1:0] mux_ior_result;
+    logic [OPERAND_SIZE-1:0] mux_add_wr_result;
+    // RF
+    static logic [RF_REGBITS-1:0] rf[RF_NUMREGS];
+    // Registers S2_REG_SE26_IMM and S2_REG_SE16_IMM
+    static logic [IR_SIZE-1:0] prev_se26_imm = '0;
+    static logic [IR_SIZE-1:0] prev_se16_imm = '0;
 
+
+    /******** Mimicking logic ********/
+    // Mimick "NPC = NPC + 4" combinational behavior
+    Expected_S1_ADD_OUT     = ifid_seqitem.DLX_PC_to_DP + 'd4;
+
+    /* Mimick registers S1/2_REG_NPC_OUT through a queue */
+    Expected_S1_REG_NPC_OUT = s1_reg_queue[0];  // Get last CC's NPC value
+    Expected_S2_REG_NPC_OUT = s1_reg_queue[1];  // Get NPC of 2 CCs ago
+    s1_reg_queue.push_front(Expected_S1_ADD_OUT);  // Push new NPC into first position
+
+    /* Mimick S2_FF_JAL_EN_OUT register behavior */
+    Expected_S2_FF_JAL_EN_OUT = prev_ff_jal_en;
+    prev_ff_jal_en = ifid_seqitem.JAL_EN;
+
+    /* Mimick register S2_REG_ADD_WR_OUT with its logic */
+    // S2_MUX_IorR
+    mux_ior_result = (ifid_seqitem.RegIMM_LATCH_EN) ? ifid_seqitem.DLX_IR_to_DP[20:16] : ifid_seqitem.DLX_IR_to_DP[15:11];
+    // S2_MUX_ADD_WR
+    mux_add_wr_result = (ifid_seqitem.JAL_EN) ? {OPERAND_SIZE{1'b1}} : mux_ior_result;
+    // Register S2_REG_ADD_WR_OUT
+    Expected_S2_REG_ADD_WR_OUT = prev_reg_add_wr;
+    prev_reg_add_wr = mux_add_wr_result;
+
+    /* Mimick S2_REG_SE_IMM register behavior */
+    Expected_S2_REG_SE_IMM_OUT = prev_se26_imm;
+    prev_se26_imm = {
+      {6{ifid_seqitem.DLX_IR_to_DP[25]}}, ifid_seqitem.DLX_IR_to_DP[25:0]
+    };  // Arithmetical sign extension (6+26)
+
+    /* Mimick S2_REG_SE_IMM register behavior */
+    Expected_S2_REG_SE_IMM_OUT = prev_se16_imm;
+    prev_se16_imm = {
+      {16{ifid_seqitem.DLX_IR_to_DP[25]}}, ifid_seqitem.DLX_IR_to_DP[15:0]
+    };  // Arithmetical sign extension (16+26)
+
+    /* Mimick RF (synchronous R/W) behavior through an array */
+    // if (!ifid_seqitem.nRST) begin
+    /* Operation */
+    // Write operation
+    if (ifid_seqitem.RF_WE) begin
+      rf[ifid_seqitem.S4_REG_ADD_WR_OUT] = ifid_seqitem.S5_MUX_DATAIN_OUT;
+    end
+    // Read operations (always enabled since RD1=1 and RD2=1)
+    Expected_S2_RFILE_A_OUT = rf[ifid_seqitem.DLX_IR_to_DP[25:21]];
+    Expected_S2_RFILE_B_OUT = rf[ifid_seqitem.DLX_IR_to_DP[20:16]];
+    // end else begin
+    //   // Reset RF
+    //   foreach (rf[i]) begin
+    //     rf[i] = {RF_REGBITS{1'b0}};
+    //   end
+    //   // Reset outputs
+    //   Expected_S2_RFILE_A_OUT = '0;
+    //   Expected_S2_RFILE_B_OUT = '0;
+    // end
+
+
+    /*************************************************
+    * Compare Expected vs DUT (compare NBITS fields) *
+    **************************************************/
     // Print current item
-    `uvm_info("BLUE", $sformatf("\nITEM {A = %d, B = %d, Cin = %d}:", sint_A, sint_B, sint_Cin),
-              UVM_MEDIUM);
+    ifid_seqitem.print();
 
-    // Sum comparison
-    assert (expectedSum == ifid_seqitem.Sum) begin
-      `uvm_info("GREEN", "Sum OK!", UVM_MEDIUM);
-    end else
-      `uvm_info("RED", $sformatf(
-                "Sum mismatch: expected %d, got %d", $signed(expectedSum), dut_sint_Sum),
+    // S1_REG_NPC_OUT Comparison
+    assert (Expected_S1_REG_NPC_OUT == ifid_seqitem.S1_REG_NPC_OUT) begin
+      `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf("PC mismatch: expected %%0xx, got %%0xx", IR_SIZE, IR_SIZE);
+      `uvm_info("RED", $sformatf(format, Expected_S1_REG_NPC_OUT, ifid_seqitem.S1_REG_NPC_OUT),
                 UVM_MEDIUM);
+    end
 
-    // Cout comparison
-    assert (expectedCout == ifid_seqitem.Cout) begin
-      `uvm_info("GREEN", "Cout OK!", UVM_MEDIUM);
-    end else
+    // S2_REG_NPC_OUT Comparison
+    assert (Expected_S2_REG_NPC_OUT == ifid_seqitem.S2_REG_NPC_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf("IR mismatch: expected %%0xx, got %%0xx", IR_SIZE, IR_SIZE);
+      `uvm_info("RED", $sformatf(format, Expected_S2_REG_NPC_OUT, ifid_seqitem.S2_REG_NPC_OUT),
+                UVM_MEDIUM);
+    end
+
+    // S2_FF_JAL_EN_OUT Comparison
+    assert (Expected_S2_FF_JAL_EN_OUT == ifid_seqitem.S2_FF_JAL_EN_OUT) begin
+      `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
+    end else begin
       `uvm_info("RED", $sformatf(
-                "Cout mismatch: expected %d, got %d",
-                $signed(
-                    {{NBITS - 1{1'b0}}, expectedCout}
-                ),
-                dut_sint_Cout
+                "S2_FF_JAL_EN_OUT mismatch: expected %b, got %b",
+                Expected_S2_FF_JAL_EN_OUT,
+                ifid_seqitem.S2_FF_JAL_EN_OUT
                 ), UVM_MEDIUM);
+    end
+
+    // S2_REG_ADD_WR_OUT Comparison
+    assert (Expected_S2_REG_ADD_WR_OUT == ifid_seqitem.S2_REG_ADD_WR_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf(
+          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
+      );
+      `uvm_info("RED", $sformatf(format, Expected_S2_REG_ADD_WR_OUT, ifid_seqitem.S2_REG_ADD_WR_OUT
+                ), UVM_MEDIUM);
+    end
+
+    // S2_RFILE_A_OUT Comparison
+    assert (Expected_S2_RFILE_A_OUT == ifid_seqitem.S2_RFILE_A_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf(
+          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
+      );
+      `uvm_info("RED", $sformatf(format, Expected_S2_RFILE_A_OUT, ifid_seqitem.S2_RFILE_A_OUT),
+                UVM_MEDIUM);
+    end
+
+    // S2_RFILE_B_OUT Comparison
+    assert (Expected_S2_RFILE_B_OUT == ifid_seqitem.S2_RFILE_B_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf(
+          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
+      );
+      `uvm_info("RED", $sformatf(format, Expected_S2_RFILE_B_OUT, ifid_seqitem.S2_RFILE_B_OUT),
+                UVM_MEDIUM);
+    end
+
+    // S2_REG_SE_IMM_OUT Comparison
+    assert (Expected_S2_REG_SE_IMM_OUT == ifid_seqitem.S2_REG_SE_IMM_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf(
+          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
+      );
+      `uvm_info("RED", $sformatf(format, Expected_S2_REG_SE_IMM_OUT, ifid_seqitem.S2_REG_SE_IMM_OUT
+                ), UVM_MEDIUM);
+    end
+
+    // S2_REG_UE_IMM_OUT Comparison
+    assert (Expected_S2_REG_UE_IMM_OUT == ifid_seqitem.S2_REG_UE_IMM_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf(
+          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
+      );
+      `uvm_info("RED", $sformatf(format, Expected_S2_REG_UE_IMM_OUT, ifid_seqitem.S2_REG_UE_IMM_OUT
+                ), UVM_MEDIUM);
+    end
+
+    // S1_ADD_OUT Comparison
+    assert (Expected_S1_ADD_OUT == ifid_seqitem.S1_ADD_OUT) begin
+      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+    end else begin
+      string format = $sformatf(
+          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
+      );
+      `uvm_info("RED", $sformatf(format, Expected_S1_ADD_OUT, ifid_seqitem.S1_ADD_OUT), UVM_MEDIUM);
+    end
 
   endfunction : write
 

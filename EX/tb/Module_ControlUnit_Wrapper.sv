@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 // Wrapper for plug-and-play DUT instantiation
 module Module_ControlUnit_Wrapper #(

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 
 /*
@@ -66,7 +66,7 @@ class Class_IFID_Driver extends uvm_driver #(Class_IFID_SequenceItem);
       seq_item_port.get_next_item(ifid_seqitem);
 
       // Drive signals on DUT interface at posedge
-      @(posedge ifid_dut_iface.CLK);
+      @(posedge ifid_dut_iface.ClockingBlock_IFID);
       // Save DUT (interface) signals into Sequence Item
       ifid_dut_iface.DLX_PC_to_DP      = ifid_seqitem.DLX_PC_to_DP;
       ifid_dut_iface.DLX_IR_to_DP      = ifid_seqitem.DLX_IR_to_DP;

@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 /*
 * TEST:
@@ -61,9 +61,7 @@ class Class_IFID_Test extends uvm_test;
   * */
   virtual task run_phase(uvm_phase phase);
     // Create a Sequence
-    Class_IFID_Sequence ifid_sequence = Class_IFID_Sequence::type_id::create(
-        "ifid_sequence", this
-    );
+    Class_IFID_Sequence ifid_sequence = Class_IFID_Sequence::type_id::create("ifid_sequence", this);
 
     /* Start the test */
     super.run_phase(phase);

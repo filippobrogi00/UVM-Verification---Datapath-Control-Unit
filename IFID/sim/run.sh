@@ -48,8 +48,14 @@ if [[ $BASENAME_CWD == "$SIM_DIR" || $BASENAME_CWD == "$SRC_DIR" || $BASENAME_CW
   ROOT_DIR="../"
 fi
 
+# Create dirs
+mkdir -p $SIM_DIR
+mkdir -p $SRC_DIR
+mkdir -p $TB_DIR
+mkdir -p $COV_DIR
+
 # Script variables - Compilation
-SV_COMPILE_LIST="$TB_DIR/Iface_IFID.sv $TB_DIR/Module_ifid_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+SV_COMPILE_LIST="$TB_DIR/Iface_IFID.sv $TB_DIR/Module_IFID_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 
 ########### FUNCTIONS ###########
 

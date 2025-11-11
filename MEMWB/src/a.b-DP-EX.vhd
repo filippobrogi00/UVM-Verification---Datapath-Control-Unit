@@ -19,6 +19,9 @@ entity DP_EX is
     nRST : in    std_logic; -- nRST:Active-Low
 
     -- Inputs from IF+ID Block
+    S1_REG_NPC_OUT    : in    std_logic_vector(IR_SIZE - 1 downto  0);
+    S2_FF_JAL_EN_OUT  : in    std_logic;
+    S2_REG_NPC_OUT    : in    std_logic_vector(IR_SIZE - 1 downto 0);
     S2_REG_ADD_WR_OUT : in    std_logic_vector(OPERAND_SIZE - 1 downto 0); -- Part of sequence of registers at Write-Address input of Register File.
     S2_RFILE_A_OUT    : in    std_logic_vector(IR_SIZE - 1 downto 0);      -- RFILE = Register File
     S2_RFILE_B_OUT    : in    std_logic_vector(IR_SIZE - 1 downto 0);

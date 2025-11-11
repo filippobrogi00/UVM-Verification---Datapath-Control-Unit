@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 /*
 * COVERAGE TRACKER:
@@ -24,28 +24,22 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
   // NOTE: "with function sample" => Covergroup parameterized with transaction item
   covergroup Covergroup_IFID with function sample (Class_IFID_SequenceItem ifid_seqitem);
 
+    // Multi-bit
+    Coverpoint_DLX_PC_to_DP: coverpoint ifid_seqitem.DLX_PC_to_DP;
+    Coverpoint_DLX_IR_to_DP: coverpoint ifid_seqitem.DLX_IR_to_DP;
 
-    Coverpoint_OperandA: coverpoint ifid_seqitem.A {
-      bins min_value = {MIN_NEG_VALUE};
-      bins minus_one = {MINUS_ONE};
-      bins zero = {ZERO};
-      bins one = {ONE};
-      bins max_value = {MAX_POS_VALUE};
+    // Single bit
+    Coverpoint_IR_LATCH_EN: coverpoint ifid_seqitem.IR_LATCH_EN;
+    Coverpoint_NPC_LATCH_EN: coverpoint ifid_seqitem.NPC_LATCH_EN;
+    Coverpoint_RegA_LATCH_EN: coverpoint ifid_seqitem.RegA_LATCH_EN;
+    Coverpoint_SIGN_UNSIGN_EN: coverpoint ifid_seqitem.SIGN_UNSIGN_EN;
+    Coverpoint_RegIMM_LATCH_EN: coverpoint ifid_seqitem.RegIMM_LATCH_EN;
+    Coverpoint_JAL_EN: coverpoint ifid_seqitem.JAL_EN;
+    Coverpoint_RF_WE: coverpoint ifid_seqitem.RF_WE;
 
-      bins others = default;
-    }
-
-
-    Coverpoint_OperandB: coverpoint ifid_seqitem.B {
-      bins min_value = {MIN_NEG_VALUE};
-      bins minus_one = {MINUS_ONE};
-      bins zero = {ZERO};
-      bins one = {ONE};
-      bins max_value = {MAX_POS_VALUE};
-      bins others = default;
-    }
-
-    Coverpoint_OperandCin: coverpoint ifid_seqitem.Cin {bins zero = {0}; bins one = {1};}
+    // Multi-bit
+    Coverpoint_S4_REG_ADD_WR_OUT: coverpoint ifid_seqitem.S4_REG_ADD_WR_OUT;
+    Coverpoint_S5_MUX_DATAIN_OUT: coverpoint ifid_seqitem.S5_MUX_DATAIN_OUT;
 
   endgroup : Covergroup_IFID
 

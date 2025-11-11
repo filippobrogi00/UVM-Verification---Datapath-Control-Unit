@@ -97,8 +97,8 @@ architecture STRUCT_DATAPATH of DATAPATH is
   component gen_register_file is
 
     generic (
-      regBits : integer := 32;
-      numRegs : integer := 32
+      RF_regBits : integer := 32;
+      RF_numRegs : integer := 32
     );
     port (
       -- INPUTS
@@ -107,17 +107,17 @@ architecture STRUCT_DATAPATH of DATAPATH is
       ENABLE  : in    std_logic;
       RD1     : in    std_logic;
       RD2     : in    std_logic;
-      ADD_RD1 : in    std_logic_vector(log2(numRegs) - 1 downto 0);
-      ADD_RD2 : in    std_logic_vector(log2(numRegs) - 1 downto 0);
+      ADD_RD1 : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);
+      ADD_RD2 : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);
 
       -- Write operation
       WR     : in    std_logic;
-      ADD_WR : in    std_logic_vector(log2(numRegs) - 1 downto 0);
-      DATAIN : in    std_logic_vector(regBits - 1 downto 0);
+      ADD_WR : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);
+      DATAIN : in    std_logic_vector(RF_regBits - 1 downto 0);
 
       -- OUTPUTS
-      OUT1 : out   std_logic_vector(regBits - 1 downto 0);
-      OUT2 : out   std_logic_vector(regBits - 1 downto 0)
+      OUT1 : out   std_logic_vector(RF_regBits - 1 downto 0);
+      OUT2 : out   std_logic_vector(RF_regBits - 1 downto 0)
     );
   end component gen_register_file;
 
@@ -185,6 +185,56 @@ architecture STRUCT_DATAPATH of DATAPATH is
     );
   end component ALU;
 
+  -- ******************************** IF+ID MACRO-STAGE DECLARATION ********************************
+  component DP_IFID is
+    generic (
+      IR_SIZE         : INTEGER := 32;
+      OPERAND_SIZE    : INTEGER := 5;
+      I_TYPE_IMM_SIZE : INTEGER := 16;
+      J_TYPE_IMM_SIZE : INTEGER := 26;
+      RF_regBits      : integer := 32;
+      RF_numRegs      : integer := 32
+    );
+    port (
+      -- Inputs
+      CLK          : in    std_logic;
+      nRST         : in    std_logic;
+      DLX_PC_to_DP : in    std_logic_vector(IR_SIZE - 1 downto 0);
+      DLX_IR_to_DP : in    std_logic_vector(IR_SIZE - 1 downto 0);
+
+      -- Instruction Fetch - STAGE 1
+      IR_LATCH_EN  : in    std_logic;
+      NPC_LATCH_EN : in    std_logic;
+
+      -- Instruction Decode - STAGE 2
+      RegA_LATCH_EN   : in    std_logic;
+      SIGN_UNSIGN_EN  : in    std_logic;
+      RegIMM_LATCH_EN : in    std_logic;
+      JAL_EN          : in    std_logic;
+
+      -- Needed for PC J-TYPE instructions constrained random generation
+      JMP : in    std_logic;
+
+      -- Additional RF inputs (STAGES 4 and 5)
+      RF_WE             : in    std_logic;
+      S4_REG_ADD_WR_OUT : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);
+      S5_MUX_DATAIN_OUT : in    std_logic_vector(RF_regBits - 1 downto 0);
+
+      -- Outputs to EX Block
+      S1_REG_NPC_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
+      S2_REG_NPC_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
+      S2_FF_JAL_EN_OUT  : out   std_logic;
+      S2_REG_ADD_WR_OUT : out   std_logic_vector(OPERAND_SIZE - 1 downto 0);
+      S2_RFILE_A_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
+      S2_RFILE_B_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
+      S2_REG_SE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0);
+      S2_REG_UE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0);
+
+      -- Outputs to MEMWB Block
+      S1_ADD_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0)
+    );
+  end component DP_IFID;
+
   -- ******************************** STAGE 1 SIGNALS ********************************
   signal S1_ADD_OUT     : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 adder."
   signal S1_REG_IR_OUT  : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "IR"."
@@ -237,156 +287,50 @@ begin
   -- DEBUG:
   ALU_OUT <= S3_ALU_OUT;
 
-  -- ****************************************************************************************
-  -- ******************************** STAGE 1 INSTANTIATIONS ********************************
-  -- ****************************************************************************************
+  -- *******************************************************************************
+  -- ************** STAGE 1 + 2 (IFID MACRO-STAGE) INSTANTIATIONS ************************
+  -- *******************************************************************************
 
-  S1_REG_IR_OUT <= DLX_IR_to_DP; -- Connects DLX Entity's Instruction Register (DLX_IR_to_DP) value to the Datapath (S1_REG_IR_OUT).
-
-  S1_ADD : component PC_Adder
+  DP_IFID_inst : component DP_IFID
     generic map (
-      IR_SIZE => IR_SIZE
+      IR_SIZE         => IR_SIZE,
+      OPERAND_SIZE    => OPERAND_SIZE,
+      I_TYPE_IMM_SIZE => I_TYPE_IMM_SIZE,
+      J_TYPE_IMM_SIZE => J_TYPE_IMM_SIZE,
+      RF_regBits      => IR_SIZE,
+      RF_numRegs      => 32
     )
     port map (
-      A => DLX_PC_to_DP,
-      Y => S1_ADD_OUT
-    );
-
-  S1_REG_NPC : component NBit_Reg
-    generic map (
-      N => IR_SIZE
-    )
-    port map (
-      CLK   => CLK,
-      nRST  => nRST,
-      LD_EN => NPC_LATCH_EN,
-      D     => S1_ADD_OUT,
-      Q     => S1_REG_NPC_OUT
-    );
-
-  -- ****************************************************************************************
-  -- ******************************** STAGE 2 INSTANTIATIONS ********************************
-  -- ****************************************************************************************
-
-  S2_MUX_IorR : component NBit_2to1MUX
-    generic map (
-      N => OPERAND_SIZE
-    )
-    port map (
-      A => S1_REG_IR_OUT(20 downto 16),
-      B => S1_REG_IR_OUT(15 downto 11),
-      S => RegIMM_LATCH_EN,
-      Y => S2_MUX_IorR_OUT
-    );
-
-  S2_MUX_ADD_WR : component NBit_2to1MUX
-    generic map (
-      N => OPERAND_SIZE
-    )
-    port map (
-      A => "11111",
-      B => S2_MUX_IorR_OUT,
-      S => JAL_EN,
-      Y => S2_MUX_ADD_WR_OUT
-    );
-
-  S2_REG_ADD_WR : component NBit_Reg
-    generic map (
-      N => OPERAND_SIZE
-    )
-    port map (
-      CLK   => CLK,
-      nRST  => nRST,
-      LD_EN => '1',
-      D     => S2_MUX_ADD_WR_OUT,
-      Q     => S2_REG_ADD_WR_OUT
-    );
-
-  S2_RFILE : component gen_register_file
-    generic map (
-      regBits => IR_SIZE,
-      numRegs => 32
-    )
-    port map (
-      CLK     => CLK,
-      nRST    => nRST,
-      ENABLE  => '1',
-      RD1     => '1',
-      RD2     => '1',
-      ADD_RD1 => S1_REG_IR_OUT(25 downto 21),
-      ADD_RD2 => S1_REG_IR_OUT(20 downto 16),
-      WR      => RF_WE,
-      ADD_WR  => S4_REG_ADD_WR_OUT,
-      DATAIN  => S5_MUX_DATAIN_OUT,
-      OUT1    => S2_RFILE_A_OUT,
-      OUT2    => S2_RFILE_B_OUT
-    );
-
-  S2_SE16 : component sign_extender16_32
-    generic map (
-      IR_SIZE => IR_SIZE
-    )
-    port map (
-      IMM_IN         => S1_REG_IR_OUT(15 downto 0),
-      SIGN_UNSIGN_EN => SIGN_UNSIGN_EN,
-      IMM_OUT        => S2_SE16_OUT
-    );
-
-  S2_SE26 : component sign_extender26_32
-    generic map (
-      IR_SIZE => IR_SIZE
-    )
-    port map (
-      IMM_IN  => S1_REG_IR_OUT(25 downto 0),
-      IMM_OUT => S2_SE26_OUT
-    );
-
-  S2_REG_SE16_IMM : component NBit_Reg
-    generic map (
-      N => IR_SIZE
-    )
-    port map (
-      CLK   => CLK,
-      nRST  => nRST,
-      LD_EN => RegIMM_LATCH_EN,
-      D     => S2_SE16_OUT,
-      Q     => S2_REG_SE_IMM_OUT
-    );
-
-  S2_REG_SE26_IMM : component NBit_Reg
-    generic map (
-      N => IR_SIZE
-    )
-    port map (
-      CLK   => CLK,
-      nRST  => nRST,
-      LD_EN => RegIMM_LATCH_EN,
-      D     => S2_SE26_OUT,
-      Q     => S2_REG_UE_IMM_OUT
-    );
-
-  S2_FF_JAL_EN : component NBit_Reg
-    generic map (
-      N => 1
-    )
-    port map (
-      CLK   => CLK,
-      nRST  => nRST,
-      LD_EN => '1',
-      D(0)  => JAL_EN,
-      Q(0)  => S2_FF_JAL_EN_OUT
-    );
-
-  S2_REG_NPC : component NBit_Reg
-    generic map (
-      N => IR_SIZE
-    )
-    port map (
-      CLK   => CLK,
-      nRST  => nRST,
-      LD_EN => '1',
-      D     => S1_REG_NPC_OUT,
-      Q     => S2_REG_NPC_OUT
+      -- Inputs
+      CLK  => CLK,
+      nRST => nRST,
+      -- Inputs for Stage 1
+      DLX_PC_to_DP => DLX_PC_to_DP,
+      DLX_IR_to_DP => DLX_IR_to_DP,
+      -- Inputs for Stage 2
+      IR_LATCH_EN     => IR_LATCH_EN,
+      NPC_LATCH_EN    => NPC_LATCH_EN,
+      RegA_LATCH_EN   => RegA_LATCH_EN,
+      SIGN_UNSIGN_EN  => SIGN_UNSIGN_EN,
+      RegIMM_LATCH_EN => RegIMM_LATCH_EN,
+      JAL_EN          => JAL_EN,
+      -- JMP Needed for SV CRG
+      JMP => JMP,
+      -- Additional RF inputs from Stages 4, 5
+      RF_WE             => RF_WE,
+      S4_REG_ADD_WR_OUT => S4_REG_ADD_WR_OUT,
+      S5_MUX_DATAIN_OUT => S5_MUX_DATAIN_OUT,
+      -- Outputs to EX Stage
+      S1_REG_NPC_OUT    => S1_REG_NPC_OUT,
+      S2_REG_NPC_OUT    => S2_REG_NPC_OUT,
+      S2_FF_JAL_EN_OUT  => S2_FF_JAL_EN_OUT,
+      S2_REG_ADD_WR_OUT => S2_REG_ADD_WR_OUT,
+      S2_RFILE_A_OUT    => S2_RFILE_A_OUT,
+      S2_RFILE_B_OUT    => S2_RFILE_B_OUT,
+      S2_REG_SE_IMM_OUT => S2_REG_SE_IMM_OUT,
+      S2_REG_UE_IMM_OUT => S2_REG_UE_IMM_OUT,
+      -- Outputs to MEMWB Macro-Stage
+      S1_ADD_OUT => S1_ADD_OUT
     );
 
   -- ****************************************************************************************

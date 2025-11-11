@@ -1,17 +1,28 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
 package pkg_const;
-
-  localparam int NBITS = 32;
+  /* Simulation constants */
+  localparam time CLKPERIOD = 2ns;
 
   /* General constants */
-  localparam int DLX_CPU_NUMREGS = 32;
-  localparam int IRAM_DEPTH = 48;
+  localparam int NBITS = 32;  // DLX CPU Bit width
+  localparam int DLX_CPU_NUMREGS = 32;  // Number of regs in the CPU
+  localparam int IRAM_DEPTH = 48;  // Number of IRAM words
 
-  localparam int ERROR = 99;
+  /* Register File constants */
+  localparam int RF_NUMREGS = 32;  // Number of regs inside RF
+  localparam int RF_REGBITS = 32;  // Number of bits of RF registers
+
+  /* Instruction-specific constants */
+  localparam int IR_SIZE = 32;  // Size of instruction (#bits)
+  localparam int OPERAND_SIZE = 5;  // Size of operand (rs1, rs2, rd) fields in I/J_TYPE instructions
+  localparam int OPCODE_SIZE = 6;  // Size of OPCODE field
+  localparam int FUNC_SIZE = 11;  // Size of FUNC field (only for R_TYPE)
+  localparam int I_TYPE_IMM_SIZE = 16;  // Size of IMMediate field in I_TYPE instructions
+  localparam int J_TYPE_IMM_SIZE = 26;  // Size of FUNC field in J_TYPE instructions
 
   /* ALU Operations */
 
@@ -27,6 +38,38 @@ package pkg_const;
     SIGN_TYPE,
     UNSIGN_TYPE
   } INSTR_SIGN;
+
+  /* Instruction field aliases */
+  // I_TYPE
+  typedef struct packed {
+    logic [OPCODE_SIZE-1:0] opcode;
+    logic [OPERAND_SIZE-1:0] rs1;
+    logic [OPERAND_SIZE-1:0] rs2;
+    logic [I_TYPE_IMM_SIZE-1:0] imm;
+  } Instr_I_TYPE;
+
+  // R_TYPE
+  typedef struct packed {
+    logic [OPCODE_SIZE-1:0] opcode;
+    logic [OPERAND_SIZE-1:0] rs1;
+    logic [OPERAND_SIZE-1:0] rs2;
+    logic [OPERAND_SIZE-1:0] rd;
+    logic [FUNC_SIZE-1:0] func;
+  } Instr_R_TYPE;
+
+  // J_TYPE
+  typedef struct packed {
+    logic [OPCODE_SIZE-1:0] opcode;
+    logic [J_TYPE_IMM_SIZE-1:0] imm;
+  } Instr_J_TYPE;
+
+  // General instruction type (could be each one of the types)
+  typedef union packed {
+    logic [IR_SIZE-1:0] bits;  // Raw bit array
+    Instr_I_TYPE itype;  // Interpreted as I_TYPE
+    Instr_R_TYPE rtype;  // Interpreted as I_TYPE
+    Instr_J_TYPE jtype;  // Interpreted as I_TYPE
+  } InstrType;
 
   // Supported instructions
   // NOTE: enumerated to match source file's encoding order
@@ -71,8 +114,11 @@ package pkg_const;
 
   // @brief Helper function to check type of instruction.
   // @return One of I_TYPE, R_TYPE, J_TYPE constants.
-  function check_instr_type(logic [OPCODE_SIZE-1:0] op, logic [FUNC_SIZE-1:0] func);
+  function check_instr_type(logic [IR_SIZE-1:0] instruction);
     // Outer Case: Based on the Instruction Opcode (R-type is 0x0)
+    logic [OPCODE_SIZE-1:0] op;
+    assign op = instruction[31:26];
+
     case (op)
 
       // ALU Opcode for R-Type Instructions when Instruction Opcode is 0x0. Analyze FUNC Bit Field.
@@ -95,9 +141,16 @@ package pkg_const;
   // @brief Helper function which checks if instruction
   // operates on signed or unsigned immediates.
   // @return One of SIGN_TYPE or UNSIGN_TYPE.
-  function check_instr_sign(logic [OPCODE_SIZE-1:0] op, logic [FUNC_SIZE-1:0] func);
+  function check_instr_sign(logic [IR_SIZE-1:0] instruction);
 
-    if (check_instr_type(op, func) == I_TYPE) begin
+    logic [OPCODE_SIZE-1:0] op;
+    logic [OPCODE_SIZE-1:0] func;
+
+    assign op = instruction[31:26];
+    assign op = instruction[10:0];
+
+
+    if (check_instr_type(instruction) == I_TYPE) begin
       // Only check I_TYPE instructions
       case (op)
 
@@ -117,5 +170,43 @@ package pkg_const;
       endcase
     end
   endfunction
+
+  // @brief Assigns field values to an "instruction type" variable.
+  // @return Corresponding bit array which has the instruction's fields
+  // defined.
+  function get_instr_type(logic [IR_SIZE-1:0] instruction);
+    // TODO: use proper constant-based ranges instead of hardcoded
+    logic [OPCODE_SIZE-1:0] _opcode;
+    logic [  FUNC_SIZE-1:0] _func;
+
+    assign _opcode = instruction[31:26];
+    assign _func = instruction[10:0];
+
+    if (check_instr_type(instruction) == I_TYPE) begin
+      // Assign I_TYPE fields to the bit array
+      Instr_I_TYPE itype_alias;
+      itype_alias.opcode = instruction[31:26];
+      itype_alias.rs1    = instruction[25:21];
+      itype_alias.rs2    = instruction[20:16];
+      itype_alias.imm    = instruction[15:0];
+      return itype_alias;
+    end else if (check_instr_type(instruction) == R_TYPE) begin
+      // Assign R_TYPE fields to the bit array
+      Instr_R_TYPE rtype_alias;
+      rtype_alias.opcode = instruction[31:26];
+      rtype_alias.rs1    = instruction[25:21];
+      rtype_alias.rs2    = instruction[20:16];
+      rtype_alias.rd     = instruction[15:11];
+      rtype_alias.func   = instruction[10:0];
+      return rtype_alias;
+    end else begin
+      // Assign J_TYPE fields to the bit array
+      Instr_J_TYPE jtype_alias;
+      jtype_alias.opcode = instruction[31:26];
+      jtype_alias.imm    = instruction[25:0];
+      return jtype_alias;
+    end
+  endfunction
+
 
 endpackage

@@ -18,7 +18,10 @@ entity DP_EX is
     CLK  : in    std_logic; -- Clock
     nRST : in    std_logic; -- nRST:Active-Low
 
-    -- Inputs from IF+ID Block
+    -- Inputs from IF+ID Macro-Stage
+    S1_REG_NPC_OUT    : in    std_logic_vector(IR_SIZE - 1 downto  0);
+    S2_FF_JAL_EN_OUT  : in    std_logic;
+    S2_REG_NPC_OUT    : in    std_logic_vector(IR_SIZE - 1 downto 0);
     S2_REG_ADD_WR_OUT : in    std_logic_vector(OPERAND_SIZE - 1 downto 0); -- Part of sequence of registers at Write-Address input of Register File.
     S2_RFILE_A_OUT    : in    std_logic_vector(IR_SIZE - 1 downto 0);      -- RFILE = Register File
     S2_RFILE_B_OUT    : in    std_logic_vector(IR_SIZE - 1 downto 0);
@@ -172,17 +175,11 @@ architecture structural of DP_EX is
   end component ALU;
 
   -- ******************************** STAGE 3 SIGNALS ********************************
-  signal S3_BranchTaken    : std_logic;
-  signal S3_MUX_A_OUT      : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_MUX_B_OUT      : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_ALU_OUT        : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_MUX_JMP_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_REG_ALU_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_FF_COND_OUT    : std_logic;
-  signal S3_REG_DATA_OUT   : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_FF_JAL_EN_OUT  : std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
-  signal S3_REG_ADD_WR_OUT : std_logic_vector(4 downto 0);
-  signal S3_REG_NPC_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
+  signal S3_BranchTaken : std_logic;
+  signal S3_MUX_A_OUT   : std_logic_vector(IR_SIZE - 1 downto 0);
+  signal S3_MUX_B_OUT   : std_logic_vector(IR_SIZE - 1 downto 0);
+  signal S3_ALU_OUT     : std_logic_vector(IR_SIZE - 1 downto 0);
+  signal S3_MUX_JMP_OUT : std_logic_vector(IR_SIZE - 1 downto 0);
 
 begin
 

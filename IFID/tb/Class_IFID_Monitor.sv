@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 /*
 * MONITOR:
@@ -68,8 +68,8 @@ class Class_IFID_Monitor extends uvm_monitor;
           "ifid_seqitem", this
       );
 
-      // Wait mock clock rising edge
-      @(posedge ifid_dut_iface.CLK);
+      // Wait clock rising edge
+      @(posedge ifid_dut_iface.ClockingBlock_IFID);
       // Inputs
       ifid_seqitem.DLX_PC_to_DP      = ifid_dut_iface.DLX_PC_to_DP;
       ifid_seqitem.DLX_IR_to_DP      = ifid_dut_iface.DLX_IR_to_DP;
@@ -84,14 +84,15 @@ class Class_IFID_Monitor extends uvm_monitor;
       ifid_seqitem.S5_MUX_DATAIN_OUT = ifid_dut_iface.S5_MUX_DATAIN_OUT;
 
       // Outputs
-      ifid_seqitem.S2_REG_ADD_WR_OUT = ifid_dut_iface.S4_REG_ADD_WR_OUT;
+      ifid_seqitem.S1_REG_NPC_OUT    = ifid_dut_iface.S1_REG_NPC_OUT;
+      ifid_seqitem.S2_REG_NPC_OUT    = ifid_dut_iface.S2_REG_NPC_OUT;
+      ifid_seqitem.S2_FF_JAL_EN_OUT  = ifid_dut_iface.S2_FF_JAL_EN_OUT;
+      ifid_seqitem.S2_REG_ADD_WR_OUT = ifid_dut_iface.S2_REG_ADD_WR_OUT;
       ifid_seqitem.S2_RFILE_A_OUT    = ifid_dut_iface.S2_RFILE_A_OUT;
       ifid_seqitem.S2_RFILE_B_OUT    = ifid_dut_iface.S2_RFILE_B_OUT;
       ifid_seqitem.S2_REG_SE_IMM_OUT = ifid_dut_iface.S2_REG_SE_IMM_OUT;
       ifid_seqitem.S2_REG_UE_IMM_OUT = ifid_dut_iface.S2_REG_UE_IMM_OUT;
       ifid_seqitem.S1_ADD_OUT        = ifid_dut_iface.S1_ADD_OUT;
-
-
 
 
       // Broadcast data object to subscribers (Scoreboard and CoverageTracker)

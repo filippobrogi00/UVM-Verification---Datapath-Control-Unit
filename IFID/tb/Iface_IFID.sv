@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 // DUT Interface
 interface Iface_IFID #(
@@ -71,25 +71,53 @@ interface Iface_IFID #(
   *  OUTPUTS *
   ************/
   /* EX Block Outputs */
-  logic [OPERAND_SIZE-1:0] S2_REG_ADD_WR_OUT;
+  logic [IR_SIZE-1:0] S1_REG_NPC_OUT;
+  logic [IR_SIZE-1:0] S2_REG_NPC_OUT;
+  logic S2_FF_JAL_EN_OUT;
+  logic [$clog2(RF_NUMREGS)-1:0] S2_REG_ADD_WR_OUT;
   logic [IR_SIZE-1:0] S2_RFILE_A_OUT;
   logic [IR_SIZE-1:0] S2_RFILE_B_OUT;
   logic [IR_SIZE-1:0] S2_REG_SE_IMM_OUT;
   logic [IR_SIZE-1:0] S2_REG_UE_IMM_OUT;
-
   /* Outputs to MEMWB Block */
   logic [IR_SIZE-1:0] S1_ADD_OUT;
 
+  /************
+  *  MODPORTS *
+  *************/
+  // verilog_format: off
   modport DUT(
-      input DLX_PC_to_DP, DLX_IR_to_DP,
-          IR_LATCH_EN, NPC_LATCH_EN,
-          RegA_LATCH_EN, SIGN_UNSIGN_EN, RegIMM_LATCH_EN, JAL_EN,
-          RF_WE, S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT,
+      input
+        // General inputs
+        CLK, nRST,
+        // Testbench inputs as seen by DUT
+        DLX_PC_to_DP, DLX_IR_to_DP,
+        IR_LATCH_EN, NPC_LATCH_EN,
+        RegA_LATCH_EN, SIGN_UNSIGN_EN, RegIMM_LATCH_EN, JAL_EN,
+        RF_WE, S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT,
 
-      output S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT,
-      S2_REG_SE_IMM_OUT, S2_REG_UE_IMM_OUT,
-      S1_ADD_OUT
+      // Testbench outputs as seen by DUT
+      output S1_REG_NPC_OUT, S2_REG_NPC_OUT, S2_FF_JAL_EN_OUT, S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT,
+        S2_REG_SE_IMM_OUT, S2_REG_UE_IMM_OUT,
+        S1_ADD_OUT
   );
+  // verilog_format: on
+
+  // Clocking block for timing synchronization
+  clocking ClockingBlock_IFID @(posedge CLK);
+    /* (TB) INPUTS: TB <- DUT */
+    // NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
+    input #(1) S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT, S2_REG_SE_IMM_OUT,
+      S2_REG_UE_IMM_OUT, S1_ADD_OUT;
+
+
+    /* (TB) OUTPUTS: TB -> DUT */
+    // NOTE: Drive DUT's inputs at (posedge clk - CLKPERIOD/4)
+    output #(-1) DLX_PC_to_DP, DLX_IR_to_DP, IR_LATCH_EN,
+      NPC_LATCH_EN, RegA_LATCH_EN, SIGN_UNSIGN_EN,
+      RegIMM_LATCH_EN, JAL_EN, RF_WE,
+      S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT;
+  endclocking
 
 endinterface
 

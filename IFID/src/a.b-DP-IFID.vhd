@@ -31,22 +31,25 @@ entity DP_IFID is
     JAL_EN          : in    std_logic;
 
     -- Needed for PC J-TYPE instructions constrained random generation
-    JMP             : in std_logic;
+    JMP : in    std_logic;
 
     -- Additional RF inputs (STAGES 4 and 5)
     RF_WE             : in    std_logic;
     S4_REG_ADD_WR_OUT : in    std_logic_vector(log2(RF_numRegs) - 1 downto 0);
     S5_MUX_DATAIN_OUT : in    std_logic_vector(RF_regBits - 1 downto 0);
 
-    -- Outputs to EX Block
+    -- Outputs to EX Stage
+    S1_REG_NPC_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
+    S2_REG_NPC_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
+    S2_FF_JAL_EN_OUT  : out   std_logic;
     S2_REG_ADD_WR_OUT : out   std_logic_vector(OPERAND_SIZE - 1 downto 0); -- Part of sequence of registers at Write-Address input of Register File.
     S2_RFILE_A_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);      -- RFILE = Register File
     S2_RFILE_B_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
     S2_REG_SE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0);
     S2_REG_UE_IMM_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0);
 
-    -- Outputs to MEMWB Block
-    S1_ADD_OUT     : std_logic_vector(IR_SIZE - 1 downto 0) -- Read as "Output of Stage 1 adder."
+    -- Outputs to MEMWB Macro-Stage
+    S1_ADD_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0) -- Read as "Output of Stage 1 adder."
   );
 end entity DP_IFID;
 
@@ -174,18 +177,15 @@ architecture structural of DP_IFID is
   end component ALU;
 
   -- ******************************** STAGE 1 SIGNALS ********************************
-  signal S1_REG_IR_OUT  : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "IR"."
-  signal S1_REG_NPC_OUT : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "NPC."
+  signal S1_REG_IR_OUT : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "IR"."
 
   -- ******************************** STAGE 2 SIGNALS ********************************
   signal S2_SE16_OUT       : std_logic_vector(IR_SIZE - 1 downto 0);      -- SE16 = Sign Extender w/16-bit input.
   signal S2_SE26_OUT       : std_logic_vector(IR_SIZE - 1 downto 0);      -- SE26 = Sign Extender w/26-bit input.
   signal S2_REG_A_OUT      : std_logic_vector(IR_SIZE - 1 downto 0);
   signal S2_REG_B_OUT      : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S2_FF_JAL_EN_OUT  : std_logic;                                   -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
   signal S2_MUX_ADD_WR_OUT : std_logic_vector(OPERAND_SIZE - 1 downto 0); -- Part of sequence of registers at Write-Address input of Register File.
   signal S2_MUX_IorR_OUT   : std_logic_vector(OPERAND_SIZE - 1 downto 0); -- To select correct bits from either R-Type or I-Type Instruction.
-  signal S2_REG_NPC_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
 
 begin
 

@@ -19,7 +19,7 @@ entity DP_MEMWB is
     nRST     : in    std_logic; -- nRST:Active-Low
     DRAM_OUT : in    std_logic_vector(IR_SIZE - 1 downto 0);
 
-    -- Input signals from IF+ID Block
+    -- Input signals from IF+ID Macro-Stage
     S1_ADD_OUT : in    std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 adder."
 
     -- Input signals from EX Block
@@ -43,7 +43,7 @@ entity DP_MEMWB is
     -- Outputs
     DP_to_DLX_PC : out   std_logic_vector(IR_SIZE - 1 downto 0); -- Will connect output of S4_MUX_JMP_OUT to PC signal in DLX entity.
 
-    -- Outputs to IF+ID Block
+    -- Outputs to IF+ID Macro-Stage
     S4_REG_ADD_WR_OUT : out   std_logic_vector(4 downto 0); -- Part of sequence of registers at Write-Address input of Register File.
     S5_MUX_DATAIN_OUT : out   std_logic_vector(IR_SIZE - 1 downto 0)
   );

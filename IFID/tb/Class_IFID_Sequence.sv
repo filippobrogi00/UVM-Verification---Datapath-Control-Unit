@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 /*
 * SEQUENCE ITEM: Data item to which can be grouped into a Sequence
@@ -44,24 +44,8 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
   rand logic [IR_SIZE-1:0] DLX_PC_to_DP;
   rand logic [IR_SIZE-1:0] DLX_IR_to_DP;
 
-  /* Aliases for cleaner code */
-  logic [OPCODE_SIZE-1:0] opcode;
-  assign opcode = DLX_IR_to_DP[31:26]; // TODO: using constants
-
-  // I-TYPE
-  logic [OPERAND_SIZE-1:0] itype_rs1;    assign itype_rs1 = DLX_IR_to_DP[25:21];
-  logic [OPERAND_SIZE-1:0] itype_rs2;    assign itype_rs2 = DLX_IR_to_DP[20:16];
-  logic [I_TYPE_IMM_SIZE-1:0] itype_imm; assign itype_imm = DLX_IR_to_DP[15:0];
-
-  // R-TYPE
-  logic [OPERAND_SIZE-1:0] rtype_rs1;     assign rtype_rs1 = DLX_IR_to_DP[25:21];
-  logic [OPERAND_SIZE-1:0] rtype_rs2;     assign rtype_rs2 = DLX_IR_to_DP[20:16];
-  logic [OPERAND_SIZE-1:0] rtype_rd;      assign rtype_rd  = DLX_IR_to_DP[15:10];
-  logic [R_TYPE_IMM_SIZE-1:0] rtype_func;  assign rtype_func = DLX_IR_to_DP[10:0];
-
-  // J-TYPE
-  logic [J_TYPE_IMM_SIZE-1:0] jtype_imm; assign jtype_imm = DLX_IR_to_DP[25:0];
-
+  // IR instruction, with fields depending on its type
+  InstrType instr;
 
   /* STAGE 1 Inputs */
   rand logic IR_LATCH_EN;
@@ -82,7 +66,10 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
   *  OUTPUTS *
   ************/
   /* EX Block Outputs */
-  logic [OPERAND_SIZE-1:0] S2_REG_ADD_WR_OUT;
+  logic [IR_SIZE-1:0] S1_REG_NPC_OUT;
+  logic [IR_SIZE-1:0] S2_REG_NPC_OUT;
+  logic S2_FF_JAL_EN_OUT;
+  logic [$clog2(RF_NUMREGS)-1:0] S2_REG_ADD_WR_OUT;
   logic [IR_SIZE-1:0] S2_RFILE_A_OUT;
   logic [IR_SIZE-1:0] S2_RFILE_B_OUT;
   logic [IR_SIZE-1:0] S2_REG_SE_IMM_OUT;
@@ -98,15 +85,47 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
 
   // Converts just the input fields into strings
   virtual function void print();
-    `uvm_info("ITEM", $sformatf(
-              "-------- INFO --------\n" \
-              " PC = %x\n" \
-              " IR = %x\n" \
-              " CW Slice = %b%b%b%b%b%b\n" \
-              " RF_WE = %b, S4_REG_ADD_WR_OUT = %b, S5_MUX_DATAIN_OUT = %b\n",
-              DLX_PC_to_DP, DLX_IR_to_DP, IR_LATCH_EN, NPC_LATCH_EN, RegA_LATCH_EN, SIGN_UNSIGN_EN, RegIMM_LATCH_EN, JAL_EN,
-              RF_WE, S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT,
-              UVM_MEDIUM);
+    `uvm_info("BLUE", $sformatf(
+              {
+                "-------- ITEM INFO --------\n",
+                "/***** INPUTS   *****/",
+                " PC = %x\n",
+                " IR = %x\n",
+                " CW Slice = %b%b%b%b%b%b%b\n",
+                " RF_WE = %b, S4_REG_ADD_WR_OUT = %b, S5_MUX_DATAIN_OUT = %b\n",
+                "/***** OUTPUTS   *****/",
+                " S1_ADD_OUT = %x\n",
+                " S1_REG_NPC_OUT = %x\n",
+                " S2_REG_NPC_OUT = %x\n",
+                " S2_FF_JAL_EN_OUT = %b\n",
+                " S2_REG_ADD_WR_OUT = %x\n",
+                " S2_RFILE_A_OUT = %x, S2_REG_NPC_OUT = %x\n",
+                " S2_REG_SE_IMM_OUT = %x, S2_REG_UE_IMM_OUT = %x\n",
+                "---------------------------\n"
+              },
+              // Inputs
+              DLX_PC_to_DP,
+              DLX_IR_to_DP,
+              IR_LATCH_EN,
+              NPC_LATCH_EN,
+              RegA_LATCH_EN,
+              SIGN_UNSIGN_EN,
+              RegIMM_LATCH_EN,
+              JAL_EN,
+              RF_WE,
+              S4_REG_ADD_WR_OUT,
+              S5_MUX_DATAIN_OUT,
+              // Outputs
+              S1_ADD_OUT,
+              S1_REG_NPC_OUT,
+              S2_REG_NPC_OUT,
+              S2_FF_JAL_EN_OUT,
+              S2_REG_ADD_WR_OUT,
+              S2_RFILE_A_OUT,
+              S2_RFILE_B_OUT,
+              S2_REG_SE_IMM_OUT,
+              S2_REG_UE_IMM_OUT
+              ), UVM_MEDIUM);
   endfunction
 
   /*
@@ -115,11 +134,12 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
 
   /* IR Constraints */
   constraint Constraint_OPCODE_Valid {
-    opcode inside {
+    instr.bits[31:26] inside {
+    // verilog_format: off
       NOP,
       ADD_op,  // Signed Addition
       AND_op,  // Bitwise
-      OR_op,   // Bitwise
+      OR_op,  // Bitwise
       SGE_op,  // Set Greater than or Equal to
       SLE_op,  // Set Less than or Equal to
       SLL_op,  // Unsigned Logical Shift Left
@@ -129,57 +149,96 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
       XOR_op,  // Bitwise
 
       // DLX Pro Version ALU Opcodes
-      SRA_op,   // Shift Right Arithmetic
+      SRA_op,  // Shift Right Arithmetic
       ADDU_op,  // Unsigned Addition
       SUBU_op,  // Unsigned Subtraction
-      SEQ_op,   // Set if Equal
-      SLT_op,   // Set if Less Than
-      SGT_op,   // Set Greater Than
+      SEQ_op,  // Set if Equal
+      SLT_op,  // Set if Less Than
+      SGT_op,  // Set Greater Than
       SLTU_op,  // Set if Less Than (Unsigned)
       SGTU_op,  // Set Greater Than (Unsigned)
       SLEU_op,  // Set if Less Than or Equal (Unsigned)
-      SGEU_op   // Set Greater Than or Equal (Unsigned)
+      SGEU_op  // Set Greater Than or Equal (Unsigned)
+    // verilog_format: on
     };
   }
 
   // Constrain instruction's fields depending on the type (I, R, J)
   constraint Valid_InstructionType_Fields {
 
-    if (check_instr_type(opcode, rtype_func) == I_TYPE) {
+    // verilog_format: off
+    if (check_instr_type(instr) == I_TYPE) {
+    // verilog_format: on
 
       /* I-TYPE instruction [OPCODE, RS1, RD, IMM] */
-      itype_rs1 inside {[0:DLX_CPU_NUMREGS-1]};
-      itype_rs2 inside {[0:DLX_CPU_NUMREGS-1]};
+      instr.itype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
+      instr.itype.rs2 inside {[0 : DLX_CPU_NUMREGS - 1]};
 
       // Check if opcode denotes signed operation
-      if (check_instr_sign(opcode, func) == SIGN_TYPE)
-      {
-        itype_imm inside {[-(2**(NBITS-1)) : +((2**(NBITS-1))-1)]};
+      // verilog_format: off
+      if (check_instr_sign(instr) == SIGN_TYPE) {
+      // verilog_format: off
+        instr.itype.imm inside {[-(2 ** (NBITS - 1)) : +((2 ** (NBITS - 1)) - 1)]};
       } else {
         // Unsigned
-        itype_imm inside {[0 : 2**(NBITS-1)]};
+        instr.itype.imm inside {[0 : 2 ** (NBITS - 1)]};
       }
 
-    } else if(check_instr_type(opcode, func) == R_TYPE) {
+    } else
+    // verilog_format: off
+    if (check_instr_type(instr) == R_TYPE) {
+    // verilog_format: on
 
       /* R_TYPE instruction */
-      rtype_rs1 inside {[0:DLX_CPU_NUMREGS-1]};
-      rtype_rs2 inside {[0:DLX_CPU_NUMREGS-1]};
-      rtype_rd  inside {[0:DLX_CPU_NUMREGS-1]};
+      instr.rtype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
+      instr.rtype.rs2 inside {[0 : DLX_CPU_NUMREGS - 1]};
+      instr.rtype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
 
       // FUNC field, every possible type of R_TYPE operation
       // func inside {SLL_op, SRL_op, ADD_op, SUB_op, AND_op, OR_op, XOR_op, SNE_op, SLE_op, SGE_op, SRA_op, ADDU_op, SUBU_op, SEQ_op, SLT_op, SGT_op, SLTU_op, SGTU_op, SLEU_op, SGEU_op};
-      // TODO: Spaghetti, needs fixing later on!
-      func inside {4, 6, 32, 34, 36, 37, 38, 41, 44, 45, 7, 33, 35, 40, 42, 43, 58, 59, 60, 61};
+      // TODOO: Spaghetti, needs fixing later on!
+      instr.rtype.func inside {4, 6, 32, 34, 36, 37, 38, 41, 44, 45, 7, 33, 35, 40, 42, 43, 58, 59, 60, 61};
 
     } else {
 
       /* J_TYPE instruction */
-      if (opcode == ADD_op and
-          (JAL_EN == 'b1 or JMP == 'b1))
+
+      /*
+      * NOTE 1:
+      * Only for instructions J(mp), JAL, BEQ, BNEZ (which are our only
+      * jump instructions) the bit JUMP_EN will be 1, which will overwrite
+      * the next PC value with S3_REG_ALU content
+      * NOTE 2:
+      * Only for J and JAL (unconditional jump instructions), JMP flag
+      * will be 1.
+      *
+      * NOTE 3: Opcode for J, JAL, BEQZ, BNEZ is always ADD_op.
+      *
+      * Recap:
+      * -) JUMP_EN enabled for every possible jump instruction (opcode ADD_op)
+      * -) For conditional jumps, EQZ_NEQZ flag will direct the jump
+      * -) For unconditional jumps, JMP flag will direct the jump
+      * */
+
+      // verilog_format: off
+      if(
+          // OPCODE is that of a jump instruction, and so JUMP_EN = 1
+          instr.bits[31:26] == ADD_op &&
+          // and either:
+          (
+            // JMP flag is set (CW bit #7) (unconditional jump)
+            DLX_IR_to_DP[7] == 1'b1 ||
+            // or target register is zero and "BEQZ" flag is set (CW bit #6)
+            (S2_RFILE_A_OUT == '0 && DLX_IR_to_DP[6] == 1'b1) ||
+            // or target register is NOT zero and "BNEZ" flag is set
+            (S2_RFILE_A_OUT != '0 && DLX_IR_to_DP[6] == 1'b0)
+          )
+        )
       {
-        jtype_imm inside {[0:IRAM_DEPTH]};
+        instr.jtype.imm inside {[0 : IRAM_DEPTH]};
       }
+      // verilog_format: on
+
     }
 
   }
@@ -218,12 +277,8 @@ class Class_IFID_Sequence extends uvm_sequence #(Class_IFID_SequenceItem);
     * (Automatically called when sequence is started on a sequencer)
   * */
   virtual task body();
-    `uvm_info("SEQUENCE", $sformatf(
-              "body(): Generating %0d Sequence Items",
-              numSequenceItems,
-              NBITS,
-              NBITS
-              ), UVM_MEDIUM);
+    `uvm_info("SEQUENCE", $sformatf("body(): Generating %0d Sequence Items", numSequenceItems,),
+              UVM_MEDIUM);
 
     repeat (numSequenceItems) begin
       // Create instance of a new sequence item

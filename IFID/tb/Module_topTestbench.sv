@@ -1,4 +1,4 @@
-// Copyright (c) 2025 Filippo Brogi. All Rights Reserved.
+// Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 /*
 * TOP LEVEL TESTBENCH: All components get instantiated inside this top-level
@@ -37,12 +37,48 @@ int numSeqItems = 100;
 
 module Module_topTestbench;
 
+  /*
+  * Clock Generation with process
+  * */
+  bit globalClk;
+  always begin : PROC_ClockGen
+    #(CLKPERIOD / 2) globalClk <= ~globalClk;
+  end : PROC_ClockGen
+
+  /*
+  * Reset process (DUT has active low!)
+  * */
+  bit globalRst_n;
+  initial begin : PROC_ResetDUT
+    globalRst_n <= 1'b0;  // active
+    #CLKPERIOD globalRst_n <= 1'b1;  // de-activate after a clock period
+  end : PROC_ResetDUT
+
   // Interfaces instantiation
-  // NOTE: (parenthesis needed because these are modules!
-  Iface_IFID #(.NBITS(NBITS)) ifid_dut_iface ();
+  // NOTE: () parenthesis after iface name needed because these are modules!
+  Iface_IFID #(
+      .IR_SIZE        (IR_SIZE),
+      .OPERAND_SIZE   (OPERAND_SIZE),
+      .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
+      .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
+      .RF_REGBITS     (RF_REGBITS),
+      .RF_NUMREGS     (RF_NUMREGS)
+  ) ifid_dut_iface (
+      .CLK (globalClk),
+      .nRST(globalRst_n)
+  );
 
   // Instance DUT using wrapper
-  Module_ifid_Wrapper #(.NBITS(NBITS)) p4_adder_toplevel (.ifid_iface(ifid_dut_iface));
+  Module_IFID_Wrapper #(
+      .IR_SIZE        (IR_SIZE),
+      .OPERAND_SIZE   (OPERAND_SIZE),
+      .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
+      .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
+      .RF_REGBITS     (RF_REGBITS),
+      .RF_NUMREGS     (RF_NUMREGS)
+  ) ifid_toplevel (
+      .ifid_iface(ifid_dut_iface)
+  );
 
   /*
   * PROC_RunTest: Test configuration and run process
@@ -50,7 +86,7 @@ module Module_topTestbench;
   initial begin : PROC_RunTest
 
     // Install custom report server used by UVM macros for cleaner messages
-    Class_SimpleReportServer ifid_simple_report_server = new();
+    static Class_SimpleReportServer ifid_simple_report_server = new();
     uvm_report_server::set_server(ifid_simple_report_server);
 
     /* Override number of Sequence Items to generate if specified from cmdline */
@@ -70,8 +106,10 @@ module Module_topTestbench;
     uvm_config_db#(int)::set(null, "*", "numSeqItems", numSeqItems);
 
     // Pass Virtual DUT interface handle down to components through Config Object
-    uvm_config_db#(virtual Iface_IFID #(NBITS))::set(null, "*", "ifid_dut_iface",
-                                                        ifid_dut_iface);
+    uvm_config_db#(virtual Iface_IFID #(
+      IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE, J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS)
+      )::set(
+        null, "*", "ifid_dut_iface", ifid_dut_iface);
 
     // Running test...
     run_test("Class_IFID_Test");
