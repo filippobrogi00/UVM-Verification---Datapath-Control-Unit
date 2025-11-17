@@ -23,23 +23,25 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
 
   // NOTE: "with function sample" => Covergroup parameterized with transaction item
   covergroup Covergroup_EXE with function sample (Class_EXE_SequenceItem exe_seqitem);
-
     // Multi-bit
-    Coverpoint_DLX_PC_to_DP: coverpoint exe_seqitem.DLX_PC_to_DP;
-    Coverpoint_DLX_IR_to_DP: coverpoint exe_seqitem.DLX_IR_to_DP;
+    Coverpoint_S1_REG_NPC_OUT:		coverpoint exe_seqitem.S1_REG_NPC_OUT;
+    Coverpoint_S2_REG_NPC_OUT:		coverpoint exe_seqitem.S2_REG_NPC_OUT;
+    Coverpoint_S2_REG_ADD_WR_OUT:	coverpoint exe_seqitem.S2_REG_ADD_WR_OUT;
+    Coverpoint_S2_RFILE_A_OUT:		coverpoint exe_seqitem.S2_RFILE_A_OUT;
+    Coverpoint_S2_RFILE_B_OUT:		coverpoint exe_seqitem.S2_RFILE_B_OUT;
+    Coverpoint_S2_REG_SE_IMM_OUT:	coverpoint exe_seqitem.S2_REG_SE_IMM_OUT;
+    Coverpoint_S2_REG_UE_IMM_OUT:	coverpoint exe_seqitem.S2_REG_UE_IMM_OUT;
+    Coverpoint_DP_ALU_OPCODE:		coverpoint exe_seqitem.DP_ALU_OPCODE;
 
     // Single bit
-    Coverpoint_IR_LATCH_EN: coverpoint exe_seqitem.IR_LATCH_EN;
-    Coverpoint_NPC_LATCH_EN: coverpoint exe_seqitem.NPC_LATCH_EN;
-    Coverpoint_RegA_LATCH_EN: coverpoint exe_seqitem.RegA_LATCH_EN;
-    Coverpoint_SIGN_UNSIGN_EN: coverpoint exe_seqitem.SIGN_UNSIGN_EN;
-    Coverpoint_RegIMM_LATCH_EN: coverpoint exe_seqitem.RegIMM_LATCH_EN;
-    Coverpoint_JAL_EN: coverpoint exe_seqitem.JAL_EN;
-    Coverpoint_RF_WE: coverpoint exe_seqitem.RF_WE;
-
-    // Multi-bit
-    Coverpoint_S4_REG_ADD_WR_OUT: coverpoint exe_seqitem.S4_REG_ADD_WR_OUT;
-    Coverpoint_S5_MUX_DATAIN_OUT: coverpoint exe_seqitem.S5_MUX_DATAIN_OUT;
+    Coverpoint_S2_FF_JAL_EN_OUT:	coverpoint exe_seqitem.S2_FF_JAL_EN_OUT;
+    Coverpoint_MUX_A_SEL:			coverpoint exe_seqitem.MUX_A_SEL;
+    Coverpoint_MUX_B_SEL:			coverpoint exe_seqitem.MUX_B_SEL;
+    Coverpoint_ALU_OUTREG_EN:		coverpoint exe_seqitem.ALU_OUTREG_EN;
+    Coverpoint_EQ_COND:				coverpoint exe_seqitem.EQ_COND;
+    Coverpoint_JMP:					coverpoint exe_seqitem.JMP;
+    Coverpoint_IR_LATCH_EN:			coverpoint exe_seqitem.IR_LATCH_EN;
+    Coverpoint_EQZ_NEQZ:			coverpoint exe_seqitem.EQZ_NEQZ;
 
   endgroup : Covergroup_EXE
 
