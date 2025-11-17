@@ -6,13 +6,13 @@
 * connects them via TLM interfaces.
 * */
 
-class Class_ControlUnit_Agent extends uvm_agent;
+class Class_IFID_Agent extends uvm_agent;
 
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_Agent)
+  `uvm_component_utils(Class_IFID_Agent)
 
   // Constructor
-  function new(string name = "Class_ControlUnit_Agent", uvm_component parent = null);
+  function new(string name = "Class_IFID_Agent", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
@@ -24,9 +24,9 @@ class Class_ControlUnit_Agent extends uvm_agent;
     * Sends them to the Driver for "execution"
   * */
   // NOTE: Since Driver is parameterized on SequenceItem, this too!
-  uvm_sequencer #(Class_ControlUnit_SequenceItem) ctrlunit_sequencer;
-  Class_ControlUnit_Driver                        ctrlunit_driver;
-  Class_ControlUnit_Monitor                       ctrlunit_monitor;
+  uvm_sequencer #(Class_IFID_SequenceItem) ifid_sequencer;
+  Class_IFID_Driver                        ifid_driver;
+  Class_IFID_Monitor                       ifid_monitor;
 
   /*
   * BUILD PHASE : Create Monitor, and if Agent is "active", also create Sequencer and Driver
@@ -35,14 +35,14 @@ class Class_ControlUnit_Agent extends uvm_agent;
     super.build_phase(phase);
 
     // Create Sequencer
-    ctrlunit_sequencer =
-        uvm_sequencer#(Class_ControlUnit_SequenceItem)::type_id::create("ctrlunit_sequencer", this);
+    ifid_sequencer =
+        uvm_sequencer#(Class_IFID_SequenceItem)::type_id::create("ifid_sequencer", this);
 
     // Create Driver
-    ctrlunit_driver = Class_ControlUnit_Driver::type_id::create("ctrlunit_driver", this);
+    ifid_driver = Class_IFID_Driver::type_id::create("ifid_driver", this);
 
     // Create Monitor
-    ctrlunit_monitor = Class_ControlUnit_Monitor::type_id::create("ctrlunit_monitor", this);
+    ifid_monitor = Class_IFID_Monitor::type_id::create("ifid_monitor", this);
 
   endfunction : build_phase
 
@@ -53,7 +53,7 @@ class Class_ControlUnit_Agent extends uvm_agent;
     super.connect_phase(phase);
 
     // Connect Driver's Port to Sequencer's Export
-    ctrlunit_driver.seq_item_port.connect(ctrlunit_sequencer.seq_item_export);
+    ifid_driver.seq_item_port.connect(ifid_sequencer.seq_item_export);
   endfunction : connect_phase
 endclass
 

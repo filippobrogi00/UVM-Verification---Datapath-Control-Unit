@@ -9,7 +9,7 @@ entity ALU is
 	Port (	
     	A			:	IN	std_logic_vector (IR_SIZE-1 DOWNTO 0);
 		B			: 	IN 	std_logic_vector (IR_SIZE-1 DOWNTO 0);
-		ALU_OPCODE	: 	IN  aluOp;
+		ALU_OPCODE	: 	IN  integer;
 		Y			: 	OUT	std_logic_vector (IR_SIZE-1 DOWNTO 0));
 
 end ALU;

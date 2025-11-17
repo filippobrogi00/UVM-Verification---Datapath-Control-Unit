@@ -7,56 +7,47 @@
   * Coverage Tracker, which then samples coverage.
 */
 
-class Class_ControlUnit_CoverageTracker extends uvm_subscriber #(Class_ControlUnit_SequenceItem);
+class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceItem);
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_CoverageTracker)
+  `uvm_component_utils(Class_IFID_CoverageTracker)
 
   // Analysis Port implementation (broadcast from Monitor)
-  uvm_analysis_imp #(Class_ControlUnit_SequenceItem, Class_ControlUnit_CoverageTracker) analysis_port_imp;
+  uvm_analysis_imp #(Class_IFID_SequenceItem, Class_IFID_CoverageTracker) analysis_port_imp;
 
   // Handle to virtual DUT interface
-  virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
+  virtual Iface_IFID #(NBITS) ifid_dut_iface;
 
   /*
   * COVERGROUPS for Functional Coverage
   * */
 
-  // Covergroup parameterized with transaction item
-  covergroup Covergroup_ControlUnit with function sample (
-      Class_ControlUnit_SequenceItem ctrlunit_seqitem
-  );
+  // NOTE: "with function sample" => Covergroup parameterized with transaction item
+  covergroup Covergroup_IFID with function sample (Class_IFID_SequenceItem ifid_seqitem);
 
-    Coverpoint_Opcode: coverpoint ctrlunit_seqitem.opcode {
-      // R-TYPE -> '0
-      bins r_type = {RTYPE};
-      // I-TYPE -> [1, 14]
-      bins i_type = {['d1 : 'd14]};
+    // Multi-bit
+    Coverpoint_DLX_PC_to_DP: coverpoint ifid_seqitem.DLX_PC_to_DP;
+    Coverpoint_DLX_IR_to_DP: coverpoint ifid_seqitem.DLX_IR_to_DP;
 
-      bins others = default;
-    }
+    // Single bit
+    Coverpoint_IR_LATCH_EN: coverpoint ifid_seqitem.IR_LATCH_EN;
+    Coverpoint_NPC_LATCH_EN: coverpoint ifid_seqitem.NPC_LATCH_EN;
+    Coverpoint_RegA_LATCH_EN: coverpoint ifid_seqitem.RegA_LATCH_EN;
+    Coverpoint_SIGN_UNSIGN_EN: coverpoint ifid_seqitem.SIGN_UNSIGN_EN;
+    Coverpoint_RegIMM_LATCH_EN: coverpoint ifid_seqitem.RegIMM_LATCH_EN;
+    Coverpoint_JAL_EN: coverpoint ifid_seqitem.JAL_EN;
+    Coverpoint_RF_WE: coverpoint ifid_seqitem.RF_WE;
 
-    // If instruction is R-TYPE (FUNC defined), sample it among possible
-    // values [0, 3]
-    Coverpoint_FuncIfDef: coverpoint ctrlunit_seqitem.func iff (ctrlunit_seqitem.opcode == RTYPE) {
-      // verilog_format: off
-      bins valid_alu_ops = {['d0 : 'd3]};
+    // Multi-bit
+    Coverpoint_S4_REG_ADD_WR_OUT: coverpoint ifid_seqitem.S4_REG_ADD_WR_OUT;
+    Coverpoint_S5_MUX_DATAIN_OUT: coverpoint ifid_seqitem.S5_MUX_DATAIN_OUT;
 
-      bins others = default;
-      // verilog_format: on
-    }
-
-    // Else, sample 0 as hardcoded inside CW_ARRAY (pkg_const)
-    Coverpoint_FuncIfNdef: coverpoint ctrlunit_seqitem.func iff (ctrlunit_seqitem.opcode != RTYPE) {
-      bins zero = {'0};
-    }
-
-  endgroup : Covergroup_ControlUnit
+  endgroup : Covergroup_IFID
 
   // Constructor
-  function new(string name = "Class_ControlUnit_CoverageTracker", uvm_component parent = null);
+  function new(string name = "Class_IFID_CoverageTracker", uvm_component parent = null);
     super.new(name, parent);
     // Instantiate the covergroup
-    Covergroup_ControlUnit = new();
+    Covergroup_IFID = new();
   endfunction
 
   /*
@@ -64,22 +55,22 @@ class Class_ControlUnit_CoverageTracker extends uvm_subscriber #(Class_ControlUn
   * */
   // Start coverage tracking
   virtual function void coverageStart();
-    Covergroup_ControlUnit.start();
+    Covergroup_IFID.start();
   endfunction
 
   // Stop coverage tracking
   virtual function void coverageStop();
-    Covergroup_ControlUnit.stop();
+    Covergroup_IFID.stop();
   endfunction
 
   // Sample coverage at current time
-  virtual function void coverageSample(Class_ControlUnit_SequenceItem ctrlunit_seqitem);
-    Covergroup_ControlUnit.sample(ctrlunit_seqitem);
+  virtual function void coverageSample(Class_IFID_SequenceItem ifid_seqitem);
+    Covergroup_IFID.sample(ifid_seqitem);
   endfunction
 
   // Return coverage
   virtual function real coverageGet();
-    return Covergroup_ControlUnit.get_inst_coverage();
+    return Covergroup_IFID.get_inst_coverage();
   endfunction
 
 
@@ -89,13 +80,15 @@ class Class_ControlUnit_CoverageTracker extends uvm_subscriber #(Class_ControlUn
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-    // Get interface from config DB
     // coverage off b
-    if (!uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::get(
-            this, "", "ctrlunit_dut_iface", ctrlunit_dut_iface
+
+    // Get interface from config DB
+    if (!uvm_config_db#(virtual Iface_IFID #(NBITS))::get(
+            this, "", "ifid_dut_iface", ifid_dut_iface
         )) begin
       `uvm_error("[COVERAGE TRACKER]", "Failed to get DUT interface")
     end
+
     // coverage on b
 
     // Create analysis port
@@ -111,7 +104,7 @@ class Class_ControlUnit_CoverageTracker extends uvm_subscriber #(Class_ControlUn
   // NOTE: Wrong to call super.write() as uvm_subscriber class defines write()
   //  method as PURE virtual, meaning only child classes have to give it an
   //  implementation!
-  virtual function void write(Class_ControlUnit_SequenceItem t);
+  virtual function void write(Class_IFID_SequenceItem t);
     // super.write(t);
 
     // Sample coverage passing in the current Sequence Item broadcasted from
@@ -125,10 +118,8 @@ class Class_ControlUnit_CoverageTracker extends uvm_subscriber #(Class_ControlUn
   * */
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
-    // coverage off b
     `uvm_info("COVERAGE TRACKER", $sformatf("Functional Coverage: %.2f%%", coverageGet()),
               UVM_MEDIUM);
-    // coverage on b
   endfunction : report_phase
 
 endclass

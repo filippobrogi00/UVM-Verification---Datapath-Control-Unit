@@ -8,21 +8,21 @@
   * Environments"
 * */
 
-class Class_ControlUnit_Environment extends uvm_env;
+class Class_IFID_Environment extends uvm_env;
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_Environment)
+  `uvm_component_utils(Class_IFID_Environment)
 
   // Constructor
-  function new(string name = "Class_ControlUnit_Environment", uvm_component parent = null);
+  function new(string name = "Class_IFID_Environment", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Agent
-  Class_ControlUnit_Agent ctrlunit_agent;
+  Class_IFID_Agent ifid_agent;
   // Scoreboard
-  Class_ControlUnit_Scoreboard ctrlunit_scoreboard;
+  Class_IFID_Scoreboard ifid_scoreboard;
   // Coverage Tracker
-  Class_ControlUnit_CoverageTracker ctrlunit_coverage_tracker;
+  Class_IFID_CoverageTracker ifid_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -31,11 +31,10 @@ class Class_ControlUnit_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    ctrlunit_agent = Class_ControlUnit_Agent::type_id::create("ctrlunit_agent", this);
-    ctrlunit_scoreboard =
-        Class_ControlUnit_Scoreboard::type_id::create("ctrlunit_scoreboard", this);
-    ctrlunit_coverage_tracker =
-        Class_ControlUnit_CoverageTracker::type_id::create("ctrlunit_coverage_tracker", this);
+    ifid_agent = Class_IFID_Agent::type_id::create("ifid_agent", this);
+    ifid_scoreboard = Class_IFID_Scoreboard::type_id::create("ifid_scoreboard", this);
+    ifid_coverage_tracker =
+        Class_IFID_CoverageTracker::type_id::create("ifid_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -47,11 +46,10 @@ class Class_ControlUnit_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    ctrlunit_agent.ctrlunit_monitor.analysis_port.connect(ctrlunit_scoreboard.analysis_port_imp);
+    ifid_agent.ifid_monitor.analysis_port.connect(ifid_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    ctrlunit_agent.ctrlunit_monitor.analysis_port.connect(
-        ctrlunit_coverage_tracker.analysis_port_imp);
+    ifid_agent.ifid_monitor.analysis_port.connect(ifid_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
 
 

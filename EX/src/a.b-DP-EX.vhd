@@ -42,12 +42,17 @@ entity DP_EX is
     DRAM_DATA : out   std_logic_vector(IR_SIZE - 1 downto 0);
 
     -- Outputs to MEM+WB Block
-    S3_REG_NPC_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
-    S3_FF_JAL_EN_OUT  : out   std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
-    S3_REG_ADD_WR_OUT : out   std_logic_vector(4 downto 0);
-    S3_FF_COND_OUT    : out   std_logic; -- Output of S3_REG_COND register
-    S3_REG_ALU_OUT    : out   std_logic_vector(IR_SIZE - 1 downto 0);
-    S3_REG_DATA_OUT   : out   std_logic_vector(IR_SIZE - 1 downto 0)
+    S3_FF_JAL_EN_OUT  : out   	std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
+    S3_REG_ADD_WR_OUT : out   	std_logic_vector(4 downto 0);
+    S3_FF_COND_OUT    : out   	std_logic; -- Output of S3_REG_COND register
+    S3_REG_ALU_OUT    : out   	std_logic_vector(IR_SIZE - 1 downto 0);
+    S3_REG_DATA_OUT   : out   	std_logic_vector(IR_SIZE - 1 downto 0);  
+ 	S3_BranchTaken    : out 	std_logic;
+ 	S3_MUX_A_OUT      : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+ 	S3_MUX_B_OUT      : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+ 	S3_ALU_OUT        : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+ 	S3_MUX_JMP_OUT    : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+ 	S3_REG_NPC_OUT    : out		std_logic_vector(IR_SIZE - 1 downto 0)
   );
 end entity DP_EX;
 
@@ -173,19 +178,6 @@ architecture structural of DP_EX is
       Y          : out   std_logic_vector(IR_SIZE - 1 downto 0)
     );
   end component ALU;
-
-  -- ******************************** STAGE 3 SIGNALS ********************************
-  signal S3_BranchTaken    : std_logic;
-  signal S3_MUX_A_OUT      : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_MUX_B_OUT      : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_ALU_OUT        : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_MUX_JMP_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_REG_ALU_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_FF_COND_OUT    : std_logic;
-  signal S3_REG_DATA_OUT   : std_logic_vector(IR_SIZE - 1 downto 0);
-  signal S3_FF_JAL_EN_OUT  : std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
-  signal S3_REG_ADD_WR_OUT : std_logic_vector(4 downto 0);
-  signal S3_REG_NPC_OUT    : std_logic_vector(IR_SIZE - 1 downto 0);
 
 begin
 
