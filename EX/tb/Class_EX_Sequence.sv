@@ -10,14 +10,14 @@
 // Import bins constants
 import pkg_const::*;
 
-class Class_EX_SequenceItem extends uvm_sequence_item;
+class Class_EXE_SequenceItem extends uvm_sequence_item;
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
   // coverage off bc
-  `uvm_object_utils(Class_EX_SequenceItem);
+  `uvm_object_utils(Class_EXE_SequenceItem);
   // coverage on bc
 
   // Constructor
-  function new(string name = "Class_EX_SequenceItem");
+  function new(string name = "Class_EXE_SequenceItem");
     super.new(name);
   endfunction
 
@@ -152,7 +152,7 @@ class Class_EX_SequenceItem extends uvm_sequence_item;
   endfunction
 
   // Copies "this" Sequence Item fields to the one passed as argument
-  virtual function void copy(Class_EX_SequenceItem targetItem);
+  virtual function void copy(Class_EXE_SequenceItem targetItem);
     // Copy all fields
 	/* INPUT SIGNALS */
 	targetItem.S1_REG_NPC_OUT  		= this.S1_REG_NPC_OUT;
@@ -298,10 +298,10 @@ endclass
 * SEQUENCE: Collection of many data items which can be combined to
 * create various test scenarios.
 * */
-class Class_EX_Sequence extends uvm_sequence #(Class_EX_SequenceItem);
+class Class_EXE_Sequence extends uvm_sequence #(Class_EXE_SequenceItem);
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
   // coverage off bc
-  `uvm_object_utils(Class_EX_Sequence)
+  `uvm_object_utils(Class_EXE_Sequence)
   // coverage on bc
 
   /*
@@ -310,7 +310,7 @@ class Class_EX_Sequence extends uvm_sequence #(Class_EX_SequenceItem);
   int unsigned numSequenceItems = 10;
 
   // Constructor
-  function new(string name = "Class_EX_Sequence");
+  function new(string name = "Class_EXE_Sequence");
     super.new(name);
     // Get numSequenceItems from config DB (default or overwritten by user)
     // coverage off b
@@ -338,19 +338,19 @@ class Class_EX_Sequence extends uvm_sequence #(Class_EX_SequenceItem);
       // Create instance of a new sequence item
       // NOTE: Do not specify "this" as parent because 2nd argument must
       // be of type uvm_component, while SequenceItem is uvm_sequence!
-      Class_EX_SequenceItem ex_sequenceItem = Class_EX_SequenceItem::type_id::create(
-          "ex_sequenceItem"
+      Class_EXE_SequenceItem exe_sequenceItem = Class_EXE_SequenceItem::type_id::create(
+          "exe_sequenceItem"
       );
 
       // Reserve Sequencer slot for current item
-      start_item(ex_sequenceItem);
+      start_item(exe_sequenceItem);
 
       // Randomize the item to let the Sequencer "execute"
-      assert (ex_sequenceItem.randomize());
+      assert (exe_sequenceItem.randomize());
 
       // Signal the Sequencer that the initialization is done,
       // now Driver can pick up item using .get_next_item()
-      finish_item(ex_sequenceItem);
+      finish_item(exe_sequenceItem);
     end
 
     // coverage off b

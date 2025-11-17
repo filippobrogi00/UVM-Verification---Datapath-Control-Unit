@@ -6,13 +6,13 @@
 * connects them via TLM interfaces.
 * */
 
-class Class_IFID_Agent extends uvm_agent;
+class Class_EXE_Agent extends uvm_agent;
 
   // Register to Factory
-  `uvm_component_utils(Class_IFID_Agent)
+  `uvm_component_utils(Class_EXE_Agent)
 
   // Constructor
-  function new(string name = "Class_IFID_Agent", uvm_component parent = null);
+  function new(string name = "Class_EXE_Agent", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
@@ -24,9 +24,9 @@ class Class_IFID_Agent extends uvm_agent;
     * Sends them to the Driver for "execution"
   * */
   // NOTE: Since Driver is parameterized on SequenceItem, this too!
-  uvm_sequencer #(Class_IFID_SequenceItem) ifid_sequencer;
-  Class_IFID_Driver                        ifid_driver;
-  Class_IFID_Monitor                       ifid_monitor;
+  uvm_sequencer #(Class_EXE_SequenceItem) exe_sequencer;
+  Class_EXE_Driver                        exe_driver;
+  Class_EXE_Monitor                       exe_monitor;
 
   /*
   * BUILD PHASE : Create Monitor, and if Agent is "active", also create Sequencer and Driver
@@ -35,14 +35,13 @@ class Class_IFID_Agent extends uvm_agent;
     super.build_phase(phase);
 
     // Create Sequencer
-    ifid_sequencer =
-        uvm_sequencer#(Class_IFID_SequenceItem)::type_id::create("ifid_sequencer", this);
+    exe_sequencer = uvm_sequencer#(Class_EXE_SequenceItem)::type_id::create("exe_sequencer", this);
 
     // Create Driver
-    ifid_driver = Class_IFID_Driver::type_id::create("ifid_driver", this);
+    exe_driver = Class_EXE_Driver::type_id::create("exe_driver", this);
 
     // Create Monitor
-    ifid_monitor = Class_IFID_Monitor::type_id::create("ifid_monitor", this);
+    exe_monitor = Class_EXE_Monitor::type_id::create("exe_monitor", this);
 
   endfunction : build_phase
 
@@ -53,7 +52,7 @@ class Class_IFID_Agent extends uvm_agent;
     super.connect_phase(phase);
 
     // Connect Driver's Port to Sequencer's Export
-    ifid_driver.seq_item_port.connect(ifid_sequencer.seq_item_export);
+    exe_driver.seq_item_port.connect(exe_sequencer.seq_item_export);
   endfunction : connect_phase
 endclass
 

@@ -33,79 +33,80 @@ int numSeqItems = 100;
 // top-level Testbench, do they aren't included here, but instead compiled!
 
 // Testbench Class files
-`include "Class_ControlUnit_Sequence.sv"
-`include "Class_ControlUnit_Driver.sv"
-`include "Class_ControlUnit_Monitor.sv"
-`include "Class_ControlUnit_Agent.sv"
-`include "Class_ControlUnit_CoverageTracker.sv"
-`include "Class_ControlUnit_Scoreboard.sv"
-`include "Class_ControlUnit_Environment.sv"
-`include "Class_ControlUnit_Test.sv"
+`include "Class_EXE_Sequence.sv"
+`include "Class_EXE_Driver.sv"
+`include "Class_EXE_Monitor.sv"
+`include "Class_EXE_Agent.sv"
+`include "Class_EXE_CoverageTracker.sv"
+`include "Class_EXE_Scoreboard.sv"
+`include "Class_EXE_Environment.sv"
+`include "Class_EXE_Test.sv"
 
 module Module_topTestbench;
 
-  /*
-  * Clock Generation with process
-  * */
-  bit globalClk;
-  always begin : PROC_ClockGen
-    #(CLKPERIOD / 2) globalClk <= ~globalClk;
-  end : PROC_ClockGen
+  	/*
+  	* Clock Generation with process
+  	* */
+  	bit globalClk;
+  	always begin : PROC_ClockGen
+  	  #(CLKPERIOD / 2) globalClk <= ~globalClk;
+  	end : PROC_ClockGen
 
-  /*
-  * Reset process (DUT has active low!)
-  * */
-  bit globalRst_n;
-  initial begin : PROC_ResetDUT
-    globalRst_n <= 1'b0;  // active
-    #CLKPERIOD globalRst_n <= 1'b1;  // de-activate after a clock period
-  end : PROC_ResetDUT
+  	/*
+  	* Reset process (DUT has active low!)
+  	* */
+  	bit globalRst_n;
+  	initial begin : PROC_ResetDUT
+    	globalRst_n <= 1'b0;  // active
+    	#CLKPERIOD globalRst_n <= 1'b1;  // de-activate after a clock period
+  	end : PROC_ResetDUT
 
-  // Interfaces instantiation
-  // NOTE: (parenthesis needed because these are modules!
-  Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface (
+  	// Interfaces instantiation
+  	// NOTE: (parenthesis needed because these are modules!
+	// TODO change the parameters
+  	Iface_EXE #(OPCODE_SIZE, FUNC_SIZE) exe_dut_iface (
       .clk  (globalClk),
       .rst_n(globalRst_n)
-  );
+  	);
 
-  // Instance DUT using wrapper
-  Module_ControlUnit_Wrapper #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_toplevel (
-      .ctrlunit_iface(ctrlunit_dut_iface)
-   );
+  	// Instance DUT using wrapper
+	// TODO change the parameters
+  	Module_EXE_Wrapper #(OPCODE_SIZE, FUNC_SIZE) exe_toplevel (
+  	    .exe_iface(exe_dut_iface)
+   	);
 
-  /*
-  * PROC_RunTest: Test configuration and run process
-  * */
-  initial begin : PROC_RunTest
+  	/*
+  	* PROC_RunTest: Test configuration and run process
+  	* */
+  	initial begin : PROC_RunTest
 
-    // Install custom report server used by UVM macros for cleaner messages
-    Class_SimpleReportServer ctrlunit_simple_report_server = new();
-    uvm_report_server::set_server(ctrlunit_simple_report_server);
+    	// Install custom report server used by UVM macros for cleaner messages
+    	Class_SimpleReportServer exe_simple_report_server = new();
+    	uvm_report_server::set_server(exe_simple_report_server);
 
-    /* Override number of Sequence Items to generate if specified from cmdline */
-    // Check if parameter was specified (numSeqItems overridden with
-    // user-specified value)
-    // coverage off b
-    if ($value$plusargs("NUM_SEQITEMS=%d", numSeqItems)) begin
-      `uvm_info("TB TOP", $sformatf("NUM_SEQITEMS set to %0d from cmdline", numSeqItems),
-                UVM_MEDIUM)
-    end
-    // coverage on b
+    	/* Override number of Sequence Items to generate if specified from cmdline */
+    	// Check if parameter was specified (numSeqItems overridden with
+    	// user-specified value)
+    	// coverage off b
+    	if ($value$plusargs("NUM_SEQITEMS=%d", numSeqItems)) begin
+      		`uvm_info("TB TOP", $sformatf("NUM_SEQITEMS set to %0d from cmdline", numSeqItems), UVM_MEDIUM)
+    	end
+    	// coverage on b
 
-    // Store value into config DB for passing it to Sequence component (store
-    // with scope "*")
-    uvm_config_db#(int)::set(null, "*", "numSeqItems", numSeqItems);
+    	// Store value into config DB for passing it to Sequence component (store
+    	// with scope "*")
+    	uvm_config_db#(int)::set(null, "*", "numSeqItems", numSeqItems);
 
-    // Pass Virtual DUT interface handle down to components through Config Object
-    uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::set(
-        null, "*", "ctrlunit_dut_iface", ctrlunit_dut_iface);
+    	// Pass Virtual DUT interface handle down to components through Config Object
+		// TODO change the parameters
+		uvm_config_db#(virtual Iface_EXE #(OPCODE_SIZE, FUNC_SIZE))::set(null, "*", "exe_dut_iface", exe_dut_iface);
 
-    // Running test...
-    run_test("Class_ControlUnit_Test");
+    	// Running test...
+    	run_test("Class_EXE_Test");
 
-    // Stop simulation
-    $display("################# SIMULATION ENDED #################");
-    $stop;
-  end : PROC_RunTest
+    	// Stop simulation
+    	$display("################# SIMULATION ENDED #################");
+    	$stop;
+  	end : PROC_RunTest
 
 endmodule
