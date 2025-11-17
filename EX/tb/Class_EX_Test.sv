@@ -61,7 +61,7 @@ class Class_EXE_Test extends uvm_test;
   * */
   virtual task run_phase(uvm_phase phase);
     // Create a Sequence
-    Class_EXE_Sequence exe_sequence = Class_IFID_Sequence::type_id::create("exe_sequence", this);
+    Class_EXE_Sequence exe_sequence = Class_EXE_Sequence::type_id::create("exe_sequence", this);
 
     /* Start the test */
     super.run_phase(phase);

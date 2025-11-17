@@ -221,7 +221,7 @@ class Class_EXE_SequenceItem extends uvm_sequence_item;
     	};
 	}
 
-  	constraint Constraint_InputsFromIFIDBlock {
+  	constraint Constraint_InputsFromEXEBlock {
 		S1_REG_NPC_OUT dist {
 			ALL_ZERO := 10,
 			ALL_ONES := 10,
@@ -264,7 +264,7 @@ class Class_EXE_SequenceItem extends uvm_sequence_item;
   	}
 
 	
-  	constraint Constraint_InputsFromIFIDBlock {
+  	constraint Constraint_InputsFromEXEBlock {
 		MUX_A_SEL dist {
 			1'b0 := 1,
 			1'b1 := 1		
