@@ -62,7 +62,7 @@ interface Iface_IFID #(
     logic[IR_SIZE-1 : 0] 			S1_REG_NPC_OUT; 
     logic 							S2_FF_JAL_EN_OUT; 
     logic[IR_SIZE-1 : 0] 			S2_REG_NPC_OUT; 
-    logic[OPERAND_SIZE - 1 : 0]	S2_REG_ADD_WR_OUT;  			// Part of sequence of registers at Write-Address input of Register File.
+    logic[OPERAND_SIZE - 1 : 0]		S2_REG_ADD_WR_OUT;  			// Part of sequence of registers at Write-Address input of Register File.
     logic[IR_SIZE-1 : 0] 			S2_RFILE_A_OUT; 				// RFILE = Register File
     logic[IR_SIZE-1 : 0] 			S2_RFILE_B_OUT; 				// RFILE = Register File
     logic[IR_SIZE-1 : 0] 			S2_REG_SE_IMM_OUT;
@@ -118,19 +118,19 @@ interface Iface_IFID #(
 
   // Clocking block for timing synchronization
   clocking ClockingBlock_EXE @(posedge CLK);
-  	// TODO to adapt to EXE
     /* (TB) INPUTS: TB <- DUT */
     // NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
-    input #(1) S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT, S2_REG_SE_IMM_OUT,
-      S2_REG_UE_IMM_OUT, S1_ADD_OUT;
-
+    input #(1) DRAM_Addr,DRAM_DATA, S3_FF_JAL_EN_OUT, S3_REG_ADD_WR_OUT,
+	S3_FF_COND_OUT, S3_REG_ALU_OUT, S3_REG_DATA_OUT, S3_BranchTaken,
+	S3_MUX_A_OUT, S3_MUX_B_OUT, S3_ALU_OUT, S3_MUX_JMP_OUT, S3_REG_NPC_OUT;
 
     /* (TB) OUTPUTS: TB -> DUT */
     // NOTE: Drive DUT's inputs at (posedge clk - CLKPERIOD/4)
-    output #(-1) DLX_PC_to_DP, DLX_IR_to_DP, IR_LATCH_EN,
-      NPC_LATCH_EN, RegA_LATCH_EN, SIGN_UNSIGN_EN,
-      RegIMM_LATCH_EN, JAL_EN, RF_WE,
-      S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT;
+    output #(-1) S1_REG_NPC_OUT, S2_FF_JAL_EN_OUT, S2_REG_NPC_OUT,
+	S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT, S2_REG_SE_IMM_OUT,
+	S2_REG_UE_IMM_OUT, MUX_A_SEL, MUX_B_SEL, ALU_OUTREG_EN, EQ_COND,
+	JMP, EQZ_NEQZ, DP_ALU_OPCODE;
+
   endclocking
 
 endinterface

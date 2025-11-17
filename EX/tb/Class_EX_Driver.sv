@@ -68,18 +68,21 @@ class Class_EXE_Driver extends uvm_driver #(Class_EXE_SequenceItem);
       // Drive signals on DUT interface at posedge
       @(posedge exe_dut_iface.ClockingBlock_EXE);
       // Save DUT (interface) signals into Sequence Item
-      // TODO adata to exe
-	  exe_dut_iface.DLX_PC_to_DP      = exe_seqitem.DLX_PC_to_DP;
-      exe_dut_iface.DLX_IR_to_DP      = exe_seqitem.DLX_IR_to_DP;
-      exe_dut_iface.IR_LATCH_EN       = exe_seqitem.IR_LATCH_EN;
-      exe_dut_iface.NPC_LATCH_EN      = exe_seqitem.NPC_LATCH_EN;
-      exe_dut_iface.RegA_LATCH_EN     = exe_seqitem.RegA_LATCH_EN;
-      exe_dut_iface.SIGN_UNSIGN_EN    = exe_seqitem.SIGN_UNSIGN_EN;
-      exe_dut_iface.RegIMM_LATCH_EN   = exe_seqitem.RegIMM_LATCH_EN;
-      exe_dut_iface.JAL_EN            = exe_seqitem.JAL_EN;
-      exe_dut_iface.RF_WE             = exe_seqitem.RF_WE;
-      exe_dut_iface.S4_REG_ADD_WR_OUT = exe_seqitem.S4_REG_ADD_WR_OUT;
-      exe_dut_iface.S5_MUX_DATAIN_OUT = exe_seqitem.S5_MUX_DATAIN_OUT;
+	  exe_dut_iface.S1_REG_NPC_OUT		= exe_seqitem.S1_REG_NPC_OUT;
+	  exe_dut_iface.S2_FF_JAL_EN_OUT	= exe_seqitem.S2_FF_JAL_EN_OUT;
+	  exe_dut_iface.S2_REG_NPC_OUT		= exe_seqitem.S2_REG_NPC_OUT;
+	  exe_dut_iface.S2_REG_ADD_WR_OUT	= exe_seqitem.S2_REG_ADD_WR_OUT;
+	  exe_dut_iface.S2_RFILE_A_OUT		= exe_seqitem.S2_RFILE_A_OUT;
+	  exe_dut_iface.S2_RFILE_B_OUT		= exe_seqitem.S2_RFILE_B_OUT;
+	  exe_dut_iface.S2_REG_SE_IMM_OUT	= exe_seqitem.S2_REG_SE_IMM_OUT;
+	  exe_dut_iface.S2_REG_UE_IMM_OUT	= exe_seqitem.S2_REG_UE_IMM_OUT;
+	  exe_dut_iface.MUX_A_SEL			= exe_seqitem.MUX_A_SEL;
+	  exe_dut_iface.MUX_B_SEL			= exe_seqitem.MUX_B_SEL;
+	  exe_dut_iface.ALU_OUTREG_EN		= exe_seqitem.ALU_OUTREG_EN;
+	  exe_dut_iface.EQ_COND				= exe_seqitem.EQ_COND;
+	  exe_dut_iface.JMP					= exe_seqitem.JMP;
+	  exe_dut_iface.EQZ_NEQZ			= exe_seqitem.EQZ_NEQZ;
+	  exe_dut_iface.DP_ALU_OPCODE		= exe_seqitem.DP_ALU_OPCODE;
 
       // Tell sequence that driver has finished current item
       seq_item_port.item_done();

@@ -8,21 +8,21 @@
   * Environments"
 * */
 
-class Class_IFID_Environment extends uvm_env;
+class Class_EXE_Environment extends uvm_env;
   // Register to Factory
-  `uvm_component_utils(Class_IFID_Environment)
+  `uvm_component_utils(Class_EXE_Environment)
 
   // Constructor
-  function new(string name = "Class_IFID_Environment", uvm_component parent = null);
+  function new(string name = "Class_EXE_Environment", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Agent
-  Class_IFID_Agent ifid_agent;
+  Class_EXE_Agent exe_agent;
   // Scoreboard
-  Class_IFID_Scoreboard ifid_scoreboard;
+  Class_EXE_Scoreboard exe_scoreboard;
   // Coverage Tracker
-  Class_IFID_CoverageTracker ifid_coverage_tracker;
+  Class_EXE_CoverageTracker exe_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -31,10 +31,10 @@ class Class_IFID_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    ifid_agent = Class_IFID_Agent::type_id::create("ifid_agent", this);
-    ifid_scoreboard = Class_IFID_Scoreboard::type_id::create("ifid_scoreboard", this);
-    ifid_coverage_tracker =
-        Class_IFID_CoverageTracker::type_id::create("ifid_coverage_tracker", this);
+    exe_agent = Class_EXE_Agent::type_id::create("exe_agent", this);
+    exe_scoreboard = Class_EXE_Scoreboard::type_id::create("exe_scoreboard", this);
+    exe_coverage_tracker =
+        Class_EXE_CoverageTracker::type_id::create("exe_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -46,10 +46,10 @@ class Class_IFID_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    ifid_agent.ifid_monitor.analysis_port.connect(ifid_scoreboard.analysis_port_imp);
+    exe_agent.exe_monitor.analysis_port.connect(exe_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    ifid_agent.ifid_monitor.analysis_port.connect(ifid_coverage_tracker.analysis_port_imp);
+    exe_agent.exe_monitor.analysis_port.connect(exe_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
 
 
