@@ -112,6 +112,11 @@ package pkg_const;
   * FUNCTIONS *
   ************/
 
+  // NOTE: Disable coverage for these 3 functions because they are
+  // only used for CRG, and not in "runtime" code.
+  // TODO: Maybe add simple unit test in top module?
+  // coverage off
+
   // @brief Helper function to check type of instruction.
   // @return One of I_TYPE, R_TYPE, J_TYPE constants.
   function check_instr_type(logic [IR_SIZE-1:0] instruction);
@@ -144,10 +149,10 @@ package pkg_const;
   function check_instr_sign(logic [IR_SIZE-1:0] instruction);
 
     logic [OPCODE_SIZE-1:0] op;
-    logic [OPCODE_SIZE-1:0] func;
+    // logic [OPCODE_SIZE-1:0] func;
 
     assign op = instruction[31:26];
-    assign op = instruction[10:0];
+    // assign func = instruction[10:0];
 
 
     if (check_instr_type(instruction) == I_TYPE) begin
@@ -176,11 +181,11 @@ package pkg_const;
   // defined.
   function get_instr_type(logic [IR_SIZE-1:0] instruction);
     // TODO: use proper constant-based ranges instead of hardcoded
-    logic [OPCODE_SIZE-1:0] _opcode;
-    logic [  FUNC_SIZE-1:0] _func;
-
-    assign _opcode = instruction[31:26];
-    assign _func = instruction[10:0];
+    // logic [OPCODE_SIZE-1:0] _opcode;
+    // logic [  FUNC_SIZE-1:0] _func;
+    //
+    // assign _opcode = instruction[31:26];
+    // assign _func = instruction[10:0];
 
     if (check_instr_type(instruction) == I_TYPE) begin
       // Assign I_TYPE fields to the bit array
@@ -208,5 +213,6 @@ package pkg_const;
     end
   endfunction
 
+  // coverage on
 
 endpackage

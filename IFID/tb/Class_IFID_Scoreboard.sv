@@ -76,7 +76,8 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
 
 
     /******** Mimicking logic ********/
-    // Mimick "NPC = NPC + 4" combinational behavior
+    // NOTE: Disable coverage since it's t
+    // Mimick "NPC = NPC + 4" combinational behaviorscore
     Expected_S1_ADD_OUT     = ifid_seqitem.DLX_PC_to_DP + 'd4;
 
     /* Mimick registers S1/2_REG_NPC_OUT through a queue */
@@ -90,9 +91,9 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
 
     /* Mimick register S2_REG_ADD_WR_OUT with its logic */
     // S2_MUX_IorR
-    mux_ior_result = (ifid_seqitem.RegIMM_LATCH_EN) ? ifid_seqitem.DLX_IR_to_DP[20:16] : ifid_seqitem.DLX_IR_to_DP[15:11];
+    mux_ior_result = (ifid_seqitem.RegIMM_LATCH_EN == 1'b1) ? ifid_seqitem.DLX_IR_to_DP[20:16] : ifid_seqitem.DLX_IR_to_DP[15:11];
     // S2_MUX_ADD_WR
-    mux_add_wr_result = (ifid_seqitem.JAL_EN) ? {OPERAND_SIZE{1'b1}} : mux_ior_result;
+    mux_add_wr_result = (ifid_seqitem.JAL_EN == 1'b1) ? {OPERAND_SIZE{1'b1}} : mux_ior_result;
     // Register S2_REG_ADD_WR_OUT
     Expected_S2_REG_ADD_WR_OUT = prev_reg_add_wr;
     prev_reg_add_wr = mux_add_wr_result;
@@ -110,8 +111,6 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     };  // Arithmetical sign extension (16+26)
 
     /* Mimick RF (synchronous R/W) behavior through an array */
-    // if (!ifid_seqitem.nRST) begin
-    /* Operation */
     // Write operation
     if (ifid_seqitem.RF_WE) begin
       rf[ifid_seqitem.S4_REG_ADD_WR_OUT] = ifid_seqitem.S5_MUX_DATAIN_OUT;
@@ -119,15 +118,6 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     // Read operations (always enabled since RD1=1 and RD2=1)
     Expected_S2_RFILE_A_OUT = rf[ifid_seqitem.DLX_IR_to_DP[25:21]];
     Expected_S2_RFILE_B_OUT = rf[ifid_seqitem.DLX_IR_to_DP[20:16]];
-    // end else begin
-    //   // Reset RF
-    //   foreach (rf[i]) begin
-    //     rf[i] = {RF_REGBITS{1'b0}};
-    //   end
-    //   // Reset outputs
-    //   Expected_S2_RFILE_A_OUT = '0;
-    //   Expected_S2_RFILE_B_OUT = '0;
-    // end
 
 
     /*************************************************
@@ -138,96 +128,142 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
 
     // S1_REG_NPC_OUT Comparison
     assert (Expected_S1_REG_NPC_OUT == ifid_seqitem.S1_REG_NPC_OUT) begin
+      // coverage off
       `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf("PC mismatch: expected %%0xx, got %%0xx", IR_SIZE, IR_SIZE);
-      `uvm_info("RED", $sformatf(format, Expected_S1_REG_NPC_OUT, ifid_seqitem.S1_REG_NPC_OUT),
-                UVM_MEDIUM);
+      // cocverage off
+      `uvm_info("RED", $sformatf(
+                "PC mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S1_REG_NPC_OUT,
+                ifid_seqitem.S1_REG_NPC_OUT
+                ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_REG_NPC_OUT Comparison
     assert (Expected_S2_REG_NPC_OUT == ifid_seqitem.S2_REG_NPC_OUT) begin
+      // coverage off
       `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf("IR mismatch: expected %%0xx, got %%0xx", IR_SIZE, IR_SIZE);
-      `uvm_info("RED", $sformatf(format, Expected_S2_REG_NPC_OUT, ifid_seqitem.S2_REG_NPC_OUT),
-                UVM_MEDIUM);
+      // coverage off
+      `uvm_info("RED", $sformatf(
+                "IR mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S2_REG_NPC_OUT,
+                ifid_seqitem.S2_REG_NPC_OUT
+                ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_FF_JAL_EN_OUT Comparison
     assert (Expected_S2_FF_JAL_EN_OUT == ifid_seqitem.S2_FF_JAL_EN_OUT) begin
+      // coverage off
       `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
+      // coverage off
       `uvm_info("RED", $sformatf(
                 "S2_FF_JAL_EN_OUT mismatch: expected %b, got %b",
                 Expected_S2_FF_JAL_EN_OUT,
                 ifid_seqitem.S2_FF_JAL_EN_OUT
                 ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_REG_ADD_WR_OUT Comparison
     assert (Expected_S2_REG_ADD_WR_OUT == ifid_seqitem.S2_REG_ADD_WR_OUT) begin
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage off
+      `uvm_info("GREEN", "S2_REG_ADD_WR_OUT OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf(
-          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
-      );
-      `uvm_info("RED", $sformatf(format, Expected_S2_REG_ADD_WR_OUT, ifid_seqitem.S2_REG_ADD_WR_OUT
+      // coverage off
+      `uvm_info("RED", $sformatf(
+                "S2_REG_ADD_WR_OUT mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S2_REG_ADD_WR_OUT,
+                ifid_seqitem.S2_REG_ADD_WR_OUT
                 ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_RFILE_A_OUT Comparison
     assert (Expected_S2_RFILE_A_OUT == ifid_seqitem.S2_RFILE_A_OUT) begin
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage off
+      `uvm_info("GREEN", "S2_RFILE_A_OUT OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf(
-          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
-      );
-      `uvm_info("RED", $sformatf(format, Expected_S2_RFILE_A_OUT, ifid_seqitem.S2_RFILE_A_OUT),
-                UVM_MEDIUM);
+      // coverage off
+      `uvm_info("RED", $sformatf(
+                "S2_RFILE_A_OUT mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S2_RFILE_A_OUT,
+                ifid_seqitem.S2_RFILE_A_OUT
+                ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_RFILE_B_OUT Comparison
     assert (Expected_S2_RFILE_B_OUT == ifid_seqitem.S2_RFILE_B_OUT) begin
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage off
+      `uvm_info("GREEN", "S2_RFILE_B_OUT OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf(
-          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
-      );
-      `uvm_info("RED", $sformatf(format, Expected_S2_RFILE_B_OUT, ifid_seqitem.S2_RFILE_B_OUT),
-                UVM_MEDIUM);
+      // coverage off
+      `uvm_info("RED", $sformatf(
+                "S2_RFILE_B_OUT mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S2_RFILE_B_OUT,
+                ifid_seqitem.S2_RFILE_B_OUT
+                ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_REG_SE_IMM_OUT Comparison
     assert (Expected_S2_REG_SE_IMM_OUT == ifid_seqitem.S2_REG_SE_IMM_OUT) begin
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage off
+
+      `uvm_info("GREEN", "S2_REG_SE_IMM_OUT OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf(
-          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
-      );
-      `uvm_info("RED", $sformatf(format, Expected_S2_REG_SE_IMM_OUT, ifid_seqitem.S2_REG_SE_IMM_OUT
+      // coverage off
+
+      `uvm_info("RED", $sformatf(
+                "S2_REG_SE_IMM_OUT mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S2_REG_SE_IMM_OUT,
+                ifid_seqitem.S2_REG_SE_IMM_OUT
                 ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S2_REG_UE_IMM_OUT Comparison
     assert (Expected_S2_REG_UE_IMM_OUT == ifid_seqitem.S2_REG_UE_IMM_OUT) begin
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage off
+
+      `uvm_info("GREEN", "S2_REG_UE_IMM_OUT OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf(
-          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
-      );
-      `uvm_info("RED", $sformatf(format, Expected_S2_REG_UE_IMM_OUT, ifid_seqitem.S2_REG_UE_IMM_OUT
+      // coverage off
+
+      `uvm_info("RED", $sformatf(
+                "S2_REG_UE_IMM_OUT mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S2_REG_UE_IMM_OUT,
+                ifid_seqitem.S2_REG_UE_IMM_OUT
                 ), UVM_MEDIUM);
+      // coverage on
     end
 
     // S1_ADD_OUT Comparison
     assert (Expected_S1_ADD_OUT == ifid_seqitem.S1_ADD_OUT) begin
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      // coverage off
+
+      `uvm_info("GREEN", "S1_ADD_OUT OK!", UVM_MEDIUM);
+      // coverage on
     end else begin
-      string format = $sformatf(
-          "IR mismatch: expected %%0xx, got %%0xx", OPERAND_SIZE, OPERAND_SIZE
-      );
-      `uvm_info("RED", $sformatf(format, Expected_S1_ADD_OUT, ifid_seqitem.S1_ADD_OUT), UVM_MEDIUM);
+      // coverage off
+      `uvm_info("RED", $sformatf(
+                "S1_ADD_OUT mismatch: expected 0x%0h, got 0x%0h",
+                Expected_S1_ADD_OUT,
+                ifid_seqitem.S1_ADD_OUT
+                ), UVM_MEDIUM);
+      // coverage on
     end
 
   endfunction : write

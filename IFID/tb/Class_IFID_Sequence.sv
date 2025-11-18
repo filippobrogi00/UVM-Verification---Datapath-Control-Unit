@@ -11,10 +11,8 @@
 import pkg_const::*;
 
 class Class_IFID_SequenceItem extends uvm_sequence_item;
-  // coverage off b
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
   `uvm_object_utils(Class_IFID_SequenceItem);
-  // coverage on b
 
   // Constructor
   function new(string name = "Class_IFID_SequenceItem");
@@ -41,26 +39,26 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
   *  INPUTS  *
   ************/
   /* General inputs */
-  rand logic [IR_SIZE-1:0] DLX_PC_to_DP;
-  rand logic [IR_SIZE-1:0] DLX_IR_to_DP;
+  randc logic [IR_SIZE-1:0] DLX_PC_to_DP;
+  randc logic [IR_SIZE-1:0] DLX_IR_to_DP;
 
   // IR instruction, with fields depending on its type
   InstrType instr;
 
   /* STAGE 1 Inputs */
-  rand logic IR_LATCH_EN;
-  rand logic NPC_LATCH_EN;
+  randc logic IR_LATCH_EN;
+  randc logic NPC_LATCH_EN;
 
   /* STAGE 2 Inputs */
-  rand logic RegA_LATCH_EN;
-  rand logic SIGN_UNSIGN_EN;
-  rand logic RegIMM_LATCH_EN;
-  rand logic JAL_EN;
+  randc logic RegA_LATCH_EN;
+  randc logic SIGN_UNSIGN_EN;
+  randc logic RegIMM_LATCH_EN;
+  randc logic JAL_EN;
 
   /* Additional inputs from MEMWB Block */
-  rand logic RF_WE;
-  rand logic [$clog2(RF_NUMREGS)-1:0] S4_REG_ADD_WR_OUT;
-  rand logic [RF_REGBITS-1:0] S5_MUX_DATAIN_OUT;
+  randc logic RF_WE;
+  randc logic [$clog2(RF_NUMREGS)-1:0] S4_REG_ADD_WR_OUT;
+  randc logic [RF_REGBITS-1:0] S5_MUX_DATAIN_OUT;
 
   /***********
   *  OUTPUTS *
@@ -85,13 +83,14 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
 
   // Converts just the input fields into strings
   virtual function void print();
+    // coverage off
     `uvm_info("BLUE", $sformatf(
               {
                 "-------- ITEM INFO --------\n",
                 "/***** INPUTS   *****/",
                 " PC = %x\n",
                 " IR = %x\n",
-                " CW Slice = %b%b%b%b%b%b%b\n",
+                " CW Slice = %b%b%b%b%b%b\n",
                 " RF_WE = %b, S4_REG_ADD_WR_OUT = %b, S5_MUX_DATAIN_OUT = %b\n",
                 "/***** OUTPUTS   *****/",
                 " S1_ADD_OUT = %x\n",
@@ -126,6 +125,7 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
               S2_REG_SE_IMM_OUT,
               S2_REG_UE_IMM_OUT
               ), UVM_MEDIUM);
+    // coverage on
   endfunction
 
   /*

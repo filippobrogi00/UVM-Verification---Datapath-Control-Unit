@@ -29,7 +29,7 @@ else
 fi
 
 # Utilities for output coloring and systemverilog functions
-source ./colors.sh              # print_<color> functions
+source ./sim_colors.sh
 source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 
 # Script variables - Working directories
@@ -105,20 +105,7 @@ compile_files() {
 
       if [[ "$compilation" == "TESTBENCH" ]]; then
 
-        $compiler $SV_COMPILE_LIST 2>&1 |
-          grep -v '^--\sCompiling' | grep -v '^--\sLoading' | sed 's#::>::#Compiled#g' |
-          while IFS= read -r line; do
-            case "$line" in
-            "** Error"*) print_red "$line" ;;
-            "** Warning"*) print_yellow "$line" ;;
-            "** Info"* | "Compiled"*) print_blue "$line" ;;
-            *) echo "$line" ;;
-            esac
-          done
-
-        if [ "${PIPESTATUS[0]}" -ne 0 ]; then
-          exit 1
-        fi
+        colorize $compiler $SV_COMPILE_LIST
 
       else
         # Skip
@@ -128,19 +115,7 @@ compile_files() {
     else
       # ---------- VHDL & Verilog ----------
       local files="$dir"/*."$ext"
-      $compiler $files 2>&1 |
-        grep -v '^--\sCompiling' | grep -v '^--\sLoading' | sed 's#::>::#Compiled#g' |
-        while IFS= read -r line; do
-          case "$line" in
-          "** Error"*) print_red "$line" ;;
-          "** Warning"*) print_yellow "$line" ;;
-          "** Info"* | "Compiled"*) print_blue "$line" ;;
-          *) echo "$line" ;;
-          esac
-        done
-      if [ "${PIPESTATUS[0]}" -ne 0 ]; then
-        exit 1
-      fi
+      colorize $compiler $files
     fi
   fi
 }
@@ -230,8 +205,11 @@ REPORT_STMT="coverage report -code s -details -output $COV_DIR/cov_stmt.txt"
 REPORT_FSM="coverage report -code f -details -output $COV_DIR/cov_fsm.txt"
 REPORT_TOG="coverage report -code t -details -output $COV_DIR/cov_toggle.txt"
 REPORT_COVERAGE="$REPORT_ALL; $REPORT_BRANCH; $REPORT_COND; $REPORT_EXPR; $REPORT_STMT; $REPORT_FSM; $REPORT_TOG"
-# vsim command to simulate and report coverage
+# vsim command to simulate and report coverage to .txt files
 VSIM_SIMULATE_AND_REPORT_COVERAGE="run -all; $REPORT_COVERAGE; quit"
+# vsim command to save coverage to UCDB and later retreive it and show in HTML page
+COV_DB_NAME="coverage.ucdb"
+VSIM_HTML_COVERAGE="coverage save -onexit $COV_DB_NAME; run -all; quit"
 
 #########################################################
 #### OPTIMIZE THE DESIGN ENABLING COVERAGE REPORTING ####
@@ -244,16 +222,7 @@ tb_module="$(get_systemverilog_testbench_module $top_level_tb_file)"
 tb_module_opt="toptb_opt"
 
 # Optimize the design enabling all coverage tracking
-vopt +cover=bcesft "work.$tb_module" -o "$tb_module_opt" |
-  grep -v '^#\s\+Time:' |
-  while IFS= read -r line; do
-    case "$line" in
-    "** Error"*) print_red "$line" ;;
-    "** Warning"*) print_yellow "$line" ;;
-    "** Note"*) print_blue "$line" ;;
-    *) echo "$line" ;;
-    esac
-  done # Colorize output lines
+colorize vopt +cover=bcesft "work.$tb_module" -o "$tb_module_opt"
 
 ######################################################
 #### SIMULATE USING RANDOM CONSTRAINED GENERATION ####
@@ -272,17 +241,21 @@ fi
 SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 
 # Always simulate using Questasim (vsim is Questa's internal simulator tool)
-vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
-  $SIM_OPTIONS -do "$VSIM_SIMULATE_AND_REPORT_COVERAGE" 2>&1 |
-  grep -v '^#\s\+Time:' |
-  while IFS= read -r line; do
-    case "$line" in
-    "# ** Error"* | "# ** Fatal"* | "# UVM_ERROR"* | "# UVM_FATAL"*) print_red "$line" ;;
-    "# ** Warning"*) print_yellow "$line" ;;
-    "# ** Note"* | "# UVM_INFO"*) print_blue "$line" ;;
-    *) echo "$line" ;;
-    esac
-  done # Colorize output lines
+
+## Simulate and report coverage in coverage/cov_xxx.txt report files
+alias vsim_simulate="
+  colorize vsim -c -coverage \"$tb_module_opt\" -t $SIM_TIMESCALE $SIM_SEQITEMS
+  $SIM_OPTIONS -do \"$VSIM_SIMULATE_AND_REPORT_COVERAGE\""
+## Simulate and report coverage in covhtmlreport/ dir for browser use (more detailed)
+alias vsim_gen_html_cov_report="\
+  colorize vsim -c -coverage \"$tb_module_opt\" -t $SIM_TIMESCALE $SIM_SEQITEMS \
+  $SIM_OPTIONS -do \"$VSIM_HTML_COVERAGE\"
+  && \
+  vcover report -details -html $COV_DB_NAME"
+
+vsim_gen_html_cov_report
+
+# vsim -cvgperinstance -viewcov $COV_DB_NAME
 
 ########### CLEAN SIMULATION JUNK ###########
 [ -f transcript ] && rm transcript

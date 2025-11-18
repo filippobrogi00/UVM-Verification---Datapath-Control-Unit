@@ -12,9 +12,7 @@ import pkg_const::*;
 
 class Class_ControlUnit_SequenceItem extends uvm_sequence_item;
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
-  // coverage off bc
   `uvm_object_utils(Class_ControlUnit_SequenceItem);
-  // coverage on bc
 
   // Constructor
   function new(string name = "Class_ControlUnit_SequenceItem");
@@ -162,9 +160,7 @@ endclass
 * */
 class Class_ControlUnit_Sequence extends uvm_sequence #(Class_ControlUnit_SequenceItem);
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
-  // coverage off bc
   `uvm_object_utils(Class_ControlUnit_Sequence)
-  // coverage on bc
 
   /*
   * SEQUENCE CLASS MEMBERS

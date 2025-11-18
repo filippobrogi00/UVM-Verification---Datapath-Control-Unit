@@ -58,7 +58,10 @@ begin
       end if;
 
       -- Operation
+      -- NOTE: Disable coverage because ENABLE hardwired to 1
+      -- coverage off bs
       if ((ENABLE = '1') and (nRST = '1')) then
+        -- coverage on bs
         -- Write
         if (WR = '1') then
           REGISTERS(to_integer(unsigned(ADD_WR))) <= DATAIN;

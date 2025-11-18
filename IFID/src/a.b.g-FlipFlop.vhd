@@ -1,27 +1,38 @@
 library IEEE;
-use IEEE.std_logic_1164.all; 
+  use IEEE.std_logic_1164.all;
 
 entity NBit_Reg is
-	GENERIC (N: integer := 4); 
-	Port (	
-		CLK      :	In	std_logic;
-		nRST	 :	In	std_logic; -- ACTIVE LOW RESET
-		LD_EN 	 : 	IN 	std_logic; 
-    	D        :	In	std_logic_vector (N-1 DOWNTO 0);
-		Q        :	Out	std_logic_vector (N-1 DOWNTO 0)
+  generic (
+    N : integer := 4
   );
-end NBit_Reg;
+  port (
+    CLK   : in    std_logic;
+    nRST  : in    std_logic; -- ACTIVE LOW RESET
+    LD_EN : in    std_logic;
+    D     : in    std_logic_vector(N - 1 downto 0);
+    Q     : out   std_logic_vector(N - 1 downto 0)
+  );
+end entity NBit_Reg;
 
 architecture BEH_NBit_Reg of NBit_Reg is -- flip flop D with syncronous reset
+
 begin
-	PSYNCH: process(CLK)
-	begin
-	  if rising_edge(CLK) then -- positive edge triggered:
-	    if nRST = '0' then  
-	      Q <= (OTHERS => '0'); 
-	    elsif (LD_EN = '1') then
-	      Q <= D; -- input is written on output	      
-	    end if;
-	  end if;
-	end process; 
-end BEH_NBit_Reg;
+
+  PSYNCH : process (CLK) is
+  begin
+
+    if rising_edge(CLK) then   -- positive edge triggered:
+      if (nRST = '0') then
+        Q <= (others => '0');
+      -- NOTE: Disable coverage since RD1, RD2 hardwired to 1
+      -- coverage off b
+      elsif (LD_EN = '1') then
+        -- coverage on b
+        Q <= D;                -- input is written on output
+      end if;
+    end if;
+
+  end process PSYNCH;
+
+end architecture BEH_NBit_Reg;
+
