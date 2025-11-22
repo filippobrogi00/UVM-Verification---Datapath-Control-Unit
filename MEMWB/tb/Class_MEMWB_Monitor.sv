@@ -12,12 +12,12 @@
 // Import bins constants
 import pkg_const::*;
 
-class Class_ControlUnit_Monitor extends uvm_monitor;
+class Class_MEMWB_Monitor extends uvm_monitor;
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_Monitor);
+  `uvm_component_utils(Class_MEMWB_Monitor);
 
   // Virtual interface handle (later connected through ::get())
-  virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
+  virtual Iface_MEMWB #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
 
   // Analysis Port for broadcasting transaction object to subscriber
   // components
