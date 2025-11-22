@@ -8,21 +8,21 @@
   * Environments"
 * */
 
-class Class_ControlUnit_Environment extends uvm_env;
+class Class_MEMWB_Environment extends uvm_env;
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_Environment)
+  `uvm_component_utils(Class_MEMWB_Environment)
 
   // Constructor
-  function new(string name = "Class_ControlUnit_Environment", uvm_component parent = null);
+  function new(string name = "Class_MEMWB_Environment", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Agent
-  Class_ControlUnit_Agent ctrlunit_agent;
+  Class_MEMWB_Agent memwb_agent;
   // Scoreboard
-  Class_ControlUnit_Scoreboard ctrlunit_scoreboard;
+  Class_MEMWB_Scoreboard memwb_scoreboard;
   // Coverage Tracker
-  Class_ControlUnit_CoverageTracker ctrlunit_coverage_tracker;
+  Class_MEMWB_CoverageTracker memwb_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -31,11 +31,11 @@ class Class_ControlUnit_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    ctrlunit_agent = Class_ControlUnit_Agent::type_id::create("ctrlunit_agent", this);
-    ctrlunit_scoreboard =
-        Class_ControlUnit_Scoreboard::type_id::create("ctrlunit_scoreboard", this);
-    ctrlunit_coverage_tracker =
-        Class_ControlUnit_CoverageTracker::type_id::create("ctrlunit_coverage_tracker", this);
+    memwb_agent = Class_MEMWB_Agent::type_id::create("memwb_agent", this);
+    memwb_scoreboard =
+        Class_MEMWB_Scoreboard::type_id::create("memwb_scoreboard", this);
+    memwb_coverage_tracker =
+        Class_MEMWB_CoverageTracker::type_id::create("memwb_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -47,11 +47,11 @@ class Class_ControlUnit_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    ctrlunit_agent.ctrlunit_monitor.analysis_port.connect(ctrlunit_scoreboard.analysis_port_imp);
+    memwb_agent.memwb_monitor.analysis_port.connect(memwb_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    ctrlunit_agent.ctrlunit_monitor.analysis_port.connect(
-        ctrlunit_coverage_tracker.analysis_port_imp);
+    memwb_agent.memwb_monitor.analysis_port.connect(
+        memwb_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
 
 

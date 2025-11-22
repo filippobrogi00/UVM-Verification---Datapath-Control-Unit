@@ -6,21 +6,21 @@
   * Starts coverage tracking before initiating a test on a transaction
 * */
 
-class Class_ControlUnit_Test extends uvm_test;
+class Class_MEMWB_Test extends uvm_test;
 
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_Test);
+  `uvm_component_utils(Class_MEMWB_Test);
 
   // Constructor
-  function new(string name = "Class_ControlUnit_Test", uvm_component parent = null);
+  function new(string name = "Class_MEMWB_Test", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Environment
-  Class_ControlUnit_Environment ctrlunit_environment;
+  Class_MEMWB_Environment memwb_environment;
 
   // Virtual interfaces handles
-  virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
+  virtual Iface_MEMWB #(IR_SIE) memwb_dut_iface;
 
   /*
   * Test BUILD PHASE : Instantiate and build components declared above
@@ -28,18 +28,16 @@ class Class_ControlUnit_Test extends uvm_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-    // coverage off b
     // Get virtual interfaces handles from DB
-    if (!uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::get(
-            this, "", "ctrlunit_dut_iface", ctrlunit_dut_iface
+    if (!uvm_config_db#(virtual Iface_MEMWB #(IR_SIZE))::get(
+            this, "", "memwb_dut_iface", memwb_dut_iface
         )) begin
       `uvm_fatal("[TEST]", "Could not get DUT interface handle")
     end
-    // coverage on b
 
     // Create Environment
-    ctrlunit_environment =
-        Class_ControlUnit_Environment::type_id::create("ctrlunit_environment", this);
+    memwb_environment =
+        Class_MEMWB_Environment::type_id::create("memwb_environment", this);
   endfunction : build_phase
 
 
@@ -60,12 +58,12 @@ class Class_ControlUnit_Test extends uvm_test;
   * */
   virtual task run_phase(uvm_phase phase);
     // Create a Sequence
-    Class_ControlUnit_Sequence ctrlunit_sequence = Class_ControlUnit_Sequence::type_id::create(
-        "ctrlunit_sequence", this
+    Class_MEMWB_Sequence memwb_sequence = Class_MEMWB_Sequence::type_id::create(
+        "memwb_sequence", this
     );
 
     // Before starting the test, wait until global reset is de-asserted
-    //wait (ctrlunit_dut_iface.rst_n == 1'b1);
+    //wait (memwb_dut_iface.rst_n == 1'b1);
 
     /* Start the test */
     super.run_phase(phase);
@@ -74,13 +72,13 @@ class Class_ControlUnit_Test extends uvm_test;
     phase.raise_objection(this);
 
     // Start Coverage tracking
-    ctrlunit_environment.ctrlunit_coverage_tracker.coverageStart();
+    memwb_environment.memwb_coverage_tracker.coverageStart();
 
     // Send Sequence (list of many transactions)
-    ctrlunit_sequence.start(ctrlunit_environment.ctrlunit_agent.ctrlunit_sequencer);
+    memwb_sequence.start(memwb_environment.memwb_agent.memwb_sequencer);
 
     // Stop coverage tracking
-    ctrlunit_environment.ctrlunit_coverage_tracker.coverageStop();
+    memwb_environment.memwb_coverage_tracker.coverageStop();
 
     // Phase can now end
     phase.drop_objection(this);

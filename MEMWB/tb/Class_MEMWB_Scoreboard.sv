@@ -8,21 +8,21 @@
   * data items from the Monitor with the "golden model".
 * */
 
-class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
+class Class_MEMWB_Scoreboard extends uvm_scoreboard;
 
   // Register to Factory
-  `uvm_component_utils(Class_ControlUnit_Scoreboard)
+  `uvm_component_utils(Class_MEMWB_Scoreboard)
 
   // Constructor
-  function new(string name = "Class_ControlUnit_Scoreboard", uvm_component parent = null);
+  function new(string name = "Class_MEMWB_Scoreboard", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   // Analysis Port to receive data objects from other TB components
-  uvm_analysis_imp #(Class_ControlUnit_SequenceItem, Class_ControlUnit_Scoreboard) analysis_port_imp;
+  uvm_analysis_imp #(Class_MEMWB_SequenceItem, Class_MEMWB_Scoreboard) analysis_port_imp;
 
   // Define DUT interface (only used for accessing clocking block)
-  virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface;
+  virtual Iface_MEMWB #(OPCODE_SIZE, FUNC_SIZE) memwb_dut_iface;
 
   /*
   * CLASS MEMBERS
@@ -33,7 +33,7 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
   // this circular buffer contains:
   // 0: current sequence item
   // 1: previous sequence item (from 3 CCs behind)
-  Class_ControlUnit_SequenceItem seqItemHistory[2];
+  Class_MEMWB_SequenceItem seqItemHistory[2];
 
   // Modular index
   int historyIdx = 0;
@@ -55,7 +55,7 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
   endfunction
 
   // Pushes the specified sequence item into the history
-  function void insertNewSeqItem(Class_ControlUnit_SequenceItem item);
+  function void insertNewSeqItem(Class_MEMWB_SequenceItem item);
     // Insert sequence item into history
     // coverage off b
     `uvm_info("YELLOW", $sformatf(
@@ -67,12 +67,12 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
   endfunction
 
   // Returns the current sequence item from history
-  function Class_ControlUnit_SequenceItem getCurrentSeqItem();
+  function Class_MEMWB_SequenceItem getCurrentSeqItem();
     return seqItemHistory[(historyIdx+1)%2];
   endfunction
 
   // Returns the previous sequence item from history
-  function Class_ControlUnit_SequenceItem getPreviousSeqItem();
+  function Class_MEMWB_SequenceItem getPreviousSeqItem();
     return seqItemHistory[historyIdx];
   endfunction
 
@@ -85,8 +85,8 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
 
     // Get DUT interface handle
     // coverage off b
-    if (!uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::get(
-            this, "", "ctrlunit_dut_iface", ctrlunit_dut_iface
+    if (!uvm_config_db#(virtual Iface_MEMWB #(OPCODE_SIZE, FUNC_SIZE))::get(
+            this, "", "memwb_dut_iface", memwb_dut_iface
         )) begin
       `uvm_error("[MONITOR]", "Could not get handle to DUT interface!")
     end
@@ -105,7 +105,7 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
     * Monitor sends via Analysis Port a complete transaction to the Scoreboard
     * Here we re-compute the Expected Result and check it against DUTs'
   * */
-  virtual function void write(Class_ControlUnit_SequenceItem ctrlunit_seqitem);
+  virtual function void write(Class_MEMWB_SequenceItem memwb_seqitem);
 
     /* Variables declaration */
     // NOTE: Expected Control Words have been defined for each instruction
@@ -125,12 +125,12 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
     bit itemFound = 1'b0;
 
     /* 1) Save current sequence item into history */
-    insertNewSeqItem(ctrlunit_seqitem);
+    insertNewSeqItem(memwb_seqitem);
 
     /* 2) Fill "Received" variables with current sequence item fields */
     // Inputs
-    receivedOpcode = ctrlunit_seqitem.opcode;
-    receivedFunc   = ctrlunit_seqitem.func;
+    receivedOpcode = memwb_seqitem.opcode;
+    receivedFunc   = memwb_seqitem.func;
 
     /*
     * Typical Control Word:
@@ -144,44 +144,44 @@ class Class_ControlUnit_Scoreboard extends uvm_scoreboard;
 
     /* MODIFIED CONTROL WORD ASSIGNMENTS: */
     // First stage signals
-    //receivedCW[0]   = ctrlunit_seqitem.en_stage1;
-    //receivedCW[1]   = ctrlunit_seqitem.rf_rden_port1;
-    //receivedCW[2]   = ctrlunit_seqitem.rf_rden_port2;
+    //receivedCW[0]   = memwb_seqitem.en_stage1;
+    //receivedCW[1]   = memwb_seqitem.rf_rden_port1;
+    //receivedCW[2]   = memwb_seqitem.rf_rden_port2;
     //
     //// Second stage signals
-    //receivedCW[3]   = ctrlunit_seqitem.en_stage2;
-    //receivedCW[4]   = ctrlunit_seqitem.mux_a_sel;
-    //receivedCW[5]   = ctrlunit_seqitem.mux_b_sel;
-    //receivedCW[6] = ctrlunit_seqitem.alu_op_sel[0];
-    //receivedCW[7] = ctrlunit_seqitem.alu_op_sel[1];
+    //receivedCW[3]   = memwb_seqitem.en_stage2;
+    //receivedCW[4]   = memwb_seqitem.mux_a_sel;
+    //receivedCW[5]   = memwb_seqitem.mux_b_sel;
+    //receivedCW[6] = memwb_seqitem.alu_op_sel[0];
+    //receivedCW[7] = memwb_seqitem.alu_op_sel[1];
 
     //// Third stage signals
-    //receivedCW[8]   = ctrlunit_seqitem.en_stage3;
-    //receivedCW[9]  = ctrlunit_seqitem.mem_rd_en;
-    //receivedCW[10]  = ctrlunit_seqitem.mem_wr_en;
-    //receivedCW[11]  = ctrlunit_seqitem.mux_wb_sel;
-    //receivedCW[12]   = ctrlunit_seqitem.rf_wren;
+    //receivedCW[8]   = memwb_seqitem.en_stage3;
+    //receivedCW[9]  = memwb_seqitem.mem_rd_en;
+    //receivedCW[10]  = memwb_seqitem.mem_wr_en;
+    //receivedCW[11]  = memwb_seqitem.mux_wb_sel;
+    //receivedCW[12]   = memwb_seqitem.rf_wren;
 
 
     /* ORIGINAL CONTROL WORD ASSIGNMENTS: */
     // First stage signals
-    receivedCW[0]  = ctrlunit_seqitem.en_stage1;
-    receivedCW[1]  = ctrlunit_seqitem.rf_rden_port1;
-    receivedCW[2]  = ctrlunit_seqitem.rf_rden_port2;
+    receivedCW[0]  = memwb_seqitem.en_stage1;
+    receivedCW[1]  = memwb_seqitem.rf_rden_port1;
+    receivedCW[2]  = memwb_seqitem.rf_rden_port2;
 
     // Second stage signals
-    receivedCW[3]  = ctrlunit_seqitem.en_stage2;
-    receivedCW[4]  = ctrlunit_seqitem.mux_a_sel;
-    receivedCW[5]  = ctrlunit_seqitem.mux_b_sel;
-    receivedCW[6]  = ctrlunit_seqitem.alu_op_sel[0];
-    receivedCW[7]  = ctrlunit_seqitem.alu_op_sel[1];
+    receivedCW[3]  = memwb_seqitem.en_stage2;
+    receivedCW[4]  = memwb_seqitem.mux_a_sel;
+    receivedCW[5]  = memwb_seqitem.mux_b_sel;
+    receivedCW[6]  = memwb_seqitem.alu_op_sel[0];
+    receivedCW[7]  = memwb_seqitem.alu_op_sel[1];
 
     // Third stage signals
-    receivedCW[8]  = ctrlunit_seqitem.en_stage3;
-    receivedCW[9]  = ctrlunit_seqitem.mem_rd_en;
-    receivedCW[10] = ctrlunit_seqitem.mem_wr_en;
-    receivedCW[11] = ctrlunit_seqitem.mux_wb_sel;
-    receivedCW[12] = ctrlunit_seqitem.rf_wren;
+    receivedCW[8]  = memwb_seqitem.en_stage3;
+    receivedCW[9]  = memwb_seqitem.mem_rd_en;
+    receivedCW[10] = memwb_seqitem.mem_wr_en;
+    receivedCW[11] = memwb_seqitem.mux_wb_sel;
+    receivedCW[12] = memwb_seqitem.rf_wren;
 
     /* 3) Fill "Expected" variables (previous opcode, previous func,
     *    calculated CW) */

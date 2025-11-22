@@ -33,14 +33,14 @@ int numSeqItems = 100;
 // top-level Testbench, do they aren't included here, but instead compiled!
 
 // Testbench Class files
-`include "Class_ControlUnit_Sequence.sv"
-`include "Class_ControlUnit_Driver.sv"
-`include "Class_ControlUnit_Monitor.sv"
-`include "Class_ControlUnit_Agent.sv"
-`include "Class_ControlUnit_CoverageTracker.sv"
-`include "Class_ControlUnit_Scoreboard.sv"
-`include "Class_ControlUnit_Environment.sv"
-`include "Class_ControlUnit_Test.sv"
+`include "Class_MEMWB_Sequence.sv"
+`include "Class_MEMWB_Driver.sv"
+`include "Class_MEMWB_Monitor.sv"
+`include "Class_MEMWB_Agent.sv"
+`include "Class_MEMWB_CoverageTracker.sv"
+`include "Class_MEMWB_Scoreboard.sv"
+`include "Class_MEMWB_Environment.sv"
+`include "Class_MEMWB_Test.sv"
 
 module Module_topTestbench;
 
@@ -63,14 +63,14 @@ module Module_topTestbench;
 
   // Interfaces instantiation
   // NOTE: (parenthesis needed because these are modules!
-  Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_dut_iface (
+  Iface_MEMWB #(IR_SIZE) memwb_dut_iface (
       .clk  (globalClk),
       .rst_n(globalRst_n)
   );
 
   // Instance DUT using wrapper
-  Module_ControlUnit_Wrapper #(OPCODE_SIZE, FUNC_SIZE) ctrlunit_toplevel (
-      .ctrlunit_iface(ctrlunit_dut_iface)
+  Module_MEMWB_Wrapper #(IR_SIZE) memwb_toplevel (
+      .memwb_iface(memwb_dut_iface)
    );
 
   /*
@@ -79,8 +79,8 @@ module Module_topTestbench;
   initial begin : PROC_RunTest
 
     // Install custom report server used by UVM macros for cleaner messages
-    Class_SimpleReportServer ctrlunit_simple_report_server = new();
-    uvm_report_server::set_server(ctrlunit_simple_report_server);
+    Class_SimpleReportServer memwb_simple_report_server = new();
+    uvm_report_server::set_server(memwb_simple_report_server);
 
     /* Override number of Sequence Items to generate if specified from cmdline */
     // Check if parameter was specified (numSeqItems overridden with
@@ -97,11 +97,11 @@ module Module_topTestbench;
     uvm_config_db#(int)::set(null, "*", "numSeqItems", numSeqItems);
 
     // Pass Virtual DUT interface handle down to components through Config Object
-    uvm_config_db#(virtual Iface_ControlUnit #(OPCODE_SIZE, FUNC_SIZE))::set(
-        null, "*", "ctrlunit_dut_iface", ctrlunit_dut_iface);
+    uvm_config_db#(virtual Iface_MEMWB #(IR_SIZE))::set(
+        null, "*", "memwb_dut_iface", memwb_dut_iface);
 
     // Running test...
-    run_test("Class_ControlUnit_Test");
+    run_test("Class_MEMWB_Test");
 
     // Stop simulation
     $display("################# SIMULATION ENDED #################");

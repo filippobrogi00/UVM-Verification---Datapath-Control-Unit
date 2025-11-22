@@ -4,140 +4,215 @@
 import uvm_pkg::*;
 
 package pkg_const;
-
-  /*
-  * GLOBAL CLOCK SIGNALS CONSTANTS
-  * */
+  /* Simulation constants */
   localparam time CLKPERIOD = 2ns;
 
-  /*
-  * GENERAL INSTRUCTION CONSTANTS
-  * */
-  // Number of bits
-  localparam int NBITS = 32;
-  localparam int CW_SIZE = 13;  // Control Word size (= number of outputs of CU)
-  localparam int OPCODE_SIZE = 6;  // OPCODE field size
-  localparam int FUNC_SIZE = 11;  // FUNC field size
+  /* General constants */
+  localparam int NBITS = 32;  // DLX CPU Bit width
+  localparam int DLX_CPU_NUMREGS = 32;  // Number of regs in the CPU
+  localparam int IRAM_DEPTH = 48;  // Number of IRAM words
 
-  /*
-  * INSTRUCTION ENCODINGS
-  * */
-  // Custom types
-  typedef logic [OPCODE_SIZE-1:0] opcode_field_t;
-  typedef logic [FUNC_SIZE-1:0] func_field_t;
-  typedef logic [CW_SIZE-1:0] cw_t;
-  typedef logic [OPCODE_SIZE+FUNC_SIZE-1:0] opcode_func_concat_t;
+  /* Register File constants */
+  localparam int RF_NUMREGS = 32;  // Number of regs inside RF
+  localparam int RF_REGBITS = 32;  // Number of bits of RF registers
 
-  /* R-TYPE Instruction Constants */
-  // OPCODE field for R-TYPE instruction
-  localparam opcode_field_t RTYPE = '0;  // ADD, SUB, AND, OR reg-to-reg
-  // Possible FUNC field values for R-TYPE instruction
-  localparam func_field_t RTYPE_ADD = 'd0;  // ADD RS1,RS2,RD
-  localparam func_field_t RTYPE_SUB = 'd1;  // SUB RS1,RS2,RD
-  localparam func_field_t RTYPE_AND = 'd2;  // AND RS1,RS2,RD
-  localparam func_field_t RTYPE_OR = 'd3;  // OR RS1,RS2,RD
+  /* Instruction-specific constants */
+  localparam int IR_SIZE = 32;  // Size of instruction (#bits)
+  localparam int OPERAND_SIZE = 5;  // Size of operand (rs1, rs2, rd) fields in I/J_TYPE instructions
+  localparam int OPCODE_SIZE = 6;  // Size of OPCODE field
+  localparam int FUNC_SIZE = 11;  // Size of FUNC field (only for R_TYPE)
+  localparam int I_TYPE_IMM_SIZE = 16;  // Size of IMMediate field in I_TYPE instructions
+  localparam int J_TYPE_IMM_SIZE = 26;  // Size of FUNC field in J_TYPE instructions
 
-  // NO-OP instruction
-  localparam func_field_t RTYPE_NOP = '1;  // NO OPERATION
-  // localparam func_field_t NOP = 12'b111111111111;   // (example wider NOP)
+  /* ALU Operations */
 
-  /* I-TYPE Instruction Constants (only OPCODE; FUNC field not defined for I-TYPE) */
-  localparam opcode_field_t ITYPE_ADDI1 = 'd1;  // ADDI1 RS1,RD,INP1
-  localparam opcode_field_t ITYPE_SUBI1 = 'd2;  // SUBI1 RB, RA, INP1
-  localparam opcode_field_t ITYPE_ANDI1 = 'd3;  // ANDI1 RB, RA, INP1
-  localparam opcode_field_t ITYPE_ORI1 = 'd4;  // ORI1 RB, RA, INP1
-  localparam opcode_field_t ITYPE_ADDI2 = 'd5;  // ADDI2 RA, RB, INP2
-  localparam opcode_field_t ITYPE_SUBI2 = 'd6;  // SUBI2 RA, RB, INP2
-  localparam opcode_field_t ITYPE_ANDI2 = 'd7;  // ANDI2 RA, RB, INP2
-  localparam opcode_field_t ITYPE_ORI2 = 'd8;  // ORI2 RA, RB, INP2
-  localparam opcode_field_t ITYPE_MOV = 'd9;  // MOV RA, RB
-  localparam opcode_field_t ITYPE_SREG1 = 'd10;  // S_REG1 RB, INP1
-  localparam opcode_field_t ITYPE_SREG2 = 'd11;  // S_REG2 RB, INP2
-  localparam opcode_field_t ITYPE_SMEM = 'd12;  // S_MEM RA, RB, INP2
-  localparam opcode_field_t ITYPE_LMEM1 = 'd13;  // L_MEM1 RB, RA, INP1
-  localparam opcode_field_t ITYPE_LMEM2 = 'd14;  // L_MEM2 RA, RB, INP2
+  // Instruction types
+  typedef enum {
+    I_TYPE,
+    J_TYPE,
+    R_TYPE
+  } INSTR_TYPE;
 
-  /*
-  * Control Words associated to each instruction
-  * */
-  // verilog_format: off
-  localparam cw_t CW_NOP    = 'b0000000000000;  // Reset / NOP
-  localparam cw_t CW_ADD    = 'b1111000100111;  // ADD RA, RB, RC
-  localparam cw_t CW_SUB    = 'b1111001100111;  // SUB RA, RB, RC                                                    endpackage
-  localparam cw_t CW_AND    = 'b1111010100111;  // AND RA, RB, RC
-  localparam cw_t CW_OR     = 'b1111011100111;  // OR RA, RB, RC
-  localparam cw_t CW_ADDI1  = 'b0110000100111;  // ADDI1 RA, RB, INP1
-  localparam cw_t CW_SUBI1  = 'b0110001100111;  // SUBI1 RA, RB, INP1
-  localparam cw_t CW_ANDI1  = 'b0110010100111;  // ADDI1 RA, RB, INP1
-  localparam cw_t CW_ORI1   = 'b0110011100111;  // ORI1 RA, RB, INP1
-  localparam cw_t CW_ADDI2  = 'b1011100100111;  // ADDI2 RA, RB, INP2
-  localparam cw_t CW_SUBI2  = 'b1011101100111;  // SUBI2 RA, RB, INP2
-  localparam cw_t CW_ANDI2  = 'b1011110100111;  // ANDI2 RA, RB, INP2
-  localparam cw_t CW_ORI2   = 'b1011111100111;  // ORI2 RA, RB, INP2
-  localparam cw_t CW_MOV    = 'b1011100100111;  // MOV RA, RB
-  localparam cw_t CW_SREG1  = 'b0010100100111;  // S_REG1 RB, INP1 Expect INP2 = 0 here.
-  localparam cw_t CW_SREG2  = 'b0010100100111;  // S_REG2 RB, INP2 (Note: LUT_OUT is same as S_REG1. It's ok. Expect INP1 = 0 here.)
-  localparam cw_t CW_SMEM   = 'b1011100101100;  // S_MEM RA, RB, INP2
-  localparam cw_t CW_LMEM1  = 'b0110000110101;  // L_MEM1 RB, RA, INP1
-  localparam cw_t CW_LMEM2  = 'b1011100110101;  // L_MEM2 RB, RA, INP2
-  // verilog_format: on
+  // Instruction operates on signed or unsigned immediate
+  typedef enum {
+    SIGN_TYPE,
+    UNSIGN_TYPE
+  } INSTR_SIGN;
 
-  // Outputs a string corresponding to the CW passed as argument
-  // (mainly used for timing debug)
-  function string cw_to_string(cw_t value);
-    case (value)
-      CW_NOP:   return "NOP";
-      CW_ADD:   return "ADD";
-      CW_SUB:   return "SUB";
-      CW_AND:   return "AND";
-      CW_OR:    return "OR";
-      CW_ADDI1: return "ADDI1";
-      CW_SUBI1: return "SUBI1";
-      CW_ANDI1: return "ANDI1";
-      CW_ORI1:  return "ORI1";
-      CW_ADDI2: return "ADDI2";
-      CW_SUBI2: return "SUBI2";
-      CW_ANDI2: return "ANDI2";
-      CW_ORI2:  return "ORI2";
-      CW_MOV:   return "MOV";
-      CW_SREG1: return "SREG1";
-      CW_SREG2: return "SREG2";
-      CW_SMEM:  return "SMEM";
-      CW_LMEM1: return "LMEM1";
-      CW_LMEM2: return "LMEM2";
-      default:  return "UNKNOWN";
+  /* Instruction field aliases */
+  // I_TYPE
+  typedef struct packed {
+    logic [OPCODE_SIZE-1:0] opcode;
+    logic [OPERAND_SIZE-1:0] rs1;
+    logic [OPERAND_SIZE-1:0] rs2;
+    logic [I_TYPE_IMM_SIZE-1:0] imm;
+  } Instr_I_TYPE;
+
+  // R_TYPE
+  typedef struct packed {
+    logic [OPCODE_SIZE-1:0] opcode;
+    logic [OPERAND_SIZE-1:0] rs1;
+    logic [OPERAND_SIZE-1:0] rs2;
+    logic [OPERAND_SIZE-1:0] rd;
+    logic [FUNC_SIZE-1:0] func;
+  } Instr_R_TYPE;
+
+  // J_TYPE
+  typedef struct packed {
+    logic [OPCODE_SIZE-1:0] opcode;
+    logic [J_TYPE_IMM_SIZE-1:0] imm;
+  } Instr_J_TYPE;
+
+  // General instruction type (could be each one of the types)
+  typedef union packed {
+    logic [IR_SIZE-1:0] bits;  // Raw bit array
+    Instr_I_TYPE itype;  // Interpreted as I_TYPE
+    Instr_R_TYPE rtype;  // Interpreted as I_TYPE
+    Instr_J_TYPE jtype;  // Interpreted as I_TYPE
+  } InstrType;
+
+  // Supported instructions
+  // NOTE: enumerated to match source file's encoding order
+  typedef enum {
+    NOP = 0,
+
+    /* Arithmetical Operations */
+    ADD_op  = 1,   // Signed Addition
+    SUB_op  = 10,  // Signed Subtraction
+    ADDU_op = 13,  // Unsigned Addition
+    SUBU_op = 14,  // Unsigned Subtraction
+
+    /* Bitwise Operations */
+    AND_op = 3,  // Bitwise
+    OR_op  = 4,  // Bitwise
+    XOR_op = 11, // Bitwise
+
+    /* "Set if" */
+    SLT_op  = 16,  // Set if Less Than
+    SLE_op  = 6,   // Set Less than or Equal to
+    SGT_op  = 17,  // Set Greater Than
+    SGE_op  = 5,   // Set Greater than or Equal to
+    SEQ_op  = 15,  // Set if Equal
+    SNE_op  = 8,   // Set Not Equal to
+    SLTU_op = 18,  // Set if Less Than (Unsigned)
+    SLEU_op = 20,  // Set if Less Than or Equal (Unsigned)
+    SGTU_op = 19,  // Set Greater Than (Unsigned)
+    SGEU_op = 21,  // Set Greater Than or Equal (Unsigned)
+
+    /* Shift */
+    SLL_op = 7,  // Unsigned Logical Shift Left
+    SRL_op = 9,  // Unsigned Arithmetic Shift Right
+    SRA_op = 12  // Shift Right Arithmetic
+  } aluOp;
+
+  // NOTE: For base-2 logarithm use SV's $clog2() builtin function
+
+
+  /************
+  * FUNCTIONS *
+  ************/
+
+  // NOTE: Disable coverage for these 3 functions because they are
+  // only used for CRG, and not in "runtime" code.
+  // TODO: Maybe add simple unit test in top module?
+  // coverage off
+
+  // @brief Helper function to check type of instruction.
+  // @return One of I_TYPE, R_TYPE, J_TYPE constants.
+  function check_instr_type(logic [IR_SIZE-1:0] instruction);
+    // Outer Case: Based on the Instruction Opcode (R-type is 0x0)
+    logic [OPCODE_SIZE-1:0] op;
+    assign op = instruction[31:26];
+
+    case (op)
+
+      // ALU Opcode for R-Type Instructions when Instruction Opcode is 0x0. Analyze FUNC Bit Field.
+      'h0: begin
+        // Inner Case: Analyze FUNC Bit Field
+        return R_TYPE;
+      end  // end OPCODE_SIZE'h0 case
+
+      // ALU Opcode for I-Type & J-Type Instructions when Instruction Opcode != 0x0.
+
+      'd2: return J_TYPE;  // j
+      'd3: return J_TYPE;  // jal
+      'd4: return J_TYPE;  // beqz
+      'd5: return J_TYPE;  // bnez
+
+      default: return I_TYPE;
     endcase
   endfunction
 
+  // @brief Helper function which checks if instruction
+  // operates on signed or unsigned immediates.
+  // @return One of SIGN_TYPE or UNSIGN_TYPE.
+  function check_instr_sign(logic [IR_SIZE-1:0] instruction);
 
-  // Associative array to keep track of (OPCODE|FUNC) <=> CW association
-  cw_t CW_ARRAY[opcode_func_concat_t] = '{
-      // verilog_format: off
-    // OPCODE | FUNC
-    {RTYPE,       RTYPE_NOP}          : CW_NOP,
-    {RTYPE,       RTYPE_ADD}          : CW_ADD,
-    {RTYPE,       RTYPE_SUB}          : CW_SUB,
-    {RTYPE,       RTYPE_AND}          : CW_AND,
-    {RTYPE,       RTYPE_OR}           : CW_OR,
-    {ITYPE_ADDI1, func_field_t'(0)}   : CW_ADDI1,
-    {ITYPE_SUBI1, func_field_t'(0)}   : CW_SUBI1,
-    {ITYPE_ANDI1, func_field_t'(0)}   : CW_ANDI1,
-    {ITYPE_ORI1,  func_field_t'(0)}   : CW_ORI1,
-    {ITYPE_ADDI2, func_field_t'(0)}   : CW_ADDI2,
-    {ITYPE_SUBI2, func_field_t'(0)}   : CW_SUBI2,
-    {ITYPE_ANDI2, func_field_t'(0)}   : CW_ANDI2,
-    {ITYPE_ORI2,  func_field_t'(0)}   : CW_ORI2,
-    {ITYPE_MOV,   func_field_t'(0)}   : CW_MOV,
-    {ITYPE_SREG1, func_field_t'(0)}   : CW_SREG1,
-    {ITYPE_SREG2, func_field_t'(0)}   : CW_SREG2,
-    {ITYPE_SMEM,  func_field_t'(0)}   : CW_SMEM,
-    {ITYPE_LMEM1, func_field_t'(0)}   : CW_LMEM1,
-    {ITYPE_LMEM2, func_field_t'(0)}   : CW_LMEM2
-    // verilog_format: on
-  };
+    logic [OPCODE_SIZE-1:0] op;
+    // logic [OPCODE_SIZE-1:0] func;
 
-  // Used in Scoreboard for initializing Sequence Items history
-  localparam opcode_field_t INITIAL_OPCODE = RTYPE;
-  localparam func_field_t INITIAL_FUNC = RTYPE_NOP;
+    assign op = instruction[31:26];
+    // assign func = instruction[10:0];
+
+
+    if (check_instr_type(instruction) == I_TYPE) begin
+      // Only check I_TYPE instructions
+      case (op)
+
+        'd8:  return SIGN_TYPE;  // addi
+        'd10: return SIGN_TYPE;  // subi
+        'd25: return SIGN_TYPE;  // snei
+        'd28: return SIGN_TYPE;  // slei
+        'd29: return SIGN_TYPE;  // sgei
+        'd35: return SIGN_TYPE;  // lw
+        'd43: return SIGN_TYPE;  // sw
+        'd23: return SIGN_TYPE;  // srai
+        'd24: return SIGN_TYPE;  // seqi
+        'd26: return SIGN_TYPE;  // slti
+        'd27: return SIGN_TYPE;  // sgti
+
+        default: return UNSIGN_TYPE;
+      endcase
+    end
+  endfunction
+
+  // @brief Assigns field values to an "instruction type" variable.
+  // @return Corresponding bit array which has the instruction's fields
+  // defined.
+  function get_instr_type(logic [IR_SIZE-1:0] instruction);
+    // TODO: use proper constant-based ranges instead of hardcoded
+    // logic [OPCODE_SIZE-1:0] _opcode;
+    // logic [  FUNC_SIZE-1:0] _func;
+    //
+    // assign _opcode = instruction[31:26];
+    // assign _func = instruction[10:0];
+
+    if (check_instr_type(instruction) == I_TYPE) begin
+      // Assign I_TYPE fields to the bit array
+      Instr_I_TYPE itype_alias;
+      itype_alias.opcode = instruction[31:26];
+      itype_alias.rs1    = instruction[25:21];
+      itype_alias.rs2    = instruction[20:16];
+      itype_alias.imm    = instruction[15:0];
+      return itype_alias;
+    end else if (check_instr_type(instruction) == R_TYPE) begin
+      // Assign R_TYPE fields to the bit array
+      Instr_R_TYPE rtype_alias;
+      rtype_alias.opcode = instruction[31:26];
+      rtype_alias.rs1    = instruction[25:21];
+      rtype_alias.rs2    = instruction[20:16];
+      rtype_alias.rd     = instruction[15:11];
+      rtype_alias.func   = instruction[10:0];
+      return rtype_alias;
+    end else begin
+      // Assign J_TYPE fields to the bit array
+      Instr_J_TYPE jtype_alias;
+      jtype_alias.opcode = instruction[31:26];
+      jtype_alias.imm    = instruction[25:0];
+      return jtype_alias;
+    end
+  endfunction
+
+  // coverage on
 
 endpackage

@@ -91,7 +91,7 @@ end entity DP_MEMWB;
     );
 
   // Clocking block for timing synchronization
-  clocking ClockingBlock_ControlUnit @(posedge clk);
+  clocking ClockingBlock_MEMWB @(posedge clk);
     /* (TB) INPUTS: TB <- DUT */
     // NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
     input #(1) clk, rst_n, DRAM_OUT, S1_ADD_OUT, S3_REG_NPC_OUT,
