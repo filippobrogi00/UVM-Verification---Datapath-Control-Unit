@@ -22,7 +22,7 @@ class Class_MEMWB_Environment extends uvm_env;
   // Scoreboard
   Class_MEMWB_Scoreboard memwb_scoreboard;
   // Coverage Tracker
-  Class_MEMWB_CoverageTracker memwb_coverage_tracker;
+  //Class_MEMWB_CoverageTracker memwb_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -34,8 +34,8 @@ class Class_MEMWB_Environment extends uvm_env;
     memwb_agent = Class_MEMWB_Agent::type_id::create("memwb_agent", this);
     memwb_scoreboard =
         Class_MEMWB_Scoreboard::type_id::create("memwb_scoreboard", this);
-    memwb_coverage_tracker =
-        Class_MEMWB_CoverageTracker::type_id::create("memwb_coverage_tracker", this);
+    //memwb_coverage_tracker =
+    //    Class_MEMWB_CoverageTracker::type_id::create("memwb_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -50,8 +50,8 @@ class Class_MEMWB_Environment extends uvm_env;
     memwb_agent.memwb_monitor.analysis_port.connect(memwb_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    memwb_agent.memwb_monitor.analysis_port.connect(
-        memwb_coverage_tracker.analysis_port_imp);
+    //memwb_agent.memwb_monitor.analysis_port.connect(
+    //    memwb_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
 
 

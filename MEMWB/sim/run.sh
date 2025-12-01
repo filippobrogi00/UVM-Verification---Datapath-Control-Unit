@@ -55,7 +55,7 @@ mkdir -p $TB_DIR
 mkdir -p $COV_DIR
 
 # Script variables - Compilation
-SV_COMPILE_LIST="$TB_DIR/Iface_IFID.sv $TB_DIR/Module_IFID_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+SV_COMPILE_LIST="$TB_DIR/Iface_MEMWB.sv $TB_DIR/Module_MEMWB_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 
 ########### FUNCTIONS ###########
 
@@ -77,7 +77,7 @@ compile_files() {
   case "$filetype" in
   VHDL)
     ext="vhd"
-    compiler="vcom -reportprogress 300 -2008 -work work -autoorder"
+    compiler="vcom -reportprogress 300 -2008 -work work -autoorder -cover sbce"
     language="VHDL"
     ;;
   VERILOG)
@@ -90,6 +90,10 @@ compile_files() {
     compiler="vlog -sv -mixedsvvh -work work +cover=bcesft" # enable mixed-language
     language="SYSTEMVERILOG"
     ;;
+  CPP)
+    ext="cpp"
+    compiler="sccom" # enable mixed-language
+    language="SYSTEMVERILOG"
   *)
     echo "Unsupported file type: .$filetype"
     return 1

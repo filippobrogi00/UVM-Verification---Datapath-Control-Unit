@@ -1,22 +1,23 @@
 #include <systemc>
 #define IR_SIZE 32
 using namespace sc_core;
+using namespace sc_dt;
 
 SC_MODULE(MemStage) {
-    sc_in<sc_bool>              clk;
-    sc_in<sc_bool>              rst_n;
+    sc_in<bool>              clk;
+    sc_in<bool>              rst_n;
 
     sc_in<sc_uint<IR_SIZE>>     s3_reg_npc_out;
-    sc_in<sc_bool>              s3_ff_jal_en_out;
+    sc_in<bool>                 s3_ff_jal_en_out;
     sc_in<sc_uint<4>>           s3_reg_add_wr_out;
-    sc_in<sc_bool>              s3_reg_cond_out;
-    sc_in<sc_bool>              jump_en;
+    sc_in<bool>                 s3_reg_cond_out;
+    sc_in<bool>                 jump_en;
     sc_in<sc_uint<IR_SIZE>>     s1_add_out; //??
     sc_in<sc_uint<IR_SIZE>>     s3_reg_alu_out;
     sc_in<sc_uint<IR_SIZE>>     dram_out;
 
     sc_out<sc_uint<IR_SIZE>>    s4_reg_npc_out;
-    sc_out<sc_bool>             s4_ff_jal_en_out;
+    sc_out<bool>                s4_ff_jal_en_out;
     sc_out<sc_uint<IR_SIZE>>    dp_to_dlx_pc;
     sc_out<sc_uint<4>>          s4_reg_add_wr_out;
     sc_out<sc_uint<IR_SIZE>>    s4_reg_alu_out;
@@ -82,23 +83,23 @@ SC_MODULE(MemStage) {
 
     void s4_reg_lmd() {
         if (!rst_n)
-            s4_reg_lmd_out: = 0;
+            s4_reg_lmd_out = 0;
         else
             s4_reg_lmd_out = dram_out;
     }
-}
+};
 
 SC_MODULE(WBStage) {
-    //sc_in<sc_bool>              clk;
-    //sc_in<sc_bool>              rst_n;
+    //sc_in<bool>              clk;
+    //sc_in<bool>              rst_n;
 
-    sc_signal<sc_uint<IR_SIZE>> s5_mux_wb;
+    sc_signal<sc_uint<IR_SIZE>> s5_mux_wb_out;
 
     sc_in<sc_uint<IR_SIZE>>     s4_reg_npc_out;
-    sc_in<sc_bool>              s4_ff_jal_en_out;
+    sc_in<bool>                 s4_ff_jal_en_out;
     sc_in<sc_uint<IR_SIZE>>     s4_reg_alu_out;
     sc_in<sc_uint<IR_SIZE>>     s4_reg_lmd_out;
-    sc_in<sc_bool>              wb_mux_sel;
+    sc_in<bool>                 wb_mux_sel;
 
     sc_out<sc_uint<IR_SIZE>>    s5_mux_datain_out;
 
@@ -114,42 +115,41 @@ SC_MODULE(WBStage) {
         if (wb_mux_sel)
             s5_mux_wb_out = s4_reg_alu_out;
         else
-            s4_mux_wb_out = s4_reg_lmd_out;
+            s5_mux_wb_out = s4_reg_lmd_out;
     }
 
     void s5_mux_datain() {
-        if (s5_ff_jal_en)
+        if (s4_ff_jal_en_out)
             s5_mux_datain_out = s4_reg_npc_out;
         else
             s5_mux_datain_out = s5_mux_wb_out;
     }
-}
+};
 
 /* toplevel module */
-
 SC_MODULE(MemWBStage) {
     /* Signal declarations */
-    sc_in<sc_bool>              clk;
-    sc_in<sc_bool>              rst_n;
+    sc_in<bool>              clk;
+    sc_in<bool>              rst_n;
 
     sc_in<sc_uint<IR_SIZE>>             s3_reg_npc_out;
-    sc_in<sc_bool>                      s3_ff_jal_en_out;
+    sc_in<bool>                         s3_ff_jal_en_out;
     sc_in<sc_uint<4>>                   s3_reg_add_wr_out;
-    sc_in<sc_bool>                      s3_reg_cond_out;
-    sc_in<sc_bool>                      jump_en;
+    sc_in<bool>                         s3_reg_cond_out;
+    sc_in<bool>                         jump_en;
     sc_in<sc_uint<IR_SIZE>>             s1_add_out; //??
     sc_in<sc_uint<IR_SIZE>>             s3_reg_alu_out;
     sc_in<sc_uint<IR_SIZE>>             dram_out;
 
-    sc_in<sc_uint<IR_SIZE>>             wb_mult_sel;
+    sc_in<bool>                         wb_mux_sel;
 
     sc_signal<sc_uint<IR_SIZE>>         s4_reg_npc_out;
-    sc_signal<sc_bool>                  s4_ff_jal_en_out;
+    sc_signal<bool>                     s4_ff_jal_en_out;
     sc_signal<sc_uint<IR_SIZE>>         s4_reg_alu_out;
     sc_signal<sc_uint<IR_SIZE>>         s4_reg_lmd_out;
 
     /* Output signal declarations */
-    sc_out<sc_uint<IR_SIZE>>            s4_reg_add_wr_out;
+    sc_out<sc_uint<4>>                  s4_reg_add_wr_out;
     sc_out<sc_uint<IR_SIZE>>            dp_to_dlx_pc;
     sc_out<sc_uint<IR_SIZE>>            s5_mux_datain_out;
 
@@ -191,4 +191,4 @@ SC_MODULE(MemWBStage) {
         /* Wb stage output signals */
         wb.s5_mux_datain_out(s5_mux_datain_out);
     }
-}
+};
