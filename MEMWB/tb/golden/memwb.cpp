@@ -15,6 +15,7 @@ SC_MODULE(MemStage) {
     sc_in<sc_uint<IR_SIZE>>     s1_add_out; //??
     sc_in<sc_uint<IR_SIZE>>     s3_reg_alu_out;
     sc_in<sc_uint<IR_SIZE>>     dram_out;
+    sc_in<bool>                 lmd_latch_en;
 
     sc_out<sc_uint<IR_SIZE>>    s4_reg_npc_out;
     sc_out<bool>                s4_ff_jal_en_out;
@@ -84,7 +85,7 @@ SC_MODULE(MemStage) {
     void s4_reg_lmd() {
         if (!rst_n)
             s4_reg_lmd_out = 0;
-        else
+        else if (lmd_latch_en)
             s4_reg_lmd_out = dram_out;
     }
 };
@@ -140,6 +141,7 @@ SC_MODULE(MemWBStage) {
     sc_in<sc_uint<IR_SIZE>>             s1_add_out; //??
     sc_in<sc_uint<IR_SIZE>>             s3_reg_alu_out;
     sc_in<sc_uint<IR_SIZE>>             dram_out;
+    sc_in<bool>                         lmd_latch_en;
 
     sc_in<bool>                         wb_mux_sel;
 
@@ -172,6 +174,7 @@ SC_MODULE(MemWBStage) {
         mem.s1_add_out(s1_add_out);
         mem.s3_reg_alu_out(s3_reg_alu_out);
         mem.dram_out(dram_out);
+        mem.lmd_latch_en(lmd_latch_en);
         
         /* Mem stage output signals */
         mem.s4_reg_npc_out(s4_reg_npc_out);
