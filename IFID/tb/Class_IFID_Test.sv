@@ -60,8 +60,14 @@ class Class_IFID_Test extends uvm_test;
     * Start a Sequence for this particular Test
   * */
   virtual task run_phase(uvm_phase phase);
-    // Create a Sequence
-    Class_IFID_Sequence ifid_sequence = Class_IFID_Sequence::type_id::create("ifid_sequence", this);
+    // Create "Legal Inputs" test sequence
+    Class_IFID_LegalSequence ifid_legalsequence = Class_IFID_LegalSequence::type_id::create(
+        "ifid_legalsequence", this
+    );
+    // Create "Random Inputs" test sequence
+    Class_IFID_RandomSequence ifid_randomsequence = Class_IFID_RandomSequence::type_id::create(
+        "ifid_randomsequence", this
+    );
 
     /* Start the test */
     super.run_phase(phase);
@@ -72,8 +78,11 @@ class Class_IFID_Test extends uvm_test;
     // Start Coverage tracking
     ifid_environment.ifid_coverage_tracker.coverageStart();
 
-    // Send Sequence (list of many transactions)
-    ifid_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+    // Start all sequences in parallel
+    fork
+      ifid_legalsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_randomsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+    join
 
     // Stop coverage tracking
     ifid_environment.ifid_coverage_tracker.coverageStop();
