@@ -39,12 +39,14 @@ SIM_DIR="sim"
 SRC_DIR="src"
 TB_DIR="tb"
 COV_DIR="$SIM_DIR/coverage"
+COV_HTML_DIR="$SIM_DIR/covhtmlreport"
 
 if [[ $BASENAME_CWD == "$SIM_DIR" || $BASENAME_CWD == "$SRC_DIR" || $BASENAME_CWD == "$TB_DIR" ]]; then
   SIM_DIR="../$SIM_DIR"
   SRC_DIR="../$SRC_DIR"
   TB_DIR="../$TB_DIR"
   COV_DIR="$SIM_DIR/coverage"
+  COV_HTML_DIR="$SIM_DIR/covhtmlreport"
   ROOT_DIR="../"
 fi
 
@@ -208,12 +210,14 @@ REPORT_EXPR="coverage report -code e -details -output $COV_DIR/cov_expr.txt"
 REPORT_STMT="coverage report -code s -details -output $COV_DIR/cov_stmt.txt"
 REPORT_FSM="coverage report -code f -details -output $COV_DIR/cov_fsm.txt"
 REPORT_TOG="coverage report -code t -details -output $COV_DIR/cov_toggle.txt"
-REPORT_COVERAGE="$REPORT_ALL; $REPORT_BRANCH; $REPORT_COND; $REPORT_EXPR; $REPORT_STMT; $REPORT_FSM; $REPORT_TOG"
 # vsim command to simulate and report coverage to .txt files
-VSIM_SIMULATE_AND_REPORT_COVERAGE="run -all; $REPORT_COVERAGE; quit"
+VSIM_REPORT_TEXT_COVERAGE="$REPORT_ALL; $REPORT_BRANCH; $REPORT_COND; $REPORT_EXPR; $REPORT_STMT; $REPORT_FSM; $REPORT_TOG"
 # vsim command to save coverage to UCDB and later retreive it and show in HTML page
 COV_DB_NAME="coverage.ucdb"
-VSIM_HTML_COVERAGE="coverage save -onexit $COV_DB_NAME; run -all; quit"
+VSIM_REPORT_HTML_COVERAGE="coverage save -onexit $COV_DB_NAME"
+
+# vsim command to run the simulation and report coverage in both ways
+VSIM_RUN_AND_REPORT_COV="$VSIM_REPORT_HTML_COVERAGE; run -all; $VSIM_REPORT_TEXT_COVERAGE; quit"
 
 #########################################################
 #### OPTIMIZE THE DESIGN ENABLING COVERAGE REPORTING ####
@@ -238,28 +242,29 @@ SIM_OPTIONS="-sv_seed random -onfinish stop +UVM_NO_RELNOTES"
 NUM_SEQITEMS="10" # Default value, can be overridden by cmdline
 
 # Override number of sequence items by passing in an argument to the script
-if [ -n "$1" ]; then
+if [[ $# -eq 1 ]]; then
   NUM_SEQITEMS="$1"
 fi
 
 SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 
-# Always simulate using Questasim (vsim is Questa's internal simulator tool)
+# Simulate using Questa and report both text and HTML coverage in their
+# respective directories ($COV_DIR and $COV_HTML_DIR)
+colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
+  $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV"
 
-## Simulate and report coverage in coverage/cov_xxx.txt report files
-alias vsim_simulate="
-  colorize vsim -c -coverage \"$tb_module_opt\" -t $SIM_TIMESCALE $SIM_SEQITEMS
-  $SIM_OPTIONS -do \"$VSIM_SIMULATE_AND_REPORT_COVERAGE\""
-## Simulate and report coverage in covhtmlreport/ dir for browser use (more detailed)
-alias vsim_gen_html_cov_report="\
-  colorize vsim -c -coverage \"$tb_module_opt\" -t $SIM_TIMESCALE $SIM_SEQITEMS \
-  $SIM_OPTIONS -do \"$VSIM_HTML_COVERAGE\"
-  && \
-  vcover report -details -html $COV_DB_NAME"
-
-vsim_gen_html_cov_report
+# Create "covhtmlreport" dir from .ucdb coverage file
+[[ -d "$COV_HTML_DIR" ]] && rm -rf $COV_HTML_DIR
+vcover report -details -html $COV_DB_NAME
 
 # vsim -cvgperinstance -viewcov $COV_DB_NAME
+
+########### CLEAN EMPTY COVERAGE FILES ###########
+if [[ -d "$COV_DIR" ]]; then
+  pushd "$COV_DIR" >/dev/null
+  find . -type f -empty -exec rm -f {} +
+  popd >/dev/null
+fi
 
 ########### CLEAN SIMULATION JUNK ###########
 [ -f transcript ] && rm transcript

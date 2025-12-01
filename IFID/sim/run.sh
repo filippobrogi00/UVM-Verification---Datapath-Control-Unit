@@ -244,7 +244,8 @@ fi
 
 SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 
-# Always simulate using Questasim (vsim is Questa's internal simulator tool)
+# Simulate using Questa and report both text and HTML coverage in their
+# respective directories ($COV_DIR and $COV_HTML_DIR)
 colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
   $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV"
 
