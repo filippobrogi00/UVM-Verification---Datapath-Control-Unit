@@ -1,4 +1,7 @@
 */work
 *.toml
 *.yaml
+*/coverage
+*/covhtmlreport
+Session.vim
 
