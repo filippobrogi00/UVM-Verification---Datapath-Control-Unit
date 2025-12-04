@@ -4,8 +4,8 @@ using namespace sc_core;
 using namespace sc_dt;
 
 SC_MODULE(MemStage) {
-    //sc_in<bool>              clk;
-    //sc_in<bool>              rst_n;
+    sc_in<bool>              clk;
+    sc_in<bool>              rst_n;
 
     sc_in<sc_uint<IR_SIZE>>     s3_reg_npc_out;
     sc_in<bool>                 s3_ff_jal_en_out;
@@ -26,13 +26,13 @@ SC_MODULE(MemStage) {
 
     SC_CTOR(MemStage) {
         SC_METHOD(s4_reg_npc);
-        sensitive << s3_reg_npc_out;
+        sensitive << clk << rst_n;
 
         SC_METHOD(s4_ff_jal_en);
-        sensitive << s3_ff_jal_en_out;
+        sensitive << clk << rst_n;
 
         SC_METHOD(s4_reg_add_wr);
-        sensitive << s3_reg_add_wr_out;
+        sensitive << clk << rst_n;
 
         SC_METHOD(s4_mux_jmp);
         sensitive << s3_reg_cond_out
@@ -41,34 +41,52 @@ SC_MODULE(MemStage) {
                   << s3_reg_alu_out;
 
         SC_METHOD(s4_reg_alu);
-        sensitive << s3_reg_alu_out;
+        sensitive << clk << rst_n;
 
         SC_METHOD(s4_reg_lmd);
-        sensitive << dram_out;
+        sensitive << clk << rst_n;
     }
 
     void s4_reg_npc() {
-        s4_reg_npc_out = s3_reg_npc_out;
+        if (!rst_n)
+            s4_reg_npc_out = 0;
+        else
+            s4_reg_npc_out = s3_reg_npc_out;
     }
 
     void s4_ff_jal_en() {
-        s4_ff_jal_en_out = s3_ff_jal_en_out;
+        if (!rst_n)
+            s4_ff_jal_en_out = 0;
+        else
+            s4_ff_jal_en_out = s3_ff_jal_en_out;
     }
 
     void s4_reg_add_wr() {
-        s4_reg_add_wr_out = s3_reg_add_wr_out;
+        if (!rst_n)
+            s4_reg_add_wr_out = 0;
+        else
+            s4_reg_add_wr_out = s3_reg_add_wr_out;
     }
 
     void s4_mux_jmp() {
-        dp_to_dlx_pc = s3_reg_alu_out;
+        if (s3_reg_cond_out && jump_en)
+            dp_to_dlx_pc = s1_add_out;
+        else
+            dp_to_dlx_pc = s3_reg_alu_out;
     }
 
     void s4_reg_alu() {
-        s4_reg_alu_out = s3_reg_alu_out;
+        if (!rst_n)
+            s4_reg_alu_out = 0;
+        else
+            s4_reg_alu_out = s3_reg_alu_out;
     }
 
     void s4_reg_lmd() {
-        s4_reg_lmd_out = dram_out;
+        if (!rst_n)
+            s4_reg_lmd_out = 0;
+        else if (lmd_latch_en)
+            s4_reg_lmd_out = dram_out;
     }
 };
 
@@ -145,8 +163,8 @@ SC_MODULE(MemWBStage) {
                         , wb("Writeback Stage")
     {
         /* Mem stage input signals */
-        //mem.clk(clk);
-        //mem.rst_n(rst_n);
+        mem.clk(clk);
+        mem.rst_n(rst_n);
 
         mem.s3_reg_npc_out(s3_reg_npc_out);
         mem.s3_ff_jal_en_out(s3_ff_jal_en_out);
@@ -177,4 +195,3 @@ SC_MODULE(MemWBStage) {
         wb.s5_mux_datain_out(s5_mux_datain_out);
     }
 };
-SC_MODULE_EXPORT(MemWBStage);

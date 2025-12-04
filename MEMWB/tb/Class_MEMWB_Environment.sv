@@ -9,24 +9,16 @@
 * */
 
 class Class_MEMWB_Environment extends uvm_env;
-  // Register to Factory
   `uvm_component_utils(Class_MEMWB_Environment)
 
-  // Constructor
   function new(string name = "Class_MEMWB_Environment", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
-  // Agent
   Class_MEMWB_Agent memwb_agent;
-  // Scoreboard
   Class_MEMWB_Scoreboard memwb_scoreboard;
-  // Coverage Tracker
   //Class_MEMWB_CoverageTracker memwb_coverage_tracker;
 
-  /*
-  * BUILD PHASE: Build components
-  * */
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
@@ -38,11 +30,6 @@ class Class_MEMWB_Environment extends uvm_env;
     //    Class_MEMWB_CoverageTracker::type_id::create("memwb_coverage_tracker", this);
   endfunction : build_phase
 
-  /*
-  * CONNECT PHASE:
-    * Connect Analysis Ports from Agent to Scoreboard
-    * Connect Functional Coverage component Analysis Ports
-  * */
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
 
