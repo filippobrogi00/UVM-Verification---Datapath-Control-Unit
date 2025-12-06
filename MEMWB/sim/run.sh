@@ -37,6 +37,7 @@ BASENAME_CWD="$(basename $(pwd))"
 ROOT_DIR=""
 SIM_DIR="sim"
 SRC_DIR="src"
+GM_DIR="tb/golden"
 TB_DIR="tb"
 COV_DIR="$SIM_DIR/coverage"
 COV_HTML_DIR="$SIM_DIR/covhtmlreport"
@@ -44,6 +45,7 @@ COV_HTML_DIR="$SIM_DIR/covhtmlreport"
 if [[ $BASENAME_CWD == "$SIM_DIR" || $BASENAME_CWD == "$SRC_DIR" || $BASENAME_CWD == "$TB_DIR" ]]; then
   SIM_DIR="../$SIM_DIR"
   SRC_DIR="../$SRC_DIR"
+  GM_DIR="../tb/golden"
   TB_DIR="../$TB_DIR"
   COV_DIR="$SIM_DIR/coverage"
   COV_HTML_DIR="$SIM_DIR/covhtmlreport"
@@ -89,13 +91,14 @@ compile_files() {
     ;;
   SYSTEMVERILOG)
     ext="sv"
-    compiler="vlog -sv -mixedsvvh -work work +cover=bcesft" # enable mixed-language
+    compiler="vlog -sv -mixedsvvh -work work" # enable mixed-language
     language="SYSTEMVERILOG"
     ;;
   CPP)
     ext="cpp"
     compiler="sccom" # enable mixed-language
-    language="SYSTEMVERILOG"
+    language="CPP"
+    ;;
   *)
     echo "Unsupported file type: .$filetype"
     return 1
@@ -103,6 +106,7 @@ compile_files() {
   esac
 
   # Only compile if files exist
+  #compgen -G "$dir"/*."$ext" 
   if compgen -G "$dir"/*."$ext" >/dev/null; then
     print_green "############ $language $compilation FILES COMPILATION: ############ "
 
@@ -191,6 +195,12 @@ vmap work work
 compile_files $SRC_DIR VHDL SOURCE
 # Compile Verilog Source Files if present
 compile_files $SRC_DIR VERILOG SOURCE
+
+#########################################
+#### COMPILE SYSTEMC TESTBENCH FILES ####
+#########################################
+compile_files $GM_DIR CPP SOURCE
+compile_files $GM_DIR SYSTEMVERILOG SOURCE
 
 ###############################################
 #### COMPILE SYSTEMVERILOG TESTBENCH FILES ####

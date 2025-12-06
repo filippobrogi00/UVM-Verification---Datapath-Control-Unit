@@ -1,6 +1,5 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
-
 /*
 * DRIVER:
   * Transaction-Level Objects are received from Sequencer
@@ -30,7 +29,6 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
 
   endfunction : build_phase
 
-  * */
   // NOTE:
   // Task because consumes simulation time!
   // Virtual because subclasses may overload it again
@@ -47,7 +45,7 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
 
       seq_item_port.get_next_item(memwb_seqitem);
 
-      drive_item()
+      drive_item(memwb_seqitem);
 
       // Drive DUT interface input signals at clock posedge
       @(memwb_dut_iface.ClockingBlock_MEMWB);
@@ -56,18 +54,18 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
     end
   endtask : run_phase
 
-  virtual task drive_item(Class_MEMWB_Item item);
+  virtual task drive_item(Class_MEMWB_SequenceItem item);
     memwb_dut_iface.DRAM_OUT          = item.DRAM_OUT;
     memwb_dut_iface.S1_ADD_OUT        = item.S1_ADD_OUT;
     memwb_dut_iface.S3_REG_NPC_OUT    = item.S3_REG_NPC_OUT;
     memwb_dut_iface.S3_REG_ALU_OUT    = item.S3_REG_ALU_OUT;
     memwb_dut_iface.S3_REG_DATA_OUT   = item.S3_REG_DATA_OUT;
 
-    memwb_dut_iface.S3_JAL_EN_OUT     = item.S3_JAL_EN_OUT;
+    memwb_dut_iface.S3_FF_JAL_EN_OUT     = item.S3_FF_JAL_EN_OUT;
     memwb_dut_iface.S3_FF_COND_OUT    = item.S3_FF_COND_OUT;
     memwb_dut_iface.DRAM_WE           = item.DRAM_WE;
     memwb_dut_iface.LMD_LATCH_EN      = item.LMD_LATCH_EN;
-    memwb_dut_iface.JUMB_EN           = item.JUMB_EN;
+    memwb_dut_iface.JUMP_EN           = item.JUMP_EN;
     memwb_dut_iface.PC_LATCH_EN       = item.PC_LATCH_EN;
     memwb_dut_iface.WB_MUX_SEL        = item.WB_MUX_SEL;
     memwb_dut_iface.RF_WE             = item.RF_WE;

@@ -38,11 +38,11 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
   rand logic [IR_SIZE - 1 : 0] S3_REG_DATA_OUT;
 
   //Control signal inputs
-  rand logic                   S3_JAL_EN_OUT;
+  rand logic                   S3_FF_JAL_EN_OUT;
   rand logic                   S3_FF_COND_OUT;
   rand logic                   DRAM_WE;
   rand logic                   LMD_LATCH_EN;
-  rand logic                   JUMB_EN;
+  rand logic                   JUMP_EN;
   rand logic                   PC_LATCH_EN;
   rand logic                   WB_MUX_SEL;
   rand logic                   RF_WE;
@@ -53,7 +53,7 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
 
   //Forwarded signals
   rand logic [4 : 0]           S3_REG_ADD_WR_OUT; // input
-  logic [4 : 0]                S5_REG_ADD_WR_OUT; // output
+  logic [4 : 0]                S4_REG_ADD_WR_OUT; // output
 
 
   /*
@@ -62,11 +62,6 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
 
   // Converts just the input fields into strings
   virtual function void print();
-    /* `uvm_info("BLUE", $sformatf(
-              "[SEQUENCE %0t] {OPCODE = %u, FUNC = %u}: %b%b%b%b %b%b%b%2b %b%b%b%b",
-              $time,
-              /* INPUTS */
-              ), UVM_MEDIUM); */
   endfunction
 
   virtual function void copy(Class_MEMWB_SequenceItem targetItem);
@@ -77,11 +72,11 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
     targetItem.S3_REG_ALU_OUT    = this.S3_REG_ALU_OUT;
     targetItem.S3_REG_DATA_OUT   = this.S3_REG_DATA_OUT;
                                                          ;
-    targetItem.S3_JAL_EN_OUT     = this.S3_JAL_EN_OUT;
+    targetItem.S3_FF_JAL_EN_OUT     = this.S3_FF_JAL_EN_OUT;
     targetItem.S3_FF_COND_OUT    = this.S3_FF_COND_OUT;
     targetItem.DRAM_WE           = this.DRAM_WE;
     targetItem.LMD_LATCH_EN      = this.LMD_LATCH_EN;
-    targetItem.JUMB_EN           = this.JUMB_EN;
+    targetItem.JUMP_EN           = this.JUMP_EN;
     targetItem.PC_LATCH_EN       = this.PC_LATCH_EN;
     targetItem.WB_MUX_SEL        = this.WB_MUX_SEL;
     targetItem.RF_WE             = this.RF_WE;
@@ -90,7 +85,7 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
     targetItem.S5_MUX_DATAIN_OUT = this.S5_MUX_DATAIN_OUT;
 
     targetItem.S3_REG_ADD_WR_OUT = this.S3_REG_ADD_WR_OUT;
-    targetItem.S5_REG_ADD_WR_OUT = this.S5_REG_ADD_WR_OUT;
+    targetItem.S4_REG_ADD_WR_OUT = this.S4_REG_ADD_WR_OUT;
     super.copy(targetItem);  // keep base-class stuff consistent
   endfunction
   /* CONSTRAINED RANDOM GENERATION */

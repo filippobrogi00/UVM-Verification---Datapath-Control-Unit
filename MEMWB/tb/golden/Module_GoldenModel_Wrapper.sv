@@ -23,8 +23,8 @@ module Module_GoldenModel_Wrapper #(
     */
     MemWBStage GoldenModel (
         /* INPUTS */
-        .CLK(memwb_iface.clk),
-        .nRST(memwb_iface.rst_n),
+        //.CLK(memwb_iface.clk),
+        //.nRST(memwb_iface.rst_n),
 
         .dram_out(memwb_iface.DRAM_OUT),
         .s1_add_out(memwb_iface.S1_ADD_OUT),

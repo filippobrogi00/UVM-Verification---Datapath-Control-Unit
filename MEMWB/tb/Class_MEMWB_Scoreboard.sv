@@ -20,7 +20,10 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
 
   // Define DUT interface (only used for accessing clocking block)
   virtual Iface_MEMWB #(OPCODE_SIZE, FUNC_SIZE) memwb_dut_iface;
-  virtual Iface_MEMWB #(OPCODE_SIZE, FUNC_SIZE) memwb_dut_iface;
+
+  //Module_GoldenModel_Wrapper Golden_Model (
+  //    .memwb_iface(memwb_dut_iface)
+  //);
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);

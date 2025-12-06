@@ -151,6 +151,8 @@ colorize() {
       exit 1
     fi
     ;;
+  sccom)
+  ;;
   *)
     echo "colorize: unsupported command '$tool' (expected vcom, vsim or vlog)" >&2
     colorize_usage >&2

@@ -20,7 +20,7 @@ class Class_MEMWB_Test extends uvm_test;
   Class_MEMWB_Environment memwb_environment;
 
   // Virtual interfaces handles
-  virtual Iface_MEMWB #(IR_SIE) memwb_dut_iface;
+  virtual Iface_MEMWB #(IR_SIZE) memwb_dut_iface;
 
   /*
   * Test BUILD PHASE : Instantiate and build components declared above
@@ -72,13 +72,13 @@ class Class_MEMWB_Test extends uvm_test;
     phase.raise_objection(this);
 
     // Start Coverage tracking
-    memwb_environment.memwb_coverage_tracker.coverageStart();
+    //memwb_environment.memwb_coverage_tracker.coverageStart();
 
     // Send Sequence (list of many transactions)
     memwb_sequence.start(memwb_environment.memwb_agent.memwb_sequencer);
 
     // Stop coverage tracking
-    memwb_environment.memwb_coverage_tracker.coverageStop();
+    //memwb_environment.memwb_coverage_tracker.coverageStop();
 
     // Phase can now end
     phase.drop_objection(this);

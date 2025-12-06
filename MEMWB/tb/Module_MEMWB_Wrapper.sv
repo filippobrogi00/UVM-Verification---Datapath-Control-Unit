@@ -1,7 +1,7 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 // Wrapper for plug-and-play DUT instantiation
-module Module_GoldenModel_Wrapper #(
+module Module_MEMWB_Wrapper #(
     parameter IR_SIZE         = 32, 
     parameter OPERAND_SIZE    = 5,  
     parameter I_TYPE_IMM_SIZE = 16, 
@@ -49,10 +49,11 @@ module Module_GoldenModel_Wrapper #(
                             
         .WB_MUX_SEL(memwb_iface.WB_MUX_SEL),
         .RF_WE(memwb_iface.RF_WE),
+
         /* Outputs */
-        .DP_TO_DLX_PC(memwb_iface.DP_TO_DLX_PX),
+        .DP_TO_DLX_PC(memwb_iface.DP_TO_DLX_PC),
         .S4_REG_ADD_WR_OUT(memwb_iface.S4_REG_ADD_WR_OUT),
-        .S5_MUX_DATAIN_OUT(memwb_iface.S4_REG_ADD_WR_OUT)
+        .S5_MUX_DATAIN_OUT(memwb_iface.S5_MUX_DATAIN_OUT)
   );
 
 endmodule

@@ -1,6 +1,5 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
-
 /*
 * AGENT: Encapsulates Sequencer, Driver and Monitor into a single entity and
 * connects them via TLM interfaces.

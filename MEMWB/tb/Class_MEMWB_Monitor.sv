@@ -58,7 +58,7 @@ class Class_MEMWB_Monitor extends uvm_monitor;
     forever begin
       // Create TLO to store transaction whole transaction after
       // DUT has calculated outputs and they're available to get from the interface
-      Class_MEMWB_SequenceItem memwb_seqitem = Class_MEMWBt_SequenceItem::type_id::create(
+      Class_MEMWB_SequenceItem memwb_seqitem = Class_MEMWB_SequenceItem::type_id::create(
           "MEMWB_seqitem", this
       );
       //Wait for the clock signal
@@ -71,26 +71,26 @@ class Class_MEMWB_Monitor extends uvm_monitor;
       memwb_seqitem.S3_REG_ALU_OUT    = memwb_dut_iface.S3_REG_ALU_OUT;
       memwb_seqitem.S3_REG_DATA_OUT   = memwb_dut_iface.S3_REG_DATA_OUT;
 
-      memwb_seqitem.S3_JAL_EN_OUT     = memwb_dut_iface.S3_JAL_EN_OUT;
+      memwb_seqitem.S3_FF_JAL_EN_OUT  = memwb_dut_iface.S3_FF_JAL_EN_OUT;
       memwb_seqitem.S3_FF_COND_OUT    = memwb_dut_iface.S3_FF_COND_OUT;
       memwb_seqitem.DRAM_WE           = memwb_dut_iface.DRAM_WE;
       memwb_seqitem.LMD_LATCH_EN      = memwb_dut_iface.LMD_LATCH_EN;
-      memwb_seqitem.JUMB_EN           = memwb_dut_iface.JUMB_EN;
+      memwb_seqitem.JUMP_EN           = memwb_dut_iface.JUMP_EN;
       memwb_seqitem.PC_LATCH_EN       = memwb_dut_iface.PC_LATCH_EN;
       memwb_seqitem.WB_MUX_SEL        = memwb_dut_iface.WB_MUX_SEL;
       memwb_seqitem.RF_WE             = memwb_dut_iface.RF_WE;
 
       memwb_dut_iface.S3_REG_ADD_WR_OUT = memwb_dut_iface.S3_REG_ADD_WR_OUT;
 
-      @(memwb_dut_iface.ClockingBlock_ControlUnit);
+      @(memwb_dut_iface.ClockingBlock_MEMWB);
 
       // Sample outputs
-      memwb_seitem.DP_TO_DLX_PC      = memwb_dut_iface.DP_TO_DLX_PC;
-      memwb_seitem.S4_REG_ADD_WR_OUT = memwb_dut_iface.S4_REG_ADD_WR_OUT;
-      memwb_seitem.S5_MUX_DATAIN_OUT = memwb_dut_iface.S4_REG_ADD_WR_OUT;
+      memwb_seqitem.DP_TO_DLX_PC      = memwb_dut_iface.DP_TO_DLX_PC;
+      memwb_seqitem.S4_REG_ADD_WR_OUT = memwb_dut_iface.S4_REG_ADD_WR_OUT;
+      memwb_seqitem.S5_MUX_DATAIN_OUT = memwb_dut_iface.S4_REG_ADD_WR_OUT;
 
     
-      @(memwb_dut_iface.ClockingBlock_ControlUnit);
+      @(memwb_dut_iface.ClockingBlock_MEMWB);
       
       // Broadcast data object to subscribers (Scoreboard and CoverageTracker)
       analysis_port.write(memwb_seqitem);

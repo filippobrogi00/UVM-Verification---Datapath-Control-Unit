@@ -5,7 +5,6 @@
 * module
 * */
 
-// Standard UVM packages for UVM macros and functions
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
@@ -14,8 +13,6 @@ import uvm_pkg::*;
 import pkg_const::*;
 
 // Timescale is CLKPERIOD/2 = 1ns
-// NOTE: Both "timeunit" (unit of time for delays) and "timeprecision",
-// simulation time-steps
 `timescale 1ns / 1ns
 // Unit of time for delays
 // `timeunit(CLKPERIOD / 4);
@@ -27,34 +24,25 @@ import pkg_const::*;
 int numSeqItems = 100;
 
 // Custom Report Server for cleaner messages
-`include "Class_SimpleReportServer.sv"
-
-// DUT Interface and Wrapper files are the only modules alongside the
-// top-level Testbench, do they aren't included here, but instead compiled!
+//`include "Class_SimpleReportServer.sv"
 
 // Testbench Class files
 `include "Class_MEMWB_Sequence.sv"
 `include "Class_MEMWB_Driver.sv"
 `include "Class_MEMWB_Monitor.sv"
 `include "Class_MEMWB_Agent.sv"
-`include "Class_MEMWB_CoverageTracker.sv"
+//`include "Class_MEMWB_CoverageTracker.sv"
 `include "Class_MEMWB_Scoreboard.sv"
 `include "Class_MEMWB_Environment.sv"
 `include "Class_MEMWB_Test.sv"
 
 module Module_topTestbench;
 
-  /*
-  * Clock Generation with process
-  * */
   bit globalClk;
   always begin : PROC_ClockGen
     #(CLKPERIOD / 2) globalClk <= ~globalClk;
   end : PROC_ClockGen
 
-  /*
-  * Reset process (DUT has active low!)
-  * */
   bit globalRst_n;
   initial begin : PROC_ResetDUT
     globalRst_n <= 1'b0;  // active
@@ -69,9 +57,9 @@ module Module_topTestbench;
   );
 
   // Instance DUT using wrapper
-  Module_MEMWB_Wrapper #(IR_SIZE) memwb_toplevel (
+  Module_MEMWB_Wrapper #(.IR_SIZE(IR_SIZE)) memwb_toplevel (
       .memwb_iface(memwb_dut_iface)
-   );
+  );
 
   /*
   * PROC_RunTest: Test configuration and run process
@@ -79,8 +67,8 @@ module Module_topTestbench;
   initial begin : PROC_RunTest
 
     // Install custom report server used by UVM macros for cleaner messages
-    Class_SimpleReportServer memwb_simple_report_server = new();
-    uvm_report_server::set_server(memwb_simple_report_server);
+    //Class_SimpleReportServer memwb_simple_report_server = new();
+    //uvm_report_server::set_server(memwb_simple_report_server);
 
     /* Override number of Sequence Items to generate if specified from cmdline */
     // Check if parameter was specified (numSeqItems overridden with
