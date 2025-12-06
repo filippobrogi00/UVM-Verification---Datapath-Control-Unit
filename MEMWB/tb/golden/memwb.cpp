@@ -112,8 +112,8 @@ SC_MODULE(WBStage) {
 /* toplevel module */
 SC_MODULE(MemWBStage) {
     /* Signal declarations */
-    sc_in<bool>              clk;
-    sc_in<bool>              rst_n;
+    //sc_clock                          clk;
+    //sc_in<bool>                       rst_n;
 
     sc_in<sc_uint<IR_SIZE>>             s3_reg_npc_out;
     sc_in<bool>                         s3_ff_jal_en_out;

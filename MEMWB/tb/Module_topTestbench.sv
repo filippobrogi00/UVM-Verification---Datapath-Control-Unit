@@ -61,6 +61,8 @@ module Module_topTestbench;
       .memwb_iface(memwb_dut_iface)
   );
 
+  MemWBStage golden_module();
+
   /*
   * PROC_RunTest: Test configuration and run process
   * */

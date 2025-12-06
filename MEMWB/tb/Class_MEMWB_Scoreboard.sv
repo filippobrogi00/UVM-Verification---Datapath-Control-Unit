@@ -25,6 +25,8 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
   //    .memwb_iface(memwb_dut_iface)
   //);
 
+  //MemWBStage golden_module();
+
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
