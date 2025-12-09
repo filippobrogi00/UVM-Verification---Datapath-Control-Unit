@@ -10,7 +10,9 @@
 class Class_IFID_Driver extends uvm_driver #(Class_IFID_SequenceItem);
 
   // Make driver re-usable
-  `uvm_component_utils(Class_IFID_Driver);
+  // coverage off bcs
+  `uvm_component_utils(Class_IFID_Driver)
+  // coverage on bcs
 
   // Constructor
   function new(string name = "Class_IFID_Driver", uvm_component parent = null);

@@ -40,12 +40,15 @@ package pkg_const;
   } INSTR_SIGN;
 
   /* Instruction field aliases */
+  // NOTE: Immediate fields are signed because of constraint-compliance when
+  // constraining them to signed values.
+
   // I_TYPE
   typedef struct packed {
     logic [OPCODE_SIZE-1:0] opcode;
     logic [OPERAND_SIZE-1:0] rs1;
-    logic [OPERAND_SIZE-1:0] rs2;
-    logic [I_TYPE_IMM_SIZE-1:0] imm;
+    logic [OPERAND_SIZE-1:0] rd;
+    logic signed [I_TYPE_IMM_SIZE-1:0] imm;
   } Instr_I_TYPE;
 
   // R_TYPE
@@ -60,7 +63,7 @@ package pkg_const;
   // J_TYPE
   typedef struct packed {
     logic [OPCODE_SIZE-1:0] opcode;
-    logic [J_TYPE_IMM_SIZE-1:0] imm;
+    logic signed [J_TYPE_IMM_SIZE-1:0] imm;
   } Instr_J_TYPE;
 
   // General instruction type (could be each one of the types)
@@ -104,8 +107,6 @@ package pkg_const;
     SRL_op = 9,  // Unsigned Arithmetic Shift Right
     SRA_op = 12  // Shift Right Arithmetic
   } aluOp;
-
-  // NOTE: For base-2 logarithm use SV's $clog2() builtin function
 
 
   /************
@@ -192,7 +193,7 @@ package pkg_const;
       Instr_I_TYPE itype_alias;
       itype_alias.opcode = instruction[31:26];
       itype_alias.rs1    = instruction[25:21];
-      itype_alias.rs2    = instruction[20:16];
+      itype_alias.rd     = instruction[20:16];
       itype_alias.imm    = instruction[15:0];
       return itype_alias;
     end else if (check_instr_type(instruction) == R_TYPE) begin

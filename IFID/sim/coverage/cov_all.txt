@@ -1,0 +1,1904 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_dut_iface
+=== Design Unit: work.Iface_IFID
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_dut_iface --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Iface_IFID.sv
+    107             1                          1     
+    110             1                          1     
+    110             2                          1     
+    110             3                          1     
+    110             4                          1     
+    111             1                          1     
+    111             2                          1     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        680       664        16    97.64%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_dut_iface --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               CLK           1           1      100.00 
+                                  DLX_IR_to_DP[31]           0           0        0.00 
+                                DLX_IR_to_DP[30-0]           1           1      100.00 
+                                  DLX_PC_to_DP[31]           0           0        0.00 
+                                DLX_PC_to_DP[30-0]           1           1      100.00 
+                                       IR_LATCH_EN           1           1      100.00 
+                                            JAL_EN           1           1      100.00 
+                                      NPC_LATCH_EN           1           1      100.00 
+                                             RF_WE           1           1      100.00 
+                                     RegA_LATCH_EN           1           1      100.00 
+                                   RegIMM_LATCH_EN           1           1      100.00 
+                                    S1_ADD_OUT[31]           0           0        0.00 
+                                  S1_ADD_OUT[30-0]           1           1      100.00 
+                                S1_REG_NPC_OUT[31]           0           0        0.00 
+                              S1_REG_NPC_OUT[30-0]           1           1      100.00 
+                                  S2_FF_JAL_EN_OUT           1           1      100.00 
+                            S2_REG_ADD_WR_OUT[4-0]           1           1      100.00 
+                                S2_REG_NPC_OUT[31]           0           0        0.00 
+                              S2_REG_NPC_OUT[30-0]           1           1      100.00 
+                           S2_REG_SE_IMM_OUT[31-0]           1           1      100.00 
+                           S2_REG_UE_IMM_OUT[31-0]           1           1      100.00 
+                                S2_RFILE_A_OUT[31]           0           0        0.00 
+                              S2_RFILE_A_OUT[30-0]           1           1      100.00 
+                                S2_RFILE_B_OUT[31]           0           0        0.00 
+                              S2_RFILE_B_OUT[30-0]           1           1      100.00 
+                            S4_REG_ADD_WR_OUT[4-0]           1           1      100.00 
+                             S5_MUX_DATAIN_OUT[31]           0           0        0.00 
+                           S5_MUX_DATAIN_OUT[30-0]           1           1      100.00 
+                                    SIGN_UNSIGN_EN           1           1      100.00 
+                                              nRST           1           1      100.00 
+
+Total Node Count     =        340 
+Toggled Node Count   =        332 
+Untoggled Node Count =          8 
+
+Toggle Coverage      =      97.64% (664 of 680 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD
+=== Design Unit: work.PC_Adder(BEH_COMB_PC_ADD)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.e-PC_Add.vhd
+    19              1                       2001     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        128       124         4    96.87%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                           A(0-30)           1           1      100.00 
+                                             A(31)           0           0        0.00 
+                                           Y(0-30)           1           1      100.00 
+                                             Y(31)           0           0        0.00 
+
+Total Node Count     =         64 
+Toggled Node Count   =         62 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      96.87% (124 of 128 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         1         1         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+------------------------------------IF Branch------------------------------------
+    24                                      2001     Count coming in to IF
+    24              1                       2001     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                        494     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        128       124         4    96.87%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                           D(0-30)           1           1      100.00 
+                                             D(31)           0           0        0.00 
+                                           Q(0-30)           1           1      100.00 
+                                             Q(31)           0           0        0.00 
+
+Total Node Count     =         64 
+Toggled Node Count   =         62 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      96.87% (124 of 128 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
+=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.d-MUX.vhd
+------------------------------------IF Branch------------------------------------
+    15                                      4002     Count coming in to IF
+    15              1                        982     
+    15              2                       3020     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.d-MUX.vhd
+    15              1                       4002     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         30        30         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                            A(0-4)           1           1      100.00 
+                                            B(0-4)           1           1      100.00 
+                                            Y(0-4)           1           1      100.00 
+
+Total Node Count     =         15 
+Toggled Node Count   =         15 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (30 of 30 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR
+=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.d-MUX.vhd
+------------------------------------IF Branch------------------------------------
+    15                                      4476     Count coming in to IF
+    15              1                        972     
+    15              2                       3504     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.d-MUX.vhd
+    15              1                       4476     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         30        20        10    66.66%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                            A(0-4)           0           0        0.00 
+                                            B(0-4)           1           1      100.00 
+                                            Y(0-4)           1           1      100.00 
+
+Total Node Count     =         15 
+Toggled Node Count   =         10 
+Untoggled Node Count =          5 
+
+Toggle Coverage      =      66.66% (20 of 30 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         1         1         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+------------------------------------IF Branch------------------------------------
+    24                                      2001     Count coming in to IF
+    24              1                       2001     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                       1994     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         20        20         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                            D(0-4)           1           1      100.00 
+                                            Q(0-4)           1           1      100.00 
+
+Total Node Count     =         10 
+Toggled Node Count   =         10 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (20 of 20 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE
+=== Design Unit: work.gen_register_file(beh)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         5         5         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.f-RegisterFile.vhd
+------------------------------------IF Branch------------------------------------
+    48                                      2001     Count coming in to IF
+    48              1                       2001     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    50                                      2001     Count coming in to IF
+    50              1                          7     
+                                            1994     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    67                                      1994     Count coming in to IF
+    67              1                        510     
+                                            1484     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         2         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE --
+
+  File ../src/a.b.f-RegisterFile.vhd
+----------------Focused Condition View-------------------
+Line       67 Item    1  ((WR = '1') and ((<type>)ADD_WR /= 0))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+             Input Term   Covered  Reason for no coverage   Hint
+            -----------  --------  -----------------------  --------------
+             (WR = '1')         Y
+  ((<type>)ADD_WR /= 0)         Y
+
+     Rows:       Hits  FEC Target               Non-masking condition(s)      
+ ---------  ---------  --------------------     -------------------------     
+  Row   1:          1  (WR = '1')_0             -                             
+  Row   2:          1  (WR = '1')_1             ((<type>)ADD_WR /= 0)         
+  Row   3:          1  ((<type>)ADD_WR /= 0)_0  (WR = '1')                    
+  Row   4:          1  ((<type>)ADD_WR /= 0)_1  (WR = '1')                    
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.f-RegisterFile.vhd
+    52              1                          7     
+    52              2                        224     
+    53              1                        224     
+    54              1                        224     
+    56              1                          7     
+    57              1                          7     
+    68              1                        510     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        222       216         6    97.29%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                      ADD_RD1(0-4)           1           1      100.00 
+                                      ADD_RD2(0-4)           1           1      100.00 
+                                       ADD_WR(0-4)           1           1      100.00 
+                                      DATAIN(0-30)           1           1      100.00 
+                                        DATAIN(31)           0           0        0.00 
+                                        OUT1(0-30)           1           1      100.00 
+                                          OUT1(31)           0           0        0.00 
+                                        OUT2(0-30)           1           1      100.00 
+                                          OUT2(31)           0           0        0.00 
+
+Total Node Count     =        111 
+Toggled Node Count   =        108 
+Untoggled Node Count =          3 
+
+Toggle Coverage      =      97.29% (216 of 222 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
+=== Design Unit: work.sign_extender16_32(BEH_COMB_sign_extender)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.h-SignExtender16-32.vhd
+------------------------------------IF Branch------------------------------------
+    39                                      4003     Count coming in to IF
+    39              1                       1036     
+    39              2                       2967     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      65        65         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.h-SignExtender16-32.vhd
+    23       1 (GI=0)                       2002     
+    23       1 (GI=1)                       2002     
+    23       1 (GI=2)                       2002     
+    23       1 (GI=3)                       2002     
+    23       1 (GI=4)                       2002     
+    23       1 (GI=5)                       2002     
+    23       1 (GI=6)                       2002     
+    23       1 (GI=7)                       2002     
+    23       1 (GI=8)                       2002     
+    23       1 (GI=9)                       2002     
+    23      1 (GI=10)                       2002     
+    23      1 (GI=11)                       2002     
+    23      1 (GI=12)                       2002     
+    23      1 (GI=13)                       2002     
+    23      1 (GI=14)                       2002     
+    26      1 (GI=15)                       2002     
+    26      1 (GI=16)                       2002     
+    26      1 (GI=17)                       2002     
+    26      1 (GI=18)                       2002     
+    26      1 (GI=19)                       2002     
+    26      1 (GI=20)                       2002     
+    26      1 (GI=21)                       2002     
+    26      1 (GI=22)                       2002     
+    26      1 (GI=23)                       2002     
+    26      1 (GI=24)                       2002     
+    26      1 (GI=25)                       2002     
+    26      1 (GI=26)                       2002     
+    26      1 (GI=27)                       2002     
+    26      1 (GI=28)                       2002     
+    26      1 (GI=29)                       2002     
+    26      1 (GI=30)                       2002     
+    26      1 (GI=31)                       2002     
+    32       1 (GI=0)                       2002     
+    32       1 (GI=1)                       2002     
+    32       1 (GI=2)                       2002     
+    32       1 (GI=3)                       2002     
+    32       1 (GI=4)                       2002     
+    32       1 (GI=5)                       2002     
+    32       1 (GI=6)                       2002     
+    32       1 (GI=7)                       2002     
+    32       1 (GI=8)                       2002     
+    32       1 (GI=9)                       2002     
+    32      1 (GI=10)                       2002     
+    32      1 (GI=11)                       2002     
+    32      1 (GI=12)                       2002     
+    32      1 (GI=13)                       2002     
+    32      1 (GI=14)                       2002     
+    35      1 (GI=15)                          1     
+    35      1 (GI=16)                          1     
+    35      1 (GI=17)                          1     
+    35      1 (GI=18)                          1     
+    35      1 (GI=19)                          1     
+    35      1 (GI=20)                          1     
+    35      1 (GI=21)                          1     
+    35      1 (GI=22)                          1     
+    35      1 (GI=23)                          1     
+    35      1 (GI=24)                          1     
+    35      1 (GI=25)                          1     
+    35      1 (GI=26)                          1     
+    35      1 (GI=27)                          1     
+    35      1 (GI=28)                          1     
+    35      1 (GI=29)                          1     
+    35      1 (GI=30)                          1     
+    35      1 (GI=31)                          1     
+    40              1                       4003     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        224       190        34    84.82%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                      IMM_IN(0-15)           1           1      100.00 
+                                     IMM_OUT(0-31)           1           1      100.00 
+                                SignExtended(0-31)           1           1      100.00 
+                              UnsignExtended(0-14)           1           1      100.00 
+                             UnsignExtended(15-31)           0           0        0.00 
+
+Total Node Count     =        112 
+Toggled Node Count   =         95 
+Untoggled Node Count =         17 
+
+Toggle Coverage      =      84.82% (190 of 224 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE26
+=== Design Unit: work.sign_extender26_32(BEH_COMB_sign_extender_26_32)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      32        32         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE26 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.c-SignExtender26-32.vhd
+    19       1 (GI=0)                       2002     
+    19       1 (GI=1)                       2002     
+    19       1 (GI=2)                       2002     
+    19       1 (GI=3)                       2002     
+    19       1 (GI=4)                       2002     
+    19       1 (GI=5)                       2002     
+    19       1 (GI=6)                       2002     
+    19       1 (GI=7)                       2002     
+    19       1 (GI=8)                       2002     
+    19       1 (GI=9)                       2002     
+    19      1 (GI=10)                       2002     
+    19      1 (GI=11)                       2002     
+    19      1 (GI=12)                       2002     
+    19      1 (GI=13)                       2002     
+    19      1 (GI=14)                       2002     
+    19      1 (GI=15)                       2002     
+    19      1 (GI=16)                       2002     
+    19      1 (GI=17)                       2002     
+    19      1 (GI=18)                       2002     
+    19      1 (GI=19)                       2002     
+    19      1 (GI=20)                       2002     
+    19      1 (GI=21)                       2002     
+    19      1 (GI=22)                       2002     
+    19      1 (GI=23)                       2002     
+    19      1 (GI=24)                       2002     
+    22      1 (GI=25)                       2002     
+    22      1 (GI=26)                       2002     
+    22      1 (GI=27)                       2002     
+    22      1 (GI=28)                       2002     
+    22      1 (GI=29)                       2002     
+    22      1 (GI=30)                       2002     
+    22      1 (GI=31)                       2002     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        116       116         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE26 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                      IMM_IN(0-25)           1           1      100.00 
+                                     IMM_OUT(0-31)           1           1      100.00 
+
+Total Node Count     =         58 
+Toggled Node Count   =         58 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (116 of 116 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         1         1         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+------------------------------------IF Branch------------------------------------
+    24                                      2001     Count coming in to IF
+    24              1                       2001     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                        488     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        128       128         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                           D(0-31)           1           1      100.00 
+                                           Q(0-31)           1           1      100.00 
+
+Total Node Count     =         64 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (128 of 128 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         1         1         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+------------------------------------IF Branch------------------------------------
+    24                                      2001     Count coming in to IF
+    24              1                       2001     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                        488     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        128       128         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                           D(0-31)           1           1      100.00 
+                                           Q(0-31)           1           1      100.00 
+
+Total Node Count     =         64 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (128 of 128 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN
+=== Design Unit: work.nbit_reg(beh_nbit_reg)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         1         1         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+------------------------------------IF Branch------------------------------------
+    24                                      2001     Count coming in to IF
+    24              1                       2001     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                       1994     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         10         8         2    80.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               CLK           1           1      100.00 
+                                              D(0)           1           1      100.00 
+                                             LD_EN           0           0        0.00 
+                                              nRST           1           1      100.00 
+                                              Q(0)           1           1      100.00 
+
+Total Node Count     =          5 
+Toggled Node Count   =          4 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      80.00% (8 of 10 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         1         1         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+------------------------------------IF Branch------------------------------------
+    24                                       497     Count coming in to IF
+    24              1                        497     
+Branch totals: 1 hit of 1 branch = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          2     
+    33              1                        495     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        128       124         4    96.87%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                           D(0-30)           1           1      100.00 
+                                             D(31)           0           0        0.00 
+                                           Q(0-30)           1           1      100.00 
+                                             Q(31)           0           0        0.00 
+
+Total Node Count     =         64 
+Toggled Node Count   =         62 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      96.87% (124 of 128 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst
+=== Design Unit: work.dp_ifid(structural)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b-DP-IFID.vhd
+    189             1                       2001     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                       1020       874       146    85.68%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                               CLK           1           1      100.00 
+                                DLX_IR_to_DP(0-30)           1           1      100.00 
+                                  DLX_IR_to_DP(31)           0           0        0.00 
+                                DLX_PC_to_DP(0-30)           1           1      100.00 
+                                  DLX_PC_to_DP(31)           0           0        0.00 
+                                       IR_LATCH_EN           1           1      100.00 
+                                            JAL_EN           1           1      100.00 
+                                      NPC_LATCH_EN           1           1      100.00 
+                                              nRST           1           1      100.00 
+                                     RegA_LATCH_EN           1           1      100.00 
+                                   RegIMM_LATCH_EN           1           1      100.00 
+                                             RF_WE           1           1      100.00 
+                                  S1_ADD_OUT(0-30)           1           1      100.00 
+                                    S1_ADD_OUT(31)           0           0        0.00 
+                               S1_REG_IR_OUT(0-30)           1           1      100.00 
+                                 S1_REG_IR_OUT(31)           0           0        0.00 
+                              S1_REG_NPC_OUT(0-30)           1           1      100.00 
+                                S1_REG_NPC_OUT(31)           0           0        0.00 
+                                  S2_FF_JAL_EN_OUT           1           1      100.00 
+                            S2_MUX_ADD_WR_OUT(0-4)           1           1      100.00 
+                              S2_MUX_IorR_OUT(0-4)           1           1      100.00 
+                                S2_REG_A_OUT(0-31)           0           0        0.00 
+                            S2_REG_ADD_WR_OUT(0-4)           1           1      100.00 
+                                S2_REG_B_OUT(0-31)           0           0        0.00 
+                              S2_REG_NPC_OUT(0-30)           1           1      100.00 
+                                S2_REG_NPC_OUT(31)           0           0        0.00 
+                           S2_REG_SE_IMM_OUT(0-31)           1           1      100.00 
+                           S2_REG_UE_IMM_OUT(0-31)           1           1      100.00 
+                              S2_RFILE_A_OUT(0-30)           1           1      100.00 
+                                S2_RFILE_A_OUT(31)           0           0        0.00 
+                              S2_RFILE_B_OUT(0-30)           1           1      100.00 
+                                S2_RFILE_B_OUT(31)           0           0        0.00 
+                                 S2_SE16_OUT(0-31)           1           1      100.00 
+                                 S2_SE26_OUT(0-31)           1           1      100.00 
+                            S4_REG_ADD_WR_OUT(0-4)           1           1      100.00 
+                           S5_MUX_DATAIN_OUT(0-30)           1           1      100.00 
+                             S5_MUX_DATAIN_OUT(31)           0           0        0.00 
+                                    SIGN_UNSIGN_EN           1           1      100.00 
+
+Total Node Count     =        510 
+Toggled Node Count   =        437 
+Untoggled Node Count =         73 
+
+Toggle Coverage      =      85.68% (874 of 1020 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench
+=== Design Unit: work.Module_topTestbench
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      13        11         2    84.61%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Module_topTestbench.sv
+    45              1                       6000     
+    45              2                       5999     
+    54              1                          1     
+    56              1                          1     
+    56              2                          1     
+    58              1                          1     
+    58              2                          1     
+    102             1                          1     
+    109             1                          1     
+    112             1                          1     
+    118             1                          1     
+    121             1                    ***0***     
+    122             1                    ***0***     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                          4         4         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /Module_topTestbench --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                         globalClk           1           1      100.00 
+                                       globalRst_n           1           1      100.00 
+
+Total Node Count     =          2 
+Toggled Node Count   =          2 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (4 of 4 bins)
+
+=================================================================================
+=== Instance: /Module_topTestbench_sv_unit
+=== Design Unit: work.Module_topTestbench_sv_unit
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      12         1        11     8.33%
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/Module_topTestbench_sv_unit/Class_IFID_LegalSequence/body/#ublk#261878468#214/immed__229
+                     ../tb/Class_IFID_Sequence.sv(229)
+                                                     1000          0
+/Module_topTestbench_sv_unit/Class_IFID_RandomSequence/body/#ublk#261878468#386/immed__401
+                     ../tb/Class_IFID_Sequence.sv(401)
+                                                        0          1
+/Module_topTestbench_sv_unit/Class_IFID_AdditionSequence/body/#ublk#261878468#473/immed__488
+                     ../tb/Class_IFID_Sequence.sv(488)
+                                                     1000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__252
+                     ../tb/Class_IFID_Scoreboard.sv(252)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__237
+                     ../tb/Class_IFID_Scoreboard.sv(237)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__222
+                     ../tb/Class_IFID_Scoreboard.sv(222)
+                                                     2798          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__207
+                     ../tb/Class_IFID_Scoreboard.sv(207)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__192
+                     ../tb/Class_IFID_Scoreboard.sv(192)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__177
+                     ../tb/Class_IFID_Scoreboard.sv(177)
+                                                     2003          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__162
+                     ../tb/Class_IFID_Scoreboard.sv(162)
+                                                     2002          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__147
+                     ../tb/Class_IFID_Scoreboard.sv(147)
+                                                     2989          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__132
+                     ../tb/Class_IFID_Scoreboard.sv(132)
+                                                     3000          0
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         6         6         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench_sv_unit
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Class_IFID_Scoreboard.sv
+------------------------------------IF Branch------------------------------------
+    96                                      1000     Count coming in to IF
+    96              1                        491     
+    96              2                        509     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    98                                      1000     Count coming in to IF
+    98              1                        486     
+    98              2                        514     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    117                                     3000     Count coming in to IF
+    117             1                        539     
+                                            2461     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+
+Covergroup Coverage:
+    Covergroups                      1        na        na    82.10%
+        Coverpoints/Crosses         11        na        na        na
+            Covergroup Bins        238       127       111    53.36%
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /Module_topTestbench_sv_unit/Class_IFID_CoverageTracker/Covergroup_IFID 
+                                                       82.10%        100          -    Uncovered            
+    covered/total bins:                                   127        238          -                      
+    missing/total bins:                                   111        238          -                      
+    % Hit:                                             53.36%        100          -                      
+    Coverpoint Coverpoint_DLX_PC_to_DP                 50.00%        100          -    Uncovered            
+        covered/total bins:                                32         64          -                      
+        missing/total bins:                                32         64          -                      
+        % Hit:                                         50.00%        100          -                      
+        bin auto[0:67108863]                               38          1          -    Covered              
+        bin auto[67108864:134217727]                       38          1          -    Covered              
+        bin auto[134217728:201326591]                      28          1          -    Covered              
+        bin auto[201326592:268435455]                      34          1          -    Covered              
+        bin auto[268435456:335544319]                      39          1          -    Covered              
+        bin auto[335544320:402653183]                      19          1          -    Covered              
+        bin auto[402653184:469762047]                      29          1          -    Covered              
+        bin auto[469762048:536870911]                      30          1          -    Covered              
+        bin auto[536870912:603979775]                      25          1          -    Covered              
+        bin auto[603979776:671088639]                      23          1          -    Covered              
+        bin auto[671088640:738197503]                      38          1          -    Covered              
+        bin auto[738197504:805306367]                      30          1          -    Covered              
+        bin auto[805306368:872415231]                      32          1          -    Covered              
+        bin auto[872415232:939524095]                      20          1          -    Covered              
+        bin auto[939524096:1006632959]                     27          1          -    Covered              
+        bin auto[1006632960:1073741823]                    34          1          -    Covered              
+        bin auto[1073741824:1140850687]                    32          1          -    Covered              
+        bin auto[1140850688:1207959551]                    30          1          -    Covered              
+        bin auto[1207959552:1275068415]                    25          1          -    Covered              
+        bin auto[1275068416:1342177279]                    28          1          -    Covered              
+        bin auto[1342177280:1409286143]                    38          1          -    Covered              
+        bin auto[1409286144:1476395007]                    34          1          -    Covered              
+        bin auto[1476395008:1543503871]                    28          1          -    Covered              
+        bin auto[1543503872:1610612735]                    37          1          -    Covered              
+        bin auto[1610612736:1677721599]                    26          1          -    Covered              
+        bin auto[1677721600:1744830463]                    40          1          -    Covered              
+        bin auto[1744830464:1811939327]                    38          1          -    Covered              
+        bin auto[1811939328:1879048191]                    36          1          -    Covered              
+        bin auto[1879048192:1946157055]                    36          1          -    Covered              
+        bin auto[1946157056:2013265919]                    26          1          -    Covered              
+        bin auto[2013265920:2080374783]                    30          1          -    Covered              
+        bin auto[2080374784:2147483647]                    32          1          -    Covered              
+        bin auto[2147483648:2214592511]                     0          1          -    ZERO                 
+        bin auto[2214592512:2281701375]                     0          1          -    ZERO                 
+        bin auto[2281701376:2348810239]                     0          1          -    ZERO                 
+        bin auto[2348810240:2415919103]                     0          1          -    ZERO                 
+        bin auto[2415919104:2483027967]                     0          1          -    ZERO                 
+        bin auto[2483027968:2550136831]                     0          1          -    ZERO                 
+        bin auto[2550136832:2617245695]                     0          1          -    ZERO                 
+        bin auto[2617245696:2684354559]                     0          1          -    ZERO                 
+        bin auto[2684354560:2751463423]                     0          1          -    ZERO                 
+        bin auto[2751463424:2818572287]                     0          1          -    ZERO                 
+        bin auto[2818572288:2885681151]                     0          1          -    ZERO                 
+        bin auto[2885681152:2952790015]                     0          1          -    ZERO                 
+        bin auto[2952790016:3019898879]                     0          1          -    ZERO                 
+        bin auto[3019898880:3087007743]                     0          1          -    ZERO                 
+        bin auto[3087007744:3154116607]                     0          1          -    ZERO                 
+        bin auto[3154116608:3221225471]                     0          1          -    ZERO                 
+        bin auto[3221225472:3288334335]                     0          1          -    ZERO                 
+        bin auto[3288334336:3355443199]                     0          1          -    ZERO                 
+        bin auto[3355443200:3422552063]                     0          1          -    ZERO                 
+        bin auto[3422552064:3489660927]                     0          1          -    ZERO                 
+        bin auto[3489660928:3556769791]                     0          1          -    ZERO                 
+        bin auto[3556769792:3623878655]                     0          1          -    ZERO                 
+        bin auto[3623878656:3690987519]                     0          1          -    ZERO                 
+        bin auto[3690987520:3758096383]                     0          1          -    ZERO                 
+        bin auto[3758096384:3825205247]                     0          1          -    ZERO                 
+        bin auto[3825205248:3892314111]                     0          1          -    ZERO                 
+        bin auto[3892314112:3959422975]                     0          1          -    ZERO                 
+        bin auto[3959422976:4026531839]                     0          1          -    ZERO                 
+        bin auto[4026531840:4093640703]                     0          1          -    ZERO                 
+        bin auto[4093640704:4160749567]                     0          1          -    ZERO                 
+        bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
+        bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
+    Coverpoint Coverpoint_DLX_IR_to_DP                 50.00%        100          -    Uncovered            
+        covered/total bins:                                32         64          -                      
+        missing/total bins:                                32         64          -                      
+        % Hit:                                         50.00%        100          -                      
+        bin auto[0:67108863]                               25          1          -    Covered              
+        bin auto[67108864:134217727]                       21          1          -    Covered              
+        bin auto[134217728:201326591]                      36          1          -    Covered              
+        bin auto[201326592:268435455]                      20          1          -    Covered              
+        bin auto[268435456:335544319]                      31          1          -    Covered              
+        bin auto[335544320:402653183]                      32          1          -    Covered              
+        bin auto[402653184:469762047]                      34          1          -    Covered              
+        bin auto[469762048:536870911]                      33          1          -    Covered              
+        bin auto[536870912:603979775]                      26          1          -    Covered              
+        bin auto[603979776:671088639]                      33          1          -    Covered              
+        bin auto[671088640:738197503]                      27          1          -    Covered              
+        bin auto[738197504:805306367]                      18          1          -    Covered              
+        bin auto[805306368:872415231]                      42          1          -    Covered              
+        bin auto[872415232:939524095]                      41          1          -    Covered              
+        bin auto[939524096:1006632959]                     28          1          -    Covered              
+        bin auto[1006632960:1073741823]                    32          1          -    Covered              
+        bin auto[1073741824:1140850687]                    35          1          -    Covered              
+        bin auto[1140850688:1207959551]                    31          1          -    Covered              
+        bin auto[1207959552:1275068415]                    27          1          -    Covered              
+        bin auto[1275068416:1342177279]                    36          1          -    Covered              
+        bin auto[1342177280:1409286143]                    38          1          -    Covered              
+        bin auto[1409286144:1476395007]                    31          1          -    Covered              
+        bin auto[1476395008:1543503871]                    40          1          -    Covered              
+        bin auto[1543503872:1610612735]                    30          1          -    Covered              
+        bin auto[1610612736:1677721599]                    38          1          -    Covered              
+        bin auto[1677721600:1744830463]                    25          1          -    Covered              
+        bin auto[1744830464:1811939327]                    28          1          -    Covered              
+        bin auto[1811939328:1879048191]                    36          1          -    Covered              
+        bin auto[1879048192:1946157055]                    37          1          -    Covered              
+        bin auto[1946157056:2013265919]                    37          1          -    Covered              
+        bin auto[2013265920:2080374783]                    28          1          -    Covered              
+        bin auto[2080374784:2147483647]                    24          1          -    Covered              
+        bin auto[2147483648:2214592511]                     0          1          -    ZERO                 
+        bin auto[2214592512:2281701375]                     0          1          -    ZERO                 
+        bin auto[2281701376:2348810239]                     0          1          -    ZERO                 
+        bin auto[2348810240:2415919103]                     0          1          -    ZERO                 
+        bin auto[2415919104:2483027967]                     0          1          -    ZERO                 
+        bin auto[2483027968:2550136831]                     0          1          -    ZERO                 
+        bin auto[2550136832:2617245695]                     0          1          -    ZERO                 
+        bin auto[2617245696:2684354559]                     0          1          -    ZERO                 
+        bin auto[2684354560:2751463423]                     0          1          -    ZERO                 
+        bin auto[2751463424:2818572287]                     0          1          -    ZERO                 
+        bin auto[2818572288:2885681151]                     0          1          -    ZERO                 
+        bin auto[2885681152:2952790015]                     0          1          -    ZERO                 
+        bin auto[2952790016:3019898879]                     0          1          -    ZERO                 
+        bin auto[3019898880:3087007743]                     0          1          -    ZERO                 
+        bin auto[3087007744:3154116607]                     0          1          -    ZERO                 
+        bin auto[3154116608:3221225471]                     0          1          -    ZERO                 
+        bin auto[3221225472:3288334335]                     0          1          -    ZERO                 
+        bin auto[3288334336:3355443199]                     0          1          -    ZERO                 
+        bin auto[3355443200:3422552063]                     0          1          -    ZERO                 
+        bin auto[3422552064:3489660927]                     0          1          -    ZERO                 
+        bin auto[3489660928:3556769791]                     0          1          -    ZERO                 
+        bin auto[3556769792:3623878655]                     0          1          -    ZERO                 
+        bin auto[3623878656:3690987519]                     0          1          -    ZERO                 
+        bin auto[3690987520:3758096383]                     0          1          -    ZERO                 
+        bin auto[3758096384:3825205247]                     0          1          -    ZERO                 
+        bin auto[3825205248:3892314111]                     0          1          -    ZERO                 
+        bin auto[3892314112:3959422975]                     0          1          -    ZERO                 
+        bin auto[3959422976:4026531839]                     0          1          -    ZERO                 
+        bin auto[4026531840:4093640703]                     0          1          -    ZERO                 
+        bin auto[4093640704:4160749567]                     0          1          -    ZERO                 
+        bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
+        bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
+    Coverpoint Coverpoint_IR_LATCH_EN                 100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       501          1          -    Covered              
+        bin auto[1]                                       499          1          -    Covered              
+    Coverpoint Coverpoint_NPC_LATCH_EN                100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       506          1          -    Covered              
+        bin auto[1]                                       494          1          -    Covered              
+    Coverpoint Coverpoint_RegA_LATCH_EN               100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       500          1          -    Covered              
+        bin auto[1]                                       500          1          -    Covered              
+    Coverpoint Coverpoint_SIGN_UNSIGN_EN              100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       482          1          -    Covered              
+        bin auto[1]                                       518          1          -    Covered              
+    Coverpoint Coverpoint_RegIMM_LATCH_EN             100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       509          1          -    Covered              
+        bin auto[1]                                       491          1          -    Covered              
+    Coverpoint Coverpoint_JAL_EN                      100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       514          1          -    Covered              
+        bin auto[1]                                       486          1          -    Covered              
+    Coverpoint Coverpoint_RF_WE                       100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       461          1          -    Covered              
+        bin auto[1]                                       539          1          -    Covered              
+    Coverpoint Coverpoint_S4_REG_ADD_WR_OUT            53.12%        100          -    Uncovered            
+        covered/total bins:                                17         32          -                      
+        missing/total bins:                                15         32          -                      
+        % Hit:                                         53.12%        100          -                      
+        bin auto[0]                                        53          1          -    Covered              
+        bin auto[1]                                        57          1          -    Covered              
+        bin auto[2]                                        60          1          -    Covered              
+        bin auto[3]                                        60          1          -    Covered              
+        bin auto[4]                                        82          1          -    Covered              
+        bin auto[5]                                        48          1          -    Covered              
+        bin auto[6]                                        55          1          -    Covered              
+        bin auto[7]                                        65          1          -    Covered              
+        bin auto[8]                                        52          1          -    Covered              
+        bin auto[9]                                        68          1          -    Covered              
+        bin auto[10]                                       49          1          -    Covered              
+        bin auto[11]                                       65          1          -    Covered              
+        bin auto[12]                                       45          1          -    Covered              
+        bin auto[13]                                       63          1          -    Covered              
+        bin auto[14]                                       49          1          -    Covered              
+        bin auto[15]                                       64          1          -    Covered              
+        bin auto[16]                                       65          1          -    Covered              
+        bin auto[17]                                        0          1          -    ZERO                 
+        bin auto[18]                                        0          1          -    ZERO                 
+        bin auto[19]                                        0          1          -    ZERO                 
+        bin auto[20]                                        0          1          -    ZERO                 
+        bin auto[21]                                        0          1          -    ZERO                 
+        bin auto[22]                                        0          1          -    ZERO                 
+        bin auto[23]                                        0          1          -    ZERO                 
+        bin auto[24]                                        0          1          -    ZERO                 
+        bin auto[25]                                        0          1          -    ZERO                 
+        bin auto[26]                                        0          1          -    ZERO                 
+        bin auto[27]                                        0          1          -    ZERO                 
+        bin auto[28]                                        0          1          -    ZERO                 
+        bin auto[29]                                        0          1          -    ZERO                 
+        bin auto[30]                                        0          1          -    ZERO                 
+        bin auto[31]                                        0          1          -    ZERO                 
+    Coverpoint Coverpoint_S5_MUX_DATAIN_OUT            50.00%        100          -    Uncovered            
+        covered/total bins:                                32         64          -                      
+        missing/total bins:                                32         64          -                      
+        % Hit:                                         50.00%        100          -                      
+        bin auto[0:67108863]                               41          1          -    Covered              
+        bin auto[67108864:134217727]                       32          1          -    Covered              
+        bin auto[134217728:201326591]                      24          1          -    Covered              
+        bin auto[201326592:268435455]                      29          1          -    Covered              
+        bin auto[268435456:335544319]                      26          1          -    Covered              
+        bin auto[335544320:402653183]                      31          1          -    Covered              
+        bin auto[402653184:469762047]                      35          1          -    Covered              
+        bin auto[469762048:536870911]                      31          1          -    Covered              
+        bin auto[536870912:603979775]                      39          1          -    Covered              
+        bin auto[603979776:671088639]                      25          1          -    Covered              
+        bin auto[671088640:738197503]                      35          1          -    Covered              
+        bin auto[738197504:805306367]                      34          1          -    Covered              
+        bin auto[805306368:872415231]                      41          1          -    Covered              
+        bin auto[872415232:939524095]                      35          1          -    Covered              
+        bin auto[939524096:1006632959]                     20          1          -    Covered              
+        bin auto[1006632960:1073741823]                    28          1          -    Covered              
+        bin auto[1073741824:1140850687]                    26          1          -    Covered              
+        bin auto[1140850688:1207959551]                    26          1          -    Covered              
+        bin auto[1207959552:1275068415]                    31          1          -    Covered              
+        bin auto[1275068416:1342177279]                    27          1          -    Covered              
+        bin auto[1342177280:1409286143]                    24          1          -    Covered              
+        bin auto[1409286144:1476395007]                    31          1          -    Covered              
+        bin auto[1476395008:1543503871]                    27          1          -    Covered              
+        bin auto[1543503872:1610612735]                    38          1          -    Covered              
+        bin auto[1610612736:1677721599]                    33          1          -    Covered              
+        bin auto[1677721600:1744830463]                    31          1          -    Covered              
+        bin auto[1744830464:1811939327]                    30          1          -    Covered              
+        bin auto[1811939328:1879048191]                    40          1          -    Covered              
+        bin auto[1879048192:1946157055]                    34          1          -    Covered              
+        bin auto[1946157056:2013265919]                    28          1          -    Covered              
+        bin auto[2013265920:2080374783]                    40          1          -    Covered              
+        bin auto[2080374784:2147483647]                    28          1          -    Covered              
+        bin auto[2147483648:2214592511]                     0          1          -    ZERO                 
+        bin auto[2214592512:2281701375]                     0          1          -    ZERO                 
+        bin auto[2281701376:2348810239]                     0          1          -    ZERO                 
+        bin auto[2348810240:2415919103]                     0          1          -    ZERO                 
+        bin auto[2415919104:2483027967]                     0          1          -    ZERO                 
+        bin auto[2483027968:2550136831]                     0          1          -    ZERO                 
+        bin auto[2550136832:2617245695]                     0          1          -    ZERO                 
+        bin auto[2617245696:2684354559]                     0          1          -    ZERO                 
+        bin auto[2684354560:2751463423]                     0          1          -    ZERO                 
+        bin auto[2751463424:2818572287]                     0          1          -    ZERO                 
+        bin auto[2818572288:2885681151]                     0          1          -    ZERO                 
+        bin auto[2885681152:2952790015]                     0          1          -    ZERO                 
+        bin auto[2952790016:3019898879]                     0          1          -    ZERO                 
+        bin auto[3019898880:3087007743]                     0          1          -    ZERO                 
+        bin auto[3087007744:3154116607]                     0          1          -    ZERO                 
+        bin auto[3154116608:3221225471]                     0          1          -    ZERO                 
+        bin auto[3221225472:3288334335]                     0          1          -    ZERO                 
+        bin auto[3288334336:3355443199]                     0          1          -    ZERO                 
+        bin auto[3355443200:3422552063]                     0          1          -    ZERO                 
+        bin auto[3422552064:3489660927]                     0          1          -    ZERO                 
+        bin auto[3489660928:3556769791]                     0          1          -    ZERO                 
+        bin auto[3556769792:3623878655]                     0          1          -    ZERO                 
+        bin auto[3623878656:3690987519]                     0          1          -    ZERO                 
+        bin auto[3690987520:3758096383]                     0          1          -    ZERO                 
+        bin auto[3758096384:3825205247]                     0          1          -    ZERO                 
+        bin auto[3825205248:3892314111]                     0          1          -    ZERO                 
+        bin auto[3892314112:3959422975]                     0          1          -    ZERO                 
+        bin auto[3959422976:4026531839]                     0          1          -    ZERO                 
+        bin auto[4026531840:4093640703]                     0          1          -    ZERO                 
+        bin auto[4093640704:4160749567]                     0          1          -    ZERO                 
+        bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
+        bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     160       133        27    83.12%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench_sv_unit --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Class_IFID_Sequence.sv
+    24              1                       9002     
+    140             1                    ***0***     
+    141             1                    ***0***     
+    143             1                    ***0***     
+    144             1                    ***0***     
+    146             1                    ***0***     
+    147             1                    ***0***     
+    148             1                    ***0***     
+    149             1                    ***0***     
+    151             1                    ***0***     
+    152             1                    ***0***     
+    153             1                    ***0***     
+    156             1                    ***0***     
+    157             1                    ***0***     
+    158             1                    ***0***     
+    159             1                    ***0***     
+    160             1                    ***0***     
+    161             1                    ***0***     
+    162             1                    ***0***     
+    163             1                    ***0***     
+    165             1                    ***0***     
+    192             1                          1     
+    196             1                          1     
+    200             1                    ***0***     
+    210             1                          1     
+    214             1                       1000     
+    218             1                       1000     
+    223             1                       1000     
+    337             1                       1000     
+    341             1                          1     
+    361             1                          1     
+    365             1                          1     
+    369             1                    ***0***     
+    382             1                          1     
+    386             1                       1000     
+    390             1                       1000     
+    395             1                       1000     
+    426             1                       1000     
+    430             1                          1     
+    451             1                          1     
+    455             1                          1     
+    459             1                    ***0***     
+    469             1                          1     
+    473             1                       1000     
+    477             1                       1000     
+    482             1                       1000     
+    540             1                       1000     
+    544             1                          1     
+  File ../tb/Class_IFID_Driver.sv
+    19              1                          1     
+    32              1                          1     
+    40              1                    ***0***     
+    59              1                          1     
+    61              1                          1     
+    65              1                       3001     
+    68              1                       3001     
+    71              1                       3000     
+    73              1                       3000     
+    74              1                       3000     
+    75              1                       3000     
+    76              1                       3000     
+    77              1                       3000     
+    78              1                       3000     
+    79              1                       3000     
+    80              1                       3000     
+    81              1                       3000     
+    82              1                       3000     
+    83              1                       3000     
+    86              1                       3000     
+  File ../tb/Class_IFID_Monitor.sv
+    30              1                          1     
+    38              1                          1     
+    41              1                          1     
+    49              1                    ***0***     
+    64              1                          1     
+    66              1                          1     
+    69              1                       3001     
+    74              1                       3001     
+    76              1                       3000     
+    77              1                       3000     
+    78              1                       3000     
+    79              1                       3000     
+    80              1                       3000     
+    81              1                       3000     
+    82              1                       3000     
+    83              1                       3000     
+    84              1                       3000     
+    85              1                       3000     
+    86              1                       3000     
+    89              1                       3000     
+    90              1                       3000     
+    91              1                       3000     
+    92              1                       3000     
+    93              1                       3000     
+    94              1                       3000     
+    95              1                       3000     
+    96              1                       3000     
+    97              1                       3000     
+    101             1                       3000     
+  File ../tb/Class_IFID_Agent.sv
+    18              1                          1     
+    37              1                          1     
+    40              1                          1     
+    44              1                          1     
+    47              1                          1     
+    55              1                          1     
+    58              1                          1     
+  File ../tb/Class_IFID_CoverageTracker.sv
+    50              1                          1     
+    52              1                          1     
+    60              1                          1     
+    65              1                          1     
+    70              1                       3000     
+    75              1                          1     
+    83              1                          1     
+    91              1                    ***0***     
+    97              1                          1     
+    114             1                       3000     
+    122             1                          1     
+  File ../tb/Class_IFID_Scoreboard.sv
+    20              1                          1     
+    30              1                          1     
+    33              1                          1     
+    83              1                       3000     
+    86              1                       3000     
+    87              1                       3000     
+    88              1                       3000     
+    91              1                       3000     
+    92              1                       3000     
+    96              1                       3000     
+    98              1                       3000     
+    100             1                       3000     
+    101             1                       3000     
+    104             1                       3000     
+    105             1                       3000     
+    110             1                       3000     
+    111             1                       3000     
+    118             1                        539     
+    121             1                       3000     
+    122             1                       3000     
+    129             1                       3000     
+  File ../tb/Class_IFID_Environment.sv
+    19              1                          1     
+    33              1                          1     
+    36              1                          1     
+    37              1                          1     
+    38              1                          1     
+    48              1                          1     
+    51              1                          1     
+    54              1                          1     
+  File ../tb/Class_IFID_Test.sv
+    18              1                          1     
+    31              1                          1     
+    39              1                    ***0***     
+    45              1                          1     
+    53              1                          1     
+    68              1                          1     
+    73              1                          1     
+    78              1                          1     
+    83              1                          1     
+    86              1                          1     
+    89              1                          1     
+    93              1                          1     
+    94              1                          1     
+    95              1                          1     
+    99              1                          1     
+    102             1                          1     
+
+=================================================================================
+=== Instance: /rf_pkg
+=== Design Unit: work.rf_pkg
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         5         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /rf_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/001-pkg-registerfile.vhd
+    24              1                         30     
+    25              1                         25     
+    26              1                         25     
+    27              1                         25     
+    29              1                          5     
+
+COVERGROUP COVERAGE:
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /Module_topTestbench_sv_unit/Class_IFID_CoverageTracker/Covergroup_IFID 
+                                                       82.10%        100          -    Uncovered            
+    covered/total bins:                                   127        238          -                      
+    missing/total bins:                                   111        238          -                      
+    % Hit:                                             53.36%        100          -                      
+    Coverpoint Coverpoint_DLX_PC_to_DP                 50.00%        100          -    Uncovered            
+        covered/total bins:                                32         64          -                      
+        missing/total bins:                                32         64          -                      
+        % Hit:                                         50.00%        100          -                      
+        bin auto[0:67108863]                               38          1          -    Covered              
+        bin auto[67108864:134217727]                       38          1          -    Covered              
+        bin auto[134217728:201326591]                      28          1          -    Covered              
+        bin auto[201326592:268435455]                      34          1          -    Covered              
+        bin auto[268435456:335544319]                      39          1          -    Covered              
+        bin auto[335544320:402653183]                      19          1          -    Covered              
+        bin auto[402653184:469762047]                      29          1          -    Covered              
+        bin auto[469762048:536870911]                      30          1          -    Covered              
+        bin auto[536870912:603979775]                      25          1          -    Covered              
+        bin auto[603979776:671088639]                      23          1          -    Covered              
+        bin auto[671088640:738197503]                      38          1          -    Covered              
+        bin auto[738197504:805306367]                      30          1          -    Covered              
+        bin auto[805306368:872415231]                      32          1          -    Covered              
+        bin auto[872415232:939524095]                      20          1          -    Covered              
+        bin auto[939524096:1006632959]                     27          1          -    Covered              
+        bin auto[1006632960:1073741823]                    34          1          -    Covered              
+        bin auto[1073741824:1140850687]                    32          1          -    Covered              
+        bin auto[1140850688:1207959551]                    30          1          -    Covered              
+        bin auto[1207959552:1275068415]                    25          1          -    Covered              
+        bin auto[1275068416:1342177279]                    28          1          -    Covered              
+        bin auto[1342177280:1409286143]                    38          1          -    Covered              
+        bin auto[1409286144:1476395007]                    34          1          -    Covered              
+        bin auto[1476395008:1543503871]                    28          1          -    Covered              
+        bin auto[1543503872:1610612735]                    37          1          -    Covered              
+        bin auto[1610612736:1677721599]                    26          1          -    Covered              
+        bin auto[1677721600:1744830463]                    40          1          -    Covered              
+        bin auto[1744830464:1811939327]                    38          1          -    Covered              
+        bin auto[1811939328:1879048191]                    36          1          -    Covered              
+        bin auto[1879048192:1946157055]                    36          1          -    Covered              
+        bin auto[1946157056:2013265919]                    26          1          -    Covered              
+        bin auto[2013265920:2080374783]                    30          1          -    Covered              
+        bin auto[2080374784:2147483647]                    32          1          -    Covered              
+        bin auto[2147483648:2214592511]                     0          1          -    ZERO                 
+        bin auto[2214592512:2281701375]                     0          1          -    ZERO                 
+        bin auto[2281701376:2348810239]                     0          1          -    ZERO                 
+        bin auto[2348810240:2415919103]                     0          1          -    ZERO                 
+        bin auto[2415919104:2483027967]                     0          1          -    ZERO                 
+        bin auto[2483027968:2550136831]                     0          1          -    ZERO                 
+        bin auto[2550136832:2617245695]                     0          1          -    ZERO                 
+        bin auto[2617245696:2684354559]                     0          1          -    ZERO                 
+        bin auto[2684354560:2751463423]                     0          1          -    ZERO                 
+        bin auto[2751463424:2818572287]                     0          1          -    ZERO                 
+        bin auto[2818572288:2885681151]                     0          1          -    ZERO                 
+        bin auto[2885681152:2952790015]                     0          1          -    ZERO                 
+        bin auto[2952790016:3019898879]                     0          1          -    ZERO                 
+        bin auto[3019898880:3087007743]                     0          1          -    ZERO                 
+        bin auto[3087007744:3154116607]                     0          1          -    ZERO                 
+        bin auto[3154116608:3221225471]                     0          1          -    ZERO                 
+        bin auto[3221225472:3288334335]                     0          1          -    ZERO                 
+        bin auto[3288334336:3355443199]                     0          1          -    ZERO                 
+        bin auto[3355443200:3422552063]                     0          1          -    ZERO                 
+        bin auto[3422552064:3489660927]                     0          1          -    ZERO                 
+        bin auto[3489660928:3556769791]                     0          1          -    ZERO                 
+        bin auto[3556769792:3623878655]                     0          1          -    ZERO                 
+        bin auto[3623878656:3690987519]                     0          1          -    ZERO                 
+        bin auto[3690987520:3758096383]                     0          1          -    ZERO                 
+        bin auto[3758096384:3825205247]                     0          1          -    ZERO                 
+        bin auto[3825205248:3892314111]                     0          1          -    ZERO                 
+        bin auto[3892314112:3959422975]                     0          1          -    ZERO                 
+        bin auto[3959422976:4026531839]                     0          1          -    ZERO                 
+        bin auto[4026531840:4093640703]                     0          1          -    ZERO                 
+        bin auto[4093640704:4160749567]                     0          1          -    ZERO                 
+        bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
+        bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
+    Coverpoint Coverpoint_DLX_IR_to_DP                 50.00%        100          -    Uncovered            
+        covered/total bins:                                32         64          -                      
+        missing/total bins:                                32         64          -                      
+        % Hit:                                         50.00%        100          -                      
+        bin auto[0:67108863]                               25          1          -    Covered              
+        bin auto[67108864:134217727]                       21          1          -    Covered              
+        bin auto[134217728:201326591]                      36          1          -    Covered              
+        bin auto[201326592:268435455]                      20          1          -    Covered              
+        bin auto[268435456:335544319]                      31          1          -    Covered              
+        bin auto[335544320:402653183]                      32          1          -    Covered              
+        bin auto[402653184:469762047]                      34          1          -    Covered              
+        bin auto[469762048:536870911]                      33          1          -    Covered              
+        bin auto[536870912:603979775]                      26          1          -    Covered              
+        bin auto[603979776:671088639]                      33          1          -    Covered              
+        bin auto[671088640:738197503]                      27          1          -    Covered              
+        bin auto[738197504:805306367]                      18          1          -    Covered              
+        bin auto[805306368:872415231]                      42          1          -    Covered              
+        bin auto[872415232:939524095]                      41          1          -    Covered              
+        bin auto[939524096:1006632959]                     28          1          -    Covered              
+        bin auto[1006632960:1073741823]                    32          1          -    Covered              
+        bin auto[1073741824:1140850687]                    35          1          -    Covered              
+        bin auto[1140850688:1207959551]                    31          1          -    Covered              
+        bin auto[1207959552:1275068415]                    27          1          -    Covered              
+        bin auto[1275068416:1342177279]                    36          1          -    Covered              
+        bin auto[1342177280:1409286143]                    38          1          -    Covered              
+        bin auto[1409286144:1476395007]                    31          1          -    Covered              
+        bin auto[1476395008:1543503871]                    40          1          -    Covered              
+        bin auto[1543503872:1610612735]                    30          1          -    Covered              
+        bin auto[1610612736:1677721599]                    38          1          -    Covered              
+        bin auto[1677721600:1744830463]                    25          1          -    Covered              
+        bin auto[1744830464:1811939327]                    28          1          -    Covered              
+        bin auto[1811939328:1879048191]                    36          1          -    Covered              
+        bin auto[1879048192:1946157055]                    37          1          -    Covered              
+        bin auto[1946157056:2013265919]                    37          1          -    Covered              
+        bin auto[2013265920:2080374783]                    28          1          -    Covered              
+        bin auto[2080374784:2147483647]                    24          1          -    Covered              
+        bin auto[2147483648:2214592511]                     0          1          -    ZERO                 
+        bin auto[2214592512:2281701375]                     0          1          -    ZERO                 
+        bin auto[2281701376:2348810239]                     0          1          -    ZERO                 
+        bin auto[2348810240:2415919103]                     0          1          -    ZERO                 
+        bin auto[2415919104:2483027967]                     0          1          -    ZERO                 
+        bin auto[2483027968:2550136831]                     0          1          -    ZERO                 
+        bin auto[2550136832:2617245695]                     0          1          -    ZERO                 
+        bin auto[2617245696:2684354559]                     0          1          -    ZERO                 
+        bin auto[2684354560:2751463423]                     0          1          -    ZERO                 
+        bin auto[2751463424:2818572287]                     0          1          -    ZERO                 
+        bin auto[2818572288:2885681151]                     0          1          -    ZERO                 
+        bin auto[2885681152:2952790015]                     0          1          -    ZERO                 
+        bin auto[2952790016:3019898879]                     0          1          -    ZERO                 
+        bin auto[3019898880:3087007743]                     0          1          -    ZERO                 
+        bin auto[3087007744:3154116607]                     0          1          -    ZERO                 
+        bin auto[3154116608:3221225471]                     0          1          -    ZERO                 
+        bin auto[3221225472:3288334335]                     0          1          -    ZERO                 
+        bin auto[3288334336:3355443199]                     0          1          -    ZERO                 
+        bin auto[3355443200:3422552063]                     0          1          -    ZERO                 
+        bin auto[3422552064:3489660927]                     0          1          -    ZERO                 
+        bin auto[3489660928:3556769791]                     0          1          -    ZERO                 
+        bin auto[3556769792:3623878655]                     0          1          -    ZERO                 
+        bin auto[3623878656:3690987519]                     0          1          -    ZERO                 
+        bin auto[3690987520:3758096383]                     0          1          -    ZERO                 
+        bin auto[3758096384:3825205247]                     0          1          -    ZERO                 
+        bin auto[3825205248:3892314111]                     0          1          -    ZERO                 
+        bin auto[3892314112:3959422975]                     0          1          -    ZERO                 
+        bin auto[3959422976:4026531839]                     0          1          -    ZERO                 
+        bin auto[4026531840:4093640703]                     0          1          -    ZERO                 
+        bin auto[4093640704:4160749567]                     0          1          -    ZERO                 
+        bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
+        bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
+    Coverpoint Coverpoint_IR_LATCH_EN                 100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       501          1          -    Covered              
+        bin auto[1]                                       499          1          -    Covered              
+    Coverpoint Coverpoint_NPC_LATCH_EN                100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       506          1          -    Covered              
+        bin auto[1]                                       494          1          -    Covered              
+    Coverpoint Coverpoint_RegA_LATCH_EN               100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       500          1          -    Covered              
+        bin auto[1]                                       500          1          -    Covered              
+    Coverpoint Coverpoint_SIGN_UNSIGN_EN              100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       482          1          -    Covered              
+        bin auto[1]                                       518          1          -    Covered              
+    Coverpoint Coverpoint_RegIMM_LATCH_EN             100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       509          1          -    Covered              
+        bin auto[1]                                       491          1          -    Covered              
+    Coverpoint Coverpoint_JAL_EN                      100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       514          1          -    Covered              
+        bin auto[1]                                       486          1          -    Covered              
+    Coverpoint Coverpoint_RF_WE                       100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin auto[0]                                       461          1          -    Covered              
+        bin auto[1]                                       539          1          -    Covered              
+    Coverpoint Coverpoint_S4_REG_ADD_WR_OUT            53.12%        100          -    Uncovered            
+        covered/total bins:                                17         32          -                      
+        missing/total bins:                                15         32          -                      
+        % Hit:                                         53.12%        100          -                      
+        bin auto[0]                                        53          1          -    Covered              
+        bin auto[1]                                        57          1          -    Covered              
+        bin auto[2]                                        60          1          -    Covered              
+        bin auto[3]                                        60          1          -    Covered              
+        bin auto[4]                                        82          1          -    Covered              
+        bin auto[5]                                        48          1          -    Covered              
+        bin auto[6]                                        55          1          -    Covered              
+        bin auto[7]                                        65          1          -    Covered              
+        bin auto[8]                                        52          1          -    Covered              
+        bin auto[9]                                        68          1          -    Covered              
+        bin auto[10]                                       49          1          -    Covered              
+        bin auto[11]                                       65          1          -    Covered              
+        bin auto[12]                                       45          1          -    Covered              
+        bin auto[13]                                       63          1          -    Covered              
+        bin auto[14]                                       49          1          -    Covered              
+        bin auto[15]                                       64          1          -    Covered              
+        bin auto[16]                                       65          1          -    Covered              
+        bin auto[17]                                        0          1          -    ZERO                 
+        bin auto[18]                                        0          1          -    ZERO                 
+        bin auto[19]                                        0          1          -    ZERO                 
+        bin auto[20]                                        0          1          -    ZERO                 
+        bin auto[21]                                        0          1          -    ZERO                 
+        bin auto[22]                                        0          1          -    ZERO                 
+        bin auto[23]                                        0          1          -    ZERO                 
+        bin auto[24]                                        0          1          -    ZERO                 
+        bin auto[25]                                        0          1          -    ZERO                 
+        bin auto[26]                                        0          1          -    ZERO                 
+        bin auto[27]                                        0          1          -    ZERO                 
+        bin auto[28]                                        0          1          -    ZERO                 
+        bin auto[29]                                        0          1          -    ZERO                 
+        bin auto[30]                                        0          1          -    ZERO                 
+        bin auto[31]                                        0          1          -    ZERO                 
+    Coverpoint Coverpoint_S5_MUX_DATAIN_OUT            50.00%        100          -    Uncovered            
+        covered/total bins:                                32         64          -                      
+        missing/total bins:                                32         64          -                      
+        % Hit:                                         50.00%        100          -                      
+        bin auto[0:67108863]                               41          1          -    Covered              
+        bin auto[67108864:134217727]                       32          1          -    Covered              
+        bin auto[134217728:201326591]                      24          1          -    Covered              
+        bin auto[201326592:268435455]                      29          1          -    Covered              
+        bin auto[268435456:335544319]                      26          1          -    Covered              
+        bin auto[335544320:402653183]                      31          1          -    Covered              
+        bin auto[402653184:469762047]                      35          1          -    Covered              
+        bin auto[469762048:536870911]                      31          1          -    Covered              
+        bin auto[536870912:603979775]                      39          1          -    Covered              
+        bin auto[603979776:671088639]                      25          1          -    Covered              
+        bin auto[671088640:738197503]                      35          1          -    Covered              
+        bin auto[738197504:805306367]                      34          1          -    Covered              
+        bin auto[805306368:872415231]                      41          1          -    Covered              
+        bin auto[872415232:939524095]                      35          1          -    Covered              
+        bin auto[939524096:1006632959]                     20          1          -    Covered              
+        bin auto[1006632960:1073741823]                    28          1          -    Covered              
+        bin auto[1073741824:1140850687]                    26          1          -    Covered              
+        bin auto[1140850688:1207959551]                    26          1          -    Covered              
+        bin auto[1207959552:1275068415]                    31          1          -    Covered              
+        bin auto[1275068416:1342177279]                    27          1          -    Covered              
+        bin auto[1342177280:1409286143]                    24          1          -    Covered              
+        bin auto[1409286144:1476395007]                    31          1          -    Covered              
+        bin auto[1476395008:1543503871]                    27          1          -    Covered              
+        bin auto[1543503872:1610612735]                    38          1          -    Covered              
+        bin auto[1610612736:1677721599]                    33          1          -    Covered              
+        bin auto[1677721600:1744830463]                    31          1          -    Covered              
+        bin auto[1744830464:1811939327]                    30          1          -    Covered              
+        bin auto[1811939328:1879048191]                    40          1          -    Covered              
+        bin auto[1879048192:1946157055]                    34          1          -    Covered              
+        bin auto[1946157056:2013265919]                    28          1          -    Covered              
+        bin auto[2013265920:2080374783]                    40          1          -    Covered              
+        bin auto[2080374784:2147483647]                    28          1          -    Covered              
+        bin auto[2147483648:2214592511]                     0          1          -    ZERO                 
+        bin auto[2214592512:2281701375]                     0          1          -    ZERO                 
+        bin auto[2281701376:2348810239]                     0          1          -    ZERO                 
+        bin auto[2348810240:2415919103]                     0          1          -    ZERO                 
+        bin auto[2415919104:2483027967]                     0          1          -    ZERO                 
+        bin auto[2483027968:2550136831]                     0          1          -    ZERO                 
+        bin auto[2550136832:2617245695]                     0          1          -    ZERO                 
+        bin auto[2617245696:2684354559]                     0          1          -    ZERO                 
+        bin auto[2684354560:2751463423]                     0          1          -    ZERO                 
+        bin auto[2751463424:2818572287]                     0          1          -    ZERO                 
+        bin auto[2818572288:2885681151]                     0          1          -    ZERO                 
+        bin auto[2885681152:2952790015]                     0          1          -    ZERO                 
+        bin auto[2952790016:3019898879]                     0          1          -    ZERO                 
+        bin auto[3019898880:3087007743]                     0          1          -    ZERO                 
+        bin auto[3087007744:3154116607]                     0          1          -    ZERO                 
+        bin auto[3154116608:3221225471]                     0          1          -    ZERO                 
+        bin auto[3221225472:3288334335]                     0          1          -    ZERO                 
+        bin auto[3288334336:3355443199]                     0          1          -    ZERO                 
+        bin auto[3355443200:3422552063]                     0          1          -    ZERO                 
+        bin auto[3422552064:3489660927]                     0          1          -    ZERO                 
+        bin auto[3489660928:3556769791]                     0          1          -    ZERO                 
+        bin auto[3556769792:3623878655]                     0          1          -    ZERO                 
+        bin auto[3623878656:3690987519]                     0          1          -    ZERO                 
+        bin auto[3690987520:3758096383]                     0          1          -    ZERO                 
+        bin auto[3758096384:3825205247]                     0          1          -    ZERO                 
+        bin auto[3825205248:3892314111]                     0          1          -    ZERO                 
+        bin auto[3892314112:3959422975]                     0          1          -    ZERO                 
+        bin auto[3959422976:4026531839]                     0          1          -    ZERO                 
+        bin auto[4026531840:4093640703]                     0          1          -    ZERO                 
+        bin auto[4093640704:4160749567]                     0          1          -    ZERO                 
+        bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
+        bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
+
+TOTAL COVERGROUP COVERAGE: 82.10%  COVERGROUP TYPES: 1
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass 
+                                                  Count        Count
+--------------------------------------------------------------------
+/Module_topTestbench_sv_unit/Class_IFID_LegalSequence/body/#ublk#261878468#214/immed__229
+                     ../tb/Class_IFID_Sequence.sv(229)
+                                                     1000          0
+/Module_topTestbench_sv_unit/Class_IFID_RandomSequence/body/#ublk#261878468#386/immed__401
+                     ../tb/Class_IFID_Sequence.sv(401)
+                                                        0          1
+/Module_topTestbench_sv_unit/Class_IFID_AdditionSequence/body/#ublk#261878468#473/immed__488
+                     ../tb/Class_IFID_Sequence.sv(488)
+                                                     1000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__252
+                     ../tb/Class_IFID_Scoreboard.sv(252)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__237
+                     ../tb/Class_IFID_Scoreboard.sv(237)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__222
+                     ../tb/Class_IFID_Scoreboard.sv(222)
+                                                     2798          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__207
+                     ../tb/Class_IFID_Scoreboard.sv(207)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__192
+                     ../tb/Class_IFID_Scoreboard.sv(192)
+                                                     3000          0
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__177
+                     ../tb/Class_IFID_Scoreboard.sv(177)
+                                                     2003          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__162
+                     ../tb/Class_IFID_Scoreboard.sv(162)
+                                                     2002          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__147
+                     ../tb/Class_IFID_Scoreboard.sv(147)
+                                                     2989          1
+/Module_topTestbench_sv_unit/Class_IFID_Scoreboard/write/immed__132
+                     ../tb/Class_IFID_Scoreboard.sv(132)
+                                                     3000          0
+
+Total Coverage By Instance (filtered view): 78.27%
+

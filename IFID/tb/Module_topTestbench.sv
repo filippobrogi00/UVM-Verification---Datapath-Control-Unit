@@ -23,7 +23,7 @@ int numSeqItems = 100;
 // top-level Testbench, do they aren't included here, but instead compiled!
 
 // Custom Report Server for cleaner messages
-`include "Class_SimpleReportServer.sv"
+// `include "Class_SimpleReportServer.sv"
 
 // Testbench Class files
 `include "Class_IFID_Sequence.sv"
@@ -50,8 +50,12 @@ module Module_topTestbench;
   * */
   bit globalRst_n;
   initial begin : PROC_ResetDUT
-    globalRst_n <= 1'b0;  // active
-    #CLKPERIOD globalRst_n <= 1'b1;  // de-activate after a clock period
+    // Start de-asserted
+    globalRst_n <= 1'b1;
+    // Activate after 2 CCs
+    #(CLKPERIOD * 10) globalRst_n <= 1'b0;
+    // De-activate after andother 2 CCs
+    #(CLKPERIOD * 10) globalRst_n <= 1'b1;
   end : PROC_ResetDUT
 
   // Interfaces instantiation
@@ -86,20 +90,19 @@ module Module_topTestbench;
   initial begin : PROC_RunTest
 
     // Install custom report server used by UVM macros for cleaner messages
-    static Class_SimpleReportServer ifid_simple_report_server = new();
-    uvm_report_server::set_server(ifid_simple_report_server);
+    // static Class_SimpleReportServer ifid_simple_report_server = new();
+    // uvm_report_server::set_server(ifid_simple_report_server);
 
     /* Override number of Sequence Items to generate if specified from cmdline */
     // Check if parameter was specified (numSeqItems overridden with
     // user-specified value)
 
-    /* NOTE: Do not modify, these disable coverage tracking for this if statement */
-    // coverage off b
+    // coverage off bc
     if ($value$plusargs("NUM_SEQITEMS=%d", numSeqItems)) begin
       `uvm_info("TB TOP", $sformatf("NUM_SEQITEMS set to %0d from cmdline", numSeqItems),
                 UVM_MEDIUM)
     end
-    // coverage on b
+    // coverage on bc
 
     // Store value into config DB for passing it to Sequence component (store
     // with scope "*")
@@ -115,8 +118,10 @@ module Module_topTestbench;
     run_test("Class_IFID_Test");
 
     // Stop simulation
+    // coverage off s
     $display("################# SIMULATION ENDED #################");
     $stop;
+    // coverage on s
   end : PROC_RunTest
 
 endmodule

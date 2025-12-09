@@ -6,10 +6,11 @@
   * Current Sequence Item is broadcasted by Monitor and received by
   * Coverage Tracker, which then samples coverage.
 */
-
 class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceItem);
   // Register to Factory
+  // coverage off bcs
   `uvm_component_utils(Class_IFID_CoverageTracker)
+  // coverage on bcs
 
   // Analysis Port implementation (broadcast from Monitor)
   uvm_analysis_imp #(Class_IFID_SequenceItem, Class_IFID_CoverageTracker) analysis_port_imp;
@@ -118,8 +119,10 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
   * */
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
+    // coverage off bcs
     `uvm_info("COVERAGE TRACKER", $sformatf("Functional Coverage: %.2f%%", coverageGet()),
               UVM_MEDIUM);
+    // coverage off bcs
   endfunction : report_phase
 
 endclass

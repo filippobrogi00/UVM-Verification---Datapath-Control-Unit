@@ -1,0 +1,606 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_dut_iface
+=== Design Unit: work.Iface_IFID
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_dut_iface --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Iface_IFID.sv
+    107             1                          1     
+    110             1                          1     
+    110             2                          1     
+    110             3                          1     
+    110             4                          1     
+    111             1                          1     
+    111             2                          1     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD
+=== Design Unit: work.PC_Adder(BEH_COMB_PC_ADD)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.e-PC_Add.vhd
+    19              1                       2001     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                        494     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
+=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.d-MUX.vhd
+    15              1                       4002     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR
+=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.d-MUX.vhd
+    15              1                       4476     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                       1994     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE
+=== Design Unit: work.gen_register_file(beh)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.f-RegisterFile.vhd
+    52              1                          7     
+    52              2                        224     
+    53              1                        224     
+    54              1                        224     
+    56              1                          7     
+    57              1                          7     
+    68              1                        510     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
+=== Design Unit: work.sign_extender16_32(BEH_COMB_sign_extender)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      65        65         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.h-SignExtender16-32.vhd
+    23       1 (GI=0)                       2002     
+    23       1 (GI=1)                       2002     
+    23       1 (GI=2)                       2002     
+    23       1 (GI=3)                       2002     
+    23       1 (GI=4)                       2002     
+    23       1 (GI=5)                       2002     
+    23       1 (GI=6)                       2002     
+    23       1 (GI=7)                       2002     
+    23       1 (GI=8)                       2002     
+    23       1 (GI=9)                       2002     
+    23      1 (GI=10)                       2002     
+    23      1 (GI=11)                       2002     
+    23      1 (GI=12)                       2002     
+    23      1 (GI=13)                       2002     
+    23      1 (GI=14)                       2002     
+    26      1 (GI=15)                       2002     
+    26      1 (GI=16)                       2002     
+    26      1 (GI=17)                       2002     
+    26      1 (GI=18)                       2002     
+    26      1 (GI=19)                       2002     
+    26      1 (GI=20)                       2002     
+    26      1 (GI=21)                       2002     
+    26      1 (GI=22)                       2002     
+    26      1 (GI=23)                       2002     
+    26      1 (GI=24)                       2002     
+    26      1 (GI=25)                       2002     
+    26      1 (GI=26)                       2002     
+    26      1 (GI=27)                       2002     
+    26      1 (GI=28)                       2002     
+    26      1 (GI=29)                       2002     
+    26      1 (GI=30)                       2002     
+    26      1 (GI=31)                       2002     
+    32       1 (GI=0)                       2002     
+    32       1 (GI=1)                       2002     
+    32       1 (GI=2)                       2002     
+    32       1 (GI=3)                       2002     
+    32       1 (GI=4)                       2002     
+    32       1 (GI=5)                       2002     
+    32       1 (GI=6)                       2002     
+    32       1 (GI=7)                       2002     
+    32       1 (GI=8)                       2002     
+    32       1 (GI=9)                       2002     
+    32      1 (GI=10)                       2002     
+    32      1 (GI=11)                       2002     
+    32      1 (GI=12)                       2002     
+    32      1 (GI=13)                       2002     
+    32      1 (GI=14)                       2002     
+    35      1 (GI=15)                          1     
+    35      1 (GI=16)                          1     
+    35      1 (GI=17)                          1     
+    35      1 (GI=18)                          1     
+    35      1 (GI=19)                          1     
+    35      1 (GI=20)                          1     
+    35      1 (GI=21)                          1     
+    35      1 (GI=22)                          1     
+    35      1 (GI=23)                          1     
+    35      1 (GI=24)                          1     
+    35      1 (GI=25)                          1     
+    35      1 (GI=26)                          1     
+    35      1 (GI=27)                          1     
+    35      1 (GI=28)                          1     
+    35      1 (GI=29)                          1     
+    35      1 (GI=30)                          1     
+    35      1 (GI=31)                          1     
+    40              1                       4003     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE26
+=== Design Unit: work.sign_extender26_32(BEH_COMB_sign_extender_26_32)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      32        32         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE26 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.c-SignExtender26-32.vhd
+    19       1 (GI=0)                       2002     
+    19       1 (GI=1)                       2002     
+    19       1 (GI=2)                       2002     
+    19       1 (GI=3)                       2002     
+    19       1 (GI=4)                       2002     
+    19       1 (GI=5)                       2002     
+    19       1 (GI=6)                       2002     
+    19       1 (GI=7)                       2002     
+    19       1 (GI=8)                       2002     
+    19       1 (GI=9)                       2002     
+    19      1 (GI=10)                       2002     
+    19      1 (GI=11)                       2002     
+    19      1 (GI=12)                       2002     
+    19      1 (GI=13)                       2002     
+    19      1 (GI=14)                       2002     
+    19      1 (GI=15)                       2002     
+    19      1 (GI=16)                       2002     
+    19      1 (GI=17)                       2002     
+    19      1 (GI=18)                       2002     
+    19      1 (GI=19)                       2002     
+    19      1 (GI=20)                       2002     
+    19      1 (GI=21)                       2002     
+    19      1 (GI=22)                       2002     
+    19      1 (GI=23)                       2002     
+    19      1 (GI=24)                       2002     
+    22      1 (GI=25)                       2002     
+    22      1 (GI=26)                       2002     
+    22      1 (GI=27)                       2002     
+    22      1 (GI=28)                       2002     
+    22      1 (GI=29)                       2002     
+    22      1 (GI=30)                       2002     
+    22      1 (GI=31)                       2002     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                        488     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                        488     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN
+=== Design Unit: work.nbit_reg(beh_nbit_reg)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          7     
+    33              1                       1994     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC
+=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b.g-FlipFlop.vhd
+    28              1                          2     
+    33              1                        495     
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst
+=== Design Unit: work.dp_ifid(structural)
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.b-DP-IFID.vhd
+    189             1                       2001     
+
+=================================================================================
+=== Instance: /Module_topTestbench
+=== Design Unit: work.Module_topTestbench
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      13        11         2    84.61%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Module_topTestbench.sv
+    45              1                       6000     
+    45              2                       5999     
+    54              1                          1     
+    56              1                          1     
+    56              2                          1     
+    58              1                          1     
+    58              2                          1     
+    102             1                          1     
+    109             1                          1     
+    112             1                          1     
+    118             1                          1     
+    121             1                    ***0***     
+    122             1                    ***0***     
+
+=================================================================================
+=== Instance: /Module_topTestbench_sv_unit
+=== Design Unit: work.Module_topTestbench_sv_unit
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                     160       133        27    83.12%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench_sv_unit --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Class_IFID_Sequence.sv
+    24              1                       9002     
+    140             1                    ***0***     
+    141             1                    ***0***     
+    143             1                    ***0***     
+    144             1                    ***0***     
+    146             1                    ***0***     
+    147             1                    ***0***     
+    148             1                    ***0***     
+    149             1                    ***0***     
+    151             1                    ***0***     
+    152             1                    ***0***     
+    153             1                    ***0***     
+    156             1                    ***0***     
+    157             1                    ***0***     
+    158             1                    ***0***     
+    159             1                    ***0***     
+    160             1                    ***0***     
+    161             1                    ***0***     
+    162             1                    ***0***     
+    163             1                    ***0***     
+    165             1                    ***0***     
+    192             1                          1     
+    196             1                          1     
+    200             1                    ***0***     
+    210             1                          1     
+    214             1                       1000     
+    218             1                       1000     
+    223             1                       1000     
+    337             1                       1000     
+    341             1                          1     
+    361             1                          1     
+    365             1                          1     
+    369             1                    ***0***     
+    382             1                          1     
+    386             1                       1000     
+    390             1                       1000     
+    395             1                       1000     
+    426             1                       1000     
+    430             1                          1     
+    451             1                          1     
+    455             1                          1     
+    459             1                    ***0***     
+    469             1                          1     
+    473             1                       1000     
+    477             1                       1000     
+    482             1                       1000     
+    540             1                       1000     
+    544             1                          1     
+  File ../tb/Class_IFID_Driver.sv
+    19              1                          1     
+    32              1                          1     
+    40              1                    ***0***     
+    59              1                          1     
+    61              1                          1     
+    65              1                       3001     
+    68              1                       3001     
+    71              1                       3000     
+    73              1                       3000     
+    74              1                       3000     
+    75              1                       3000     
+    76              1                       3000     
+    77              1                       3000     
+    78              1                       3000     
+    79              1                       3000     
+    80              1                       3000     
+    81              1                       3000     
+    82              1                       3000     
+    83              1                       3000     
+    86              1                       3000     
+  File ../tb/Class_IFID_Monitor.sv
+    30              1                          1     
+    38              1                          1     
+    41              1                          1     
+    49              1                    ***0***     
+    64              1                          1     
+    66              1                          1     
+    69              1                       3001     
+    74              1                       3001     
+    76              1                       3000     
+    77              1                       3000     
+    78              1                       3000     
+    79              1                       3000     
+    80              1                       3000     
+    81              1                       3000     
+    82              1                       3000     
+    83              1                       3000     
+    84              1                       3000     
+    85              1                       3000     
+    86              1                       3000     
+    89              1                       3000     
+    90              1                       3000     
+    91              1                       3000     
+    92              1                       3000     
+    93              1                       3000     
+    94              1                       3000     
+    95              1                       3000     
+    96              1                       3000     
+    97              1                       3000     
+    101             1                       3000     
+  File ../tb/Class_IFID_Agent.sv
+    18              1                          1     
+    37              1                          1     
+    40              1                          1     
+    44              1                          1     
+    47              1                          1     
+    55              1                          1     
+    58              1                          1     
+  File ../tb/Class_IFID_CoverageTracker.sv
+    50              1                          1     
+    52              1                          1     
+    60              1                          1     
+    65              1                          1     
+    70              1                       3000     
+    75              1                          1     
+    83              1                          1     
+    91              1                    ***0***     
+    97              1                          1     
+    114             1                       3000     
+    122             1                          1     
+  File ../tb/Class_IFID_Scoreboard.sv
+    20              1                          1     
+    30              1                          1     
+    33              1                          1     
+    83              1                       3000     
+    86              1                       3000     
+    87              1                       3000     
+    88              1                       3000     
+    91              1                       3000     
+    92              1                       3000     
+    96              1                       3000     
+    98              1                       3000     
+    100             1                       3000     
+    101             1                       3000     
+    104             1                       3000     
+    105             1                       3000     
+    110             1                       3000     
+    111             1                       3000     
+    118             1                        539     
+    121             1                       3000     
+    122             1                       3000     
+    129             1                       3000     
+  File ../tb/Class_IFID_Environment.sv
+    19              1                          1     
+    33              1                          1     
+    36              1                          1     
+    37              1                          1     
+    38              1                          1     
+    48              1                          1     
+    51              1                          1     
+    54              1                          1     
+  File ../tb/Class_IFID_Test.sv
+    18              1                          1     
+    31              1                          1     
+    39              1                    ***0***     
+    45              1                          1     
+    53              1                          1     
+    68              1                          1     
+    73              1                          1     
+    78              1                          1     
+    83              1                          1     
+    86              1                          1     
+    89              1                          1     
+    93              1                          1     
+    94              1                          1     
+    95              1                          1     
+    99              1                          1     
+    102             1                          1     
+
+=================================================================================
+=== Instance: /rf_pkg
+=== Design Unit: work.rf_pkg
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         5         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /rf_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/001-pkg-registerfile.vhd
+    24              1                         30     
+    25              1                         25     
+    26              1                         25     
+    27              1                         25     
+    29              1                          5     
+
+
+Total Coverage By Instance (filtered view): 90.49%
+

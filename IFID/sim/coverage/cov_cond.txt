@@ -1,0 +1,25 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE
+=== Design Unit: work.gen_register_file(beh)
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         2         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE --
+
+  File ../src/a.b.f-RegisterFile.vhd
+----------------Focused Condition View-------------------
+Line       67 Item    1  ((WR = '1') and ((<type>)ADD_WR /= 0))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+
+
+Total Coverage By Instance (filtered view): 100.00%
+

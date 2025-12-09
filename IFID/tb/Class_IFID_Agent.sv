@@ -9,7 +9,9 @@
 class Class_IFID_Agent extends uvm_agent;
 
   // Register to Factory
+  // coverage off bcs
   `uvm_component_utils(Class_IFID_Agent)
+  // coverage on bcs
 
   // Constructor
   function new(string name = "Class_IFID_Agent", uvm_component parent = null);

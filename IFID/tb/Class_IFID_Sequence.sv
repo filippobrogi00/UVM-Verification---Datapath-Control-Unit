@@ -12,15 +12,12 @@ import pkg_const::*;
 /*
 * SEQUENCE ITEM: Data item to which can be grouped into a Sequence
 * and then sent to the Driver.
-  * TODO: Update
-  * Also implements Constraints on data so that the Sequencer generates
-  * random constrained sequences to send to the Driver.
 * */
 class Class_IFID_SequenceItem extends uvm_sequence_item;
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
-  // coverage off b
-  `uvm_object_utils(Class_IFID_SequenceItem);
-  // coverage on b
+  // coverage off bcs
+  `uvm_object_utils(Class_IFID_SequenceItem)
+  // coverage on bcs
 
   // Constructor
   function new(string name = "Class_IFID_SequenceItem");
@@ -39,7 +36,7 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
   //      outputs!
 
   // SequenceItem fields
-  // NOTE: Inputs delcared as rand even though they are actually
+  // NOTE: Inputs declared as rand even though they are actually
   // randomized depending on the Sequence which instantiates the seqitem.
 
   /***********
@@ -138,6 +135,8 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
 
   // Copies "src" seqitem fields into "dest" seqitem
   virtual function void copy(Class_IFID_SequenceItem src, Class_IFID_SequenceItem dest);
+    // coverage off
+
     /* INPUTS */
     // General inputs
     dest.DLX_PC_to_DP      = src.DLX_PC_to_DP;
@@ -167,6 +166,8 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
     // To MEMWB Block
     dest.S1_ADD_OUT        = src.S1_ADD_OUT;
 
+    // coverage on
+
   endfunction
 
 
@@ -179,88 +180,43 @@ endclass
  ************* SEQUENCE CLASSES *************
  ********************************************/
 
-
-/*
-* BASE SEQUENCE: Virtual class which serves as a blueprint for derived classes
-  * which will specify how to randomize sequence items of the sequence.
-* */
-// class Class_IFID_BaseSequence extends uvm_sequence #(Class_IFID_SequenceItem);
-//   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
-//   `uvm_object_utils(Class_IFID_BaseSequence)
+/************************ BASE SEQUENCE ***************************
+ * Abstract class which just serves as base class for every       *
+ * speciic Sequence Item subclass, specializing in a certain kind *
+ * of CRG.                                                        *
+ ******************************************************************/
+// virtual class Class_IFID_BaseSequence #(
+//     type SequenceItemType = Class_IFID_SequenceItem
+// )
+// extends uvm_sequence #(Class_IFID_SequenceItem);
 //
-//   /*
-//   * SEQUENCE CLASS MEMBERS
-//   * */
-//   Class_IFID_SequenceItem curr_ifid_seqitem = Class_IFID_SequenceItem::type_id::create(
-//       "curr_ifid_seqitem"
-//   );
+//   `uvm_object_utils(Class_IFID_BaseSequence)
 //
 //   int unsigned numSequenceItems = 10;
 //
-//   // Constructor
 //   function new(string name = "Class_IFID_BaseSequence");
-//     super.new(name);
-//     // coverage off b
-//     // Get numSequenceItems from config DB (default or overwritten by user)
+//     super.new();
 //     if (!uvm_config_db#(int)::get(null, "", "numSeqItems", numSequenceItems)) begin
 //       `uvm_error("SEQITEM", "Failed to get numSequenceItems from DB")
 //     end
-//     // coverage on b
 //   endfunction
 //
-//   /*
-//   * BODY :
-//     * Creates the transactions to send to the Driver via the Sequencer
-//     * Sends them via start_item() and end_item() function calls
-//     * (Automatically called when sequence is started on a sequencer)
-//   * */
-//   virtual task body();
-//     // coverage off b
-//     `uvm_info("SEQUENCE", $sformatf("body(): Generating %0d Sequence Items", numSequenceItems),
-//               UVM_MEDIUM);
-//    // coverage on b
+//   // Defined by child classes
+//   pure virtual task body();
 //
-//     repeat (numSequenceItems) begin
-//       // Create instance of a new sequence item
-//       // NOTE: Do not specify "this" as parent because 2nd argument must
-//       // be of type uvm_component, while SequenceItem is uvm_sequence!
-//       Class_IFID_SequenceItem ifid_sequenceItem = Class_IFID_SequenceItem::type_id::create(
-//           "ifid_sequenceItem"
-//       );
-//
-//       // Reserve Sequencer slot for current item
-//       start_item(ifid_sequenceItem);
-//
-//       // Randomize the item to let the Sequencer "execute"
-//       // NOTE: Even though BaseSequence does not have any constraints for CRG,
-//       // and sequence items do not either, this body() method will be used
-//       // by derived classes!
-//       assert (ifid_sequenceItem.randomize());
-//
-//       // Signal the Sequencer that the initialization is done,
-//       // now Driver can pick up item using .get_next_item()
-//       finish_item(ifid_sequenceItem);
-//     end
-//
-//     // coverage off b
-//     `uvm_info("SEQUENCE", $sformatf(
-//               "body(): Done generating %0d Sequence Items...", numSequenceItems), UVM_MEDIUM);
-//    // coverage on b
-//   endtask : body
-//
-// endclass
+// endclass : Class_IFID_BaseSequence
 
 
-
-/*
-* LEGAL SEQUENCE: Inputs are constrained picking only legal values
-* (allowed by the DUT logic)
-* */
+/************************ LEGAL SEQUENCE **************************
+ * Inputs are constrained picking only legal values (allowed      *
+ * by the DUT logic).                                             *
+ ******************************************************************/
 class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
+  // class Class_IFID_LegalSequence extends Class_IFID_BaseSequence;
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
-  // coverage off b
+  // coverage off bcs
   `uvm_object_utils(Class_IFID_LegalSequence)
-  // coverage on b
+  // coverage on bcs
 
   /*
   * SEQUENCE CLASS MEMBERS
@@ -279,10 +235,7 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
   endfunction
 
   /*
-  * BODY :
-    * Creates the transactions to send to the Driver via the Sequencer
-    * Sends them via start_item() and end_item() function calls
-    * (Automatically called when sequence is started on a sequencer)
+  * BODY
   * */
   virtual task body();
     // coverage off b
@@ -307,60 +260,63 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
       // by derived classes!
       assert (ifid_sequenceItem.randomize() with {
         /* VALID OPCODE CONSTRAINT */
-        instr.bits[31:26] inside {
-        // verilog_format: off
-          NOP,
-          ADD_op,  // Signed Addition
-          AND_op,  // Bitwise
-          OR_op,  // Bitwise
-          SGE_op,  // Set Greater than or Equal to
-          SLE_op,  // Set Less than or Equal to
-          SLL_op,  // Unsigned Logical Shift Left
-          SNE_op,  // Set Not Equal to
-          SRL_op,  // Unsigned Arithmetic Shift Right
-          SUB_op,  // Signed Subtraction
-          XOR_op,  // Bitwise
-
-          // DLX Pro Version ALU Opcodes
-          SRA_op,  // Shift Right Arithmetic
-          ADDU_op,  // Unsigned Addition
-          SUBU_op,  // Unsigned Subtraction
-          SEQ_op,  // Set if Equal
-          SLT_op,  // Set if Less Than
-          SGT_op,  // Set Greater Than
-          SLTU_op,  // Set if Less Than (Unsigned)
-          SGTU_op,  // Set Greater Than (Unsigned)
-          SLEU_op,  // Set if Less Than or Equal (Unsigned)
-          SGEU_op  // Set Greater Than or Equal (Unsigned)
-        // verilog_format: on
+        instr.bits[31:26] inside {OPCODE_RTYPE,  // R-type (uses FUNC field)
+        // --- DLX Basic Version ---
+        OPCODE_J,  // j
+        OPCODE_JAL,  // jal
+        OPCODE_BEQZ,  // beqz
+        OPCODE_BNEZ,  // bnez
+        OPCODE_ADDI,  // addi
+        OPCODE_SUBI,  // subi
+        OPCODE_ANDI,  // andi
+        OPCODE_ORI,  // ori
+        OPCODE_XORI,  // xori
+        OPCODE_SLLI,  // slli
+        OPCODE_NOP,  // nop
+        OPCODE_SRLI,  // srli
+        OPCODE_SNEI,  // snei
+        OPCODE_SLEI,  // slei
+        OPCODE_SGEI,  // sgei
+        OPCODE_LW,  // lw
+        OPCODE_SW,  // sw
+        // --- DLX Pro Version ---
+        OPCODE_ADDUI,  // addui
+        OPCODE_SUBUI,  // subui
+        OPCODE_SRAI,  // srai
+        OPCODE_SEQI,  // seqi
+        OPCODE_SLTI,  // slti
+        OPCODE_SGTI,  // sgti
+        OPCODE_SLTUI,  // sltui
+        OPCODE_SGTUI,  // sgtui
+        OPCODE_SLEUI,  // sleui
+        OPCODE_SGEUI  // sgeui
         };
 
 
         /* VALID OPCODE CONSTRAINTS */
 
-        if (check_instr_type(
-            instr
-        ) == I_TYPE) {
+        // verilog_format: off
+        if (check_instr_type(instr) == I_TYPE) {
+        // verilog_format: on
 
           /* I-TYPE instruction [OPCODE, RS1, RD, IMM] */
           instr.itype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
-          instr.itype.rs2 inside {[0 : DLX_CPU_NUMREGS - 1]};
+          instr.itype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
 
           // Check if opcode denotes signed operation
-          if (check_instr_sign(
-              instr
-          ) == SIGN_TYPE) {
-            // TODO: Fare trick come in Task 2 altrimenti warning [0, 2^NB-1-1]
+          // verilog_format: off
+          if (check_instr_sign(instr) == SIGN_TYPE) {
+          // verilog_format: on
+            // Constrain as signed
             instr.itype.imm inside {[-(2 ** (NBITS - 1)) : +((2 ** (NBITS - 1)) - 1)]};
           } else {
-            // Unsigned
-            instr.itype.imm inside {[0 : 2 ** (NBITS - 1)]};
+            // Constrain as unsigned
+            instr.itype.imm inside {[0 : (2 ** NBITS) - 1]};
           }
 
-        } else
-        if (check_instr_type(
-            instr
-        ) == R_TYPE) {
+          // verilog_format: off
+        } else if (check_instr_type(instr) == R_TYPE) {
+          // verilog_format: on
 
           /* R_TYPE instruction */
           instr.rtype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
@@ -368,44 +324,72 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
           instr.rtype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
 
           // FUNC field, every possible type of R_TYPE operation
-          // func inside {SLL_op, SRL_op, ADD_op, SUB_op, AND_op, OR_op, XOR_op, SNE_op, SLE_op, SGE_op, SRA_op, ADDU_op, SUBU_op, SEQ_op, SLT_op, SGT_op, SLTU_op, SGTU_op, SLEU_op, SGEU_op};
-          // TODOO: Spaghetti, needs fixing later on!
-          instr.rtype.func inside {4, 6, 32, 34, 36, 37, 38, 41, 44, 45, 7, 33, 35, 40, 42, 43, 58, 59, 60, 61};
+          instr.rtype.func inside {
+          // --- DLX Basic Version ---
+          FUNC_SLL,  // sll
+          FUNC_SRL,  // srl
+          FUNC_ADD,  // add
+          FUNC_SUB,  // sub
+          FUNC_AND,  // and
+          FUNC_OR,  // or
+          FUNC_XOR,  // xor
+          FUNC_SNE,  // sne
+          FUNC_SLE,  // sle
+          FUNC_SGE,  // sge
+          // --- DLX Pro Version ---
+          FUNC_SRA,  // sra
+          FUNC_ADDU,  // addu
+          FUNC_SUBU,  // subu
+          FUNC_SEQ,  // seq
+          FUNC_SLT,  // slt
+          FUNC_SGT,  // sgt
+          FUNC_SLTU,  // sltu
+          FUNC_SGTU,  // sgtu
+          FUNC_SLEU,  // sleu
+          FUNC_SGEU  // sgeu
+          };
 
         } else {
 
           /* J_TYPE instruction */
 
           /*
-      * NOTE 1:
-      * Only for instructions J(mp), JAL, BEQ, BNEZ (which are our only
-      * jump instructions) the bit JUMP_EN will be 1, which will overwrite
-      * the next PC value with S3_REG_ALU content
-      * NOTE 2:
-      * Only for J and JAL (unconditional jump instructions), JMP flag
-      * will be 1.
-      *
-      * NOTE 3: Opcode for J, JAL, BEQZ, BNEZ is always ADD_op.
-      *
-      * Recap:
-      * -) JUMP_EN enabled for every possible jump instruction (opcode ADD_op)
-      * -) For conditional jumps, EQZ_NEQZ flag will direct the jump
-      * -) For unconditional jumps, JMP flag will direct the jump
-      * */
+           * NOTE 1:
+           * Only for instructions J(mp), JAL, BEQ, BNEZ (which are our only
+           * jump instructions) the bit JUMP_EN will be 1, which will overwrite
+           * the next PC value with S3_REG_ALU content
+           * NOTE 2:
+           * Only for J and JAL (unconditional jump instructions), JMP flag
+           * will be 1.
+           *
+           * NOTE 3: Opcode for J, JAL, BEQZ, BNEZ is always ADD_op.
+           *
+           * Recap:
+           * -) JUMP_EN enabled for every possible jump instruction (opcode ADD_op)
+           * -) For conditional jumps, EQZ_NEQZ flag will direct the jump
+           * -) For unconditional jumps, JMP flag will direct the jump
+           * */
 
-          if (
-          // OPCODE is that of a jump instruction, and so JUMP_EN = 1
-          instr.bits[31:26] == ADD_op &&
-          // and either:
-          (
-          // JMP flag is set (CW bit #7) (unconditional jump)
-          DLX_IR_to_DP[7] == 1'b1 ||
-          // or target register is zero and "BEQZ" flag is set (CW bit #6)
-          (S2_RFILE_A_OUT == '0 && DLX_IR_to_DP[6] == 1'b1) ||
-          // or target register is NOT zero and "BNEZ" flag is set
-          (S2_RFILE_A_OUT != '0 && DLX_IR_to_DP[6] == 1'b0))) {
-            instr.jtype.imm inside {[0 : IRAM_DEPTH]};
-          }
+          // verilog_format: off
+          if
+            (
+              // OPCODE is that of a jump instruction, and so JUMP_EN = 1
+              instr.bits[31:26] == OPCODE_ADDI &&
+              // and either:
+              (
+                // JMP flag is set (CW bit #7) (unconditional jump)
+                DLX_IR_to_DP[7] == 1'b1 ||
+                // or target register is zero and "BEQZ" flag is set (CW bit #6)
+                (S2_RFILE_A_OUT == '0 && DLX_IR_to_DP[6] == 1'b1) ||
+                // or target register is NOT zero and "BNEZ" flag is set
+                (S2_RFILE_A_OUT != '0 && DLX_IR_to_DP[6] == 1'b0)
+              )
+            )
+            {
+              instr.jtype.imm inside {[0 : IRAM_DEPTH]};
+            }
+
+          // verilog_format: on
 
         }
 
@@ -424,16 +408,16 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
 
 endclass
 
-
-/*
-* RANDOM SEQUENCE: Inputs are constrained randomically, feeding the DUT
-* potentially wrong inputs.
-* */
+/************************ RANDOM SEQUENCE **************************
+ * Inputs are constrained randomically, feeding the DUT with       *
+ * potentially wrong inputs.                                       *
+ *******************************************************************/
 class Class_IFID_RandomSequence extends uvm_sequence #(Class_IFID_SequenceItem);
+  // class Class_IFID_RandomSequence extends Class_IFID_BaseSequence;
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
-  // coverage off b
+  // coverage off bcs
   `uvm_object_utils(Class_IFID_RandomSequence)
-  // coverage on b
+  // coverage on bcs
 
   /*
   * SEQUENCE CLASS MEMBERS
@@ -481,8 +465,8 @@ class Class_IFID_RandomSequence extends uvm_sequence #(Class_IFID_SequenceItem);
       assert (ifid_sequenceItem.randomize() with {
 
         // General inputs
-        DLX_PC_to_DP inside {[0 : (2 ** (IR_SIZE - 1)) - 1]};
-        DLX_IR_to_DP inside {[0 : (2 ** (IR_SIZE - 1)) - 1]};
+        DLX_PC_to_DP inside {[0 : 2 ** (IR_SIZE - 1)]};
+        DLX_IR_to_DP inside {[0 : 2 ** (IR_SIZE - 1)]};
 
         // Stage 1 inputs
         IR_LATCH_EN inside {1'b0, 1'b1};
@@ -496,8 +480,8 @@ class Class_IFID_RandomSequence extends uvm_sequence #(Class_IFID_SequenceItem);
 
         // Additional inputs
         RF_WE inside {1'b0, 1'b1};
-        S4_REG_ADD_WR_OUT inside {[0 : (2 ** ($clog2(RF_NUMREGS) - 1)) - 1]};
-        S5_MUX_DATAIN_OUT inside {[0 : (2 ** (RF_REGBITS - 1)) - 1]};
+        S4_REG_ADD_WR_OUT inside {[0 : (2 ** ($clog2(RF_NUMREGS) - 1))]};
+        S5_MUX_DATAIN_OUT inside {[0 : (2 ** (RF_REGBITS - 1))]};
 
       });
 
@@ -514,107 +498,116 @@ class Class_IFID_RandomSequence extends uvm_sequence #(Class_IFID_SequenceItem);
 
 endclass
 
-/***************************************************************************************************************************************
-  * ESEMPIO GIUSEPPE TODO ELIMINARE
-  * *************************************************************************************************************************************/
-// `ifndef FULL_TEST_SVH
-// `define FULL_TEST_SVH
-//
-// class full_test extends base_test;
-//   `uvm_component_utils(full_test);
-//
-//   random_sequence random_seq;
-//   zero_sequence zero_seq;
-//   allones_sequence allones_seq;
-//   coverage_driven_sequence coverage_driven_seq;
-//
-//   function new(string name, uvm_component parent);
-//     super.new(name, parent);
-//     test_type = "FULL TEST";
-//   endfunction : new
-//
-//
-//   task run_phase(uvm_phase phase);
-//     random_seq          = new("random_seq");
-//     zero_seq            = new("zero_seq");
-//     allones_seq         = new("allones_seq");
-//     coverage_driven_seq = new("coverage_driven_seq");
-//     phase.raise_objection(this);
-//
-//     fork
-//       random_seq.start(sequencer_h);
-//       zero_seq.start(sequencer_h);
-//       allones_seq.start(sequencer_h);
-//       coverage_driven_seq.start(sequencer_h);
-//     join
-//
-//     phase.drop_objection(this);
-//   endtask : run_phase
-//
-//   function void report();
-//     `uvm_info("FINAL REPORT", "===============================================", UVM_LOW)
-//     `uvm_info("FINAL REPORT", "                   FULL TEST                   ", UVM_LOW)
-//     `uvm_info("FINAL REPORT", "===============================================", UVM_LOW)
-//   endfunction
-//
-//
-// endclass : full_test
-//
-// `endif
-//
-//
-//
-// `ifndef ALLONES_SEQUENCE_SVH
-// `define ALLONES_SEQUENCE_SVH
-//
-// import my_pkg::NBIT;
-// class allones_sequence extends uvm_sequence #(sequence_item);
-//   `uvm_object_utils(allones_sequence)
-//
-//
-//   sequence_item command;
-//
-//   function new(string name = "allones sequence");
-//     super.new(name);
-//   endfunction : new
-//
-//   task body();
-//     `uvm_info("ALLONES SEQUENCE", "Beginning allones generation", UVM_HIGH)
-//     command = sequence_item::type_id::create("command");
-//     repeat (100) begin
-//       start_item(command);
-//       assert (command.randomize());
-//       command.a = {NBIT{1'b1}};  // Imposing allones on a
-//       finish_item(command);
-//     end
-//     repeat (100) begin
-//       start_item(command);
-//       assert (command.randomize());
-//       command.b = {NBIT{1'b1}};  // Imposing allones on b
-//       finish_item(command);
-//     end
-//     repeat (100) begin
-//       start_item(command);
-//       assert (command.randomize());
-//       command.ci = 1;  // Imposing allones on b
-//       finish_item(command);
-//     end
-//
-//     start_item(command);
-//     command.a  = {NBIT{1'b1}};  // Imposing allones on a
-//     command.b  = {NBIT{1'b1}};  // Imposing allones on b
-//     command.ci = 1;  // Imposing allones on b
-//     finish_item(command);
-//
-//   endtask : body
-//
-// endclass : allones_sequence
-//
-// `endif
-//
-//
-//
-//
-//
-//
-//
+
+/************************ ADDITION SEQUENCE ************************
+ * This sequence specializes in performing corner-case addition    *
+ * operations (zero, boundary values, overflow and underflow).     *
+ *******************************************************************/
+class Class_IFID_AdditionSequence extends uvm_sequence #(Class_IFID_SequenceItem);
+  // class Class_IFID_AdditionSequence extends Class_IFID_BaseSequence;
+  // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
+  // coverage off bcs
+  `uvm_object_utils(Class_IFID_AdditionSequence)
+  // coverage on bcs
+
+  /*
+  * SEQUENCE CLASS MEMBERS
+  * */
+  int unsigned numSequenceItems = 10;
+
+  // Constructor
+  function new(string name = "Class_IFID_AdditionSequence");
+    super.new(name);
+    // coverage off b
+    // Get numSequenceItems from config DB (default or overwritten by user)
+    if (!uvm_config_db#(int)::get(null, "", "numSeqItems", numSequenceItems)) begin
+      `uvm_error("SEQITEM", "Failed to get numSequenceItems from DB")
+    end
+    // coverage on b
+  endfunction
+
+  /*
+  * BODY
+  * */
+  virtual task body();
+    // coverage off b
+    `uvm_info("SEQUENCE", $sformatf("body(): Generating %0d Sequence Items", numSequenceItems),
+              UVM_MEDIUM);
+    // coverage on b
+
+    repeat (numSequenceItems) begin
+      // Create instance of a new sequence item
+      // NOTE: Do not specify "this" as parent because 2nd argument must
+      // be of type uvm_component, while SequenceItem is uvm_sequence!
+      Class_IFID_SequenceItem ifid_sequenceItem = Class_IFID_SequenceItem::type_id::create(
+          "ifid_sequenceItem"
+      );
+
+      // Reserve Sequencer slot for current item
+      start_item(ifid_sequenceItem);
+
+      // Randomize the item to let the Sequencer "execute"
+      // NOTE: Even though BaseSequence does not have any constraints for CRG,
+      // and sequence items do not either, this body() method will be used
+      // by derived classes!
+      assert (ifid_sequenceItem.randomize() with {
+        /* Constrain OPCODE to be an addition */
+        instr.bits[31:26] inside {
+        // verilog_format: off
+          ADD_op,  // Signed Addition
+          SUB_op,  // Signed Subtraction
+
+          // DLX Pro Version ALU Opcodes
+          ADDU_op,  // Unsigned Addition
+          SUBU_op  // Unsigned Subtraction
+          // verilog_format: on
+        };
+
+
+        /* ADDITION OPERATION FIELDS */
+
+        // verilog_format: off
+        if (check_instr_type(instr) == I_TYPE) {
+        // verilog_format: on
+
+          /* I-TYPE instruction [OPCODE, RS1, RD, IMM] */
+          instr.itype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
+          instr.itype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
+
+          // Check if opcode denotes signed addition
+          // verilog_format: off
+          if (check_instr_sign(instr) == SIGN_TYPE) {
+          // verilog_format: on
+            instr.itype.imm inside {[-(2 ** (NBITS - 1)) : +((2 ** (NBITS - 1)) - 1)]};
+          } else {
+            // Unsigned
+            instr.itype.imm inside {[0 : 2 ** (NBITS - 1)]};
+          }
+
+          // verilog_format: off
+        } else if (check_instr_type(instr) == R_TYPE) {
+          // verilog_format: on
+
+          /* R_TYPE instruction */
+          instr.rtype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
+          instr.rtype.rs2 inside {[0 : DLX_CPU_NUMREGS - 1]};
+          instr.rtype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
+          instr.rtype.func inside {FUNC_ADD, FUNC_SUB, FUNC_ADDU, FUNC_SUBU};
+        }
+
+      });
+
+      // Signal the Sequencer that the initialization is done,
+      // now Driver can pick up item using .get_next_item()
+      finish_item(ifid_sequenceItem);
+    end
+
+    // coverage off b
+    `uvm_info("SEQUENCE", $sformatf(
+              "body(): Done generating %0d Sequence Items...", numSequenceItems), UVM_MEDIUM);
+    // coverage on b
+  endtask : body
+
+endclass
+
+

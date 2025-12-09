@@ -11,7 +11,9 @@
 class Class_IFID_Scoreboard extends uvm_scoreboard;
 
   // Register to Factory
+  // coverage off bcs
   `uvm_component_utils(Class_IFID_Scoreboard)
+  // coverage on bcs
 
   // Constructor
   function new(string name = "Class_IFID_Scoreboard", uvm_component parent = null);
@@ -132,7 +134,7 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
       `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
       // coverage on b
     end else begin
-      // cocverage off
+      // coverage off b
       `uvm_info("RED", $sformatf(
                 "PC mismatch: expected 0x%0h, got 0x%0h",
                 Expected_S1_REG_NPC_OUT,

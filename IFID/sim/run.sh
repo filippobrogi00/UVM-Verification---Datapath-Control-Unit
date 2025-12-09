@@ -157,16 +157,16 @@ cov_print() {
   # Output string
   out_str="Total $cov_type Coverage:\t $total_cov_str"
 
-  if [ $cov -lt 70 ]; then
+  if [ $cov -lt 80 ]; then
     print_red "[INSUFFICIENT] \t $out_str"
-  elif [ $cov -ge 70 ] && [ $cov -lt 80 ]; then
-    print_yellow "[BARE MINIMUM] \t $out_str"
   elif [ $cov -ge 80 ] && [ $cov -lt 90 ]; then
-    print_yellow "[ACCEPTABLE] \t $out_str"
+    print_yellow "[BARE MINIMUM] \t $out_str"
   elif [ $cov -ge 90 ] && [ $cov -lt 95 ]; then
     print_green "[GOOD] \t\t $out_str"
-  else # cov >= 95
+  elif [ $cov -ge 95 ] && [ $cov -lt 98 ]; then
     print_green "[VERY GOOD] \t $out_str"
+  elif [ $cov -ge 98 ]; then
+    print_green "[EXCELLENT] \t $out_str"
   fi
 
 }

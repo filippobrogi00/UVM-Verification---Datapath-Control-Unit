@@ -9,7 +9,9 @@
 class Class_IFID_Test extends uvm_test;
 
   // Register to Factory
-  `uvm_component_utils(Class_IFID_Test);
+  // coverage off bcs
+  `uvm_component_utils(Class_IFID_Test)
+  // coverage on bcs
 
   // Constructor
   function new(string name = "Class_IFID_Test", uvm_component parent = null);
@@ -60,13 +62,21 @@ class Class_IFID_Test extends uvm_test;
     * Start a Sequence for this particular Test
   * */
   virtual task run_phase(uvm_phase phase);
+
+    /* SEQUENCES CREATION */
     // Create "Legal Inputs" test sequence
     Class_IFID_LegalSequence ifid_legalsequence = Class_IFID_LegalSequence::type_id::create(
         "ifid_legalsequence", this
     );
+
     // Create "Random Inputs" test sequence
     Class_IFID_RandomSequence ifid_randomsequence = Class_IFID_RandomSequence::type_id::create(
         "ifid_randomsequence", this
+    );
+
+    // Create "Addition" test sequence
+    Class_IFID_AdditionSequence ifid_additionsequence = Class_IFID_AdditionSequence::type_id::create(
+        "ifid_legalsequence", this
     );
 
     /* Start the test */
@@ -82,6 +92,7 @@ class Class_IFID_Test extends uvm_test;
     fork
       ifid_legalsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
       ifid_randomsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_additionsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
     join
 
     // Stop coverage tracking

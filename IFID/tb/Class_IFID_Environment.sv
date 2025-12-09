@@ -10,7 +10,9 @@
 
 class Class_IFID_Environment extends uvm_env;
   // Register to Factory
+  // coverage off bcs
   `uvm_component_utils(Class_IFID_Environment)
+  // coverage on bcs
 
   // Constructor
   function new(string name = "Class_IFID_Environment", uvm_component parent = null);

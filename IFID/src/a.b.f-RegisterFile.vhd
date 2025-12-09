@@ -59,9 +59,9 @@ begin
 
       -- Operation
       -- NOTE: Disable coverage because ENABLE hardwired to 1
-      -- coverage off bs
+      -- coverage off bsc
       if ((ENABLE = '1') and (nRST = '1')) then
-        -- coverage on bs
+        -- coverage on bsc
         -- Write
         -- NOTE: Writing to R0 not allowed in DLX architecture!
         if ((WR = '1') and (unsigned(ADD_WR) /= 0)) then

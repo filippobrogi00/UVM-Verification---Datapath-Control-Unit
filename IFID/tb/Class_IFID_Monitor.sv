@@ -14,7 +14,9 @@ import pkg_const::*;
 
 class Class_IFID_Monitor extends uvm_monitor;
   // Register to Factory
-  `uvm_component_utils(Class_IFID_Monitor);
+  // coverage off bcs
+  `uvm_component_utils(Class_IFID_Monitor)
+  // coverage on bcs
 
   // Virtual interface handle (later connected through ::get())
   virtual Iface_IFID #(.NBITS(NBITS))          ifid_dut_iface;
