@@ -45,11 +45,10 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
 
       seq_item_port.get_next_item(memwb_seqitem);
 
+      // Drive DUT interface input signals at clock posedge
       drive_item(memwb_seqitem);
 
-      // Drive DUT interface input signals at clock posedge
       @(memwb_dut_iface.ClockingBlock_MEMWB);
-
       seq_item_port.item_done();
     end
   endtask : run_phase
@@ -61,7 +60,7 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
     memwb_dut_iface.S3_REG_ALU_OUT    = item.S3_REG_ALU_OUT;
     memwb_dut_iface.S3_REG_DATA_OUT   = item.S3_REG_DATA_OUT;
 
-    memwb_dut_iface.S3_FF_JAL_EN_OUT     = item.S3_FF_JAL_EN_OUT;
+    memwb_dut_iface.S3_FF_JAL_EN_OUT  = item.S3_FF_JAL_EN_OUT;
     memwb_dut_iface.S3_FF_COND_OUT    = item.S3_FF_COND_OUT;
     memwb_dut_iface.DRAM_WE           = item.DRAM_WE;
     memwb_dut_iface.LMD_LATCH_EN      = item.LMD_LATCH_EN;

@@ -9,7 +9,7 @@ SC_MODULE(MemStage) {
 
     sc_in<sc_uint<IR_SIZE>>     s3_reg_npc_out;
     sc_in<bool>                 s3_ff_jal_en_out;
-    sc_in<sc_uint<4>>           s3_reg_add_wr_out;
+    sc_in<sc_uint<5>>           s3_reg_add_wr_out;
     sc_in<bool>                 s3_reg_cond_out;
     sc_in<bool>                 jump_en;
     sc_in<sc_uint<IR_SIZE>>     s1_add_out; //??
@@ -20,7 +20,7 @@ SC_MODULE(MemStage) {
     sc_out<sc_uint<IR_SIZE>>    s4_reg_npc_out;
     sc_out<bool>                s4_ff_jal_en_out;
     sc_out<sc_uint<IR_SIZE>>    dp_to_dlx_pc;
-    sc_out<sc_uint<4>>          s4_reg_add_wr_out;
+    sc_out<sc_uint<5>>          s4_reg_add_wr_out;
     sc_out<sc_uint<IR_SIZE>>    s4_reg_alu_out;
     sc_out<sc_uint<IR_SIZE>>    s4_reg_lmd_out;
 
@@ -117,7 +117,7 @@ SC_MODULE(MemWBStage) {
 
     sc_in<sc_uint<IR_SIZE>>             s3_reg_npc_out;
     sc_in<bool>                         s3_ff_jal_en_out;
-    sc_in<sc_uint<4>>                   s3_reg_add_wr_out;
+    sc_in<sc_uint<5>>                   s3_reg_add_wr_out;
     sc_in<bool>                         s3_reg_cond_out;
     sc_in<bool>                         jump_en;
     sc_in<sc_uint<IR_SIZE>>             s1_add_out; //??
@@ -133,7 +133,7 @@ SC_MODULE(MemWBStage) {
     sc_signal<sc_uint<IR_SIZE>>         s4_reg_lmd_out;
 
     /* Output signal declarations */
-    sc_out<sc_uint<4>>                  s4_reg_add_wr_out;
+    sc_out<sc_uint<5>>                  s4_reg_add_wr_out;
     sc_out<sc_uint<IR_SIZE>>            dp_to_dlx_pc;
     sc_out<sc_uint<IR_SIZE>>            s5_mux_datain_out;
 

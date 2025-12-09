@@ -8,6 +8,9 @@
   * Environments"
 * */
 
+// Import bins constants
+import pkg_const::*;
+
 class Class_MEMWB_Environment extends uvm_env;
   `uvm_component_utils(Class_MEMWB_Environment)
 
@@ -34,7 +37,8 @@ class Class_MEMWB_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    memwb_agent.memwb_monitor.analysis_port.connect(memwb_scoreboard.analysis_port_imp);
+    for (integer i = 0; i < MEMWB_PIPELINE_STAGES; i++)
+    memwb_agent.memwb_monitor[i].analysis_port.connect(memwb_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
     //memwb_agent.memwb_monitor.analysis_port.connect(

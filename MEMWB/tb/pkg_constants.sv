@@ -11,6 +11,7 @@ package pkg_const;
   localparam int NBITS = 32;  // DLX CPU Bit width
   localparam int DLX_CPU_NUMREGS = 32;  // Number of regs in the CPU
   localparam int IRAM_DEPTH = 48;  // Number of IRAM words
+  localparam int MEMWB_PIPELINE_STAGES = 1;  // Number of IRAM words
 
   /* Register File constants */
   localparam int RF_NUMREGS = 32;  // Number of regs inside RF

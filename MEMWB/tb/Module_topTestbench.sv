@@ -14,27 +14,23 @@ import pkg_const::*;
 
 // Timescale is CLKPERIOD/2 = 1ns
 `timescale 1ns / 1ns
-// Unit of time for delays
-// `timeunit(CLKPERIOD / 4);
-// Simulation time-steps
-// `timeprecision(CLKPERIOD / 4);
 
 // Number of sequence items to generate (default value, can be overridden via
 // cmdline)
-int numSeqItems = 100;
+int numSeqItems = 10;
 
 // Custom Report Server for cleaner messages
 //`include "Class_SimpleReportServer.sv"
 
 // Testbench Class files
-`include "Class_MEMWB_Sequence.sv"
-`include "Class_MEMWB_Driver.sv"
-`include "Class_MEMWB_Monitor.sv"
-`include "Class_MEMWB_Agent.sv"
+`include "classes/Class_MEMWB_Sequence.sv"
+`include "classes/Class_MEMWB_Driver.sv"
+`include "classes/Class_MEMWB_Monitor.sv"
+`include "classes/Class_MEMWB_Agent.sv"
 //`include "Class_MEMWB_CoverageTracker.sv"
-`include "Class_MEMWB_Scoreboard.sv"
-`include "Class_MEMWB_Environment.sv"
-`include "Class_MEMWB_Test.sv"
+`include "classes/Class_MEMWB_Scoreboard.sv"
+`include "classes/Class_MEMWB_Environment.sv"
+`include "classes/Class_MEMWB_Test.sv"
 
 module Module_topTestbench;
 
@@ -56,12 +52,16 @@ module Module_topTestbench;
       .rst_n(globalRst_n)
   );
 
+  Iface_GoldenModel #(IR_SIZE) gm_iface();
+
   // Instance DUT using wrapper
   Module_MEMWB_Wrapper #(.IR_SIZE(IR_SIZE)) memwb_toplevel (
-      .memwb_iface(memwb_dut_iface)
+    .memwb_iface(memwb_dut_iface)
   );
 
-  MemWBStage golden_module();
+  Module_GoldenModel_Wrapper #(.IR_SIZE(IR_SIZE)) golden_module(
+    .gm_iface(gm_iface)
+  );
 
   /*
   * PROC_RunTest: Test configuration and run process
@@ -89,6 +89,10 @@ module Module_topTestbench;
     // Pass Virtual DUT interface handle down to components through Config Object
     uvm_config_db#(virtual Iface_MEMWB #(IR_SIZE))::set(
         null, "*", "memwb_dut_iface", memwb_dut_iface);
+
+    // Pass golden model interface handle down to components through Config Object
+    uvm_config_db#(virtual Iface_GoldenModel #(IR_SIZE))::set(
+        null, "*", "gm_iface", gm_iface);
 
     // Running test...
     run_test("Class_MEMWB_Test");

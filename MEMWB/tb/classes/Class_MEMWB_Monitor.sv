@@ -22,6 +22,8 @@ class Class_MEMWB_Monitor extends uvm_monitor;
   // components
   uvm_analysis_port #(Class_MEMWB_SequenceItem) analysis_port;
 
+  integer wait_cycles = 0;
+
   // Constructor
   function new(string name = "Class_MEMWB_Monitor", uvm_component parent = null);
     super.new(name, parent);
@@ -44,27 +46,24 @@ class Class_MEMWB_Monitor extends uvm_monitor;
   endfunction : build_phase
 
 
-  /*
-  * RUN PHASE:
-    * Monitor the interface (forever) to catch transactions
-    * Write the result into Analysis Port (broadcast to Scoreboard) when
-    * complete
-  * */
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
 
     // Wait for reset signal
     @(posedge memwb_dut_iface.rst_n);
+
+    //Wait for the delay specified delay
+    repeat (wait_cycles) @(memwb_dut_iface.ClockingBlock_MEMWB);
     forever begin
       // Create TLO to store transaction whole transaction after
       // DUT has calculated outputs and they're available to get from the interface
       Class_MEMWB_SequenceItem memwb_seqitem = Class_MEMWB_SequenceItem::type_id::create(
           "MEMWB_seqitem", this
       );
-      //Wait for the clock signal
-      // It's important to do this at the beginning and not
 
-      // Sample input
+      // Sample inputs
+
+      @(memwb_dut_iface.ClockingBlock_MEMWB);
       memwb_seqitem.DRAM_OUT          = memwb_dut_iface.DRAM_OUT;
       memwb_seqitem.S1_ADD_OUT        = memwb_dut_iface.S1_ADD_OUT;
       memwb_seqitem.S3_REG_NPC_OUT    = memwb_dut_iface.S3_REG_NPC_OUT;
@@ -77,21 +76,19 @@ class Class_MEMWB_Monitor extends uvm_monitor;
       memwb_seqitem.LMD_LATCH_EN      = memwb_dut_iface.LMD_LATCH_EN;
       memwb_seqitem.JUMP_EN           = memwb_dut_iface.JUMP_EN;
       memwb_seqitem.PC_LATCH_EN       = memwb_dut_iface.PC_LATCH_EN;
-      memwb_seqitem.WB_MUX_SEL        = memwb_dut_iface.WB_MUX_SEL;
       memwb_seqitem.RF_WE             = memwb_dut_iface.RF_WE;
 
       memwb_dut_iface.S3_REG_ADD_WR_OUT = memwb_dut_iface.S3_REG_ADD_WR_OUT;
 
-      @(memwb_dut_iface.ClockingBlock_MEMWB);
+
+      //Sample unpipelined inputs
+      memwb_seqitem.WB_MUX_SEL        = memwb_dut_iface.WB_MUX_SEL;
 
       // Sample outputs
       memwb_seqitem.DP_TO_DLX_PC      = memwb_dut_iface.DP_TO_DLX_PC;
       memwb_seqitem.S4_REG_ADD_WR_OUT = memwb_dut_iface.S4_REG_ADD_WR_OUT;
-      memwb_seqitem.S5_MUX_DATAIN_OUT = memwb_dut_iface.S4_REG_ADD_WR_OUT;
+      memwb_seqitem.S5_MUX_DATAIN_OUT = memwb_dut_iface.S5_MUX_DATAIN_OUT;
 
-    
-      @(memwb_dut_iface.ClockingBlock_MEMWB);
-      
       // Broadcast data object to subscribers (Scoreboard and CoverageTracker)
       analysis_port.write(memwb_seqitem);
     end

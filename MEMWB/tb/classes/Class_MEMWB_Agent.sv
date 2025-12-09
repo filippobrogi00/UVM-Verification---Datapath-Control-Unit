@@ -5,6 +5,9 @@
 * connects them via TLM interfaces.
 * */
 
+// Import bins constants
+import pkg_const::*;
+
 class Class_MEMWB_Agent extends uvm_agent;
   `uvm_component_utils(Class_MEMWB_Agent)
 
@@ -15,7 +18,8 @@ class Class_MEMWB_Agent extends uvm_agent;
   // Components instantiation
   uvm_sequencer #(Class_MEMWB_SequenceItem) memwb_sequencer;
   Class_MEMWB_Driver                        memwb_driver;
-  Class_MEMWB_Monitor                       memwb_monitor;
+  Class_MEMWB_Monitor                       memwb_monitor[MEMWB_PIPELINE_STAGES];
+  integer delay = 1;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
@@ -25,7 +29,12 @@ class Class_MEMWB_Agent extends uvm_agent;
 
     memwb_driver = Class_MEMWB_Driver::type_id::create("memwb_driver", this);
 
-    memwb_monitor = Class_MEMWB_Monitor::type_id::create("memwb_monitor", this);
+    for (integer i = 0; i < MEMWB_PIPELINE_STAGES; i++) begin
+        string monitor_name;
+        $sformatf(monitor_name, "memwb_monitor%0d", i);
+        memwb_monitor[i] = Class_MEMWB_Monitor::type_id::create(monitor_name, this);
+        memwb_monitor[i].wait_cycles = i;
+    end
   endfunction : build_phase
 
   virtual function void connect_phase(uvm_phase phase);
