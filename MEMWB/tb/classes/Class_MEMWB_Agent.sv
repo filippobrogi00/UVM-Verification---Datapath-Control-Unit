@@ -30,8 +30,7 @@ class Class_MEMWB_Agent extends uvm_agent;
     memwb_driver = Class_MEMWB_Driver::type_id::create("memwb_driver", this);
 
     for (integer i = 0; i < MEMWB_PIPELINE_STAGES; i++) begin
-        string monitor_name;
-        $sformatf(monitor_name, "memwb_monitor%0d", i);
+        string monitor_name = $sformatf("memwb_monitor%0d", i);
         memwb_monitor[i] = Class_MEMWB_Monitor::type_id::create(monitor_name, this);
         memwb_monitor[i].wait_cycles = i;
     end

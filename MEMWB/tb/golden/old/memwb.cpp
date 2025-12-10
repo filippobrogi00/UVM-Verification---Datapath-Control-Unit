@@ -178,3 +178,4 @@ SC_MODULE(MemWBStage) {
     }
 };
 SC_MODULE_EXPORT(MemWBStage);
+

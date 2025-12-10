@@ -66,33 +66,43 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
 
   virtual function void copy(Class_MEMWB_SequenceItem targetItem);
     // Copy all fields
-    targetItem.DRAM_OUT          = this.DRAM_OUT;
-    targetItem.S1_ADD_OUT        = this.S1_ADD_OUT;
-    targetItem.S3_REG_NPC_OUT    = this.S3_REG_NPC_OUT;
-    targetItem.S3_REG_ALU_OUT    = this.S3_REG_ALU_OUT;
-    targetItem.S3_REG_DATA_OUT   = this.S3_REG_DATA_OUT;
-                                                         ;
-    targetItem.S3_FF_JAL_EN_OUT     = this.S3_FF_JAL_EN_OUT;
-    targetItem.S3_FF_COND_OUT    = this.S3_FF_COND_OUT;
-    targetItem.DRAM_WE           = this.DRAM_WE;
-    targetItem.LMD_LATCH_EN      = this.LMD_LATCH_EN;
-    targetItem.JUMP_EN           = this.JUMP_EN;
-    targetItem.PC_LATCH_EN       = this.PC_LATCH_EN;
-    targetItem.WB_MUX_SEL        = this.WB_MUX_SEL;
-    targetItem.RF_WE             = this.RF_WE;
+    this.DRAM_OUT          = targetItem.DRAM_OUT;
+    this.S1_ADD_OUT        = targetItem.S1_ADD_OUT;
+    this.S3_REG_NPC_OUT    = targetItem.S3_REG_NPC_OUT;
+    this.S3_REG_ALU_OUT    = targetItem.S3_REG_ALU_OUT;
+    this.S3_REG_DATA_OUT   = targetItem.S3_REG_DATA_OUT;
 
-    targetItem.DP_TO_DLX_PC      = this.DP_TO_DLX_PC;
-    targetItem.S5_MUX_DATAIN_OUT = this.S5_MUX_DATAIN_OUT;
+    this.S3_FF_JAL_EN_OUT  = targetItem.S3_FF_JAL_EN_OUT;
+    this.S3_FF_COND_OUT    = targetItem.S3_FF_COND_OUT;
+    this.DRAM_WE           = targetItem.DRAM_WE;
+    this.LMD_LATCH_EN      = targetItem.LMD_LATCH_EN;
+    this.JUMP_EN           = targetItem.JUMP_EN;
+    this.PC_LATCH_EN       = targetItem.PC_LATCH_EN;
+    this.WB_MUX_SEL        = targetItem.WB_MUX_SEL;
+    this.RF_WE             = targetItem.RF_WE;
 
-    targetItem.S3_REG_ADD_WR_OUT = this.S3_REG_ADD_WR_OUT;
-    targetItem.S4_REG_ADD_WR_OUT = this.S4_REG_ADD_WR_OUT;
+    this.DP_TO_DLX_PC      = targetItem.DP_TO_DLX_PC;
+    this.S5_MUX_DATAIN_OUT = targetItem.S5_MUX_DATAIN_OUT;
+
+    this.S3_REG_ADD_WR_OUT = targetItem.S3_REG_ADD_WR_OUT;
+    this.S4_REG_ADD_WR_OUT = targetItem.S4_REG_ADD_WR_OUT;
     super.copy(targetItem);  // keep base-class stuff consistent
   endfunction
 
   virtual function string convert2str();
-    return $sformatf("\tinputs\ndram out: %0d\ns1_add_out: %0d\ns3_reg_npc_out: %0d\ns3_reg_alu_out: %0d\ns3_reg_data_out:%d\ncontrol signals: %0b\n\toutputs\ndp_to_dlx_pc: %d\ns4_reg_add_wr_out: %0d\ns5_mux_datain_out: %0d\n",
-        this.DRAM_OUT, this.S1_ADD_OUT, this.S3_REG_NPC_OUT, this.S3_REG_ALU_OUT, this.S3_REG_DATA_OUT,
-        0,
+    logic [10:0] control_signals = {
+        this.S3_FF_JAL_EN_OUT,
+        this.S3_FF_COND_OUT,
+        this.JUMP_EN,
+        this.LMD_LATCH_EN,
+        this.WB_MUX_SEL,
+        this.RF_WE,
+        this.DRAM_WE
+        };
+
+    return $sformatf("\tinputs\ndram out: %0d\ns1_add_out: %0d\ns3_reg_npc_out: %0d\ns3_reg_alu_out: %0d\ns3_reg_data_out:%d\ns3_reg_add_wr_out: %5d\ncontrol signals: %7b\n\toutputs\ndp_to_dlx_pc: %d\ns4_reg_add_wr_out: %0d\ns5_mux_datain_out: %0d\n",
+        this.DRAM_OUT, this.S1_ADD_OUT, this.S3_REG_NPC_OUT, this.S3_REG_ALU_OUT, this.S3_REG_DATA_OUT, S3_REG_ADD_WR_OUT,
+        control_signals,
         //{this.S3_FF_JAL_EN_OUT, this.S3_REG_ADD_WR_OUT, this.S3_FF_COND_OUT, this.DRAM_WE. this.LMD_LATCH_EN, this.WB_MUX_SEL, this.RF_WE},
         this.DP_TO_DLX_PC, this.S4_REG_ADD_WR_OUT, this.S5_MUX_DATAIN_OUT);
   endfunction

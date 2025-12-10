@@ -17,7 +17,7 @@ import pkg_const::*;
 
 // Number of sequence items to generate (default value, can be overridden via
 // cmdline)
-int numSeqItems = 10;
+int numSeqItems = 100;
 
 // Custom Report Server for cleaner messages
 //`include "Class_SimpleReportServer.sv"
@@ -52,15 +52,9 @@ module Module_topTestbench;
       .rst_n(globalRst_n)
   );
 
-  Iface_GoldenModel #(IR_SIZE) gm_iface();
-
   // Instance DUT using wrapper
   Module_MEMWB_Wrapper #(.IR_SIZE(IR_SIZE)) memwb_toplevel (
     .memwb_iface(memwb_dut_iface)
-  );
-
-  Module_GoldenModel_Wrapper #(.IR_SIZE(IR_SIZE)) golden_module(
-    .gm_iface(gm_iface)
   );
 
   /*
@@ -89,10 +83,6 @@ module Module_topTestbench;
     // Pass Virtual DUT interface handle down to components through Config Object
     uvm_config_db#(virtual Iface_MEMWB #(IR_SIZE))::set(
         null, "*", "memwb_dut_iface", memwb_dut_iface);
-
-    // Pass golden model interface handle down to components through Config Object
-    uvm_config_db#(virtual Iface_GoldenModel #(IR_SIZE))::set(
-        null, "*", "gm_iface", gm_iface);
 
     // Running test...
     run_test("Class_MEMWB_Test");

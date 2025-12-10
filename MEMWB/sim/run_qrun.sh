@@ -10,8 +10,8 @@ PACKAGES="$TB_DIR/pkg_constants.sv"
 #SV_COMPILE_LIST="$TB_DIR/Iface_MEMWB.sv $GM_DIR/Iface_GoldenModel.sv $TB_DIR/Module_MEMWB_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 SV_COMPILE_LIST="$(find $TB_DIR -maxdepth 1 -name "*.sv") $(find $GM_DIR -maxdepth 1 -name "*.sv")"
 TOPLEVEL="Module_topTestbench"
-GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.cpp")
-echo $GM_FILES
+#GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.cpp")
+GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.c")
 
 ###################
 ###### USAGE ######
@@ -46,5 +46,5 @@ fi
 source ./sim_colors.sh
 source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 
-qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST -sysc $GM_FILES -top $TOPLEVEL
-
+#qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
+qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $GM_FILES -top $TOPLEVEL

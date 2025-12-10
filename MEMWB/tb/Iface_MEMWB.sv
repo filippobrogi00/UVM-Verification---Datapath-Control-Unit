@@ -49,14 +49,15 @@ interface Iface_MEMWB #(
     /* (TB) INPUTS: TB <- DUT */
     // NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
     //input #(1) clk, rst_n, DRAM_OUT, S1_ADD_OUT, S3_REG_NPC_OUT,
-    //        S3_FF_JAL_EN_OUT, S3_REG_ADD_WR_OUT, S3_FF_COND_OUT,
-    //        S3_REG_ALU_OUT, S3_REG_DATA_OUT, DRAM_WE, LMD_LATCH_EN, JUMP_EN,
-    //        PC_LATCH_EN, WB_MUX_SEL, RF_WE;
+            S3_FF_JAL_EN_OUT, S3_REG_ADD_WR_OUT, S3_FF_COND_OUT,
+            S3_REG_ALU_OUT, S3_REG_DATA_OUT, DRAM_WE, LMD_LATCH_EN, JUMP_EN,
+            PC_LATCH_EN, WB_MUX_SEL, RF_WE;
 
-    /* (TB) OUTPUTS: TB -> DUT */
-    // NOTE: Drive DUT's inputs at (posedge clk - CLKPERIOD/4)
+    ///* (TB) OUTPUTS: TB -> DUT */
+    //// NOTE: Drive DUT's inputs at (posedge clk - CLKPERIOD/4)
     //output #(-1) DP_TO_DLX_PC, S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT;
     default input #(1) output #(-1);
+    //default input #(1) output #(1);
   endclocking
 
 endinterface

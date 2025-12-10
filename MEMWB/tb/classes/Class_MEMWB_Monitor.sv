@@ -78,7 +78,7 @@ class Class_MEMWB_Monitor extends uvm_monitor;
       memwb_seqitem.PC_LATCH_EN       = memwb_dut_iface.PC_LATCH_EN;
       memwb_seqitem.RF_WE             = memwb_dut_iface.RF_WE;
 
-      memwb_dut_iface.S3_REG_ADD_WR_OUT = memwb_dut_iface.S3_REG_ADD_WR_OUT;
+      memwb_seqitem.S3_REG_ADD_WR_OUT = memwb_dut_iface.S3_REG_ADD_WR_OUT;
 
 
       //Sample unpipelined inputs
