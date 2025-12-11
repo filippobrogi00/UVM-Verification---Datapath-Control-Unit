@@ -17,21 +17,14 @@ TOPLEVEL="Module_topTestbench"
 COV_EXCLUDE_COMMAND=$(printf "coverage exclude -du %s; " $COV_EXCLUDE)
 FORCE_COMMAND=""
 
-for i in {1..2}
+for i in $(seq 1 $(cat $FAULT_LIST | wc -l))
 do
+    echo $i
     FAULT=$(awk -F' ' "NR==$i {print \$1}" $FAULT_LIST | sed "s/sa//")
     SIGNAL=$(awk -F' ' "NR==$i {print \$3}" $FAULT_LIST)
     FORCE_COMMAND="$FORCE_COMMAND; force -freeze $DUT_HIERARCHY/$SIGNAL $FAULT $(($FAULT_DURATION*($i - 1))) -cancel $(($FAULT_DURATION*$i))"
 done
 echo $FORCE_COMMAND
-
-###################
-###### USAGE ######
-###################
-if [[ $# -gt 1 ]]; then
-  echo "Usage: $0 [number of sequence items per sequence to generate (optional)]"
-  return
-fi
 
 #############################################################
 ###########     SCRIPT INCLUDES AND DIRECTORY     ###########
