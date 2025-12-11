@@ -1,6 +1,5 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
-import "DPI-C" function void test();
 
 /*
 * SCOREBOARD :
@@ -52,9 +51,6 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
    */
 
   virtual function void write(Class_MEMWB_SequenceItem memwb_seqitem);
-
-    test();
-
     //Display payload received
     `uvm_info(get_type_name(), $sformatf("Packet received:\n %s", memwb_seqitem.convert2str()), UVM_LOW)
 

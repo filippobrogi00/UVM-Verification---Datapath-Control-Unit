@@ -3,16 +3,18 @@
 SRC_DIR=../src
 TB_DIR=../tb
 GM_DIR=../tb/golden
+COV_EXCLUDE="work.rf_pkg work.Module_topTestbench work.Module_topTestbench_sv_unit"
 SEED=0
 
 SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
-PACKAGES="$TB_DIR/pkg_constants.sv"
 #SV_COMPILE_LIST="$TB_DIR/Module_GoldenModel.sv $TB_DIR/Iface_MEMWB.sv $TB_DIR/Module_MEMWB_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 #SV_COMPILE_LIST="$TB_DIR/Iface_MEMWB.sv $GM_DIR/Iface_GoldenModel.sv $TB_DIR/Module_MEMWB_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 SV_COMPILE_LIST="$(find $TB_DIR -maxdepth 1 -name "*.sv") $(find $GM_DIR -maxdepth 1 -name "*.sv")"
 TOPLEVEL="Module_topTestbench"
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.cpp")
 GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.c")
+COV_EXCLUDE_COMMAND=$(printf "coverage exclude -du %s; " $COV_EXCLUDE)
+echo $COV_EXCLUDE_COMMAND
 
 ###################
 ###### USAGE ######
@@ -48,5 +50,7 @@ source ./sim_colors.sh
 source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 
 #qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
-qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $GM_FILES -top $TOPLEVEL
+rm -rf cov_$SEED.ucdb covhtmlreport
+
+qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $SV_COMPILE_LIST $GM_FILES -do "$COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
 vcover report -details -html cov_$SEED.ucdb

@@ -1,2 +1,0 @@
-var g_data = {"29":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":5,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_MEMWB_CoverageTracker/Covergroup_MEMWB",1,1,30],"cov":[8,8,100.00],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
-processCovergroupsData(g_data);
