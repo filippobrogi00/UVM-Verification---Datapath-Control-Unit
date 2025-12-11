@@ -54,6 +54,7 @@ class Class_MEMWB_Monitor extends uvm_monitor;
 
     //Wait for the delay specified delay
     repeat (wait_cycles) @(memwb_dut_iface.ClockingBlock_MEMWB);
+    //repeat (wait_cycles) @(posedge memwb_dut_iface.clk);
     forever begin
       // Create TLO to store transaction whole transaction after
       // DUT has calculated outputs and they're available to get from the interface
@@ -64,6 +65,7 @@ class Class_MEMWB_Monitor extends uvm_monitor;
       // Sample inputs
 
       @(memwb_dut_iface.ClockingBlock_MEMWB);
+      //@(posedge memwb_dut_iface.clk);
       memwb_seqitem.DRAM_OUT          = memwb_dut_iface.DRAM_OUT;
       memwb_seqitem.S1_ADD_OUT        = memwb_dut_iface.S1_ADD_OUT;
       memwb_seqitem.S3_REG_NPC_OUT    = memwb_dut_iface.S3_REG_NPC_OUT;

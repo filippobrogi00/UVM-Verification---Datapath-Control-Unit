@@ -27,7 +27,7 @@ int numSeqItems = 100;
 `include "classes/Class_MEMWB_Driver.sv"
 `include "classes/Class_MEMWB_Monitor.sv"
 `include "classes/Class_MEMWB_Agent.sv"
-//`include "Class_MEMWB_CoverageTracker.sv"
+`include "classes/Class_MEMWB_CoverageTracker.sv"
 `include "classes/Class_MEMWB_Scoreboard.sv"
 `include "classes/Class_MEMWB_Environment.sv"
 `include "classes/Class_MEMWB_Test.sv"

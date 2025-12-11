@@ -49,6 +49,7 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
       drive_item(memwb_seqitem);
 
       @(memwb_dut_iface.ClockingBlock_MEMWB);
+      //@(posedge memwb_dut_iface.clk);
       seq_item_port.item_done();
     end
   endtask : run_phase

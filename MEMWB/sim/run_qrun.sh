@@ -3,6 +3,7 @@
 SRC_DIR=../src
 TB_DIR=../tb
 GM_DIR=../tb/golden
+SEED=0
 
 SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
 PACKAGES="$TB_DIR/pkg_constants.sv"
@@ -48,3 +49,4 @@ source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 
 #qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
 qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $GM_FILES -top $TOPLEVEL
+vcover report -details -html cov_$SEED.ucdb
