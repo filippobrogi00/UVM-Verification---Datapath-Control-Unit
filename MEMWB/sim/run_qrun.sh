@@ -60,6 +60,5 @@ source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 #qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
 rm -rf cov_$SEED.ucdb covhtmlreport
 
-#qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $SV_COMPILE_LIST $GM_FILES -do "$COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
 qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $SV_COMPILE_LIST $GM_FILES -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
-#vcover report -details -html cov_$SEED.ucdb
+vcover report -details -html cov_$SEED.ucdb
