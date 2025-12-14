@@ -1,0 +1,20 @@
+QuestaSim-64 qrun 2020.4 Utility 2020.10 Oct 13 2020
+Start time: 22:47:21 on Dec 14,2025
+qrun -clean -uvm -autoorder -mixedsvvh -coverage "+cover=sbce" ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd ../src/a.b-DP-MEMWB.vhd ../src/a.b.a.a-generic_shifter.vhd ../src/a.b.b-DRAM.vhd ../src/a.b.c-SignExtender26-32.vhd ../src/a.b.c-UnsignExtender26-32.vhd ../src/a.b.d-MUX.vhd ../src/a.b.e-PC_Add.vhd ../src/a.b.f-RegisterFile.vhd ../src/a.b.g-FlipFlop.vhd ../src/a.b.h-SignExtender16-32.vhd ../src/a.b.i-ZeroComparator.vhd ../src/a.c-IRAM.vhd ../tb/Iface_MEMWB.sv ../tb/Module_MEMWB_Wrapper.sv ../tb/Module_topTestbench.sv ../tb/pkg_constants.sv -do "; force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -top Module_topTestbench 
+Deleting directory qrun.out...
+Creating library 'qrun.out/work'.
+Mapping library 'mtiUvm' to '/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/uvm-1.1d'.
+QuestaSim-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 22:47:21 on Dec 14,2025
+vlog -mixedsvvh ../tb/Iface_MEMWB.sv ../tb/Module_MEMWB_Wrapper.sv ../tb/Module_topTestbench.sv ../tb/pkg_constants.sv -work qrun.out/work "+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src" -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
+** Error: ../tb/Iface_MEMWB.sv(3): (vlog-13006) Could not find the package (pkg_const).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+-- Compiling package pkg_const
+** Warning: ../tb/pkg_constants.sv(6): (vlog-2275) Existing package 'pkg_const' at line 6 will be overwritten.
+End time: 22:47:21 on Dec 14,2025, Elapsed time: 0:00:00
+Errors: 1, Warnings: 1
+child process exited abnormally
+End time: 22:47:21 on Dec 14,2025, Elapsed time: 0:00:00
+*** Summary *********************************************
+    qrun: Errors:   0, Warnings:   0
+    vlog: Errors:   1, Warnings:   1
+  Totals: Errors:   1, Warnings:   1

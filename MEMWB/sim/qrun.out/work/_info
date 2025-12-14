@@ -1,0 +1,92 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim
+vModule_MEMWB_Wrapper
+Z1 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z2 !s110 1765748841
+!i10b 1
+!s100 cJl>OjlXJ<HnEIV>1@__@1
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+InIbA:UKXTif_ncP?[gAn<0
+Z4 !s105 Iface_MEMWB_sv_unit
+S1
+R0
+Z5 w1765748196
+8../tb/Module_MEMWB_Wrapper.sv
+F../tb/Module_MEMWB_Wrapper.sv
+!i122 0
+L0 4 56
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2020.4;71
+r1
+!s85 0
+31
+Z8 !s108 1765748841.000000
+!s107 ../tb/classes/Class_MEMWB_Test.sv|../tb/classes/Class_MEMWB_Environment.sv|../tb/classes/Class_MEMWB_Scoreboard.sv|../tb/classes/Class_MEMWB_CoverageTracker.sv|../tb/classes/Class_MEMWB_Agent.sv|../tb/classes/Class_MEMWB_Monitor.sv|../tb/classes/Class_MEMWB_Driver.sv|../tb/classes/Class_MEMWB_Sequence.sv|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/uvm_macros.svh|../tb/pkg_constants.sv|../tb/Module_topTestbench.sv|../tb/Module_MEMWB_Wrapper.sv|../tb/Iface_MEMWB.sv|
+Z9 !s90 -mixedsvvh|../tb/Iface_MEMWB.sv|../tb/Module_MEMWB_Wrapper.sv|../tb/Module_topTestbench.sv|../tb/pkg_constants.sv|-work|qrun.out/work|+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src|-csession=incr|-writesessionid|+qrun.out/top_dus|-statslog|qrun.out/stats_log|
+!i113 0
+Z10 o-mixedsvvh -work qrun.out/work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 !s92 -mixedsvvh -work qrun.out/work +incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z12 tCvgOpt 0
+n@module_@m@e@m@w@b_@wrapper
+vModule_topTestbench
+R1
+R2
+!i10b 1
+!s100 fo2L4@j<2o1hHOEMmUKfA1
+R3
+I@7@6]zfgZC>iJc=nUJTQD0
+R4
+S1
+R0
+R5
+8../tb/Module_topTestbench.sv
+F../tb/Module_topTestbench.sv
+!i122 0
+L0 35 61
+R6
+R7
+r1
+!s85 0
+31
+R8
+Z13 !s107 ../tb/classes/Class_MEMWB_Test.sv|../tb/classes/Class_MEMWB_Environment.sv|../tb/classes/Class_MEMWB_Scoreboard.sv|../tb/classes/Class_MEMWB_CoverageTracker.sv|../tb/classes/Class_MEMWB_Agent.sv|../tb/classes/Class_MEMWB_Monitor.sv|../tb/classes/Class_MEMWB_Driver.sv|../tb/classes/Class_MEMWB_Sequence.sv|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh|/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src/uvm_macros.svh|../tb/pkg_constants.sv|../tb/Module_topTestbench.sv|../tb/Module_MEMWB_Wrapper.sv|../tb/Iface_MEMWB.sv|
+R9
+!i113 0
+R10
+R11
+R12
+n@module_top@testbench
+Xpkg_const
+R1
+R2
+!i10b 1
+!s100 5AO53Ak4@O@GeFFRWVFcH0
+R3
+I?>`TB?U7jB:;bDzHb5bIS2
+S1
+R0
+R5
+8../tb/pkg_constants.sv
+F../tb/pkg_constants.sv
+!i122 0
+L0 6 0
+V?>`TB?U7jB:;bDzHb5bIS2
+R7
+r1
+!s85 0
+31
+R8
+R13
+R9
+!i113 0
+R10
+R11
+R12
