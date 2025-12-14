@@ -15,14 +15,16 @@ module Module_EXE_Wrapper #(
   // Instantiate DUT (exe_sv SV wrapper inside design.sv) and connect each of its pins
   // to an interface's signals
 
-  	DP_EXE #(
+  	DP_EX 
+	/*#(
       	.IR_SIZE        (IR_SIZE),
       	.OPERAND_SIZE   (OPERAND_SIZE),
       	.I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
       	.J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
       	.RF_REGBITS     (RF_REGBITS),
       	.RF_NUMREGS     (RF_NUMREGS)
-  	) DP_EXE_inst (
+  	) */
+	DP_EXE_inst (
       	// Inputs
       	.CLK              	(exe_iface.CLK),
       	.nRST             	(exe_iface.nRST),
@@ -43,18 +45,11 @@ module Module_EXE_Wrapper #(
       	.EQZ_NEQZ			(exe_iface.EQZ_NEQZ),
       	.DP_ALU_OPCODE		(exe_iface.DP_ALU_OPCODE),
 		// Outputs
-      	.DRAM_Addr			(exe_iface.DRAM_Addr),
-      	.DRAM_DATA			(exe_iface.DRAM_DATA),
       	.S3_FF_JAL_EN_OUT	(exe_iface.S3_FF_JAL_EN_OUT),
       	.S3_REG_ADD_WR_OUT	(exe_iface.S3_REG_ADD_WR_OUT),
       	.S3_FF_COND_OUT		(exe_iface.S3_FF_COND_OUT),
       	.S3_REG_ALU_OUT		(exe_iface.S3_REG_ALU_OUT),
       	.S3_REG_DATA_OUT	(exe_iface.S3_REG_DATA_OUT),
-      	.S3_BranchTaken		(exe_iface.S3_BranchTaken),
-      	.S3_MUX_A_OUT		(exe_iface.S3_MUX_A_OUT),
-      	.S3_MUX_B_OUT		(exe_iface.S3_MUX_B_OUT),
-      	.S3_ALU_OUT			(exe_iface.S3_ALU_OUT),
-      	.S3_MUX_JMP_OUT		(exe_iface.S3_MUX_JMP_OUT),
       	.S3_REG_NPC_OUT		(exe_iface.S3_REG_NPC_OUT)		
 	);
 

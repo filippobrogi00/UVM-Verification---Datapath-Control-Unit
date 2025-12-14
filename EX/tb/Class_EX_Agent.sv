@@ -9,8 +9,9 @@
 class Class_EXE_Agent extends uvm_agent;
 
   // Register to Factory
+  // coverage off
   `uvm_component_utils(Class_EXE_Agent)
-
+  // coverage on
   // Constructor
   function new(string name = "Class_EXE_Agent", uvm_component parent = null);
     super.new(name, parent);

@@ -9,7 +9,9 @@
 
 class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem);
   // Register to Factory
+    // coverage off
   `uvm_component_utils(Class_EXE_CoverageTracker)
+    // coverage on
 
   // Analysis Port implementation (broadcast from Monitor)
   uvm_analysis_imp #(Class_EXE_SequenceItem, Class_EXE_CoverageTracker) analysis_port_imp;
@@ -23,7 +25,8 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
 
   // NOTE: "with function sample" => Covergroup parameterized with transaction item
   covergroup Covergroup_EXE with function sample (Class_EXE_SequenceItem exe_seqitem);
-    // Multi-bit
+    
+	// Multi-bit
     Coverpoint_S1_REG_NPC_OUT:		coverpoint exe_seqitem.S1_REG_NPC_OUT;
     Coverpoint_S2_REG_NPC_OUT:		coverpoint exe_seqitem.S2_REG_NPC_OUT;
     Coverpoint_S2_REG_ADD_WR_OUT:	coverpoint exe_seqitem.S2_REG_ADD_WR_OUT;
@@ -40,7 +43,6 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
     Coverpoint_ALU_OUTREG_EN:		coverpoint exe_seqitem.ALU_OUTREG_EN;
     Coverpoint_EQ_COND:				coverpoint exe_seqitem.EQ_COND;
     Coverpoint_JMP:					coverpoint exe_seqitem.JMP;
-    Coverpoint_IR_LATCH_EN:			coverpoint exe_seqitem.IR_LATCH_EN;
     Coverpoint_EQZ_NEQZ:			coverpoint exe_seqitem.EQZ_NEQZ;
 
   endgroup : Covergroup_EXE
@@ -82,7 +84,7 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-    // coverage off b
+    // coverage off
 
     // Get interface from config DB
     if (!uvm_config_db#(virtual Iface_EXE #(NBITS))::get(
@@ -91,7 +93,7 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
       `uvm_error("[COVERAGE TRACKER]", "Failed to get DUT interface")
     end
 
-    // coverage on b
+    // coverage on
 
     // Create analysis port
     analysis_port_imp = new("analysis_port_imp", this);
@@ -120,8 +122,10 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
   * */
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
+    	// coverage off
     `uvm_info("COVERAGE TRACKER", $sformatf("Functional Coverage: %.2f%%", coverageGet()),
               UVM_MEDIUM);
+    	// coverage on
   endfunction : report_phase
 
 endclass

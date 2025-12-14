@@ -10,7 +10,9 @@
 
 class Class_EXE_Environment extends uvm_env;
   // Register to Factory
+  // coverage off
   `uvm_component_utils(Class_EXE_Environment)
+  // coverage om
 
   // Constructor
   function new(string name = "Class_EXE_Environment", uvm_component parent = null);
@@ -24,6 +26,9 @@ class Class_EXE_Environment extends uvm_env;
   // Coverage Tracker
   Class_EXE_CoverageTracker exe_coverage_tracker;
 
+	// Add fault Injector
+//  Class_EXE_FaultInjector exe_fault_injector;
+
   /*
   * BUILD PHASE: Build components
   * */
@@ -33,9 +38,12 @@ class Class_EXE_Environment extends uvm_env;
     // Create components
     exe_agent = Class_EXE_Agent::type_id::create("exe_agent", this);
     exe_scoreboard = Class_EXE_Scoreboard::type_id::create("exe_scoreboard", this);
-    exe_coverage_tracker =
-        Class_EXE_CoverageTracker::type_id::create("exe_coverage_tracker", this);
-  endfunction : build_phase
+    exe_coverage_tracker = Class_EXE_CoverageTracker::type_id::create("exe_coverage_tracker", this);
+  
+	// Create Fault Injector
+//    exe_fault_injector = Class_EXE_FaultInjector::type_id::create("exe_fault_injector", this);
+
+	endfunction : build_phase
 
   /*
   * CONNECT PHASE:

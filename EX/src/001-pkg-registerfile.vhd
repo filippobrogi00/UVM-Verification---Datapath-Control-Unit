@@ -16,6 +16,7 @@ package body  rf_pkg is
   -- @Description: Calculates the logarithm in base 2 of the arugment
   -- @params:
   --    num : integer => argument of the logarithm
+	-- coverage off
   function log2(num : integer) return integer is
     variable i : integer := 0;
     variable current_num : integer := num;
@@ -28,4 +29,5 @@ package body  rf_pkg is
 
     return i;
   end function log2;
+	-- coverage on
 end package body; 

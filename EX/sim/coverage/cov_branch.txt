@@ -1,0 +1,46 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /Module_topTestbench_sv_unit
+=== Design Unit: work.Module_topTestbench_sv_unit
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         9         4         5    44.44%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench_sv_unit
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../tb/Module_topTestbench.sv
+------------------------------------CASE Branch------------------------------------
+    129                                     7140     Count coming in to CASE
+    129             1                       6105     
+    129             1                       1019     
+    129             1                    ***0***     
+    129             1                         10     
+    129             1                    ***0***     
+Branch totals: 3 hits of 5 branches = 60.00%
+
+
+  File ../tb/Class_EX_Scoreboard.sv
+------------------------------------IF Branch------------------------------------
+    398                                        1     Count coming in to IF
+    398             1                          1     
+    407             1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    408                                  ***0***     Count coming in to IF
+    408             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+
+
+
+Total Coverage By Instance (filtered view): 44.44%
+

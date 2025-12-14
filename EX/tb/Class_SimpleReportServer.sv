@@ -40,7 +40,7 @@ class Class_SimpleReportServer extends uvm_report_server;
 
     // Add ANSI escape code based on severity level
     // NOTE: Severities are UVM_INFO, UVM_WARNING, UVM_ERROR, UVM_FATAL
-    // coverage off b
+    // coverage off
     case (id)
       "GREEN":   formattedMessage = $sformatf("%s%s", colors[GREEN], message);
       "BLUE":    formattedMessage = $sformatf("%s%s", colors[BLUE], message);
@@ -48,7 +48,7 @@ class Class_SimpleReportServer extends uvm_report_server;
       "RED":     formattedMessage = $sformatf("%s%s", colors[RED], message);
       "BOLDRED": formattedMessage = $sformatf("%s%s", colors[BOLD_RED], message);
     endcase
-    // coverage on b
+    // coverage on
 
     // At the end, add ANSI for returning to normal and newline
     formattedMessage = $sformatf("%s%s", formattedMessage, ENDSTRING);

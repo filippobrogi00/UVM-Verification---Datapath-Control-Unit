@@ -37,22 +37,20 @@ entity DP_EX is
     EQZ_NEQZ      : in    std_logic;
     DP_ALU_OPCODE : in    aluOp;
 
-    -- Outputs
-    DRAM_Addr : out   std_logic_vector(IR_SIZE - 1 downto 0);
-    DRAM_DATA : out   std_logic_vector(IR_SIZE - 1 downto 0);
-
-    -- Outputs to MEM+WB Block
-    S3_FF_JAL_EN_OUT  : out   	std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
-    S3_REG_ADD_WR_OUT : out   	std_logic_vector(4 downto 0);
-    S3_FF_COND_OUT    : out   	std_logic; -- Output of S3_REG_COND register
-    S3_REG_ALU_OUT    : out   	std_logic_vector(IR_SIZE - 1 downto 0);
-    S3_REG_DATA_OUT   : out   	std_logic_vector(IR_SIZE - 1 downto 0);  
- 	S3_BranchTaken    : out 	std_logic;
- 	S3_MUX_A_OUT      : out 	std_logic_vector(IR_SIZE - 1 downto 0);
- 	S3_MUX_B_OUT      : out 	std_logic_vector(IR_SIZE - 1 downto 0);
- 	S3_ALU_OUT        : out 	std_logic_vector(IR_SIZE - 1 downto 0);
- 	S3_MUX_JMP_OUT    : out 	std_logic_vector(IR_SIZE - 1 downto 0);
- 	S3_REG_NPC_OUT    : out		std_logic_vector(IR_SIZE - 1 downto 0)
+	-- Outputs to MEM+WB Block
+	S3_FF_JAL_EN_OUT  : out   	std_logic; -- Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
+	S3_REG_ADD_WR_OUT : out   	std_logic_vector(4 downto 0);
+	S3_FF_COND_OUT    : out   	std_logic; -- Output of S3_REG_COND register
+	S3_REG_ALU_OUT    : out   	std_logic_vector(IR_SIZE - 1 downto 0);
+	S3_REG_DATA_OUT   : out   	std_logic_vector(IR_SIZE - 1 downto 0);  
+	S3_REG_NPC_OUT    : out		std_logic_vector(IR_SIZE - 1 downto 0)
+	
+	-- Signals
+-- 	S3_BranchTaken    : out 	std_logic;
+--	S3_MUX_A_OUT      : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+--	S3_MUX_B_OUT      : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+--	S3_ALU_OUT        : out 	std_logic_vector(IR_SIZE - 1 downto 0);
+--	S3_MUX_JMP_OUT    : out 	std_logic_vector(IR_SIZE - 1 downto 0);
   );
 end entity DP_EX;
 
@@ -179,6 +177,13 @@ architecture structural of DP_EX is
     );
   end component ALU;
 
+
+	signal S3_BranchTaken	: std_logic;
+	signal S3_MUX_A_OUT		: std_logic_vector(IR_SIZE - 1 downto 0);
+	signal S3_MUX_B_OUT		: std_logic_vector(IR_SIZE - 1 downto 0);
+	signal S3_ALU_OUT		: std_logic_vector(IR_SIZE - 1 downto 0);
+	signal S3_MUX_JMP_OUT	: std_logic_vector(IR_SIZE - 1 downto 0);
+  
 begin
 
   -- ****************************************************************************************
@@ -187,8 +192,6 @@ begin
 
   -- NOTE: Moved from "STAGE 4 INSTANTIATIONS" original DLX placement to here because these
   -- are actually produced by "Stage 3" internal signals.
-  DRAM_Addr <= S3_REG_ALU_OUT;  -- Connects Datapath's Stage 3 Register called "ALU_OUT" to Address input of the DRAM.
-  DRAM_DATA <= S3_REG_DATA_OUT; -- Connects Datapath's Stage 3 Register called "DATA_OUT" to Data input of the DRAM.
 
   S3_MUX_A : component NBit_2to1MUX
     generic map (

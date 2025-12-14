@@ -45,7 +45,8 @@ entity DATAPATH is
     EQZ_NEQZ      : in    std_logic;
 
     -- ALU Operation Code (STAGE 3)
-    DP_ALU_OPCODE : in    aluOp;
+    --DP_ALU_OPCODE : in    aluOp;
+    DP_ALU_OPCODE : in    std_logic_vector(4 downto 0);
 
     -- Memory - STAGE 4
     DRAM_WE      : in    std_logic; -- Data RAM Write Enable

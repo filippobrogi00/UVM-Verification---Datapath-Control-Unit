@@ -1,0 +1,50 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DP_EX
+Version: S-2021.06-SP4
+Date   : Sat Dec 13 11:27:54 2025
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: S3_REG_COND/Q_reg[0]
+              (rising edge-triggered flip-flop clocked by my_clk)
+  Endpoint: S3_REG_COND/Q_reg[0]
+            (rising edge-triggered flip-flop clocked by my_clk)
+  Path Group: my_clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DP_EX              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock my_clk (rise edge)                 0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  S3_REG_COND/Q_reg[0]/CK (DFF_X1)         0.00       0.00 r
+  S3_REG_COND/Q_reg[0]/Q (DFF_X1)          0.08       0.08 f
+  S3_REG_COND/U5/ZN (AOI22_X1)             0.05       0.13 r
+  S3_REG_COND/U3/ZN (NOR2_X1)              0.02       0.16 f
+  S3_REG_COND/Q_reg[0]/D (DFF_X1)          0.01       0.17 f
+  data arrival time                                   0.17
+
+  clock my_clk (rise edge)                10.00      10.00
+  clock network delay (ideal)              0.00      10.00
+  S3_REG_COND/Q_reg[0]/CK (DFF_X1)         0.00      10.00 r
+  library setup time                      -0.04       9.96
+  data required time                                  9.96
+  -----------------------------------------------------------
+  data required time                                  9.96
+  data arrival time                                  -0.17
+  -----------------------------------------------------------
+  slack (MET)                                         9.79
+
+
+1

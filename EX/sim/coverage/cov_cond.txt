@@ -1,0 +1,34 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /Module_topTestbench_sv_unit
+=== Design Unit: work.Module_topTestbench_sv_unit
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       1         0         1     0.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /Module_topTestbench_sv_unit --
+
+  File ../tb/Class_EX_Scoreboard.sv
+----------------Focused Condition View-------------------
+Line       398 Item    1  (this.error > 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (this.error > 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (this.error > 0)_0    -                             
+  Row   2:          1  (this.error > 0)_1    -                             
+
+
+
+
+Total Coverage By Instance (filtered view): 0.00%
+

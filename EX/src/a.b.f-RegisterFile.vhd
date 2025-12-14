@@ -58,10 +58,7 @@ begin
       end if;
 
       -- Operation
-      -- NOTE: Disable coverage because ENABLE hardwired to 1
-      -- coverage off bs
       if ((ENABLE = '1') and (nRST = '1')) then
-        -- coverage on bs
         -- Write
         -- NOTE: Writing to R0 not allowed in DLX architecture!
         if ((WR = '1') and (unsigned(ADD_WR) /= 0)) then
@@ -69,8 +66,6 @@ begin
         end if;
 
         -- Read from port 1
-        -- NOTE: Disable coverage since RD1, RD2 hardwired to 1
-        -- coverage off cbs
         if (RD1 = '1') then
           OUT1 <= REGISTERS(to_integer(unsigned(ADD_RD1)));
         end if;
@@ -79,7 +74,6 @@ begin
         if (RD2 = '1') then
           OUT2 <= REGISTERS(to_integer(unsigned(ADD_RD2)));
         end if;
-      -- coverage on cbs
       end if;
 
     end if;

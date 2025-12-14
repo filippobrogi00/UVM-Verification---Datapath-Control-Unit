@@ -1,7 +1,8 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+`timescale 1ns / 1ns
 // DUT Interface
-interface Iface_IFID #(
+interface Iface_EXE #(
     parameter IR_SIZE = 32,
     parameter OPERAND_SIZE = 5,
     parameter I_TYPE_IMM_SIZE = 16,
@@ -59,14 +60,17 @@ interface Iface_IFID #(
   	*  INPUTS  *
   	************/
     // Inputs from IF+ID Block
-    logic[IR_SIZE-1 : 0] 			S1_REG_NPC_OUT; 
-    logic 							S2_FF_JAL_EN_OUT; 
-    logic[IR_SIZE-1 : 0] 			S2_REG_NPC_OUT; 
-    logic[OPERAND_SIZE - 1 : 0]		S2_REG_ADD_WR_OUT;  			// Part of sequence of registers at Write-Address input of Register File.
-    logic[IR_SIZE-1 : 0] 			S2_RFILE_A_OUT; 				// RFILE = Register File
-    logic[IR_SIZE-1 : 0] 			S2_RFILE_B_OUT; 				// RFILE = Register File
-    logic[IR_SIZE-1 : 0] 			S2_REG_SE_IMM_OUT;
-    logic[IR_SIZE-1 : 0] 			S2_REG_UE_IMM_OUT;	
+    logic[IR_SIZE-1 : 0] 		S1_REG_NPC_OUT; 
+    logic 						S2_FF_JAL_EN_OUT; 
+    logic[IR_SIZE-1 : 0] 		S2_REG_NPC_OUT; 
+    logic[OPERAND_SIZE - 1 : 0]	S2_REG_ADD_WR_OUT;  // Part of sequence of 
+    													// registers at 
+														// Write-Address input 
+														// of Register File.
+    logic[IR_SIZE-1 : 0] 	S2_RFILE_A_OUT; 		// RFILE = Register File
+    logic[IR_SIZE-1 : 0] 	S2_RFILE_B_OUT; 		// RFILE = Register File
+    logic[IR_SIZE-1 : 0] 	S2_REG_SE_IMM_OUT;
+    logic[IR_SIZE-1 : 0] 	S2_REG_UE_IMM_OUT;	
 
 	/***********
   	* CONTROLS *
@@ -74,62 +78,57 @@ interface Iface_IFID #(
     // Execute (STAGE 3) input control signals
     logic 			MUX_A_SEL;
     logic 			MUX_B_SEL;
-    logic 			ALU_OUTREG_EN;
-    logic 			EQ_COND;
+   	logic 			ALU_OUTREG_EN;
+   	logic 			EQ_COND;
     logic 			JMP;
     logic 			EQZ_NEQZ;
     logic[4 : 0] 	DP_ALU_OPCODE;
 
 	/***********
   	*  OUTPUTS *
-  	************/
-    // Outputs
-    logic[IR_SIZE-1 : 0] 	DRAM_Addr;
-    logic[IR_SIZE-1 : 0] 	DRAM_DATA;
-    logic 					S3_FF_JAL_EN_OUT;		// Part of sequence of Flip-Flops which connect to the select signal of the MUX in Stage 5.
+	************/
+	// Outputs
+	logic 					S3_FF_JAL_EN_OUT;
     logic[4 : 0] 			S3_REG_ADD_WR_OUT;
-    logic 					S3_FF_COND_OUT; 		// Output of S3_REG_COND register
+    logic 					S3_FF_COND_OUT; 	 
     logic[IR_SIZE-1 : 0] 	S3_REG_ALU_OUT;
     logic[IR_SIZE-1 : 0] 	S3_REG_DATA_OUT;
- 	logic					S3_BranchTaken;
- 	logic[IR_SIZE-1 : 0] 	S3_MUX_A_OUT;
- 	logic[IR_SIZE-1 : 0] 	S3_MUX_B_OUT;
- 	logic[IR_SIZE-1 : 0] 	S3_ALU_OUT;
- 	logic[IR_SIZE-1 : 0] 	S3_MUX_JMP_OUT;
- 	logic[IR_SIZE-1 : 0] 	S3_REG_NPC_OUT;
+	logic[IR_SIZE-1 : 0] 	S3_REG_NPC_OUT;
 
   	/************
   	*  MODPORTS *
 	*************/
 	// verilog_format: off
   	modport DUT(
-      	input CLK, nRST,
-        // Testbench inputs as seen by DUT
-		S1_REG_NPC_OUT, S2_FF_JAL_EN_OUT, S2_REG_NPC_OUT, S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT,
+    	input CLK, nRST,
+       	// Testbench inputs as seen by DUT
+		S1_REG_NPC_OUT, S2_FF_JAL_EN_OUT, S2_REG_NPC_OUT, 
+		S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT,
 		S2_REG_SE_IMM_OUT, S2_REG_UE_IMM_OUT,
-		MUX_A_SEL, MUX_B_SEL, ALU_OUTREG_EN, EQ_COND, JMP, EQZ_NEQZ, DP_ALU_OPCODE,
+		MUX_A_SEL, MUX_B_SEL, ALU_OUTREG_EN, EQ_COND, JMP, 
+		EQZ_NEQZ, DP_ALU_OPCODE,
 			
       	// Testbench outputs as seen by DUT
-      	output DRAM_Addr, DRAM_DATA,
-		S3_FF_JAL_EN_OUT, S3_REG_ADD_WR_OUT, S3_FF_COND_OUT, S3_REG_ALU_OUT, S3_REG_DATA_OUT,
-		S3_BranchTaken, S3_MUX_A_OUT, S3_MUX_B_OUT, S3_ALU_OUT, S3_MUX_JMP_OUT, S3_REG_NPC_OUT
-  	);
-  // verilog_format: on
+    	output S3_FF_JAL_EN_OUT, 
+		S3_REG_ADD_WR_OUT, S3_FF_COND_OUT, S3_REG_ALU_OUT, S3_REG_DATA_OUT,
+		S3_REG_NPC_OUT
+	);
+  	// verilog_format: on
 
-  // Clocking block for timing synchronization
-  clocking ClockingBlock_EXE @(posedge CLK);
-    /* (TB) INPUTS: TB <- DUT */
-    // NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
-    input #(1) DRAM_Addr,DRAM_DATA, S3_FF_JAL_EN_OUT, S3_REG_ADD_WR_OUT,
-	S3_FF_COND_OUT, S3_REG_ALU_OUT, S3_REG_DATA_OUT, S3_BranchTaken,
-	S3_MUX_A_OUT, S3_MUX_B_OUT, S3_ALU_OUT, S3_MUX_JMP_OUT, S3_REG_NPC_OUT;
+  	// Clocking block for timing synchronization
+  	clocking ClockingBlock_EXE @(posedge CLK);
+  	/* (TB) INPUTS: TB <- DUT */
+  	// NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
+    	input #(1) S3_FF_JAL_EN_OUT, S3_REG_ADD_WR_OUT,
+		S3_FF_COND_OUT, S3_REG_ALU_OUT, S3_REG_DATA_OUT, 
+		S3_REG_NPC_OUT;
 
-    /* (TB) OUTPUTS: TB -> DUT */
-    // NOTE: Drive DUT's inputs at (posedge clk - CLKPERIOD/4)
-    output #(-1) S1_REG_NPC_OUT, S2_FF_JAL_EN_OUT, S2_REG_NPC_OUT,
-	S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT, S2_REG_SE_IMM_OUT,
-	S2_REG_UE_IMM_OUT, MUX_A_SEL, MUX_B_SEL, ALU_OUTREG_EN, EQ_COND,
-	JMP, EQZ_NEQZ, DP_ALU_OPCODE;
+    	/* (TB) OUTPUTS: TB -> DUT */
+    	// NOTE: Drive DUT's inputs at (posedge clk - CLKPERIOD/4)
+    	output #(-1) S1_REG_NPC_OUT, S2_FF_JAL_EN_OUT, S2_REG_NPC_OUT,
+		S2_REG_ADD_WR_OUT, S2_RFILE_A_OUT, S2_RFILE_B_OUT, 
+		S2_REG_SE_IMM_OUT, S2_REG_UE_IMM_OUT, MUX_A_SEL, MUX_B_SEL, 
+		ALU_OUTREG_EN, EQ_COND, JMP, EQZ_NEQZ, DP_ALU_OPCODE;
 
   endclocking
 

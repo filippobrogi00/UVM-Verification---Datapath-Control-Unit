@@ -22,12 +22,9 @@ begin
   begin
 
     if rising_edge(CLK) then   -- positive edge triggered:
-      if (nRST = '0') then
+	if (nRST = '0') then
         Q <= (others => '0');
-      -- NOTE: Disable coverage since RD1, RD2 hardwired to 1
-      -- coverage off b
       elsif (LD_EN = '1') then
-        -- coverage on b
         Q <= D;                -- input is written on output
       end if;
     end if;

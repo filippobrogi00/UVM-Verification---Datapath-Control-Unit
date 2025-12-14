@@ -1,11 +1,10 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
-
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
 package pkg_const;
   /* Simulation constants */
-  localparam time CLKPERIOD = 2ns;
+  localparam time CLKPERIOD = 10ns;
 
   /* General constants */
   localparam int NBITS = 32;  // DLX CPU Bit width
@@ -78,31 +77,25 @@ package pkg_const;
 
     /* Arithmetical Operations */
     ADD_op  = 1,   // Signed Addition
+    AND_op 	= 3,  // Bitwise
+    OR_op  	= 4,  // Bitwise
+    SGE_op  = 5,   // Set Greater than or Equal to
+    SLE_op  = 6,   // Set Less than or Equal to
+    SLL_op 	= 7,  // Unsigned Logical Shift Left
+    SNE_op  = 8,   // Set Not Equal to
+    SRL_op 	= 9,  // Unsigned Arithmetic Shift Right
     SUB_op  = 10,  // Signed Subtraction
+    XOR_op 	= 11, // Bitwise
+    SRA_op 	= 12,  // Shift Right Arithmetic
     ADDU_op = 13,  // Unsigned Addition
     SUBU_op = 14,  // Unsigned Subtraction
-
-    /* Bitwise Operations */
-    AND_op = 3,  // Bitwise
-    OR_op  = 4,  // Bitwise
-    XOR_op = 11, // Bitwise
-
-    /* "Set if" */
-    SLT_op  = 16,  // Set if Less Than
-    SLE_op  = 6,   // Set Less than or Equal to
-    SGT_op  = 17,  // Set Greater Than
-    SGE_op  = 5,   // Set Greater than or Equal to
     SEQ_op  = 15,  // Set if Equal
-    SNE_op  = 8,   // Set Not Equal to
+    SLT_op  = 16,  // Set if Less Than
+    SGT_op  = 17,  // Set Greater Than
     SLTU_op = 18,  // Set if Less Than (Unsigned)
-    SLEU_op = 20,  // Set if Less Than or Equal (Unsigned)
     SGTU_op = 19,  // Set Greater Than (Unsigned)
-    SGEU_op = 21,  // Set Greater Than or Equal (Unsigned)
-
-    /* Shift */
-    SLL_op = 7,  // Unsigned Logical Shift Left
-    SRL_op = 9,  // Unsigned Arithmetic Shift Right
-    SRA_op = 12  // Shift Right Arithmetic
+    SLEU_op = 20,  // Set if Less Than or Equal (Unsigned)
+    SGEU_op = 21  // Set Greater Than or Equal (Unsigned)
   } aluOp;
 
   // NOTE: For base-2 logarithm use SV's $clog2() builtin function
@@ -112,6 +105,11 @@ package pkg_const;
   * FUNCTIONS *
   ************/
 
+
+  // NOTE: Disable coverage for these 3 functions because they are
+  // only used for CRG, and not in "runtime" code.
+  // TODO: Maybe add simple unit test in top module?
+  // coverage off
   // @brief Helper function to check type of instruction.
   // @return One of I_TYPE, R_TYPE, J_TYPE constants.
   function check_instr_type(logic [IR_SIZE-1:0] instruction);
@@ -209,4 +207,5 @@ package pkg_const;
   endfunction
 
 
+// coverage on
 endpackage

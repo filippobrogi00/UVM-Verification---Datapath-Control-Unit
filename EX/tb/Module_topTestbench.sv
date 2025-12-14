@@ -33,14 +33,20 @@ int numSeqItems = 100;
 // top-level Testbench, do they aren't included here, but instead compiled!
 
 // Testbench Class files
-`include "Class_EXE_Sequence.sv"
-`include "Class_EXE_Driver.sv"
-`include "Class_EXE_Monitor.sv"
-`include "Class_EXE_Agent.sv"
-`include "Class_EXE_CoverageTracker.sv"
-`include "Class_EXE_Scoreboard.sv"
-`include "Class_EXE_Environment.sv"
-`include "Class_EXE_Test.sv"
+`include "Class_EX_Sequence.sv"
+`include "Class_EX_Driver.sv"
+`include "Class_EX_Monitor.sv"
+`include "Class_EX_Agent.sv"
+`include "Class_EX_CoverageTracker.sv"
+`include "Class_EX_Scoreboard.sv"
+
+//`include "Class_EX_FaultInjector.sv"
+
+`include "Class_EX_Environment.sv"
+`include "Class_EX_Test.sv"
+
+//`include "Class_EX_FaultTest.sv"    
+//`include "Class_EX_MuxAStuckTest.sv"    
 
 module Module_topTestbench;
 
@@ -57,21 +63,29 @@ module Module_topTestbench;
   	* */
   	bit globalRst_n;
   	initial begin : PROC_ResetDUT
-    	globalRst_n <= 1'b0;  // active
-    	#CLKPERIOD globalRst_n <= 1'b1;  // de-activate after a clock period
+    	globalRst_n <= 1'b1;  // active
+    	#(CLKPERIOD*10) globalRst_n <= 1'b0;  // de-activate after a clock period
+    	// globalRst_n <= 1'b0;  // active
+    	#(CLKPERIOD*10) globalRst_n <= 1'b1;  // de-activate after a clock period
   	end : PROC_ResetDUT
 
   	// Interfaces instantiation
   	// NOTE: (parenthesis needed because these are modules!
-	// TODO change the parameters
-  	Iface_EXE #(OPCODE_SIZE, FUNC_SIZE) exe_dut_iface (
-      .clk  (globalClk),
-      .rst_n(globalRst_n)
+  	Iface_EXE #(
+		IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE, 
+		J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS
+		) 
+	exe_dut_iface (
+      .CLK  (globalClk),
+      .nRST(globalRst_n)
   	);
 
   	// Instance DUT using wrapper
-	// TODO change the parameters
-  	Module_EXE_Wrapper #(OPCODE_SIZE, FUNC_SIZE) exe_toplevel (
+  	Module_EXE_Wrapper #(
+		IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE, 
+		J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS
+		) 
+	exe_toplevel (
   	    .exe_iface(exe_dut_iface)
    	);
 
@@ -98,8 +112,10 @@ module Module_topTestbench;
     	uvm_config_db#(int)::set(null, "*", "numSeqItems", numSeqItems);
 
     	// Pass Virtual DUT interface handle down to components through Config Object
-		// TODO change the parameters
-		uvm_config_db#(virtual Iface_EXE #(OPCODE_SIZE, FUNC_SIZE))::set(null, "*", "exe_dut_iface", exe_dut_iface);
+		uvm_config_db#(virtual Iface_EXE #(
+			IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE, 
+			J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS
+		) )::set(null, "*", "exe_dut_iface", exe_dut_iface);
 
     	// Running test...
     	run_test("Class_EXE_Test");
