@@ -1,5 +1,7 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+import pkg_const::*;
+
 /*
 * SCOREBOARD :
   * Checks functionality of DUT
@@ -44,157 +46,59 @@ class Class_CU_Scoreboard extends uvm_scoreboard;
     /****************************************
     * Expected Result variables declaration *
     *****************************************/
-    
+    // Current and expected CWs corresponding to the current instruction
+    cw_t  currentCW;
+    cw_t  expectedCW;
+    // Current and expected ALU OPCODE corresponding to the current instruction
+    aluOp currentAluOpcode;
+    aluOp expectedAluOpcode;
+
+    /**********************
+    * Current item fields *
+    ***********************/
+    currentCW =
+      cu_seqitem.IR_LATCH_EN & cu_seqitem.NPC_LATCH_EN &
+      cu_seqitem.RegA_LATCH_EN & cu_seqitem.SIGN_UNSIGN_EN & cu_seqitem.RegIMM_LATCH_EN & cu_seqitem.JAL_EN &
+      cu_seqitem.MUXA_SEL & cu_seqitem.MUXB_SEL & cu_seqitem.ALU_OUTREG_EN & cu_seqitem.EQ_COND & cu_seqitem.JMP & cu_seqitem.EQZ_NEQZ & cu_seqitem.ALU_OPCODE &
+      cu_seqitem.DRAM_WE & cu_seqitem.LMD_LATCH_EN & cu_seqitem.JUMP_EN & cu_seqitem.PC_LATCH_EN &
+      cu_seqitem.WB_MUX_SEL & cu_seqitem.RF_WE;
+
+    currentAluOpcode = cu_seqitem.ALU_OPCODE;
 
     /*************************************************
     * Calculate expected results (Golden Model) *
     **************************************************/
+    expectedCW = cw_t'(get_cw(cu_seqitem.IR_IN));
+    expectedAluOpcode = aluOp'(get_aluop(cu_seqitem.IR_IN));
 
-    /******** Variables ********/
-
-
-    /******** Mimicking logic ********/
-
-
-
-    /*************************************************
-    * Compare Expected vs DUT (compare NBITS fields) *
-    **************************************************/
+    /**************************
+    * Compare Expected vs DUT *
+    ***************************/
     // Print current item
     cu_seqitem.print();
 
-    // S1_REG_NPC_OUT Comparison
-    assert (Expected_S1_REG_NPC_OUT == cu_seqitem.S1_REG_NPC_OUT) begin
+    /* Compare Expected CW with DUT-generated CW */
+    assert (expectedCW == currentCW) begin
       // coverage off b
-      `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
+      `uvm_info("GREEN", "Control Word OK!", UVM_MEDIUM)
       // coverage on b
     end else begin
       // coverage off b
       `uvm_info("RED", $sformatf(
-                "PC mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S1_REG_NPC_OUT,
-                cu_seqitem.S1_REG_NPC_OUT
-                ), UVM_MEDIUM);
+                "Control Word mismatch:\nExpected %0h, got %0h", expectedCW, currentCW), UVM_MEDIUM)
       // coverage on b
     end
 
-    // S2_REG_NPC_OUT Comparison
-    assert (Expected_S2_REG_NPC_OUT == cu_seqitem.S2_REG_NPC_OUT) begin
+    /* Compare Expected ALU OPCODE with DUT-generated ALU OPCODE */
+    assert (expectedCW == currentCW) begin
       // coverage off b
-      `uvm_info("GREEN", "IR OK!", UVM_MEDIUM);
+      `uvm_info("GREEN", "Control Word OK!", UVM_MEDIUM)
       // coverage on b
     end else begin
       // coverage off b
       `uvm_info("RED", $sformatf(
-                "IR mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S2_REG_NPC_OUT,
-                cu_seqitem.S2_REG_NPC_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S2_FF_JAL_EN_OUT Comparison
-    assert (Expected_S2_FF_JAL_EN_OUT == cu_seqitem.S2_FF_JAL_EN_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S2_FF_JAL_EN_OUT mismatch: expected %b, got %b",
-                Expected_S2_FF_JAL_EN_OUT,
-                cu_seqitem.S2_FF_JAL_EN_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S2_REG_ADD_WR_OUT Comparison
-    assert (Expected_S2_REG_ADD_WR_OUT == cu_seqitem.S2_REG_ADD_WR_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "S2_REG_ADD_WR_OUT OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S2_REG_ADD_WR_OUT mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S2_REG_ADD_WR_OUT,
-                cu_seqitem.S2_REG_ADD_WR_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S2_RFILE_A_OUT Comparison
-    assert (Expected_S2_RFILE_A_OUT == cu_seqitem.S2_RFILE_A_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "S2_RFILE_A_OUT OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S2_RFILE_A_OUT mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S2_RFILE_A_OUT,
-                cu_seqitem.S2_RFILE_A_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S2_RFILE_B_OUT Comparison
-    assert (Expected_S2_RFILE_B_OUT == cu_seqitem.S2_RFILE_B_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "S2_RFILE_B_OUT OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S2_RFILE_B_OUT mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S2_RFILE_B_OUT,
-                cu_seqitem.S2_RFILE_B_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S2_REG_SE_IMM_OUT Comparison
-    assert (Expected_S2_REG_SE_IMM_OUT == cu_seqitem.S2_REG_SE_IMM_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "S2_REG_SE_IMM_OUT OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S2_REG_SE_IMM_OUT mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S2_REG_SE_IMM_OUT,
-                cu_seqitem.S2_REG_SE_IMM_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S2_REG_UE_IMM_OUT Comparison
-    assert (Expected_S2_REG_UE_IMM_OUT == cu_seqitem.S2_REG_UE_IMM_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "S2_REG_UE_IMM_OUT OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S2_REG_UE_IMM_OUT mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S2_REG_UE_IMM_OUT,
-                cu_seqitem.S2_REG_UE_IMM_OUT
-                ), UVM_MEDIUM);
-      // coverage on b
-    end
-
-    // S1_ADD_OUT Comparison
-    assert (Expected_S1_ADD_OUT == cu_seqitem.S1_ADD_OUT) begin
-      // coverage off b
-      `uvm_info("GREEN", "S1_ADD_OUT OK!", UVM_MEDIUM);
-      // coverage on b
-    end else begin
-      // coverage off b
-      `uvm_info("RED", $sformatf(
-                "S1_ADD_OUT mismatch: expected 0x%0h, got 0x%0h",
-                Expected_S1_ADD_OUT,
-                cu_seqitem.S1_ADD_OUT
-                ), UVM_MEDIUM);
+                "Alu Opcode mismatch:\nExpected %0h, got %0h", expectedAluOpcode, currentAluOpcode),
+                UVM_MEDIUM)
       // coverage on b
     end
 

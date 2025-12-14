@@ -1,5 +1,7 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+import uvm_pkg::*;
+
 /*
 * MONITOR:
   * Captures signal activity from the DUT (interface)
@@ -43,7 +45,7 @@ class Class_CU_Monitor extends uvm_monitor;
     // coverage off b
 
     // Get DUT virtual interface handle from configuration DB
-    if (!uvm_config_db#(virtual Iface_CU #(NBITS))::get(
+    if (!uvm_config_db#(virtual Iface_CU #(MICROCODE_MEM_SIZE, FUNC_SIZE, OPCODE_SIZE, IR_SIZE, CW_SIZE))::get(
             this, "", "cu_dut_iface", cu_dut_iface
         )) begin
       `uvm_error("[MONITOR]", "Could not get handle to DUT interface!")
@@ -79,7 +81,7 @@ class Class_CU_Monitor extends uvm_monitor;
       cu_seqitem.NPC_LATCH_EN    = cu_dut_iface.NPC_LATCH_EN;
       // Stage 2
       cu_seqitem.RegA_LATCH_EN   = cu_dut_iface.RegA_LATCH_EN;
-      cu_seqitem.RegB_LATCH_EN   = cu_dut_iface.RegB_LATCH_EN;
+      cu_seqitem.SIGN_UNSIGN_EN  = cu_dut_iface.SIGN_UNSIGN_EN;
       cu_seqitem.RegIMM_LATCH_EN = cu_dut_iface.RegIMM_LATCH_EN;
       cu_seqitem.JAL_EN          = cu_dut_iface.JAL_EN;
       // Stage 3
@@ -89,7 +91,7 @@ class Class_CU_Monitor extends uvm_monitor;
       cu_seqitem.EQ_COND         = cu_dut_iface.EQ_COND;
       cu_seqitem.JMP             = cu_dut_iface.JMP;
       cu_seqitem.EQZ_NEQZ        = cu_dut_iface.EQZ_NEQZ;
-      cu_seqitem.ALU_OPCODE      = cu_dut_iface.ALU_OPCODE;
+      cu_seqitem.ALU_OPCODE      = aluOp'(cu_dut_iface.ALU_OPCODE);
       // Stage 4
       cu_seqitem.DRAM_WE         = cu_dut_iface.DRAM_WE;
       cu_seqitem.LMD_LATCH_EN    = cu_dut_iface.LMD_LATCH_EN;
@@ -102,6 +104,29 @@ class Class_CU_Monitor extends uvm_monitor;
 
       // Broadcast data object to subscribers (Scoreboard and CoverageTracker)
       analysis_port.write(cu_seqitem);
+
+      // DEBUG:
+      // `uvm_info("GREEN", $sformatf("IR_LATCH_EN: %b", cu_dut_iface.IR_LATCH_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("NPC_LATCH_EN: %b", cu_dut_iface.NPC_LATCH_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("RegA_LATCH_EN: %b", cu_dut_iface.RegA_LATCH_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("RegIMM_LATCH_EN: %b", cu_dut_iface.RegIMM_LATCH_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("JAL_EN: %b", cu_dut_iface.JAL_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("MUXA_SEL: %b", cu_dut_iface.MUXA_SEL), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("MUXB_SEL: %b", cu_dut_iface.MUXB_SEL), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("ALU_OUTREG_EN: %b", cu_dut_iface.ALU_OUTREG_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("EQ_COND: %b", cu_dut_iface.EQ_COND), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("JMP: %b", cu_dut_iface.JMP), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("ALU_OPCODE: %5b", cu_dut_iface.ALU_OPCODE), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("DRAM_WE: %b", cu_dut_iface.DRAM_WE), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("LMD_LATCH_EN: %b", cu_dut_iface.LMD_LATCH_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("JUMP_EN: %b", cu_dut_iface.JUMP_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("PC_LATCH_EN: %b", cu_dut_iface.PC_LATCH_EN), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("WB_MUX_SEL: %b", cu_dut_iface.WB_MUX_SEL), UVM_MEDIUM)
+      // `uvm_info("GREEN", $sformatf("RF_WE: %b", cu_dut_iface.RF_WE), UVM_MEDIUM)
+
+
+      
+      //cu_seqitem.print(); 
     end
 
   endtask : run_phase

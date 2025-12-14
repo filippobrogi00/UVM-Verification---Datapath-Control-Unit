@@ -1,0 +1,2 @@
+var g_data = {"20":{"cvpc":[{"h":["Coverpoint_IRIN",4,1,21],"cov":[64,62,96.87],"opts":{"goal":"100"}}],"cvg":["/Module_topTestbench_sv_unit/Class_CU_CoverageTracker/Covergroup_CU",1],"cvgdata":[64,62,0,0]}};
+processCoverpointsData(g_data);

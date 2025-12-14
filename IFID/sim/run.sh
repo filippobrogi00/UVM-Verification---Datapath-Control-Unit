@@ -2,8 +2,8 @@
 ###################
 ###### USAGE ######
 ###################
-if [[ $# -gt 1 ]]; then
-  echo "Usage: $0 [number of sequence items per sequence to generate (optional)]"
+if [[ $# -gt 2 ]]; then
+  echo "Usage: $0 [rtl/synth] [number of sequence items per sequence to generate (optional)]"
   return
 fi
 
@@ -57,7 +57,7 @@ mkdir -p $TB_DIR
 mkdir -p $COV_DIR
 
 # Script variables - Compilation
-SV_COMPILE_LIST="$TB_DIR/Iface_IFID.sv $TB_DIR/Module_IFID_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+SV_COMPILE_LIST="$TB_DIR/Module_topTestbench.sv $TB_DIR/Iface_IFID.sv $TB_DIR/Module_IFID_Wrapper.sv"
 
 ########### FUNCTIONS ###########
 
@@ -146,7 +146,13 @@ cov_print() {
   fi
 
   # Get line
-  total_cov_line="$(grep "^Total Coverage" $1)"
+  total_cov_line=""
+  if [[ $cov_type == "Functional" ]]; then
+    total_cov_line="$(grep "^# Functional Coverage:" $1)"
+    echo $total_cov_line
+  else
+    total_cov_line="$(grep "^Total Coverage" $1)"
+  fi
 
   # Get total coverage
   total_cov_str="${total_cov_line#*:}"
@@ -155,8 +161,14 @@ cov_print() {
   cov=${total_cov_str%.*}
 
   # Output string
-  out_str="Total $cov_type Coverage:\t $total_cov_str"
+  out_str=""
+  if [[ "$cov_type" == "Functional" ]]; then
+    out_str="$cov_type Coverage:\t $total_cov_str"
+  else
+    out_str="Total $cov_type Coverage:\t $total_cov_str"
+  fi
 
+  # Classify coverage statistics
   if [ $cov -lt 80 ]; then
     print_red "[INSUFFICIENT] \t $out_str"
   elif [ $cov -ge 80 ] && [ $cov -lt 90 ]; then
@@ -187,6 +199,10 @@ vmap work work
 compile_files $SRC_DIR VHDL SOURCE
 # Compile Verilog Source Files if present
 compile_files $SRC_DIR VERILOG SOURCE
+
+## SYNTHESIS:
+# vlog -timescale=1ns/1ps -work work /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
+# vlog -timescale=1ns/1ps -work work ../syn/IFID_EX.v
 
 ###############################################
 #### COMPILE SYSTEMVERILOG TESTBENCH FILES ####
@@ -221,6 +237,7 @@ VSIM_RUN_AND_REPORT_COV="$VSIM_REPORT_HTML_COVERAGE; run -all; $VSIM_REPORT_TEXT
 print_green "############ OPTIMIZATION AND COVERAGE COLLECTION: ############ "
 # Get top-level TB module name
 top_level_tb_file=$(find $TB_DIR -type f -name "*top*.sv" | head -n 1)
+#top_level_tb_file="$TB_DIR/simple_tb.sv"
 tb_module="$(get_systemverilog_testbench_module $top_level_tb_file)"
 # Optimized top-level module name (by vopt)
 tb_module_opt="toptb_opt"
@@ -248,6 +265,9 @@ SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 # respective directories ($COV_DIR and $COV_HTML_DIR)
 colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
   $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV"
+#
+# colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
+#   $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV" -sdftyp /Module_topTestbench/ifid_toplevel/DP_IFID_inst=../syn/DP_IFID.sdf
 
 # Create "covhtmlreport" dir from .ucdb coverage file
 [[ -d "$COV_HTML_DIR" ]] && rm -rf $COV_HTML_DIR
@@ -262,15 +282,10 @@ if [[ -d "$COV_DIR" ]]; then
   popd >/dev/null
 fi
 
-########### CLEAN SIMULATION JUNK ###########
-[ -f transcript ] && rm transcript
-[ -f vsim.wlf ] && rm vsim.wlf
-[ -f vish_stacktrace.vstf ] && rm vish_stacktrace.vstf
-[ -f vsim_stacktrace.vstf ] && rm vsim_stacktrace.vstf
-
 ##################################################
 ####  FUNCTIONAL AND CODE COVERAGE REPORTING  ####
 ##################################################
+# Print Code Coverage
 print_green "############ COVERAGE STATISTICS (n=${NUM_SEQITEMS}): ############ "
 cov_print "$COV_DIR/cov_all.txt"
 cov_print "$COV_DIR/cov_branch.txt"
@@ -279,3 +294,17 @@ cov_print "$COV_DIR/cov_expr.txt"
 cov_print "$COV_DIR/cov_stmt.txt"
 cov_print "$COV_DIR/cov_fsm.txt"
 cov_print "$COV_DIR/cov_toggle.txt"
+
+# Print Functional Coverage
+func_cov_line=$(grep "^# Functional Coverage:" transcript)
+if [ -n "$func_cov_line" ]; then
+  echo "$func_cov_line" >"$COV_DIR/cov_functional.txt"
+  cov_print "$COV_DIR/cov_functional.txt"
+fi
+
+########### CLEAN SIMULATION JUNK ###########
+[ -f transcript ] && rm transcript
+[ -f vsim.wlf ] && rm vsim.wlf
+[ -f vish_stacktrace.vstf ] && rm vish_stacktrace.vstf
+[ -f vsim_stacktrace.vstf ] && rm vsim_stacktrace.vstf
+

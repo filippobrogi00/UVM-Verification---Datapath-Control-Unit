@@ -1,5 +1,7 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+import pkg_const::*;
+
 // Wrapper for plug-and-play DUT instantiation
 module Module_CU_Wrapper #(
     parameter MICROCODE_MEM_SIZE = 44, // Microcode Memory Size. Included all Instructions DLX will be able to execute and not.
@@ -14,7 +16,7 @@ module Module_CU_Wrapper #(
   // Instantiate DUT (cu_sv SV wrapper inside design.sv) and connect each of its pins
   // to an interface's signals
 
-  DP_CU #(
+  dlx_cu #(
       .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
       .FUNC_SIZE         (FUNC_SIZE),
       .OP_CODE_SIZE      (OP_CODE_SIZE),
@@ -23,22 +25,25 @@ module Module_CU_Wrapper #(
   ) DP_CU_inst (
       /* Inputs */
       .Clk            (cu_iface.Clk),
-      .nRST           (cu_iface.nRST),
+      .nRst           (cu_iface.nRst),
+      .IR_IN          (cu_iface.IR_IN),
       /* Outputs */
       // Stage 1
       .IR_LATCH_EN    (cu_iface.IR_LATCH_EN),
       .NPC_LATCH_EN   (cu_iface.NPC_LATCH_EN),
       // Stage 2
       .RegA_LATCH_EN  (cu_iface.RegA_LATCH_EN),
-      .RegB_LATCH_EN  (cu_iface.RegB_LATCH_EN),
+      .SIGN_UNSIGN_EN (cu_iface.SIGN_UNSIGN_EN),
       .RegIMM_LATCH_EN(cu_iface.RegIMM_LATCH_EN),
       .JAL_EN         (cu_iface.JAL_EN),
       // Stage 3
-      .MUXA_SEL       (cu_iface.MUXB_SEL),
+      .MUXA_SEL       (cu_iface.MUXA_SEL),
+      .MUXB_SEL       (cu_iface.MUXB_SEL),
       .ALU_OUTREG_EN  (cu_iface.ALU_OUTREG_EN),
       .EQ_COND        (cu_iface.EQ_COND),
       .JMP            (cu_iface.JMP),
       .EQZ_NEQZ       (cu_iface.EQZ_NEQZ),
+      .ALU_OPCODE     (cu_iface.ALU_OPCODE),
       // Stage 4
       .DRAM_WE        (cu_iface.DRAM_WE),
       .LMD_LATCH_EN   (cu_iface.LMD_LATCH_EN),

@@ -45,16 +45,16 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     * Expected Result variables declaration *
     *****************************************/
     /* EX Block Outputs */
-    logic [IR_SIZE-1:0] Expected_S1_REG_NPC_OUT;
-    logic [IR_SIZE-1:0] Expected_S2_REG_NPC_OUT;
-    logic Expected_S2_FF_JAL_EN_OUT;
-    logic [OPERAND_SIZE-1:0] Expected_S2_REG_ADD_WR_OUT;
-    logic [IR_SIZE-1:0] Expected_S2_RFILE_A_OUT;
-    logic [IR_SIZE-1:0] Expected_S2_RFILE_B_OUT;
-    logic [IR_SIZE-1:0] Expected_S2_REG_SE_IMM_OUT;
-    logic [IR_SIZE-1:0] Expected_S2_REG_UE_IMM_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S1_REG_NPC_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S2_REG_NPC_OUT;
+    logic                           Expected_S2_FF_JAL_EN_OUT;
+    logic        [OPERAND_SIZE-1:0] Expected_S2_REG_ADD_WR_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S2_RFILE_A_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S2_RFILE_B_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S2_REG_SE_IMM_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S2_REG_UE_IMM_OUT;
     /* Outputs to MEMWB Block */
-    logic [IR_SIZE-1:0] Expected_S1_ADD_OUT;
+    logic        [     IR_SIZE-1:0] Expected_S1_ADD_OUT;
 
 
     /*************************************************
@@ -63,23 +63,24 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
 
     /******** Variables ********/
     // Registers S1/S2_REG_NPC_OUT queue (2 elements)
-    static logic [IR_SIZE-1:0] s1_reg_queue[$:2] = '{0, 0};
+    // FIXME: Wrong syntax? Vsim complains warning could exceed queue length
+    static logic [     IR_SIZE-1:0] s1_reg_queue               [       $:2] = '{0, 0};
     // Register S2_FF_JAL_EN
-    static logic prev_ff_jal_en = 'b0;
+    static logic                    prev_ff_jal_en = 'b0;
     // Register S2_REG_ADD_WR and logic
     static logic [OPERAND_SIZE-1:0] prev_reg_add_wr = '0;
-    logic [OPERAND_SIZE-1:0] mux_ior_result;
-    logic [OPERAND_SIZE-1:0] mux_add_wr_result;
+    logic        [OPERAND_SIZE-1:0] mux_ior_result;
+    logic        [OPERAND_SIZE-1:0] mux_add_wr_result;
     // RF
-    static logic [RF_REGBITS-1:0] rf[RF_NUMREGS];
+    static logic [  RF_REGBITS-1:0] rf                         [RF_NUMREGS];
     // Registers S2_REG_SE26_IMM and S2_REG_SE16_IMM
-    static logic [IR_SIZE-1:0] prev_se26_imm = '0;
-    static logic [IR_SIZE-1:0] prev_se16_imm = '0;
+    static logic [     IR_SIZE-1:0] prev_se26_imm = '0;
+    static logic [     IR_SIZE-1:0] prev_se16_imm = '0;
 
 
     /******** Mimicking logic ********/
-    // NOTE: Disable coverage since it's t
-    // Mimick "NPC = NPC + 4" combinational behaviorscore
+    // NOTE: Disable coverage
+    // Mimick "NPC = NPC + 4" combinational behavior
     Expected_S1_ADD_OUT     = ifid_seqitem.DLX_PC_to_DP + 'd4;
 
     /* Mimick registers S1/2_REG_NPC_OUT through a queue */

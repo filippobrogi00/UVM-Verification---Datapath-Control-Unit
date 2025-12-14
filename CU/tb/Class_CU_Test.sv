@@ -1,5 +1,7 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+import pkg_const::*;
+
 /*
 * TEST:
   * Wrapper for many environments (useful for different protocols)
@@ -19,10 +21,10 @@ class Class_CU_Test extends uvm_test;
   endfunction
 
   // Environment
-  Class_CU_Environment      cu_environment;
+  Class_CU_Environment                                                             cu_environment;
 
   // Virtual interfaces handles
-  virtual Iface_CU #(NBITS) cu_dut_iface;
+  virtual Iface_CU #(MICROCODE_MEM_SIZE, FUNC_SIZE, OPCODE_SIZE, IR_SIZE, CW_SIZE) cu_dut_iface;
 
   /*
   * Test BUILD PHASE : Instantiate and build components declared above
@@ -33,7 +35,7 @@ class Class_CU_Test extends uvm_test;
     // coverage off b
 
     // Get virtual interfaces handles from DB
-    if (!uvm_config_db#(virtual Iface_CU #(NBITS))::get(
+    if (!uvm_config_db#(virtual Iface_CU #(MICROCODE_MEM_SIZE, FUNC_SIZE, OPCODE_SIZE, IR_SIZE, CW_SIZE))::get(
             this, "", "cu_dut_iface", cu_dut_iface
         )) begin
       `uvm_fatal("[TEST]", "Could not get DUT interface handle")
@@ -64,19 +66,24 @@ class Class_CU_Test extends uvm_test;
   virtual task run_phase(uvm_phase phase);
 
     /* SEQUENCES CREATION */
-    // Create "Legal Inputs" test sequence
-    Class_CU_LegalSequence cu_legalsequence = Class_CU_LegalSequence::type_id::create(
-        "cu_legalsequence", this
+    // Create "I-TYPE instruction" test sequence
+    Class_CU_ITYPE_Sequence cu_itype_sequence = Class_CU_ITYPE_Sequence::type_id::create(
+        "cu_itype_sequence", this
+    );
+
+    // // Create "R-TYPE instruction" test sequence
+    Class_CU_RTYPE_Sequence cu_rtype_sequence = Class_CU_RTYPE_Sequence::type_id::create(
+        "cu_rtype_sequence", this
+    );
+
+    // // Create "J-TYPE instruction" test sequence
+    Class_CU_JTYPE_Sequence cu_jtype_sequence = Class_CU_JTYPE_Sequence::type_id::create(
+        "cu_jtype_sequence", this
     );
 
     // Create "Random Inputs" test sequence
     Class_CU_RandomSequence cu_randomsequence = Class_CU_RandomSequence::type_id::create(
         "cu_randomsequence", this
-    );
-
-    // Create "Addition" test sequence
-    Class_CU_AdditionSequence cu_additionsequence = Class_CU_AdditionSequence::type_id::create(
-        "cu_legalsequence", this
     );
 
     /* Start the test */
@@ -86,17 +93,18 @@ class Class_CU_Test extends uvm_test;
     phase.raise_objection(this);
 
     // Start Coverage tracking
-    cu_environment.cu_coverage_tracker.coverageStart();
+    cu_environment.cunit_coverage_tracker.coverageStart();
 
     // Start all sequences in parallel
     fork
-      cu_legalsequence.start(cu_environment.cu_agent.cu_sequencer);
-      cu_randomsequence.start(cu_environment.cu_agent.cu_sequencer);
-      cu_additionsequence.start(cu_environment.cu_agent.cu_sequencer);
+      cu_itype_sequence.start(cu_environment.cunit_agent.cu_sequencer);
+      cu_rtype_sequence.start(cu_environment.cunit_agent.cu_sequencer);
+      cu_jtype_sequence.start(cu_environment.cunit_agent.cu_sequencer);
+      cu_randomsequence.start(cu_environment.cunit_agent.cu_sequencer);
     join
 
     // Stop coverage tracking
-    cu_environment.cu_coverage_tracker.coverageStop();
+    cu_environment.cunit_coverage_tracker.coverageStop();
 
     // Phase can now end
     phase.drop_objection(this);

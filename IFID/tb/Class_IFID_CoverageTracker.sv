@@ -120,8 +120,9 @@ class Class_IFID_CoverageTracker extends uvm_subscriber #(Class_IFID_SequenceIte
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
     // coverage off bcs
-    `uvm_info("COVERAGE TRACKER", $sformatf("Functional Coverage: %.2f%%", coverageGet()),
-              UVM_MEDIUM);
+    `uvm_info("BLUE", $sformatf(
+              "********** [COVERAGE TRACKER] **********\nFunctional Coverage: %.2f%%", coverageGet()
+              ), UVM_MEDIUM);
     // coverage off bcs
   endfunction : report_phase
 

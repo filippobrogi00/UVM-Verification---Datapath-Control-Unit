@@ -20,11 +20,11 @@ class Class_CU_Environment extends uvm_env;
   endfunction
 
   // Agent
-  Class_CU_Agent cu_agent;
+  Class_cunit_agent cunit_agent;
   // Scoreboard
   Class_CU_Scoreboard cu_scoreboard;
   // Coverage Tracker
-  Class_CU_CoverageTracker cu_coverage_tracker;
+  Class_CU_CoverageTracker cunit_coverage_tracker;
 
   /*
   * BUILD PHASE: Build components
@@ -33,10 +33,10 @@ class Class_CU_Environment extends uvm_env;
     super.build_phase(phase);
 
     // Create components
-    cu_agent = Class_CU_Agent::type_id::create("cu_agent", this);
+    cunit_agent = Class_cunit_agent::type_id::create("cunit_agent", this);
     cu_scoreboard = Class_CU_Scoreboard::type_id::create("cu_scoreboard", this);
-    cu_coverage_tracker =
-        Class_CU_CoverageTracker::type_id::create("cu_coverage_tracker", this);
+    cunit_coverage_tracker =
+        Class_CU_CoverageTracker::type_id::create("cunit_coverage_tracker", this);
   endfunction : build_phase
 
   /*
@@ -48,12 +48,11 @@ class Class_CU_Environment extends uvm_env;
     super.connect_phase(phase);
 
     // Connect Scoreboard's Implementation Port with Monitor's Port
-    cu_agent.cu_monitor.analysis_port.connect(cu_scoreboard.analysis_port_imp);
+    cunit_agent.cunit_monitor.analysis_port.connect(cu_scoreboard.analysis_port_imp);
 
     // Connect CoverageTracker's Implementation port with Monitor's port
-    cu_agent.cu_monitor.analysis_port.connect(cu_coverage_tracker.analysis_port_imp);
+    cunit_agent.cunit_monitor.analysis_port.connect(cunit_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
-
 
 endclass
 

@@ -1,0 +1,144 @@
+`timescale 1ns/1ps
+
+module dlx_cu_tb;
+
+  // Parameters
+  parameter MICROCODE_MEM_SIZE = 62;
+  parameter FUNC_SIZE = 11;
+  parameter OP_CODE_SIZE = 6;
+  parameter IR_SIZE = 32;
+  parameter CW_SIZE = 18;
+
+  // DUT Inputs
+  reg Clk;
+  reg nRst;
+  reg [IR_SIZE-1:0] IR_IN;
+
+  // DUT Outputs
+  wire IR_LATCH_EN;
+  wire NPC_LATCH_EN;
+  wire RegA_LATCH_EN;
+  wire SIGN_UNSIGN_EN;
+  wire RegIMM_LATCH_EN;
+  wire JAL_EN;
+  wire MUXA_SEL;
+  wire MUXB_SEL;
+  wire ALU_OUTREG_EN;
+  wire EQ_COND;
+  wire JMP;
+  wire EQZ_NEQZ;
+  wire [4:0] ALU_OPCODE;
+  wire DRAM_WE;
+  wire LMD_LATCH_EN;
+  wire JUMP_EN;
+  wire PC_LATCH_EN;
+  wire WB_MUX_SEL;
+  wire RF_WE;
+
+  // Instantiate the DUT
+  dlx_cu #(
+    .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
+    .FUNC_SIZE(FUNC_SIZE),
+    .OP_CODE_SIZE(OP_CODE_SIZE),
+    .IR_SIZE(IR_SIZE),
+    .CW_SIZE(CW_SIZE)
+  ) dut (
+    .Clk(Clk),
+    .nRst(nRst),
+    .IR_IN(IR_IN),
+    .IR_LATCH_EN(IR_LATCH_EN),
+    .NPC_LATCH_EN(NPC_LATCH_EN),
+    .RegA_LATCH_EN(RegA_LATCH_EN),
+    .SIGN_UNSIGN_EN(SIGN_UNSIGN_EN),
+    .RegIMM_LATCH_EN(RegIMM_LATCH_EN),
+    .JAL_EN(JAL_EN),
+    .MUXA_SEL(MUXA_SEL),
+    .MUXB_SEL(MUXB_SEL),
+    .ALU_OUTREG_EN(ALU_OUTREG_EN),
+    .EQ_COND(EQ_COND),
+    .JMP(JMP),
+    .EQZ_NEQZ(EQZ_NEQZ),
+    .ALU_OPCODE(ALU_OPCODE),
+    .DRAM_WE(DRAM_WE),
+    .LMD_LATCH_EN(LMD_LATCH_EN),
+    .JUMP_EN(JUMP_EN),
+    .PC_LATCH_EN(PC_LATCH_EN),
+    .WB_MUX_SEL(WB_MUX_SEL),
+    .RF_WE(RF_WE)
+  );
+
+  // Clock generation
+  initial begin
+    Clk = 0;
+    forever #5 Clk = ~Clk; // 10ns clock period
+  end
+
+  // Testbench logic
+  initial begin
+    // Initialize inputs
+    nRst = 0;
+    IR_IN = 32'b0;
+
+    // Apply reset
+    $display("Applying reset...");
+    #(10*5); // 5 CCs
+    nRst = 1; // Deassert reset
+    #(10*5); // 5 CCs
+
+    // Test Case 1: R-Type Instruction (FUNC = SRL, OPCODE = 0)
+    $display("Test Case 1: R-Type Instruction (FUNC = SRL, OPCODE = 0)");
+    IR_IN = 32'b000000_00001_00010_00011_00000000110; // R-Type, FUNC = 6 (SRL)
+    #(10*5); // Wait for one clock cycle
+    report_signals();
+
+    // Test Case 2: I-Type Instruction (OPCODE = ADDI)
+    $display("Test Case 2: I-Type Instruction (OPCODE = ADDI)");
+    IR_IN = 32'b001000_00001_00010_0000000000001000; // I-Type, OPCODE = 8 (ADDI)
+    #(10*5); // Wait for one clock cycle
+    report_signals();
+
+    // Test Case 3: J-Type Instruction (OPCODE = J)
+    $display("Test Case 3: J-Type Instruction (OPCODE = J)");
+    IR_IN = 32'b000010_00000000000000000000000010; // J-Type, OPCODE = 2 (J)
+    #(10*5); // Wait for one clock cycle
+    report_signals();
+
+    // Additional Test Case 4: R-Type Instruction (FUNC = ADD, OPCODE = 0)
+    $display("Test Case 4: R-Type Instruction (FUNC = ADD, OPCODE = 0)");
+    IR_IN = 32'b000000_00001_00010_00011_00000010000; // R-Type, FUNC = 32 (ADD)
+    #(10*5); // Wait for one clock cycle
+    report_signals();
+
+    // Additional Test Case 5: I-Type Instruction (OPCODE = ORI)
+    $display("Test Case 5: I-Type Instruction (OPCODE = ORI)");
+    IR_IN = 32'b001101_00001_00010_0000000000001111; // I-Type, OPCODE = 13 (ORI)
+    #(10*5); // Wait for one clock cycle
+    report_signals();
+
+    // Additional Test Case 6: J-Type Instruction (OPCODE = JAL)
+    $display("Test Case 6: J-Type Instruction (OPCODE = JAL)");
+    IR_IN = 32'b000011_00000000000000000000000100; // J-Type, OPCODE = 3 (JAL)
+    #(10*5); // Wait for one clock cycle
+    report_signals();
+
+    // End simulation
+    $display("Simulation complete.");
+    $finish;
+  end
+
+  // Task to report all signals
+  task report_signals();
+    $display("IR_IN: %b", IR_IN);
+    $display("OPCODE: %6b, FUNC: %11b", IR_IN[31:26], IR_IN[10:0]);
+    $display("Stage 1: IR_LATCH_EN: %b, NPC_LATCH_EN: %b", IR_LATCH_EN, NPC_LATCH_EN);
+    $display("Stage 2: RegA_LATCH_EN: %b, SIGN_UNSIGN_EN: %b, RegIMM_LATCH_EN: %b, JAL_EN: %b",
+             RegA_LATCH_EN, SIGN_UNSIGN_EN, RegIMM_LATCH_EN, JAL_EN);
+    $display("Stage 3: MUXA_SEL: %b, MUXB_SEL: %b, ALU_OUTREG_EN: %b, EQ_COND: %b, JMP: %b, EQZ_NEQZ: %b, ALU_OPCODE: %5b",
+             MUXA_SEL, MUXB_SEL, ALU_OUTREG_EN, EQ_COND, JMP, EQZ_NEQZ, ALU_OPCODE);
+    $display("Stage 4: DRAM_WE: %b, LMD_LATCH_EN: %b, JUMP_EN: %b, PC_LATCH_EN: %b",
+             DRAM_WE, LMD_LATCH_EN, JUMP_EN, PC_LATCH_EN);
+    $display("Stage 5: WB_MUX_SEL: %b, RF_WE: %b", WB_MUX_SEL, RF_WE);
+    $display("------------------------------------------------------------");
+  endtask
+
+endmodule

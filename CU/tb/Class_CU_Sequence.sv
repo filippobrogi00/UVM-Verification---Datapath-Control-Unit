@@ -47,7 +47,7 @@ class Class_CU_SequenceItem extends uvm_sequence_item;
 
   // IR instruction, with fields depending on its type
   // NOTE: Not a real input/signal, just an alias used for CRG.
-  InstrType instr;
+  rand InstrType instr;
 
   /***********
   *  OUTPUTS *
@@ -58,7 +58,7 @@ class Class_CU_SequenceItem extends uvm_sequence_item;
 
   /* Stage 2 Control Signals */
   logic RegA_LATCH_EN;  // Register A Latch Enable
-  logic RegB_LATCH_EN;  // Register B Latch Enable
+  logic SIGN_UNSIGN_EN;  // Signed vs Unsigned operand Enable
   logic RegIMM_LATCH_EN;  // Immediate Register Latch Enable
   logic JAL_EN;  // Control Signal for Jump and Link Instruction
 
@@ -89,69 +89,88 @@ class Class_CU_SequenceItem extends uvm_sequence_item;
   // Converts just the input fields into strings
   virtual function void print();
     // coverage off
-    `uvm_info("BLUE",
-              $sformatf(
+    `uvm_info("BLUE", $sformatf(
               {
                 "-------- ITEM INFO --------\n",
-                "/***** INPUTS   *****/",
+                "/***** INPUTS   *****/\n",
                 " IR = %x\n",
-                "/***** OUTPUTS   *****/",
-                " Control Word Out: (S1\tS2\tS3\tS4\tS5):\n"
-                " %b%b\t%b%b%b%b\t%b%b%b%b%b%b%b\t%b%b%b%b\t%b%b\n"
-                "/** STAGE 1: **/\n"
-                "IR_LATCH_EN = %b\n"
-                "NPC_LATCH_EN = %b\n"
-                "/** STAGE 2: **/\n"
-                "RegA_LATCH_EN = %b\n"
-                "RegB_LATCH_EN = %b\n"
-                "RegIMM_LATCH_EN = %b\n"
-                "JAL_EN = %b\n"
-                "/** STAGE 3: **/\n"
-                "MUXA_SEL = %b\n"
-                "MUXB_SEL = %b\n"
-                "ALU_OUTREG_EN = %b\n"
-                "EQ_COND = %b\n"
-                "JMP = %b\n"
-                "EQZ_NEQZ = %b\n"
-                "ALU_OPCODE = %b\n"
-                "EQ_COND = %b\n"
-                "EQ_COND = %b\n"
-                "/** STAGE 4: **/\n"
-                "DRAM_WE = %b\n"
-                "LMD_LATCH_EN = %b\n"
-                "JUMP_EN = %b\n"
-                "PC_LATCH_EN = %b\n"
-                "/** STAGE 5: **/\n"
-                "WB_MUX_SEL = %b\n"
-                "RF_WE = %b\n"
+                "/***** OUTPUTS (as Control Word)  *****/\n",
+                " Control Word Out: (S1\tS2\tS3 (AluOpcode)\tS4\tS5):\n",
+                " %b%b\t%b%b%b%b\t%b%b%b%b%b%b (%d)\t%b%b%b%b\t%b%b\n",
+                "/***** OUTPUTS (as bits)  *****/\n",
+                "/** STAGE 1: **/\n",
+                "IR_LATCH_EN = %b\n",
+                "NPC_LATCH_EN = %b\n",
+                "/** STAGE 2: **/\n",
+                "RegA_LATCH_EN = %b\n",
+                "SIGN_UNSIGN_EN = %b\n",
+                "RegIMM_LATCH_EN = %b\n",
+                "JAL_EN = %b\n",
+                "/** STAGE 3: **/\n",
+                "MUXA_SEL = %b\n",
+                "MUXB_SEL = %b\n",
+                "ALU_OUTREG_EN = %b\n",
+                "EQ_COND = %b\n",
+                "JMP = %b\n",
+                "EQZ_NEQZ = %b\n",
+                "ALU_OPCODE = %d\n",
+                "/** STAGE 4: **/\n",
+                "DRAM_WE = %b\n",
+                "LMD_LATCH_EN = %b\n",
+                "JUMP_EN = %b\n",
+                "PC_LATCH_EN = %b\n",
+                "/** STAGE 5: **/\n",
+                "WB_MUX_SEL = %b\n",
+                "RF_WE = %b\n",
                 "---------------------------\n"
               },
-              // Inputs
-              DLX_IR_to_DP,
-              // S1
-              IR_LATCH_EN,
-              NPC_LATCH_EN,
-              // S2
-              RegA_LATCH_EN,
-              RegB_LATCH_EN,
-              RegIMM_LATCH_EN,
-              JAL_EN,
-              // S3
-              MUXA_SEL,
-              MUXB_SEL,
-              ALU_OUTREG_EN,
-              EQ_COND,
-              JMP,
-              EQZ_NEQZ,
-              ALU_OPCODE,
-              // S4
-              DRAM_WE,
-              LMD_LATCH_EN,
-              JUMP_EN,
-              PC_LATCH_EN,
-              // S5
-              WB_MUX_SEL
-              RF_WE,
+              /***** INPUTS   *****/
+              this.IR_IN,
+              /***** OUTPUTS (as Control Word)  *****/
+              this.IR_LATCH_EN,
+              this.NPC_LATCH_EN,
+              this.RegA_LATCH_EN,
+              this.SIGN_UNSIGN_EN,
+              this.RegIMM_LATCH_EN,
+              this.JAL_EN,
+              this.MUXA_SEL,
+              this.MUXB_SEL,
+              this.ALU_OUTREG_EN,
+              this.EQ_COND,
+              this.JMP,
+              this.EQZ_NEQZ,
+              this.ALU_OPCODE,
+              this.DRAM_WE,
+              this.LMD_LATCH_EN,
+              this.JUMP_EN,
+              this.PC_LATCH_EN,
+              this.WB_MUX_SEL,
+              this.RF_WE,
+              /***** OUTPUTS (as bits)  *****/
+              /** STAGE 1 **/
+              this.IR_LATCH_EN,
+              this.NPC_LATCH_EN,
+              /** STAGE 2 **/
+              this.RegA_LATCH_EN,
+              this.SIGN_UNSIGN_EN,
+              this.RegIMM_LATCH_EN,
+              this.JAL_EN,
+              /** STAGE 3 **/
+              this.MUXA_SEL,
+              this.MUXB_SEL,
+              this.ALU_OUTREG_EN,
+              this.EQ_COND,
+              this.JMP,
+              this.EQZ_NEQZ,
+              this.ALU_OPCODE,
+              /** STAGE 4 **/
+              this.DRAM_WE,
+              this.LMD_LATCH_EN,
+              this.JUMP_EN,
+              this.PC_LATCH_EN,
+              /** STAGE 5 **/
+              this.WB_MUX_SEL,
+              this.RF_WE
               ), UVM_MEDIUM);
     // coverage on
   endfunction
@@ -169,7 +188,7 @@ class Class_CU_SequenceItem extends uvm_sequence_item;
     dest.NPC_LATCH_EN    = src.NPC_LATCH_EN;
     // Stage 2
     dest.RegA_LATCH_EN   = src.RegA_LATCH_EN;
-    dest.RegB_LATCH_EN   = src.RegB_LATCH_EN;
+    dest.SIGN_UNSIGN_EN  = src.SIGN_UNSIGN_EN;
     dest.RegIMM_LATCH_EN = src.RegIMM_LATCH_EN;
     dest.JAL_EN          = src.JAL_EN;
     // Stage 3
@@ -203,14 +222,13 @@ endclass
  ************* SEQUENCE CLASSES *************
  ********************************************/
 
-/************************ LEGAL SEQUENCE **************************
- * Inputs are constrained picking only legal values (allowed      *
- * by the DUT logic).                                             *
- ******************************************************************/
-class Class_CU_LegalSequence extends uvm_sequence #(Class_CU_SequenceItem);
+/************************ I-TYPE SEQUENCE ***************
+ * Generates I-TYPE instructions constrained to legal values. *
+ **************************************************************/
+class Class_CU_ITYPE_Sequence extends uvm_sequence #(Class_CU_SequenceItem);
   // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
   // coverage off bcs
-  `uvm_object_utils(Class_CU_LegalSequence)
+  `uvm_object_utils(Class_CU_ITYPE_Sequence)
   // coverage on bcs
 
   /*
@@ -219,7 +237,7 @@ class Class_CU_LegalSequence extends uvm_sequence #(Class_CU_SequenceItem);
   int unsigned numSequenceItems = 10;
 
   // Constructor
-  function new(string name = "Class_CU_LegalSequence");
+  function new(string name = "Class_CU_ITYPE_Sequence");
     super.new(name);
     // coverage off b
     // Get numSequenceItems from config DB (default or overwritten by user)
@@ -251,116 +269,75 @@ class Class_CU_LegalSequence extends uvm_sequence #(Class_CU_SequenceItem);
 
       // Randomize the item to let the Sequencer "execute"
       assert (cu_sequenceItem.randomize() with {
-        /* VALID OPCODE CONSTRAINT */
-        instr.bits[31:26] inside {
-        // verilog_format: off
-          NOP,
-          ADD_op,  // Signed Addition
-          AND_op,  // Bitwise
-          OR_op,  // Bitwise
-          SGE_op,  // Set Greater than or Equal to
-          SLE_op,  // Set Less than or Equal to
-          SLL_op,  // Unsigned Logical Shift Left
-          SNE_op,  // Set Not Equal to
-          SRL_op,  // Unsigned Arithmetic Shift Right
-          SUB_op,  // Signed Subtraction
-          XOR_op,  // Bitwise
 
-          // DLX Pro Version ALU Opcodes
-          SRA_op,  // Shift Right Arithmetic
-          ADDU_op,  // Unsigned Addition
-          SUBU_op,  // Unsigned Subtraction
-          SEQ_op,  // Set if Equal
-          SLT_op,  // Set if Less Than
-          SGT_op,  // Set Greater Than
-          SLTU_op,  // Set if Less Than (Unsigned)
-          SGTU_op,  // Set Greater Than (Unsigned)
-          SLEU_op,  // Set if Less Than or Equal (Unsigned)
-          SGEU_op  // Set Greater Than or Equal (Unsigned)
-        // verilog_format: on
+        /***********************
+         * I-TYPE instruction  *
+         ***********************/
+      
+        /* I-TYPE - OPCODE Constraints */
+        IR_IN[31:26] inside {
+          // --- DLX Basic Version ---
+          ITYPE_OPCODE_ADDI,  // addi
+          ITYPE_OPCODE_SUBI,  // subi
+          ITYPE_OPCODE_ANDI,  // andi
+          ITYPE_OPCODE_ORI,  // ori
+          ITYPE_OPCODE_XORI,  // xori
+          ITYPE_OPCODE_SLLI,  // slli
+          ITYPE_OPCODE_NOP,  // nop
+          ITYPE_OPCODE_SRLI,  // srli
+          ITYPE_OPCODE_SNEI,  // snei
+          ITYPE_OPCODE_SLEI,  // slei
+          ITYPE_OPCODE_SGEI,  // sgei
+          ITYPE_OPCODE_LW,  // lw
+          ITYPE_OPCODE_SW,  // sw
+          // --- DLX Pro Version ---
+          ITYPE_OPCODE_ADDUI,  // addui
+          ITYPE_OPCODE_SUBUI,  // subui
+          ITYPE_OPCODE_SRAI,  // srai
+          ITYPE_OPCODE_SEQI,  // seqi
+          ITYPE_OPCODE_SLTI,  // slti
+          ITYPE_OPCODE_SGTI,  // sgti
+          ITYPE_OPCODE_SLTUI,  // sltui
+          ITYPE_OPCODE_SGTUI,  // sgtui
+          ITYPE_OPCODE_SLEUI,  // sleui
+          ITYPE_OPCODE_SGEUI  // sgeui
         };
 
+        /* I-TYPE - fields constraints */
+        IR_IN[25:21] inside {[0 : DLX_CPU_NUMREGS - 1]};
+        IR_IN[20:16] inside {[0 : DLX_CPU_NUMREGS - 1]};
 
-        /* VALID OPCODE CONSTRAINTS */
+        /* I-TYPE - Constrain IMM field based on Signed/Unsigned instruction. */
+        // Check if opcode denotes signed operation
+        // if (check_instr_sign(IR_IN) == SIGN_TYPE) {
+        //   // Constrain as signed
+        //   IR_IN[15:0] inside {[-(2 ** (I_TYPE_IMM_SIZE - 1)) : +((2 ** (I_TYPE_IMM_SIZE - 1)) - 1)]};
+        // } else {
+        //   // Constrain as unsigned
+        //   IR_IN[15:0] inside {[0 : (2 ** I_TYPE_IMM_SIZE) - 1]};
+        // }
 
-        // verilog_format: off
-        if (check_instr_type(instr) == I_TYPE) {
-        // verilog_format: on
-
-          /* I-TYPE instruction [OPCODE, RS1, RD, IMM] */
-          instr.itype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
-          instr.itype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
-
-          // Check if opcode denotes signed operation
-          // verilog_format: off
-          if (check_instr_sign(instr) == SIGN_TYPE) {
-          // verilog_format: on
+        if (IR_IN[31:26] inside {
+            ITYPE_OPCODE_ADDI,  // addi
+            ITYPE_OPCODE_SUBI,  // subi
+            ITYPE_OPCODE_SNEI,  // snei
+            ITYPE_OPCODE_SLEI,  // slei
+            ITYPE_OPCODE_SGEI,  // sgei
+            ITYPE_OPCODE_LW,    // lw
+            ITYPE_OPCODE_SW,    // sw
+            ITYPE_OPCODE_SRAI,  // srai
+            ITYPE_OPCODE_SEQI,  // seqi
+            ITYPE_OPCODE_SLTI,  // slti
+            ITYPE_OPCODE_SGTI   // sgti
+          }) {
             // Constrain as signed
-            instr.itype.imm inside {[-(2 ** (NBITS - 1)) : +((2 ** (NBITS - 1)) - 1)]};
+            IR_IN[15:0] inside {[-(2 ** (I_TYPE_IMM_SIZE - 1)) : +((2 ** (I_TYPE_IMM_SIZE - 1)) - 1)]};
           } else {
             // Constrain as unsigned
-            instr.itype.imm inside {[0 : (2 ** NBITS) - 1]};
+            IR_IN[15:0] inside {[0 : (2 ** I_TYPE_IMM_SIZE) - 1]};
           }
 
-          // verilog_format: off
-        } else if (check_instr_type(instr) == R_TYPE) {
-          // verilog_format: on
-
-          /* R_TYPE instruction */
-          instr.rtype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
-          instr.rtype.rs2 inside {[0 : DLX_CPU_NUMREGS - 1]};
-          instr.rtype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
-
-          // FUNC field, every possible type of R_TYPE operation
-          // func inside {SLL_op, SRL_op, ADD_op, SUB_op, AND_op, OR_op, XOR_op, SNE_op, SLE_op, SGE_op, SRA_op, ADDU_op, SUBU_op, SEQ_op, SLT_op, SGT_op, SLTU_op, SGTU_op, SLEU_op, SGEU_op};
-          // TODOO: Spaghetti, needs fixing later on!
-          instr.rtype.func inside {4, 6, 32, 34, 36, 37, 38, 41, 44, 45, 7, 33, 35, 40, 42, 43, 58, 59, 60, 61};
-
-        } else {
-
-          /* J_TYPE instruction */
-
-          /*
-           * NOTE 1:
-           * Only for instructions J(mp), JAL, BEQ, BNEZ (which are our only
-           * jump instructions) the bit JUMP_EN will be 1, which will overwrite
-           * the next PC value with S3_REG_ALU content
-           * NOTE 2:
-           * Only for J and JAL (unconditional jump instructions), JMP flag
-           * will be 1.
-           *
-           * NOTE 3: Opcode for J, JAL, BEQZ, BNEZ is always ADD_op.
-           *
-           * Recap:
-           * -) JUMP_EN enabled for every possible jump instruction (opcode ADD_op)
-           * -) For conditional jumps, EQZ_NEQZ flag will direct the jump
-           * -) For unconditional jumps, JMP flag will direct the jump
-           * */
-
-          // verilog_format: off
-          if
-            (
-              // OPCODE is that of a jump instruction, and so JUMP_EN = 1
-              instr.bits[31:26] == ADD_op &&
-              // and either:
-              (
-                // JMP flag is set (CW bit #7) (unconditional jump)
-                DLX_IR_to_DP[7] == 1'b1 ||
-                // or target register is zero and "BEQZ" flag is set (CW bit #6)
-                (S2_RFILE_A_OUT == '0 && DLX_IR_to_DP[6] == 1'b1) ||
-                // or target register is NOT zero and "BNEZ" flag is set
-                (S2_RFILE_A_OUT != '0 && DLX_IR_to_DP[6] == 1'b0)
-              )
-            )
-            {
-              instr.jtype.imm inside {[0 : IRAM_DEPTH]};
-            }
-
-          // verilog_format: on
-
-        }
-
-      });
+     }); 
 
       // Signal the Sequencer that the initialization is done,
       // now Driver can pick up item using .get_next_item()
@@ -374,6 +351,188 @@ class Class_CU_LegalSequence extends uvm_sequence #(Class_CU_SequenceItem);
   endtask : body
 
 endclass
+
+
+/************************ J-TYPE SEQUENCE *********************
+ * Generates J-TYPE instructions constrained to legal values. *
+ **************************************************************/
+ class Class_CU_JTYPE_Sequence extends uvm_sequence #(Class_CU_SequenceItem);
+  // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
+  // coverage off bcs
+  `uvm_object_utils(Class_CU_JTYPE_Sequence)
+  // coverage on bcs
+
+  /*
+  * SEQUENCE CLASS MEMBERS
+  * */
+  int unsigned numSequenceItems = 10;
+
+  // Constructor
+  function new(string name = "Class_CU_JTYPE_Sequence");
+    super.new(name);
+    // coverage off b
+    // Get numSequenceItems from config DB (default or overwritten by user)
+    if (!uvm_config_db#(int)::get(null, "", "numSeqItems", numSequenceItems)) begin
+      `uvm_error("SEQITEM", "Failed to get numSequenceItems from DB")
+    end
+    // coverage on b
+  endfunction
+
+  /*
+  * BODY
+  * */
+  virtual task body();
+    // coverage off b
+    `uvm_info("SEQUENCE", $sformatf("body(): Generating %0d Sequence Items", numSequenceItems),
+              UVM_MEDIUM);
+    // coverage on b
+
+    repeat (numSequenceItems) begin
+      // Create instance of a new sequence item
+      // NOTE: Do not specify "this" as parent because 2nd argument must
+      // be of type uvm_component, while SequenceItem is uvm_sequence!
+      Class_CU_SequenceItem cu_sequenceItem = Class_CU_SequenceItem::type_id::create(
+          "cu_sequenceItem"
+      );
+
+      // Reserve Sequencer slot for current item
+      start_item(cu_sequenceItem);
+
+      // Randomize the item to let the Sequencer "execute"
+      assert (cu_sequenceItem.randomize() with {
+
+        /***********************
+         * J-TYPE instruction  *
+         ***********************/
+      
+        /* J-TYPE OPCODE Constraint */
+        IR_IN[31:26] inside {
+          JTYPE_OPCODE_J,  // j
+          JTYPE_OPCODE_JAL,  // jal
+          JTYPE_OPCODE_BEQZ,  // beqz
+          JTYPE_OPCODE_BNEZ  // bnez
+        };
+
+        /* J-TYPE Immediate field constraint */
+        IR_IN[25:0] inside {[0 : (2 ** J_TYPE_IMM_SIZE) - 1]};
+     }); 
+
+      // Signal the Sequencer that the initialization is done,
+      // now Driver can pick up item using .get_next_item()
+      finish_item(cu_sequenceItem);
+    end
+
+    // coverage off b
+    `uvm_info("SEQUENCE", $sformatf(
+              "body(): Done generating %0d Sequence Items...", numSequenceItems), UVM_MEDIUM);
+    // coverage on b
+  endtask : body
+
+endclass
+
+
+/************************ R-TYPE SEQUENCE *********************
+ * Generates R-TYPE instructions constrained to legal values. *
+ **************************************************************/
+ class Class_CU_RTYPE_Sequence extends uvm_sequence #(Class_CU_SequenceItem);
+  // Register to factory (doens't extend uvm_component -> use uvm_object_utils)
+  // coverage off bcs
+  `uvm_object_utils(Class_CU_RTYPE_Sequence)
+  // coverage on bcs
+
+  /*
+  * SEQUENCE CLASS MEMBERS
+  * */
+  int unsigned numSequenceItems = 10;
+
+  // Constructor
+  function new(string name = "Class_CU_RTYPE_Sequence");
+    super.new(name);
+    // coverage off b
+    // Get numSequenceItems from config DB (default or overwritten by user)
+    if (!uvm_config_db#(int)::get(null, "", "numSeqItems", numSequenceItems)) begin
+      `uvm_error("SEQITEM", "Failed to get numSequenceItems from DB")
+    end
+    // coverage on b
+  endfunction
+
+  /*
+  * BODY
+  * */
+  virtual task body();
+    // coverage off b
+    `uvm_info("SEQUENCE", $sformatf("body(): Generating %0d Sequence Items", numSequenceItems),
+              UVM_MEDIUM);
+    // coverage on b
+
+    repeat (numSequenceItems) begin
+      // Create instance of a new sequence item
+      // NOTE: Do not specify "this" as parent because 2nd argument must
+      // be of type uvm_component, while SequenceItem is uvm_sequence!
+      Class_CU_SequenceItem cu_sequenceItem = Class_CU_SequenceItem::type_id::create(
+          "cu_sequenceItem"
+      );
+
+      // Reserve Sequencer slot for current item
+      start_item(cu_sequenceItem);
+
+      // Randomize the item to let the Sequencer "execute"
+      assert (cu_sequenceItem.randomize() with {
+
+        /***********************
+         * R-TYPE instruction  *
+         ***********************/
+    
+        /* R-TYPE OPCODE constraints */
+        IR_IN[31:26] inside {RTYPE_OPCODE};
+
+        /* R-TYPE field constraints */
+        IR_IN[25:21] inside {[0 : DLX_CPU_NUMREGS - 1]};
+        IR_IN[20:16] inside {[0 : DLX_CPU_NUMREGS - 1]};
+        IR_IN[15:11] inside {[0 : DLX_CPU_NUMREGS - 1]};
+
+        /* R-TYPE FUNC field constraint: every possible type of R_TYPE operation */
+        IR_IN[10:0] inside {
+        
+          // --- DLX Basic Version ---
+          RTYPE_FUNC_SLL,  // sll
+          RTYPE_FUNC_SRL,  // srl
+          RTYPE_FUNC_ADD,  // add
+          RTYPE_FUNC_SUB,  // sub
+          RTYPE_FUNC_AND,  // and
+          RTYPE_FUNC_OR,  // or
+          RTYPE_FUNC_XOR,  // xor
+          RTYPE_FUNC_SNE,  // sne
+          RTYPE_FUNC_SLE,  // sle
+          RTYPE_FUNC_SGE,  // sge
+          // --- DLX Pro Version ---
+          RTYPE_FUNC_SRA,  // sra
+          RTYPE_FUNC_ADDU,  // addu
+          RTYPE_FUNC_SUBU,  // subu
+          RTYPE_FUNC_SEQ,  // seq
+          RTYPE_FUNC_SLT,  // slt
+          RTYPE_FUNC_SGT,  // sgt
+          RTYPE_FUNC_SLTU,  // sltu
+          RTYPE_FUNC_SGTU,  // sgtu
+          RTYPE_FUNC_SLEU,  // sleu
+          RTYPE_FUNC_SGEU  // sgeu
+        };
+
+     }); 
+
+      // Signal the Sequencer that the initialization is done,
+      // now Driver can pick up item using .get_next_item()
+      finish_item(cu_sequenceItem);
+    end
+
+    // coverage off b
+    `uvm_info("SEQUENCE", $sformatf(
+              "body(): Done generating %0d Sequence Items...", numSequenceItems), UVM_MEDIUM);
+    // coverage on b
+  endtask : body
+
+endclass
+
 
 /************************ RANDOM SEQUENCE **************************
  * Inputs are constrained randomically, feeding the DUT with       *
@@ -425,13 +584,15 @@ class Class_CU_RandomSequence extends uvm_sequence #(Class_CU_SequenceItem);
       start_item(cu_sequenceItem);
 
       // Randomize the item to let the Sequencer "execute"
-      // verilog_format: off
       assert (cu_sequenceItem.randomize() with {
 
-        IR_IN inside {[0 : 2 ** (IR_SIZE) - 1]};
+        // Randomly constrain raw instruction bits
+        IR_IN inside {[0 : (2 ** (IR_SIZE)) - 1]};
+
+        // Safety constraint check not to access invalid memory locations (overflow)
+        IR_IN[31:26] inside {[0 : MICROCODE_MEM_SIZE-1]};
 
       });
-      // verilog_format: on
 
       // Signal the Sequencer that the initialization is done,
       // now Driver can pick up item using .get_next_item()
@@ -447,10 +608,9 @@ class Class_CU_RandomSequence extends uvm_sequence #(Class_CU_SequenceItem);
 endclass
 
 
-/************************ ??? SEQUENCE ************************
- *  *
- *  *
- *******************************************************************/
+
+        
+ 
 
 
 
@@ -465,3 +625,100 @@ endclass
 
 
 
+
+
+
+
+
+
+
+
+ /************************ TEST SEQUENCE ************************
+  * Generates a SRL operation (OPCODE 0, FUNC = SRL_op) *
+  *******************************************************************/
+// class Class_CU_TestSequence extends uvm_sequence #(Class_CU_SequenceItem);
+
+//   // coverage off bcs
+//   `uvm_object_utils(Class_CU_TestSequence)
+//   // coverage on bcs
+
+//   int unsigned numSequenceItems = 10;
+
+//   function new(string name = "Class_CU_TestSequence");
+//     super.new(name);
+//   endfunction
+
+//   virtual task body();
+
+//     // coverage off b
+//     `uvm_info("SEQUENCE", $sformatf("body(): Generating %0d Sequence Items", numSequenceItems),
+//               UVM_MEDIUM);
+//     // coverage on b
+
+//     repeat (numSequenceItems) begin
+//       // Create instance of a new sequence item
+//       // NOTE: Do not specify "this" as parent because 2nd argument must
+//       // be of type uvm_component, while SequenceItem is uvm_sequence!
+//       Class_CU_SequenceItem cu_sequenceItem = Class_CU_SequenceItem::type_id::create(
+//           "cu_sequenceItem"
+//       );
+
+//       // Reserve Sequencer slot for current item
+//       start_item(cu_sequenceItem);
+
+//       // Randomization
+//       assert (randomize() with {
+
+//           // Set OPCODE to R-TYPE
+//           IR_IN[31:26] inside {RTYPE_OPCODE};
+
+//           // Set RS1, RS2, RD to any valid register
+//           IR_IN[25:21] inside {[0 : DLX_CPU_NUMREGS - 1]};  // RS1
+//           IR_IN[20:16] inside {[0 : DLX_CPU_NUMREGS - 1]};  // RS2
+//           IR_IN[15:11] inside {[0 : DLX_CPU_NUMREGS - 1]};  // RD
+
+//           // Set FUNC to SRL
+//           IR_IN[10:0] inside {RTYPE_FUNC_SRL};
+
+//       });
+
+//       // Signal the Sequencer that the initialization is done,
+//       // now Driver can pick up item using .get_next_item()
+//       finish_item(cu_sequenceItem);
+//     end
+
+//     // coverage off b
+//     `uvm_info("SEQUENCE", $sformatf(
+//               "body(): Done generating %0d Sequence Items...", numSequenceItems), UVM_MEDIUM);
+//     // coverage on b
+//   endtask : body
+
+// endclass
+
+// class Class_CU_TestSequence extends uvm_sequence #(Class_CU_SequenceItem);
+
+//   `uvm_object_utils(Class_CU_TestSequence)
+
+//   int unsigned numSequenceItems = 1;
+
+//   virtual task body();
+//     repeat (numSequenceItems) begin
+//       Class_CU_SequenceItem cu_sequenceItem = Class_CU_SequenceItem::type_id::create("cu_sequenceItem");
+
+//       start_item(cu_sequenceItem);
+
+//       // Hardcode the instruction
+//       // cu_sequenceItem.IR_IN = 32'b000000_00001_00010_00011_00000000110;  // Example: R-Type, FUNC = SRL (6)
+//       assert (cu_sequenceItem.randomize() with {
+//         cu_sequenceItem.IR_IN[31:26] inside {RTYPE_OPCODE};   // OPCODE for R-TYPE
+//         cu_sequenceItem.IR_IN[10:0] inside {RTYPE_FUNC_ADD};  // FUNC for SRL
+//       });
+
+//       `uvm_info("DEBUG", $sformatf("Hardcoded IR_IN: %b (OPCODE: %0d, FUNC: %0d)", 
+//                                    cu_sequenceItem.IR_IN, cu_sequenceItem.IR_IN[31:26], cu_sequenceItem.IR_IN[10:0]), UVM_MEDIUM);
+
+//       finish_item(cu_sequenceItem);
+//     end
+//   endtask
+
+// endclass

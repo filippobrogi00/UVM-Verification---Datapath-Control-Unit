@@ -32,6 +32,7 @@ package body rf_pkg is
       i           := i + 1;
     end loop;
 
+    -- HACK: added +1 for compliance with SV's $clog2()
     return i;
 
   end function log2;

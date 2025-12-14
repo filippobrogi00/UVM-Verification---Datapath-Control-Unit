@@ -1,5 +1,7 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+import pkg_const::*;
+
 /*
 * COVERAGE TRACKER:
   * Implements Covegroups to track Functional Coverage
@@ -16,7 +18,7 @@ class Class_CU_CoverageTracker extends uvm_subscriber #(Class_CU_SequenceItem);
   uvm_analysis_imp #(Class_CU_SequenceItem, Class_CU_CoverageTracker) analysis_port_imp;
 
   // Handle to virtual DUT interface
-  virtual Iface_CU #(NBITS) cu_dut_iface;
+  virtual Iface_CU #(MICROCODE_MEM_SIZE, FUNC_SIZE, OPCODE_SIZE, IR_SIZE, CW_SIZE) cu_dut_iface;
 
   /*
   * COVERGROUPS for Functional Coverage
@@ -25,22 +27,7 @@ class Class_CU_CoverageTracker extends uvm_subscriber #(Class_CU_SequenceItem);
   // NOTE: "with function sample" => Covergroup parameterized with transaction item
   covergroup Covergroup_CU with function sample (Class_CU_SequenceItem cu_seqitem);
 
-    // Multi-bit
-    Coverpoint_DLX_PC_to_DP: coverpoint cu_seqitem.DLX_PC_to_DP;
-    Coverpoint_DLX_IR_to_DP: coverpoint cu_seqitem.DLX_IR_to_DP;
-
-    // Single bit
-    Coverpoint_IR_LATCH_EN: coverpoint cu_seqitem.IR_LATCH_EN;
-    Coverpoint_NPC_LATCH_EN: coverpoint cu_seqitem.NPC_LATCH_EN;
-    Coverpoint_RegA_LATCH_EN: coverpoint cu_seqitem.RegA_LATCH_EN;
-    Coverpoint_SIGN_UNSIGN_EN: coverpoint cu_seqitem.SIGN_UNSIGN_EN;
-    Coverpoint_RegIMM_LATCH_EN: coverpoint cu_seqitem.RegIMM_LATCH_EN;
-    Coverpoint_JAL_EN: coverpoint cu_seqitem.JAL_EN;
-    Coverpoint_RF_WE: coverpoint cu_seqitem.RF_WE;
-
-    // Multi-bit
-    Coverpoint_S4_REG_ADD_WR_OUT: coverpoint cu_seqitem.S4_REG_ADD_WR_OUT;
-    Coverpoint_S5_MUX_DATAIN_OUT: coverpoint cu_seqitem.S5_MUX_DATAIN_OUT;
+    Coverpoint_IRIN: coverpoint cu_seqitem.IR_IN;
 
   endgroup : Covergroup_CU
 
@@ -84,7 +71,7 @@ class Class_CU_CoverageTracker extends uvm_subscriber #(Class_CU_SequenceItem);
     // coverage off b
 
     // Get interface from config DB
-    if (!uvm_config_db#(virtual Iface_CU #(NBITS))::get(
+    if (!uvm_config_db#(virtual Iface_CU #(MICROCODE_MEM_SIZE, FUNC_SIZE, OPCODE_SIZE, IR_SIZE, CW_SIZE))::get(
             this, "", "cu_dut_iface", cu_dut_iface
         )) begin
       `uvm_error("[COVERAGE TRACKER]", "Failed to get DUT interface")
@@ -120,8 +107,9 @@ class Class_CU_CoverageTracker extends uvm_subscriber #(Class_CU_SequenceItem);
   virtual function void report_phase(uvm_phase phase);
     super.report_phase(phase);
     // coverage off bcs
-    `uvm_info("COVERAGE TRACKER", $sformatf("Functional Coverage: %.2f%%", coverageGet()),
-              UVM_MEDIUM);
+    `uvm_info("BLUE", $sformatf(
+              "********** [COVERAGE TRACKER] **********\nFunctional Coverage: %.2f%%", coverageGet()
+              ), UVM_MEDIUM);
     // coverage off bcs
   endfunction : report_phase
 

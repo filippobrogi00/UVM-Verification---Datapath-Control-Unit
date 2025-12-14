@@ -23,7 +23,7 @@ int numSeqItems = 100;
 // top-level Testbench, do they aren't included here, but instead compiled!
 
 // Custom Report Server for cleaner messages
-// `include "Class_SimpleReportServer.sv"
+`include "Class_SimpleReportServer.sv"
 
 // Testbench Class files
 `include "Class_CU_Sequence.sv"
@@ -61,25 +61,23 @@ module Module_topTestbench;
   // Interfaces instantiation
   // NOTE: () parenthesis after iface name needed because these are modules!
   Iface_CU #(
-      .IR_SIZE        (IR_SIZE),
-      .OPERAND_SIZE   (OPERAND_SIZE),
-      .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
-      .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
-      .RF_REGBITS     (RF_REGBITS),
-      .RF_NUMREGS     (RF_NUMREGS)
+      .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
+      .FUNC_SIZE(FUNC_SIZE),
+      .OP_CODE_SIZE(OPCODE_SIZE),
+      .IR_SIZE(IR_SIZE),
+      .CW_SIZE(CW_SIZE)
   ) cu_dut_iface (
-      .CLK (globalClk),
-      .nRST(globalRst_n)
+      .Clk (globalClk),
+      .nRst(globalRst_n)
   );
 
   // Instance DUT using wrapper
   Module_CU_Wrapper #(
-      .IR_SIZE        (IR_SIZE),
-      .OPERAND_SIZE   (OPERAND_SIZE),
-      .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
-      .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
-      .RF_REGBITS     (RF_REGBITS),
-      .RF_NUMREGS     (RF_NUMREGS)
+      .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
+      .FUNC_SIZE(FUNC_SIZE),
+      .OP_CODE_SIZE(OPCODE_SIZE),
+      .IR_SIZE(IR_SIZE),
+      .CW_SIZE(CW_SIZE)
   ) cu_toplevel (
       .cu_iface(cu_dut_iface)
   );
@@ -110,8 +108,12 @@ module Module_topTestbench;
 
     // Pass Virtual DUT interface handle down to components through Config Object
     uvm_config_db#(virtual Iface_CU #(
-      IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE, J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS)
-      )::set(
+      .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
+      .FUNC_SIZE(FUNC_SIZE),
+      .OP_CODE_SIZE(OPCODE_SIZE),
+      .IR_SIZE(IR_SIZE),
+      .CW_SIZE(CW_SIZE)
+      ))::set(
         null, "*", "cu_dut_iface", cu_dut_iface);
 
     // Running test...

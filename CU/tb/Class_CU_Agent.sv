@@ -6,15 +6,15 @@
 * connects them via TLM interfaces.
 * */
 
-class Class_CU_Agent extends uvm_agent;
+class Class_cunit_agent extends uvm_agent;
 
   // Register to Factory
   // coverage off bcs
-  `uvm_component_utils(Class_CU_Agent)
+  `uvm_component_utils(Class_cunit_agent)
   // coverage on bcs
 
   // Constructor
-  function new(string name = "Class_CU_Agent", uvm_component parent = null);
+  function new(string name = "Class_cunit_agent", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
@@ -28,7 +28,7 @@ class Class_CU_Agent extends uvm_agent;
   // NOTE: Since Driver is parameterized on SequenceItem, this too!
   uvm_sequencer #(Class_CU_SequenceItem) cu_sequencer;
   Class_CU_Driver                        cu_driver;
-  Class_CU_Monitor                       cu_monitor;
+  Class_CU_Monitor                       cunit_monitor;
 
   /*
   * BUILD PHASE : Create Monitor, and if Agent is "active", also create Sequencer and Driver
@@ -37,13 +37,13 @@ class Class_CU_Agent extends uvm_agent;
     super.build_phase(phase);
 
     // Create Sequencer
-    cu_sequencer = uvm_sequencer#(Class_CU_SequenceItem)::type_id::create("cu_sequencer", this);
+    cu_sequencer  = uvm_sequencer#(Class_CU_SequenceItem)::type_id::create("cu_sequencer", this);
 
     // Create Driver
-    cu_driver = Class_CU_Driver::type_id::create("cu_driver", this);
+    cu_driver     = Class_CU_Driver::type_id::create("cu_driver", this);
 
     // Create Monitor
-    cu_monitor = Class_CU_Monitor::type_id::create("cu_monitor", this);
+    cunit_monitor = Class_CU_Monitor::type_id::create("cunit_monitor", this);
 
   endfunction : build_phase
 

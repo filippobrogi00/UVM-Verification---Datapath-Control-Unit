@@ -41,8 +41,8 @@ Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_
   File ../src/a.b.d-MUX.vhd
 ------------------------------------IF Branch------------------------------------
     15                                      4002     Count coming in to IF
-    15              1                        982     
-    15              2                       3020     
+    15              1                       1010     
+    15              2                       2992     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -64,9 +64,9 @@ Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_
     ----         ----                      -----     ------ 
   File ../src/a.b.d-MUX.vhd
 ------------------------------------IF Branch------------------------------------
-    15                                      4476     Count coming in to IF
-    15              1                        972     
-    15              2                       3504     
+    15                                      4486     Count coming in to IF
+    15              1                        978     
+    15              2                       3508     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -123,8 +123,8 @@ Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
     67                                      1994     Count coming in to IF
-    67              1                        510     
-                                            1484     All False Count
+    67              1                        483     
+                                            1511     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -147,8 +147,8 @@ Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_
   File ../src/a.b.h-SignExtender16-32.vhd
 ------------------------------------IF Branch------------------------------------
     39                                      4003     Count coming in to IF
-    39              1                       1036     
-    39              2                       2967     
+    39              1                        986     
+    39              2                       3017     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -239,8 +239,8 @@ Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_
     ----         ----                      -----     ------ 
   File ../src/a.b.g-FlipFlop.vhd
 ------------------------------------IF Branch------------------------------------
-    24                                       497     Count coming in to IF
-    24              1                        497     
+    24                                       485     Count coming in to IF
+    24              1                        485     
 Branch totals: 1 hit of 1 branch = 100.00%
 
 
@@ -262,21 +262,21 @@ Branch Coverage for instance /Module_topTestbench_sv_unit
     ----         ----                      -----     ------ 
   File ../tb/Class_IFID_Scoreboard.sv
 ------------------------------------IF Branch------------------------------------
-    96                                      1000     Count coming in to IF
-    96              1                        491     
-    96              2                        509     
+    97                                      1000     Count coming in to IF
+    97              1                        505     
+    97              2                        495     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    98                                      1000     Count coming in to IF
-    98              1                        486     
-    98              2                        514     
+    99                                      1000     Count coming in to IF
+    99              1                        489     
+    99              2                        511     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    117                                     3000     Count coming in to IF
-    117             1                        539     
-                                            2461     All False Count
+    118                                     3000     Count coming in to IF
+    118             1                        513     
+                                            2487     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 

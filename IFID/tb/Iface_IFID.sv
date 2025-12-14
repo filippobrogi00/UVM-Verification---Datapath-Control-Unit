@@ -1,5 +1,6 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+
 // DUT Interface
 interface Iface_IFID #(
     parameter IR_SIZE = 32,
@@ -49,38 +50,38 @@ interface Iface_IFID #(
   *  INPUTS  *
   ************/
   /* General inputs */
-  logic [IR_SIZE-1:0] DLX_PC_to_DP;
-  logic [IR_SIZE-1:0] DLX_IR_to_DP;
+  logic [           IR_SIZE-1:0] DLX_PC_to_DP;
+  logic [           IR_SIZE-1:0] DLX_IR_to_DP;
 
   /* STAGE 1 Inputs */
-  logic IR_LATCH_EN;
-  logic NPC_LATCH_EN;
+  logic                          IR_LATCH_EN;
+  logic                          NPC_LATCH_EN;
 
   /* STAGE 2 Inputs */
-  logic RegA_LATCH_EN;
-  logic SIGN_UNSIGN_EN;
-  logic RegIMM_LATCH_EN;
-  logic JAL_EN;
+  logic                          RegA_LATCH_EN;
+  logic                          SIGN_UNSIGN_EN;
+  logic                          RegIMM_LATCH_EN;
+  logic                          JAL_EN;
 
   /* Additional inputs from MEMWB Block */
-  logic RF_WE;
+  logic                          RF_WE;
   logic [$clog2(RF_NUMREGS)-1:0] S4_REG_ADD_WR_OUT;
-  logic [RF_REGBITS-1:0] S5_MUX_DATAIN_OUT;
+  logic [        RF_REGBITS-1:0] S5_MUX_DATAIN_OUT;
 
   /***********
   *  OUTPUTS *
   ************/
   /* EX Block Outputs */
-  logic [IR_SIZE-1:0] S1_REG_NPC_OUT;
-  logic [IR_SIZE-1:0] S2_REG_NPC_OUT;
-  logic S2_FF_JAL_EN_OUT;
+  logic [           IR_SIZE-1:0] S1_REG_NPC_OUT;
+  logic [           IR_SIZE-1:0] S2_REG_NPC_OUT;
+  logic                          S2_FF_JAL_EN_OUT;
   logic [$clog2(RF_NUMREGS)-1:0] S2_REG_ADD_WR_OUT;
-  logic [IR_SIZE-1:0] S2_RFILE_A_OUT;
-  logic [IR_SIZE-1:0] S2_RFILE_B_OUT;
-  logic [IR_SIZE-1:0] S2_REG_SE_IMM_OUT;
-  logic [IR_SIZE-1:0] S2_REG_UE_IMM_OUT;
+  logic [           IR_SIZE-1:0] S2_RFILE_A_OUT;
+  logic [           IR_SIZE-1:0] S2_RFILE_B_OUT;
+  logic [           IR_SIZE-1:0] S2_REG_SE_IMM_OUT;
+  logic [           IR_SIZE-1:0] S2_REG_UE_IMM_OUT;
   /* Outputs to MEMWB Block */
-  logic [IR_SIZE-1:0] S1_ADD_OUT;
+  logic [           IR_SIZE-1:0] S1_ADD_OUT;
 
   /************
   *  MODPORTS *

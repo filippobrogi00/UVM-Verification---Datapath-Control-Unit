@@ -83,7 +83,7 @@ class Class_IFID_SequenceItem extends uvm_sequence_item;
 
 
   /*
-  * SEQUENCE ITEM METHODS
+  * NSEQUENCE ITEM METHODS
   * */
 
   // Converts just the input fields into strings
@@ -203,7 +203,6 @@ endclass
 //
 //   // Defined by child classes
 //   pure virtual task body();
-//
 // endclass : Class_IFID_BaseSequence
 
 
@@ -260,36 +259,36 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
       // by derived classes!
       assert (ifid_sequenceItem.randomize() with {
         /* VALID OPCODE CONSTRAINT */
-        instr.bits[31:26] inside {OPCODE_RTYPE,  // R-type (uses FUNC field)
+        instr.bits[31:26] inside {RTYPE_OPCODE,  // R-type (uses FUNC field)
         // --- DLX Basic Version ---
-        OPCODE_J,  // j
-        OPCODE_JAL,  // jal
-        OPCODE_BEQZ,  // beqz
-        OPCODE_BNEZ,  // bnez
-        OPCODE_ADDI,  // addi
-        OPCODE_SUBI,  // subi
-        OPCODE_ANDI,  // andi
-        OPCODE_ORI,  // ori
-        OPCODE_XORI,  // xori
-        OPCODE_SLLI,  // slli
-        OPCODE_NOP,  // nop
-        OPCODE_SRLI,  // srli
-        OPCODE_SNEI,  // snei
-        OPCODE_SLEI,  // slei
-        OPCODE_SGEI,  // sgei
-        OPCODE_LW,  // lw
-        OPCODE_SW,  // sw
+        JTYPE_OPCODE_J,  // j
+        JTYPE_OPCODE_JAL,  // jal
+        JTYPE_OPCODE_BEQZ,  // beqz
+        JTYPE_OPCODE_BNEZ,  // bnez
+        ITYPE_OPCODE_ADDI,  // addi
+        ITYPE_OPCODE_SUBI,  // subi
+        ITYPE_OPCODE_ANDI,  // andi
+        ITYPE_OPCODE_ORI,  // ori
+        ITYPE_OPCODE_XORI,  // xori
+        ITYPE_OPCODE_SLLI,  // slli
+        ITYPE_OPCODE_NOP,  // nop
+        ITYPE_OPCODE_SRLI,  // srli
+        ITYPE_OPCODE_SNEI,  // snei
+        ITYPE_OPCODE_SLEI,  // slei
+        ITYPE_OPCODE_SGEI,  // sgei
+        ITYPE_OPCODE_LW,  // lw
+        ITYPE_OPCODE_SW,  // sw
         // --- DLX Pro Version ---
-        OPCODE_ADDUI,  // addui
-        OPCODE_SUBUI,  // subui
-        OPCODE_SRAI,  // srai
-        OPCODE_SEQI,  // seqi
-        OPCODE_SLTI,  // slti
-        OPCODE_SGTI,  // sgti
-        OPCODE_SLTUI,  // sltui
-        OPCODE_SGTUI,  // sgtui
-        OPCODE_SLEUI,  // sleui
-        OPCODE_SGEUI  // sgeui
+        ITYPE_OPCODE_ADDUI,  // addui
+        ITYPE_OPCODE_SUBUI,  // subui
+        ITYPE_OPCODE_SRAI,  // srai
+        ITYPE_OPCODE_SEQI,  // seqi
+        ITYPE_OPCODE_SLTI,  // slti
+        ITYPE_OPCODE_SGTI,  // sgti
+        ITYPE_OPCODE_SLTUI,  // sltui
+        ITYPE_OPCODE_SGTUI,  // sgtui
+        ITYPE_OPCODE_SLEUI,  // sleui
+        ITYPE_OPCODE_SGEUI  // sgeui
         };
 
 
@@ -326,27 +325,27 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
           // FUNC field, every possible type of R_TYPE operation
           instr.rtype.func inside {
           // --- DLX Basic Version ---
-          FUNC_SLL,  // sll
-          FUNC_SRL,  // srl
-          FUNC_ADD,  // add
-          FUNC_SUB,  // sub
-          FUNC_AND,  // and
-          FUNC_OR,  // or
-          FUNC_XOR,  // xor
-          FUNC_SNE,  // sne
-          FUNC_SLE,  // sle
-          FUNC_SGE,  // sge
+          RTYPE_FUNC_SLL,  // sll
+          RTYPE_FUNC_SRL,  // srl
+          RTYPE_FUNC_ADD,  // add
+          RTYPE_FUNC_SUB,  // sub
+          RTYPE_FUNC_AND,  // and
+          RTYPE_FUNC_OR,  // or
+          RTYPE_FUNC_XOR,  // xor
+          RTYPE_FUNC_SNE,  // sne
+          RTYPE_FUNC_SLE,  // sle
+          RTYPE_FUNC_SGE,  // sge
           // --- DLX Pro Version ---
-          FUNC_SRA,  // sra
-          FUNC_ADDU,  // addu
-          FUNC_SUBU,  // subu
-          FUNC_SEQ,  // seq
-          FUNC_SLT,  // slt
-          FUNC_SGT,  // sgt
-          FUNC_SLTU,  // sltu
-          FUNC_SGTU,  // sgtu
-          FUNC_SLEU,  // sleu
-          FUNC_SGEU  // sgeu
+          RTYPE_FUNC_SRA,  // sra
+          RTYPE_FUNC_ADDU,  // addu
+          RTYPE_FUNC_SUBU,  // subu
+          RTYPE_FUNC_SEQ,  // seq
+          RTYPE_FUNC_SLT,  // slt
+          RTYPE_FUNC_SGT,  // sgt
+          RTYPE_FUNC_SLTU,  // sltu
+          RTYPE_FUNC_SGTU,  // sgtu
+          RTYPE_FUNC_SLEU,  // sleu
+          RTYPE_FUNC_SGEU  // sgeu
           };
 
         } else {
@@ -374,7 +373,8 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
           if
             (
               // OPCODE is that of a jump instruction, and so JUMP_EN = 1
-              instr.bits[31:26] == OPCODE_ADDI &&
+              // instr.bits[31:26] == JTYPE_OPCODE_ADDU &&
+              (check_instr_type(instr) == J_TYPE) &&
               // and either:
               (
                 // JMP flag is set (CW bit #7) (unconditional jump)
@@ -465,8 +465,8 @@ class Class_IFID_RandomSequence extends uvm_sequence #(Class_IFID_SequenceItem);
       assert (ifid_sequenceItem.randomize() with {
 
         // General inputs
-        DLX_PC_to_DP inside {[0 : 2 ** (IR_SIZE - 1)]};
-        DLX_IR_to_DP inside {[0 : 2 ** (IR_SIZE - 1)]};
+        DLX_PC_to_DP inside {[0 : (2 ** (IR_SIZE)) - 1]};
+        DLX_IR_to_DP inside {[0 : (2 ** (IR_SIZE)) - 1]};
 
         // Stage 1 inputs
         IR_LATCH_EN inside {1'b0, 1'b1};
@@ -481,7 +481,7 @@ class Class_IFID_RandomSequence extends uvm_sequence #(Class_IFID_SequenceItem);
         // Additional inputs
         RF_WE inside {1'b0, 1'b1};
         S4_REG_ADD_WR_OUT inside {[0 : (2 ** ($clog2(RF_NUMREGS) - 1))]};
-        S5_MUX_DATAIN_OUT inside {[0 : (2 ** (RF_REGBITS - 1))]};
+        S5_MUX_DATAIN_OUT inside {[0 : (2 ** RF_REGBITS) - 1]};
 
       });
 
@@ -578,10 +578,22 @@ class Class_IFID_AdditionSequence extends uvm_sequence #(Class_IFID_SequenceItem
           // verilog_format: off
           if (check_instr_sign(instr) == SIGN_TYPE) {
           // verilog_format: on
-            instr.itype.imm inside {[-(2 ** (NBITS - 1)) : +((2 ** (NBITS - 1)) - 1)]};
+
+            // Signed, constrain to check both overflow and underflow
+            instr.itype.imm dist {
+              MIN_VALUE_NBITS_SIGNED                                    := PROB_HIGH,
+              [MIN_VALUE_NBITS_SIGNED + 1 : MAX_VALUE_NBITS_SIGNED - 1] := PROB_LOW,
+              MAX_VALUE_NBITS_SIGNED                                    := PROB_HIGH
+            };
+
           } else {
-            // Unsigned
-            instr.itype.imm inside {[0 : 2 ** (NBITS - 1)]};
+
+            // Unsigned, constrain to check overflow
+            instr.itype.imm dist {
+              [MIN_VALUE_NBITS_UNSIGNED : MAX_VALUE_NBITS_UNSIGNED - 1] := PROB_LOW,
+              MAX_VALUE_NBITS_UNSIGNED                                  := PROB_HIGH
+            };
+
           }
 
           // verilog_format: off
@@ -592,7 +604,7 @@ class Class_IFID_AdditionSequence extends uvm_sequence #(Class_IFID_SequenceItem
           instr.rtype.rs1 inside {[0 : DLX_CPU_NUMREGS - 1]};
           instr.rtype.rs2 inside {[0 : DLX_CPU_NUMREGS - 1]};
           instr.rtype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
-          instr.rtype.func inside {FUNC_ADD, FUNC_SUB, FUNC_ADDU, FUNC_SUBU};
+          instr.rtype.func inside {RTYPE_FUNC_ADD, RTYPE_FUNC_SUB, RTYPE_FUNC_ADDU, RTYPE_FUNC_SUBU};
         }
 
       });

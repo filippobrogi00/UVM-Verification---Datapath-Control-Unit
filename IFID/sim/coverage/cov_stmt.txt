@@ -16,13 +16,13 @@ Statement Coverage for instance /Module_topTestbench/ifid_dut_iface --
     Line         Item                      Count     Source 
     ----         ----                      -----     ------ 
   File ../tb/Iface_IFID.sv
-    107             1                          1     
-    110             1                          1     
-    110             2                          1     
-    110             3                          1     
-    110             4                          1     
+    108             1                          1     
     111             1                          1     
     111             2                          1     
+    111             3                          1     
+    111             4                          1     
+    112             1                          1     
+    112             2                          1     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD
@@ -59,7 +59,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/
     ----         ----                      -----     ------ 
   File ../src/a.b.g-FlipFlop.vhd
     28              1                          7     
-    33              1                        494     
+    33              1                        482     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
@@ -95,7 +95,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/
     Line         Item                      Count     Source 
     ----         ----                      -----     ------ 
   File ../src/a.b.d-MUX.vhd
-    15              1                       4476     
+    15              1                       4486     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR
@@ -138,7 +138,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/
     54              1                        224     
     56              1                          7     
     57              1                          7     
-    68              1                        510     
+    68              1                        483     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
@@ -288,7 +288,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/
     ----         ----                      -----     ------ 
   File ../src/a.b.g-FlipFlop.vhd
     28              1                          7     
-    33              1                        488     
+    33              1                        504     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM
@@ -307,7 +307,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/
     ----         ----                      -----     ------ 
   File ../src/a.b.g-FlipFlop.vhd
     28              1                          7     
-    33              1                        488     
+    33              1                        504     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN
@@ -345,7 +345,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/
     ----         ----                      -----     ------ 
   File ../src/a.b.g-FlipFlop.vhd
     28              1                          2     
-    33              1                        495     
+    33              1                        483     
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst
@@ -372,7 +372,7 @@ Statement Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst 
 Statement Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Statements                      13        11         2    84.61%
+    Statements                      11        11         0   100.00%
 
 ================================Statement Details================================
 
@@ -392,8 +392,6 @@ Statement Coverage for instance /Module_topTestbench --
     109             1                          1     
     112             1                          1     
     118             1                          1     
-    121             1                    ***0***     
-    122             1                    ***0***     
 
 =================================================================================
 === Instance: /Module_topTestbench_sv_unit
@@ -402,7 +400,7 @@ Statement Coverage for instance /Module_topTestbench --
 Statement Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Statements                     160       133        27    83.12%
+    Statements                     140       133         7    95.00%
 
 ================================Statement Details================================
 
@@ -412,53 +410,33 @@ Statement Coverage for instance /Module_topTestbench_sv_unit --
     ----         ----                      -----     ------ 
   File ../tb/Class_IFID_Sequence.sv
     24              1                       9002     
-    140             1                    ***0***     
-    141             1                    ***0***     
-    143             1                    ***0***     
-    144             1                    ***0***     
-    146             1                    ***0***     
-    147             1                    ***0***     
-    148             1                    ***0***     
-    149             1                    ***0***     
-    151             1                    ***0***     
-    152             1                    ***0***     
-    153             1                    ***0***     
-    156             1                    ***0***     
-    157             1                    ***0***     
-    158             1                    ***0***     
-    159             1                    ***0***     
-    160             1                    ***0***     
-    161             1                    ***0***     
-    162             1                    ***0***     
-    163             1                    ***0***     
-    165             1                    ***0***     
-    192             1                          1     
-    196             1                          1     
-    200             1                    ***0***     
-    210             1                          1     
-    214             1                       1000     
-    218             1                       1000     
-    223             1                       1000     
-    337             1                       1000     
-    341             1                          1     
-    361             1                          1     
-    365             1                          1     
-    369             1                    ***0***     
-    382             1                          1     
-    386             1                       1000     
-    390             1                       1000     
-    395             1                       1000     
-    426             1                       1000     
-    430             1                          1     
-    451             1                          1     
-    455             1                          1     
-    459             1                    ***0***     
-    469             1                          1     
-    473             1                       1000     
-    477             1                       1000     
-    482             1                       1000     
-    540             1                       1000     
-    544             1                          1     
+    224             1                          1     
+    228             1                          1     
+    232             1                    ***0***     
+    242             1                          1     
+    246             1                       1000     
+    250             1                       1000     
+    255             1                       1000     
+    400             1                       1000     
+    404             1                          1     
+    425             1                          1     
+    429             1                          1     
+    433             1                    ***0***     
+    446             1                          1     
+    450             1                       1000     
+    454             1                       1000     
+    459             1                       1000     
+    490             1                       1000     
+    494             1                          1     
+    516             1                          1     
+    520             1                          1     
+    524             1                    ***0***     
+    534             1                          1     
+    538             1                       1000     
+    542             1                       1000     
+    547             1                       1000     
+    602             1                       1000     
+    606             1                          1     
   File ../tb/Class_IFID_Driver.sv
     19              1                          1     
     32              1                          1     
@@ -519,39 +497,39 @@ Statement Coverage for instance /Module_topTestbench_sv_unit --
     55              1                          1     
     58              1                          1     
   File ../tb/Class_IFID_CoverageTracker.sv
-    50              1                          1     
-    52              1                          1     
-    60              1                          1     
-    65              1                          1     
-    70              1                       3000     
-    75              1                          1     
-    83              1                          1     
-    91              1                    ***0***     
-    97              1                          1     
-    114             1                       3000     
-    122             1                          1     
+    49              1                          1     
+    51              1                          1     
+    59              1                          1     
+    64              1                          1     
+    69              1                       3000     
+    74              1                          1     
+    82              1                          1     
+    90              1                    ***0***     
+    96              1                          1     
+    113             1                       3000     
+    121             1                          1     
   File ../tb/Class_IFID_Scoreboard.sv
     20              1                          1     
     30              1                          1     
     33              1                          1     
-    83              1                       3000     
-    86              1                       3000     
+    84              1                       3000     
     87              1                       3000     
     88              1                       3000     
-    91              1                       3000     
+    89              1                       3000     
     92              1                       3000     
-    96              1                       3000     
-    98              1                       3000     
-    100             1                       3000     
+    93              1                       3000     
+    97              1                       3000     
+    99              1                       3000     
     101             1                       3000     
-    104             1                       3000     
+    102             1                       3000     
     105             1                       3000     
-    110             1                       3000     
+    106             1                       3000     
     111             1                       3000     
-    118             1                        539     
-    121             1                       3000     
+    112             1                       3000     
+    119             1                        513     
     122             1                       3000     
-    129             1                       3000     
+    123             1                       3000     
+    130             1                       3000     
   File ../tb/Class_IFID_Environment.sv
     19              1                          1     
     33              1                          1     
@@ -602,5 +580,5 @@ Statement Coverage for instance /rf_pkg --
     29              1                          5     
 
 
-Total Coverage By Instance (filtered view): 90.49%
+Total Coverage By Instance (filtered view): 97.52%
 

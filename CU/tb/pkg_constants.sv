@@ -72,16 +72,16 @@ package pkg_const;
 
   // General instruction type (could be each one of the types)
   typedef union packed {
-    logic [IR_SIZE-1:0] bits;  // Raw bit array
-    Instr_I_TYPE itype;  // Interpreted as I_TYPE
-    Instr_R_TYPE rtype;  // Interpreted as I_TYPE
-    Instr_J_TYPE jtype;  // Interpreted as I_TYPE
+    logic [NBITS-1:0] bits;  // Raw instruction bits
+    Instr_I_TYPE itype;  // Remaining fields interpreted as I_TYPE
+    Instr_R_TYPE rtype;  // Remaining fields interpreted as R_TYPE
+    Instr_J_TYPE jtype;  // Remaining fields interpreted as J_TYPE
   } InstrType;
 
   // Supported instructions
   // NOTE: enumerated to match source file's encoding order
   typedef enum {
-    NOP = 0,
+    NOP_op = 0,
 
     /* Arithmetical Operations */
     ADD_op  = 1,   // Signed Addition
@@ -112,85 +112,91 @@ package pkg_const;
     SRA_op = 12  // Shift Right Arithmetic
   } aluOp;
 
-
   /*************************************************
   ******* CW AND ALU OPCODE FROM INSTRUCTION *******
   **************************************************/
 
+  /***********************
+   * INSTRUCTION OPCODES * 
+   ***********************/
+
+  /* R-Type instructions OPCODE */
   int unsigned RTYPE_OPCODE = 0;
 
-  /* R-Type instructions OPCODEs */
-  typedef enum int unsigned {
+  /* I-Type instructions OPCODEs */
+  // typedef enum int unsigned {
     // --- DLX Basic Version ---
-    RTYPE_OPCODE_J    = 2,  // j
-    RTYPE_OPCODE_JAL  = 3,  // jal
-    RTYPE_OPCODE_BEQZ = 4,  // beqz
-    RTYPE_OPCODE_BNEZ = 5,  // bnez
+    parameter int unsigned ITYPE_OPCODE_ADDI = 8; // addi
+    parameter int unsigned ITYPE_OPCODE_SUBI = 10; // subi
+    parameter int unsigned ITYPE_OPCODE_ANDI = 12; // andi
+    parameter int unsigned ITYPE_OPCODE_ORI  = 13; // ori
+    parameter int unsigned ITYPE_OPCODE_XORI = 14; // xori
 
-    RTYPE_OPCODE_ADDI = 8,   // addi
-    RTYPE_OPCODE_SUBI = 10,  // subi
-    RTYPE_OPCODE_ANDI = 12,  // andi
-    RTYPE_OPCODE_ORI  = 13,  // ori
-    RTYPE_OPCODE_XORI = 14,  // xori
+    parameter int unsigned ITYPE_OPCODE_SLLI = 20; // slli
+    parameter int unsigned ITYPE_OPCODE_NOP  = 21; // nop
+    parameter int unsigned ITYPE_OPCODE_SRLI = 22; // srli
 
-    RTYPE_OPCODE_SLLI = 20,  // slli
-    RTYPE_OPCODE_NOP  = 21,  // nop
-    RTYPE_OPCODE_SRLI = 22,  // srli
+    parameter int unsigned ITYPE_OPCODE_SNEI = 25; // snei
+    parameter int unsigned ITYPE_OPCODE_SLEI = 28; // slei
+    parameter int unsigned ITYPE_OPCODE_SGEI = 29; // sgei
 
-    RTYPE_OPCODE_SNEI = 25,  // snei
-    RTYPE_OPCODE_SLEI = 28,  // slei
-    RTYPE_OPCODE_SGEI = 29,  // sgei
-
-    RTYPE_OPCODE_LW = 35,  // lw
-    RTYPE_OPCODE_SW = 43,  // sw
+    parameter int unsigned ITYPE_OPCODE_LW = 35; // lw
+    parameter int unsigned ITYPE_OPCODE_SW = 43; // sw
 
     // --- DLX Pro Version ---
-    RTYPE_OPCODE_ADDUI = 9,   // addui
-    RTYPE_OPCODE_SUBUI = 11,  // subui
-    RTYPE_OPCODE_SRAI  = 23,  // srai
-    RTYPE_OPCODE_SEQI  = 24,  // seqi
-    RTYPE_OPCODE_SLTI  = 26,  // slti
-    RTYPE_OPCODE_SGTI  = 27,  // sgti
-    RTYPE_OPCODE_SLTUI = 58,  // sltui
-    RTYPE_OPCODE_SGTUI = 59,  // sgtui
-    RTYPE_OPCODE_SLEUI = 60,  // sleui
-    RTYPE_OPCODE_SGEUI = 61   // sgeui
+    parameter int unsigned ITYPE_OPCODE_ADDUI = 9; // addui
+    parameter int unsigned ITYPE_OPCODE_SUBUI = 11; // subui
+    parameter int unsigned ITYPE_OPCODE_SRAI  = 23; // srai
+    parameter int unsigned ITYPE_OPCODE_SEQI  = 24; // seqi
+    parameter int unsigned ITYPE_OPCODE_SLTI  = 26; // slti
+    parameter int unsigned ITYPE_OPCODE_SGTI  = 27; // sgti
+    parameter int unsigned ITYPE_OPCODE_SLTUI = 58; // sltui
+    parameter int unsigned ITYPE_OPCODE_SGTUI = 59; // sgtui
+    parameter int unsigned ITYPE_OPCODE_SLEUI = 60; // sleui
+    parameter int unsigned ITYPE_OPCODE_SGEUI = 61; // sgeui
 
-  } RType_OPCODE_Type;
+  // } ITYPE_OPCODE_Type;
 
-  /* J/I-Type CW indexes inside CW Memory (OPCODE = 0)
-  * NOTE: Some overlap (by design) with some of the R-type indexes because
-  * more than one instruction has the same ALU Opcode. */
-  typedef enum {
+  /* J-Type instructions OPCODEs */
+  // typedef enum int unsigned {
+  parameter int unsigned JTYPE_OPCODE_J    = 2;  // j
+  parameter int unsigned JTYPE_OPCODE_JAL  = 3;  // jal
+  parameter int unsigned JTYPE_OPCODE_BEQZ = 4;  // beqz
+  parameter int unsigned JTYPE_OPCODE_BNEZ = 5;  // bnez
+  // } JTYPE_OPCODE_Type;
+
+  /******************************
+   * R-TYPE INSTRUCTION FUNCS   * 
+   ******************************/
+  // typedef enum int unsigned {
     // DLX Basic version
-    IJTYPE_OPCODE_SLL = 4,   // sll
-    IJTYPE_OPCODE_SRL = 6,   // srl
-    IJTYPE_OPCODE_ADD = 32,  // add
-    IJTYPE_OPCODE_SUB = 34,  // sub
-    IJTYPE_OPCODE_AND = 36,  // and
-    IJTYPE_OPCODE_OR  = 37,  // or
-    IJTYPE_OPCODE_XOR = 38,  // xor
-    IJTYPE_OPCODE_SNE = 41,  // sne
-    IJTYPE_OPCODE_SLE = 44,  // sle
-    IJTYPE_OPCODE_SGE = 45,  // sge
+parameter int unsigned RTYPE_FUNC_SLL = 4;   // sll
+parameter int unsigned RTYPE_FUNC_SRL = 6;   // srl
+parameter int unsigned RTYPE_FUNC_ADD = 32;  // add
+parameter int unsigned RTYPE_FUNC_SUB = 34;  // sub
+parameter int unsigned RTYPE_FUNC_AND = 36;  // and
+parameter int unsigned RTYPE_FUNC_OR  = 37;  // or
+parameter int unsigned RTYPE_FUNC_XOR = 38;  // xor
+parameter int unsigned RTYPE_FUNC_SNE = 41;  // sne
+parameter int unsigned RTYPE_FUNC_SLE = 44;  // sle
+parameter int unsigned RTYPE_FUNC_SGE = 45;  // sge
 
     // DLX Pro version
-    IJTYPE_OPCODE_SRA  = 7,   // sra
-    IJTYPE_OPCODE_ADDU = 33,  // addu
-    IJTYPE_OPCODE_SUBU = 35,  // subu
-    IJTYPE_OPCODE_SEQ  = 40,  // seq
-    IJTYPE_OPCODE_SLT  = 42,  // slt
-    IJTYPE_OPCODE_SGT  = 43,  // sgt
-    IJTYPE_OPCODE_SLTU = 58,  // sltu
-    IJTYPE_OPCODE_SGTU = 59,  // sgtu
-    IJTYPE_OPCODE_SLEU = 60,  // sleu
-    IJTYPE_OPCODE_SGEU = 61   // sgeu
-  } IJType_OPCODE_Type;
+parameter int unsigned RTYPE_FUNC_SRA  = 7;   // sra
+parameter int unsigned RTYPE_FUNC_ADDU = 33;  // addu
+parameter int unsigned RTYPE_FUNC_SUBU = 35;  // subu
+parameter int unsigned RTYPE_FUNC_SEQ  = 40;  // seq
+parameter int unsigned RTYPE_FUNC_SLT  = 42;  // slt
+parameter int unsigned RTYPE_FUNC_SGT  = 43;  // sgt
+parameter int unsigned RTYPE_FUNC_SLTU = 58;  // sltu
+parameter int unsigned RTYPE_FUNC_SGTU = 59;  // sgtu
+parameter int unsigned RTYPE_FUNC_SLEU = 60;  // sleu
+parameter int unsigned RTYPE_FUNC_SGEU = 61;   // sgeu
+  // } RTYPE_FUNC_Type;
 
   /* Control Word Microcode Memory */
   typedef logic [CW_SIZE-1:0] cw_t;
-  typedef cw_t cw_mem_t[0:MICROCODE_MEM_SIZE-1];
-  cw_mem_t cw_mem = '{
+  cw_t cw_mem[MICROCODE_MEM_SIZE] = '{  // 0 : MICROCODE_MEM_SIZE-1
       // NOTE: *** Basic DLX instruction; @@@ PRO DLX instruction
       "101000101000000111",  // 0x00 R-type (look at FUNC field)  ***
       "000000000000000000",  // 0x01 ???
@@ -281,19 +287,17 @@ package pkg_const;
 
     case (op)
 
-      // ALU Opcode for R-Type Instructions when Instruction Opcode is 0x0. Analyze FUNC Bit Field.
-      'h0: begin
-        // Inner Case: Analyze FUNC Bit Field
-        return R_TYPE;
-      end  // end OPCODE_SIZE'h0 case
+      /* ALU Opcode for R-Type Instructions */
+      RTYPE_OPCODE: return R_TYPE;
 
-      // ALU Opcode for I-Type & J-Type Instructions when Instruction Opcode != 0x0.
+      /* ALU Opcode for J-Type Instructions */
+      JTYPE_OPCODE_J,     // j
+      JTYPE_OPCODE_JAL,   // jal
+      JTYPE_OPCODE_BEQZ,  // beqz
+      JTYPE_OPCODE_BNEZ:  // bnez
+        return J_TYPE;  
 
-      'd2: return J_TYPE;  // j
-      'd3: return J_TYPE;  // jal
-      'd4: return J_TYPE;  // beqz
-      'd5: return J_TYPE;  // bnez
-
+      /* ALU Opcode for I-Type Instructions */
       default: return I_TYPE;
     endcase
   endfunction
@@ -306,27 +310,24 @@ package pkg_const;
   function check_instr_sign(logic [IR_SIZE-1:0] instruction);
 
     logic [OPCODE_SIZE-1:0] op;
-    // logic [OPCODE_SIZE-1:0] func;
-
     assign op = instruction[31:26];
-    // assign func = instruction[10:0];
-
 
     if (check_instr_type(instruction) == I_TYPE) begin
       // Only check I_TYPE instructions
       case (op)
 
-        'd8:  return SIGN_TYPE;  // addi
-        'd10: return SIGN_TYPE;  // subi
-        'd25: return SIGN_TYPE;  // snei
-        'd28: return SIGN_TYPE;  // slei
-        'd29: return SIGN_TYPE;  // sgei
-        'd35: return SIGN_TYPE;  // lw
-        'd43: return SIGN_TYPE;  // sw
-        'd23: return SIGN_TYPE;  // srai
-        'd24: return SIGN_TYPE;  // seqi
-        'd26: return SIGN_TYPE;  // slti
-        'd27: return SIGN_TYPE;  // sgti
+        ITYPE_OPCODE_ADDI,  // addi
+        ITYPE_OPCODE_SUBI,  // subi
+        ITYPE_OPCODE_SNEI,  // snei
+        ITYPE_OPCODE_SLEI,  // slei
+        ITYPE_OPCODE_SGEI,  // sgei
+        ITYPE_OPCODE_LW,    // lw
+        ITYPE_OPCODE_SW,    // sw
+        ITYPE_OPCODE_SRAI,  // srai
+        ITYPE_OPCODE_SEQI,  // seqi
+        ITYPE_OPCODE_SLTI,  // slti
+        ITYPE_OPCODE_SGTI:  // sgti
+          return SIGN_TYPE;
 
         default: return UNSIGN_TYPE;
       endcase
@@ -339,13 +340,6 @@ package pkg_const;
   // @return: Corresponding bit array which has the instruction's fields
   // defined.
   function get_instr_type(logic [IR_SIZE-1:0] instruction);
-    // TODO: use proper constant-based ranges instead of hardcoded
-    // logic [OPCODE_SIZE-1:0] _opcode;
-    // logic [  FUNC_SIZE-1:0] _func;
-    //
-    // assign _opcode = instruction[31:26];
-    // assign _func = instruction[10:0];
-
     if (check_instr_type(instruction) == I_TYPE) begin
       // Assign I_TYPE fields to the bit array
       Instr_I_TYPE itype_alias;
@@ -378,90 +372,102 @@ package pkg_const;
   // @params:
   //    instruction: IR content to be processed
   // @return: CW Memory index associated to the instruction
-  function get_cw (logic [IR_SIZE-1:0] instruction);
+  function get_cw(logic [IR_SIZE-1:0] instruction);
     if (check_instr_type(instruction) == R_TYPE) begin
-      return cw_mem(0);
+
+      /* R-Type instruction, return first CW Memory location
+      * storing generic R-Type CW */
+      return cw_mem[0];
+
     end else begin
-      // J/I Type, use OPCODE field
-      case (instruction)
-          RTYPE_OPCODE:
-            case (instruction[10:0])
-                IJTYPE_OPCODE_SLL:
-              default :
-            endcase
-        default :
-      endcase
+
+      /* I/J-Type instruction, return corresponding
+      * CW in memory */
+      // Use OPCODE field to index memory and return CW 
+      if (unsigned'(instruction[31:26]) < 62 ) begin
+        return cw_mem[instruction[31:26]];
+      end else begin 
+        // Return NOP
+        return cw_mem[1];  // Zero => NOP CW
+      end 
 
     end
   endfunction
 
-  // @brief: Returns ALU OPCODE for the given instruction.
-  function get_aluop (logic[IR_SIZE-1:0] instruction);
+  // @brief:  Given an instruction, returns the corresponding
+  //          ALU opcode.
+  // @params:
+  //    instruction: IR content to be processed
+  // @return: Returns ALU OPCODE for the given instruction.
+  function get_aluop(logic [IR_SIZE-1:0] instruction);
 
     if (check_instr_type(instruction) != R_TYPE) begin
       /* I/J-Type instructions: Look at OPCODE field */
       case (instruction[31:26])
-          // -- DLX Basic version
-          RTYPE_OPCODE_J,
-          RTYPE_OPCODE_JAL,
-          RTYPE_OPCODE_BEQZ,
-          RTYPE_OPCODE_BNEZ,
-          RTYPE_OPCODE_ADDI,
-          RTYPE_OPCODE_LW,
-          RTYPE_OPCODE_SW:
-            return ADD_op;
+        // -- DLX Basic version
+        JTYPE_OPCODE_J,
+        JTYPE_OPCODE_JAL,
+        JTYPE_OPCODE_BEQZ,
+        JTYPE_OPCODE_BNEZ,
+        ITYPE_OPCODE_ADDI,
+        ITYPE_OPCODE_LW,
+        ITYPE_OPCODE_SW:
+          return ADD_op;
 
-          RTYPE_OPCODE_SUBI: return SUB_op;
-          RTYPE_OPCODE_ANDI: return AND_op;
-          RTYPE_OPCODE_ORI:  return OR_op;
-          RTYPE_OPCODE_XORI: return XOR_op;
-          RTYPE_OPCODE_SLLI: return SLL_op;
-          RTYPE_OPCODE_SRLI: return SRL_op;
-          RTYPE_OPCODE_SNEI: return SNE_op;
-          RTYPE_OPCODE_SLEI: return SLE_op;
-          RTYPE_OPCODE_SGEI: return SGE_op;
+        ITYPE_OPCODE_SUBI: return SUB_op;
+        ITYPE_OPCODE_ANDI: return AND_op;
+        ITYPE_OPCODE_ORI:  return OR_op;
+        ITYPE_OPCODE_XORI: return XOR_op;
+        ITYPE_OPCODE_SLLI: return SLL_op;
+        ITYPE_OPCODE_NOP:  return NOP_op;
+        ITYPE_OPCODE_SRLI: return SRL_op;
+        ITYPE_OPCODE_SNEI: return SNE_op;
+        ITYPE_OPCODE_SLEI: return SLE_op;
+        ITYPE_OPCODE_SGEI: return SGE_op;
 
-          // DLX PRO version
-          RTYPE_OPCODE_ADDUI: return ADDU_op;
-          RTYPE_OPCODE_SUBUI: return SUBU_op;
-          RTYPE_OPCODE_SRAI:  return SRA_op;
-          RTYPE_OPCODE_SEQI:  return SEQ_op;
-          RTYPE_OPCODE_SLTI:  return SLT_op;
-          RTYPE_OPCODE_SGTI:  return SGT_op;
-          RTYPE_OPCODE_SLTUI: return SLTU_op;
-          RTYPE_OPCODE_SGTUI: return SGTU_op;
-          RTYPE_OPCODE_SLEUI: return SLEU_op;
-          RTYPE_OPCODE_SGEUI: return SGEU_op;
+        // -- DLX PRO version
+        ITYPE_OPCODE_ADDUI: return ADDU_op;
+        ITYPE_OPCODE_SUBUI: return SUBU_op;
+        ITYPE_OPCODE_SRAI:  return SRA_op;
+        ITYPE_OPCODE_SEQI:  return SEQ_op;
+        ITYPE_OPCODE_SLTI:  return SLT_op;
+        ITYPE_OPCODE_SGTI:  return SGT_op;
+        ITYPE_OPCODE_SLTUI: return SLTU_op;
+        ITYPE_OPCODE_SGTUI: return SGTU_op;
+        ITYPE_OPCODE_SLEUI: return SLEU_op;
+        ITYPE_OPCODE_SGEUI: return SGEU_op;
 
-        default : return NOP;
+        default: return NOP_op;
       endcase
+
     end else begin
+
       /* R-Type Instruction: look at FUNC field */
       case (instruction[10:0])
-        // DLX Basic version
-        IJTYPE_OPCODE_SLL: return SLL_op;
-        IJTYPE_OPCODE_SRL: return SRL_op;
-        IJTYPE_OPCODE_ADD: return ADD_op;
-        IJTYPE_OPCODE_SUB: return SUB_op;
-        IJTYPE_OPCODE_OR: return OR_op;
-        IJTYPE_OPCODE_XOR: return XOR_op;
-        IJTYPE_OPCODE_SNE: return SNE_op;
-        IJTYPE_OPCODE_SLE: return SLE_op;
-        IJTYPE_OPCODE_SGE: return SGE_op;
+        // -- DLX Basic version
+        RTYPE_FUNC_SLL: return SLL_op;
+        RTYPE_FUNC_SRL: return SRL_op;
+        RTYPE_FUNC_ADD: return ADD_op;
+        RTYPE_FUNC_SUB: return SUB_op;
+        RTYPE_FUNC_OR:  return OR_op;
+        RTYPE_FUNC_XOR: return XOR_op;
+        RTYPE_FUNC_SNE: return SNE_op;
+        RTYPE_FUNC_SLE: return SLE_op;
+        RTYPE_FUNC_SGE: return SGE_op;
 
-        // DLX PRO version
-        IJTYPE_OPCODE_SRA: return SRA_op;
-        IJTYPE_OPCODE_ADDU: return ADDU_op;
-        IJTYPE_OPCODE_SUBU: return SUBU_op;
-        IJTYPE_OPCODE_SEQ: return SEQ_op;
-        IJTYPE_OPCODE_SLT: return SLT_op;
-        IJTYPE_OPCODE_SGT: return SGT_op;
-        IJTYPE_OPCODE_SLTU: return SLTU_op;
-        IJTYPE_OPCODE_SGTU: return SGTU_op;
-        IJTYPE_OPCODE_SLEU: return SLEU_op;
-        IJTYPE_OPCODE_SGEU: return SGEU_op;
+        // -- DLX PRO version
+        RTYPE_FUNC_SRA:  return SRA_op;
+        RTYPE_FUNC_ADDU: return ADDU_op;
+        RTYPE_FUNC_SUBU: return SUBU_op;
+        RTYPE_FUNC_SEQ:  return SEQ_op;
+        RTYPE_FUNC_SLT:  return SLT_op;
+        RTYPE_FUNC_SGT:  return SGT_op;
+        RTYPE_FUNC_SLTU: return SLTU_op;
+        RTYPE_FUNC_SGTU: return SGTU_op;
+        RTYPE_FUNC_SLEU: return SLEU_op;
+        RTYPE_FUNC_SGEU: return SGEU_op;
 
-        default : return NOP;
+        default: return NOP_op;
       endcase
     end
   endfunction

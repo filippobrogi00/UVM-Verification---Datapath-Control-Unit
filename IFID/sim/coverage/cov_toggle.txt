@@ -7,7 +7,7 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        680       664        16    97.64%
+    Toggles                        680       680         0   100.00%
 
 ================================Toggle Details================================
 
@@ -15,20 +15,12 @@ Toggle Coverage for instance /Module_topTestbench/ifid_dut_iface --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                  DLX_IR_to_DP[31]           0           0        0.00 
-                                  DLX_PC_to_DP[31]           0           0        0.00 
-                                    S1_ADD_OUT[31]           0           0        0.00 
-                                S1_REG_NPC_OUT[31]           0           0        0.00 
-                                S2_REG_NPC_OUT[31]           0           0        0.00 
-                                S2_RFILE_A_OUT[31]           0           0        0.00 
-                                S2_RFILE_B_OUT[31]           0           0        0.00 
-                             S5_MUX_DATAIN_OUT[31]           0           0        0.00 
 
 Total Node Count     =        340 
-Toggled Node Count   =        332 
-Untoggled Node Count =          8 
+Toggled Node Count   =        340 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      97.64% (664 of 680 bins)
+Toggle Coverage      =     100.00% (680 of 680 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_ADD
@@ -37,7 +29,7 @@ Toggle Coverage      =      97.64% (664 of 680 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        128       124         4    96.87%
+    Toggles                        128       128         0   100.00%
 
 ================================Toggle Details================================
 
@@ -45,14 +37,12 @@ Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                             A(31)           0           0        0.00 
-                                             Y(31)           0           0        0.00 
 
 Total Node Count     =         64 
-Toggled Node Count   =         62 
-Untoggled Node Count =          2 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      96.87% (124 of 128 bins)
+Toggle Coverage      =     100.00% (128 of 128 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC
@@ -61,7 +51,7 @@ Toggle Coverage      =      96.87% (124 of 128 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        128       124         4    96.87%
+    Toggles                        128       128         0   100.00%
 
 ================================Toggle Details================================
 
@@ -69,14 +59,12 @@ Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                             D(31)           0           0        0.00 
-                                             Q(31)           0           0        0.00 
 
 Total Node Count     =         64 
-Toggled Node Count   =         62 
-Untoggled Node Count =          2 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      96.87% (124 of 128 bins)
+Toggle Coverage      =     100.00% (128 of 128 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
@@ -152,7 +140,7 @@ Toggle Coverage      =     100.00% (20 of 20 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        222       216         6    97.29%
+    Toggles                        222       222         0   100.00%
 
 ================================Toggle Details================================
 
@@ -160,15 +148,12 @@ Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                        DATAIN(31)           0           0        0.00 
-                                          OUT1(31)           0           0        0.00 
-                                          OUT2(31)           0           0        0.00 
 
 Total Node Count     =        111 
-Toggled Node Count   =        108 
-Untoggled Node Count =          3 
+Toggled Node Count   =        111 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      97.29% (216 of 222 bins)
+Toggle Coverage      =     100.00% (222 of 222 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
@@ -289,7 +274,7 @@ Toggle Coverage      =      80.00% (8 of 10 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        128       124         4    96.87%
+    Toggles                        128       128         0   100.00%
 
 ================================Toggle Details================================
 
@@ -297,14 +282,12 @@ Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                             D(31)           0           0        0.00 
-                                             Q(31)           0           0        0.00 
 
 Total Node Count     =         64 
-Toggled Node Count   =         62 
-Untoggled Node Count =          2 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      96.87% (124 of 128 bins)
+Toggle Coverage      =     100.00% (128 of 128 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst
@@ -313,7 +296,7 @@ Toggle Coverage      =      96.87% (124 of 128 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                       1020       874       146    85.68%
+    Toggles                       1020       892       128    87.45%
 
 ================================Toggle Details================================
 
@@ -321,23 +304,14 @@ Toggle Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                  DLX_IR_to_DP(31)           0           0        0.00 
-                                  DLX_PC_to_DP(31)           0           0        0.00 
-                                    S1_ADD_OUT(31)           0           0        0.00 
-                                 S1_REG_IR_OUT(31)           0           0        0.00 
-                                S1_REG_NPC_OUT(31)           0           0        0.00 
                                 S2_REG_A_OUT(0-31)           0           0        0.00 
                                 S2_REG_B_OUT(0-31)           0           0        0.00 
-                                S2_REG_NPC_OUT(31)           0           0        0.00 
-                                S2_RFILE_A_OUT(31)           0           0        0.00 
-                                S2_RFILE_B_OUT(31)           0           0        0.00 
-                             S5_MUX_DATAIN_OUT(31)           0           0        0.00 
 
 Total Node Count     =        510 
-Toggled Node Count   =        437 
-Untoggled Node Count =         73 
+Toggled Node Count   =        446 
+Untoggled Node Count =         64 
 
-Toggle Coverage      =      85.68% (874 of 1020 bins)
+Toggle Coverage      =      87.45% (892 of 1020 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -362,5 +336,5 @@ Untoggled Node Count =          0
 Toggle Coverage      =     100.00% (4 of 4 bins)
 
 
-Total Coverage By Instance (filtered view): 88.74%
+Total Coverage By Instance (filtered view): 90.58%
 

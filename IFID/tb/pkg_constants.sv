@@ -4,6 +4,12 @@
 import uvm_pkg::*;
 
 package pkg_const;
+  /************************
+  ******* CONSTANTS *******
+  *************************/
+
+  /* PROCESSOR-SPECIFIC CONSTANTS */
+
   /* Simulation constants */
   localparam time CLKPERIOD = 2ns;
 
@@ -23,6 +29,23 @@ package pkg_const;
   localparam int FUNC_SIZE = 11;  // Size of FUNC field (only for R_TYPE)
   localparam int I_TYPE_IMM_SIZE = 16;  // Size of IMMediate field in I_TYPE instructions
   localparam int J_TYPE_IMM_SIZE = 26;  // Size of FUNC field in J_TYPE instructions
+
+  /* Microcode memory-specific constants */
+  localparam int CW_SIZE = 18;  // Control Word Size
+  localparam int MICROCODE_MEM_SIZE = 62;  // Number of uCode memory words
+
+  /* CONSTRAINED RANDOM GENERATION CONSTANTS */
+  // Max and min values
+  localparam int MIN_VALUE_NBITS_SIGNED = -(2 ** (NBITS - 1));
+  localparam int MAX_VALUE_NBITS_SIGNED = (2 ** (NBITS - 1)) - 1;
+  localparam int MIN_VALUE_NBITS_UNSIGNED = 0;
+  localparam int MAX_VALUE_NBITS_UNSIGNED = (2 ** NBITS) - 1;
+  // Generation probabilities
+  localparam int PROB_HIGH = 10;
+  localparam int PROB_MED = 5;
+  localparam int PROB_LOW = 1;
+
+
 
   /* ALU Operations */
 
@@ -68,16 +91,18 @@ package pkg_const;
 
   // General instruction type (could be each one of the types)
   typedef union packed {
-    logic [IR_SIZE-1:0] bits;  // Raw bit array
-    Instr_I_TYPE itype;  // Interpreted as I_TYPE
-    Instr_R_TYPE rtype;  // Interpreted as I_TYPE
-    Instr_J_TYPE jtype;  // Interpreted as I_TYPE
+    logic [NBITS-1:0] bits;  // Raw instruction bits
+    Instr_I_TYPE itype;  // Remaining fields interpreted as I_TYPE
+    Instr_R_TYPE rtype;  // Remaining fields interpreted as R_TYPE
+    Instr_J_TYPE jtype;  // Remaining fields interpreted as J_TYPE
   } InstrType;
 
   // Supported instructions
+  parameter int unsigned NUM_ALU_OPCODES = $clog2(21);
+  typedef logic [NUM_ALU_OPCODES-1:0] aluOpBits_t;
   // NOTE: enumerated to match source file's encoding order
   typedef enum {
-    NOP = 0,
+    NOP_op = 0,
 
     /* Arithmetical Operations */
     ADD_op  = 1,   // Signed Addition
@@ -108,12 +133,93 @@ package pkg_const;
     SRA_op = 12  // Shift Right Arithmetic
   } aluOp;
 
+  /*************************************************
+  ******* CW AND ALU OPCODE FROM INSTRUCTION *******
+  **************************************************/
+
+  /***********************
+   * INSTRUCTION OPCODES *
+   ***********************/
+
+  /* R-Type instructions OPCODE */
+  int unsigned RTYPE_OPCODE = 0;
+
+  /* I-Type instructions OPCODEs */
+  // typedef enum int unsigned {
+  // --- DLX Basic Version ---
+  parameter int unsigned ITYPE_OPCODE_ADDI = 8;  // addi
+  parameter int unsigned ITYPE_OPCODE_SUBI = 10;  // subi
+  parameter int unsigned ITYPE_OPCODE_ANDI = 12;  // andi
+  parameter int unsigned ITYPE_OPCODE_ORI = 13;  // ori
+  parameter int unsigned ITYPE_OPCODE_XORI = 14;  // xori
+
+  parameter int unsigned ITYPE_OPCODE_SLLI = 20;  // slli
+  parameter int unsigned ITYPE_OPCODE_NOP = 21;  // nop
+  parameter int unsigned ITYPE_OPCODE_SRLI = 22;  // srli
+
+  parameter int unsigned ITYPE_OPCODE_SNEI = 25;  // snei
+  parameter int unsigned ITYPE_OPCODE_SLEI = 28;  // slei
+  parameter int unsigned ITYPE_OPCODE_SGEI = 29;  // sgei
+
+  parameter int unsigned ITYPE_OPCODE_LW = 35;  // lw
+  parameter int unsigned ITYPE_OPCODE_SW = 43;  // sw
+
+  // --- DLX Pro Version ---
+  parameter int unsigned ITYPE_OPCODE_ADDUI = 9;  // addui
+  parameter int unsigned ITYPE_OPCODE_SUBUI = 11;  // subui
+  parameter int unsigned ITYPE_OPCODE_SRAI = 23;  // srai
+  parameter int unsigned ITYPE_OPCODE_SEQI = 24;  // seqi
+  parameter int unsigned ITYPE_OPCODE_SLTI = 26;  // slti
+  parameter int unsigned ITYPE_OPCODE_SGTI = 27;  // sgti
+  parameter int unsigned ITYPE_OPCODE_SLTUI = 58;  // sltui
+  parameter int unsigned ITYPE_OPCODE_SGTUI = 59;  // sgtui
+  parameter int unsigned ITYPE_OPCODE_SLEUI = 60;  // sleui
+  parameter int unsigned ITYPE_OPCODE_SGEUI = 61;  // sgeui
+
+  // } ITYPE_OPCODE_Type;
+
+  /* J-Type instructions OPCODEs */
+  // typedef enum int unsigned {
+  parameter int unsigned JTYPE_OPCODE_J = 2;  // j
+  parameter int unsigned JTYPE_OPCODE_JAL = 3;  // jal
+  parameter int unsigned JTYPE_OPCODE_BEQZ = 4;  // beqz
+  parameter int unsigned JTYPE_OPCODE_BNEZ = 5;  // bnez
+  // } JTYPE_OPCODE_Type;
+
+  /******************************
+   * R-TYPE INSTRUCTION FUNCS   *
+   ******************************/
+  // typedef enum int unsigned {
+  // DLX Basic version
+  parameter int unsigned RTYPE_FUNC_SLL = 4;  // sll
+  parameter int unsigned RTYPE_FUNC_SRL = 6;  // srl
+  parameter int unsigned RTYPE_FUNC_ADD = 32;  // add
+  parameter int unsigned RTYPE_FUNC_SUB = 34;  // sub
+  parameter int unsigned RTYPE_FUNC_AND = 36;  // and
+  parameter int unsigned RTYPE_FUNC_OR = 37;  // or
+  parameter int unsigned RTYPE_FUNC_XOR = 38;  // xor
+  parameter int unsigned RTYPE_FUNC_SNE = 41;  // sne
+  parameter int unsigned RTYPE_FUNC_SLE = 44;  // sle
+  parameter int unsigned RTYPE_FUNC_SGE = 45;  // sge
+
+  // DLX Pro version
+  parameter int unsigned RTYPE_FUNC_SRA = 7;  // sra
+  parameter int unsigned RTYPE_FUNC_ADDU = 33;  // addu
+  parameter int unsigned RTYPE_FUNC_SUBU = 35;  // subu
+  parameter int unsigned RTYPE_FUNC_SEQ = 40;  // seq
+  parameter int unsigned RTYPE_FUNC_SLT = 42;  // slt
+  parameter int unsigned RTYPE_FUNC_SGT = 43;  // sgt
+  parameter int unsigned RTYPE_FUNC_SLTU = 58;  // sltu
+  parameter int unsigned RTYPE_FUNC_SGTU = 59;  // sgtu
+  parameter int unsigned RTYPE_FUNC_SLEU = 60;  // sleu
+  parameter int unsigned RTYPE_FUNC_SGEU = 61;  // sgeu
+  // } RTYPE_FUNC_Type;
 
   /************
   * FUNCTIONS *
   ************/
 
-  // NOTE: Disable coverage for these 3 functions because they are
+  // NOTE: Disable coverage for these functions because they are
   // only used for CRG, and not in "runtime" code.
   // TODO: Maybe add simple unit test in top module?
   // coverage off
@@ -127,67 +233,59 @@ package pkg_const;
 
     case (op)
 
-      // ALU Opcode for R-Type Instructions when Instruction Opcode is 0x0. Analyze FUNC Bit Field.
-      'h0: begin
-        // Inner Case: Analyze FUNC Bit Field
-        return R_TYPE;
-      end  // end OPCODE_SIZE'h0 case
+      /* ALU Opcode for R-Type Instructions */
+      RTYPE_OPCODE: return R_TYPE;
 
-      // ALU Opcode for I-Type & J-Type Instructions when Instruction Opcode != 0x0.
+      /* ALU Opcode for J-Type Instructions */
+      JTYPE_OPCODE_J,  // j
+      JTYPE_OPCODE_JAL,  // jal
+      JTYPE_OPCODE_BEQZ,  // beqz
+      JTYPE_OPCODE_BNEZ:  // bnez
+      return J_TYPE;
 
-      'd2: return J_TYPE;  // j
-      'd3: return J_TYPE;  // jal
-      'd4: return J_TYPE;  // beqz
-      'd5: return J_TYPE;  // bnez
-
+      /* ALU Opcode for I-Type Instructions */
       default: return I_TYPE;
     endcase
   endfunction
 
   // @brief Helper function which checks if instruction
-  // operates on signed or unsigned immediates.
+  //        operates on signed or unsigned immediates.
+  // @params:
+  //    instruction: IR content to be processed
   // @return One of SIGN_TYPE or UNSIGN_TYPE.
   function check_instr_sign(logic [IR_SIZE-1:0] instruction);
 
     logic [OPCODE_SIZE-1:0] op;
-    // logic [OPCODE_SIZE-1:0] func;
-
     assign op = instruction[31:26];
-    // assign func = instruction[10:0];
-
 
     if (check_instr_type(instruction) == I_TYPE) begin
       // Only check I_TYPE instructions
       case (op)
 
-        'd8:  return SIGN_TYPE;  // addi
-        'd10: return SIGN_TYPE;  // subi
-        'd25: return SIGN_TYPE;  // snei
-        'd28: return SIGN_TYPE;  // slei
-        'd29: return SIGN_TYPE;  // sgei
-        'd35: return SIGN_TYPE;  // lw
-        'd43: return SIGN_TYPE;  // sw
-        'd23: return SIGN_TYPE;  // srai
-        'd24: return SIGN_TYPE;  // seqi
-        'd26: return SIGN_TYPE;  // slti
-        'd27: return SIGN_TYPE;  // sgti
+        ITYPE_OPCODE_ADDI,  // addi
+        ITYPE_OPCODE_SUBI,  // subi
+        ITYPE_OPCODE_SNEI,  // snei
+        ITYPE_OPCODE_SLEI,  // slei
+        ITYPE_OPCODE_SGEI,  // sgei
+        ITYPE_OPCODE_LW,  // lw
+        ITYPE_OPCODE_SW,  // sw
+        ITYPE_OPCODE_SRAI,  // srai
+        ITYPE_OPCODE_SEQI,  // seqi
+        ITYPE_OPCODE_SLTI,  // slti
+        ITYPE_OPCODE_SGTI:  // sgti
+        return SIGN_TYPE;
 
         default: return UNSIGN_TYPE;
       endcase
     end
   endfunction
 
-  // @brief Assigns field values to an "instruction type" variable.
-  // @return Corresponding bit array which has the instruction's fields
+  // @brief:  Assigns field values to an "instruction type" variable.
+  // @params
+  //    instruction: IR content to be processed
+  // @return: Corresponding bit array which has the instruction's fields
   // defined.
   function get_instr_type(logic [IR_SIZE-1:0] instruction);
-    // TODO: use proper constant-based ranges instead of hardcoded
-    // logic [OPCODE_SIZE-1:0] _opcode;
-    // logic [  FUNC_SIZE-1:0] _func;
-    //
-    // assign _opcode = instruction[31:26];
-    // assign _func = instruction[10:0];
-
     if (check_instr_type(instruction) == I_TYPE) begin
       // Assign I_TYPE fields to the bit array
       Instr_I_TYPE itype_alias;

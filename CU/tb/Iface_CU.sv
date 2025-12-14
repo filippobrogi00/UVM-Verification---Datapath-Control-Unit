@@ -1,8 +1,10 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+import pkg_const::*;
+
 // DUT Interface
 interface Iface_CU #(
-    parameter MICROCODE_MEM_SIZE = 44, // Microcode Memory Size. Included all Instructions DLX will be able to execute and not.
+    parameter MICROCODE_MEM_SIZE = 62, // Microcode Memory Size. Included all Instructions DLX will be able to execute and not.
     parameter FUNC_SIZE = 11,  // Func Field Size for R-Type Ops
     parameter OP_CODE_SIZE = 6,  // Op Code Size
     parameter IR_SIZE = 32,  // Instruction Register Size
@@ -19,7 +21,7 @@ interface Iface_CU #(
   //   IR_IN : in    std_logic_vector(IR_SIZE - 1 downto 0);
   //
   //   -- Debug Signals
-  //   DBG_CW_OUT : OUT   std_logic_vector(CW_SIZE - 1 downto 0);
+  //   -- DBG_CW_OUT : OUT   std_logic_vector(CW_SIZE - 1 downto 0);
   //
   //   -- IF Control Signal - STAGE 1
   //   IR_LATCH_EN  : out   std_logic; -- Instruction Register Latch Enable
@@ -27,7 +29,7 @@ interface Iface_CU #(
   //
   //   -- ID Control Signals - STAGE 2
   //   RegA_LATCH_EN   : out   std_logic; -- Register A Latch Enable
-  //   RegB_LATCH_EN   : out   std_logic; -- Register B Latch Enable
+  //   SIGN_UNSIGN_EN  : out   std_logic; -- Signed vs Unsigned operand Enable
   //   RegIMM_LATCH_EN : out   std_logic; -- Immediate Register Latch Enable
   //   JAL_EN          : out   std_logic; -- Control Signal for Jump and Link Instruction
   //
@@ -68,7 +70,7 @@ interface Iface_CU #(
 
   /* Stage 2 Control Signals */
   logic RegA_LATCH_EN;  // Register A Latch Enable
-  logic RegB_LATCH_EN;  // Register B Latch Enable
+  logic SIGN_UNSIGN_EN;  // Signed vs Unsigned operand Enable
   logic RegIMM_LATCH_EN;  // Immediate Register Latch Enable
   logic JAL_EN;  // Control Signal for Jump and Link Instruction
 
@@ -79,7 +81,7 @@ interface Iface_CU #(
   logic EQ_COND;  //Branch if (not) Equal to Zero
   logic JMP;  //Control Signal for unconditional Jump Instructions.
   logic EQZ_NEQZ;  //Control Signal for bnez Instruction ('0') and beqz Instruction ('1').
-  aluOp ALU_OPCODE; // choose between implicit or exlicit coding, like std_logic_vector(ALU_OPC_SIZE -1 downto 0);
+  logic[NUM_ALU_OPCODES-1:0] ALU_OPCODE; // choose between implicit or exlicit coding, like std_logic_vector(ALU_OPC_SIZE -1 downto 0);
 
   /* Stage 4 Control Signals */
   logic DRAM_WE;  // Data RAM Write Enable
@@ -103,17 +105,17 @@ interface Iface_CU #(
 
       // Testbench outputs as seen by DUT
       output  IR_LATCH_EN, NPC_LATCH_EN,
-        RegA_LATCH_EN, RegB_LATCH_EN, RegIMM_LATCH_EN, JAL_EN,
+        RegA_LATCH_EN, SIGN_UNSIGN_EN, RegIMM_LATCH_EN, JAL_EN,
         MUXA_SEL, MUXB_SEL, ALU_OUTREG_EN, EQ_COND, JMP, EQZ_NEQZ, ALU_OPCODE,
         DRAM_WE, LMD_LATCH_EN, JUMP_EN, PC_LATCH_EN, WB_MUX_SEL, RF_WE
   );
 
   // Clocking block for timing synchronization
-  clocking ClockingBlock_CU @(posedge CLK);
+  clocking ClockingBlock_CU @(posedge Clk);
     /* (TB) INPUTS: TB <- DUT */
     // NOTE: TB's result (CW) signals are sampled at (posedge clk + CLKPERIOD/4)
     input #(1)  IR_LATCH_EN, NPC_LATCH_EN,
-        RegA_LATCH_EN, RegB_LATCH_EN, RegIMM_LATCH_EN, JAL_EN,
+        RegA_LATCH_EN, SIGN_UNSIGN_EN, RegIMM_LATCH_EN, JAL_EN,
         MUXA_SEL, MUXB_SEL, ALU_OUTREG_EN, EQ_COND, JMP, EQZ_NEQZ, ALU_OPCODE,
         DRAM_WE, LMD_LATCH_EN, JUMP_EN, PC_LATCH_EN, WB_MUX_SEL, RF_WE;
 
