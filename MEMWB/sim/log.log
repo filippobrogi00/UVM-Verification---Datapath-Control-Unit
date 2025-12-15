@@ -1,22 +1,24 @@
+../syn/DP_MEMWB.v
+You can run vasim
+You can run the following Cadence tools:
+      - innovus
+      - genus
+      - xcelium
+You can run vsim
+You can run: 
+-> dc_shell-xg-t for Design Compiler
+-> design_vision for Design Vision
+-> lc_shell for Library Compiler
+-> pt_shell for Prime Time
 QuestaSim-64 qrun 2020.4 Utility 2020.10 Oct 13 2020
-
-Start time: 02:00:17 on Dec 15,2025
-qrun -clean -uvm -autoorder -mixedsvvh -coverage "+cover=sbce" /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -timescale=1ns/1ps -do "; force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -top Module_topTestbench 
-=======
-Start time: 18:27:48 on Dec 15,2025
-qrun -clean -uvm -autoorder -mixedsvvh -coverage "+cover=sbcexf" "+define+POSTSYN" -timescale=1ns/1ns /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -do "; ; run -all" -top Module_topTestbench 
-
+Start time: 17:15:13 on Dec 15,2025
+qrun -clean -uvm -autoorder -mixedsvvh -coverage "+cover=sbce" "+define+POSTSYN" -timescale=1ns/1ps /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -do "; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -top Module_topTestbench 
 Deleting directory qrun.out...
 Creating library 'qrun.out/work'.
 Mapping library 'mtiUvm' to '/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/uvm-1.1d'.
 QuestaSim-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-
-Start time: 02:00:18 on Dec 15,2025
-vlog -mixedsvvh -timescale=1ns/1ps /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -work qrun.out/work "+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src" -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
-=======
-Start time: 18:27:49 on Dec 15,2025
-vlog -mixedsvvh "+define+POSTSYN" -timescale=1ns/1ns /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -work qrun.out/work "+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src" -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
-
+Start time: 17:15:13 on Dec 15,2025
+vlog -mixedsvvh "+define+POSTSYN" -timescale=1ns/1ps /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -work qrun.out/work "+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src" -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
 -- Compiling module AND2_X1
 -- Compiling module AND2_X2
 -- Compiling module AND2_X4
@@ -188,15 +190,11 @@ vlog -mixedsvvh "+define+POSTSYN" -timescale=1ns/1ns /eda/dk/nangate45/verilog/N
 -- Compiling package Iface_MEMWB_sv_unit
 -- Importing package pkg_const
 -- Compiling interface Iface_MEMWB
-
--- Compiling package Module_topTestbench_sv_unit
-=======
 -- Compiling package pkg_const
 ** Warning: ** while parsing file included at ../tb/Module_topTestbench.sv(12)
 ** at ../tb/pkg_constants.sv(6): (vlog-2275) Existing package 'pkg_const' at line 6 will be overwritten.
 -- Compiling package Module_topTestbench_sv_unit
 -- Compiling package pkg_const
-
 -- Compiling module Module_topTestbench
 -- Compiling module Module_MEMWB_Wrapper
 
@@ -330,43 +328,11 @@ Top level modules:
 	XOR2_X1
 	XOR2_X2
 	Module_topTestbench
-
-End time: 02:00:19 on Dec 15,2025, Elapsed time: 0:00:01
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 02:00:19 on Dec 15,2025
-vcom -autoorder -mixedsvvh ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd -work qrun.out/work -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Scanning package myTypes
--- Scanning package rf_pkg
--- Scanning package body rf_pkg
--- Loading package rf_pkg
-End time: 02:00:19 on Dec 15,2025, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 02:00:19 on Dec 15,2025
-vcom -refresh_marked -work qrun.out/work 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling package myTypes
--- Compiling package rf_pkg
--- Compiling package body rf_pkg
--- Loading package rf_pkg
-End time: 02:00:20 on Dec 15,2025, Elapsed time: 0:00:01
-Errors: 0, Warnings: 0
-QuestaSim-64 vopt 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 02:00:20 on Dec 15,2025
-vopt -mixedsvvh "+cover=sbce" -timescale=1ns/1ps Module_topTestbench -work qrun.out/work -statslog qrun.out/stats_log -o qrun_opt 
-=======
-End time: 18:27:50 on Dec 15,2025, Elapsed time: 0:00:01
+End time: 17:15:15 on Dec 15,2025, Elapsed time: 0:00:02
 Errors: 0, Warnings: 1
 QuestaSim-64 vopt 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 18:27:50 on Dec 15,2025
-vopt -mixedsvvh "+cover=sbcexf" -timescale=1ns/1ns Module_topTestbench -work qrun.out/work -statslog qrun.out/stats_log -o qrun_opt 
-
+Start time: 17:15:15 on Dec 15,2025
+vopt -mixedsvvh "+cover=sbce" -timescale=1ns/1ps Module_topTestbench -work qrun.out/work -statslog qrun.out/stats_log -o qrun_opt 
 
 Top level modules:
 	Module_topTestbench
@@ -374,11 +340,7 @@ Top level modules:
 Analyzing design...
 -- Loading module Module_topTestbench
 ** Note: (vopt-2071) ../tb/classes/Class_MEMWB_CoverageTracker.sv(55) : enabling branch coverage.
-
-** Note: (vopt-2071) ../tb/Module_topTestbench.sv(79) : enabling branch coverage.
-=======
 ** Note: (vopt-2071) ../tb/Module_topTestbench.sv(77) : enabling branch coverage.
-
 -- Loading package mtiUvm.questa_uvm_pkg
 -- Loading interface Iface_MEMWB
 -- Loading module Module_MEMWB_Wrapper
@@ -607,11 +569,7 @@ Optimizing 17 design-units (inlining 1/4 module instances, 0/556 cell instances,
 -- Inlining interface Iface_MEMWB(fast__2)
 -- Optimizing module Module_topTestbench(fast)
 ** Note: (vopt-2071) ../tb/classes/Class_MEMWB_CoverageTracker.sv(55) : enabling branch coverage.
-
-** Note: (vopt-2071) ../tb/Module_topTestbench.sv(79) : enabling branch coverage.
-=======
 ** Note: (vopt-2071) ../tb/Module_topTestbench.sv(77) : enabling branch coverage.
-
 -- Inlining UDP seq_DFF_X1
 -- Optimizing module DFF_X1(fast)
 -- Optimizing module Module_MEMWB_Wrapper(fast)
@@ -621,17 +579,14 @@ Optimizing 17 design-units (inlining 1/4 module instances, 0/556 cell instances,
 -- Optimizing module BUF_X1(fast)
 -- Optimizing interface Iface_MEMWB(fast)
 Optimized design name is qrun_opt
-
-End time: 02:00:22 on Dec 15,2025, Elapsed time: 0:00:02
+End time: 17:15:18 on Dec 15,2025, Elapsed time: 0:00:03
 Errors: 0, Warnings: 205
-# vsim -lib qrun.out/work -c -coverage -do "coverage save -onexit cov_$Sv_Seed.ucdb" -do "; force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -statslog qrun.out/stats_log qrun_opt -appendlog -l qrun.log 
-# Start time: 02:00:25 on Dec 15,2025
-=======
-End time: 18:27:53 on Dec 15,2025, Elapsed time: 0:00:03
-Errors: 0, Warnings: 205
-# vsim -lib qrun.out/work -c -coverage -do "coverage save -onexit cov_$Sv_Seed.ucdb" -do "; ; run -all" -statslog qrun.out/stats_log qrun_opt -appendlog -l qrun.log 
-# Start time: 18:27:55 on Dec 15,2025
+Reading pref.tcl
 
+# 2020.4
+
+# vsim -lib qrun.out/work -c -coverage -do "coverage save -onexit cov_$Sv_Seed.ucdb" -do "; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -statslog qrun.out/stats_log qrun_opt -appendlog -l qrun.log 
+# Start time: 17:15:20 on Dec 15,2025
 # //  Questa Sim-64
 # //  Version 2020.4 linux_x86_64 Oct 13 2020
 # //
@@ -663,7 +618,6 @@ Errors: 0, Warnings: 205
 # Loading work.DFF_X1(fast)
 # Loading work.Iface_MEMWB(fast)
 # ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_0_'.  Expected 4, found 3.
-
 #    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 336
 # ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_1_'.  Expected 4, found 3.
 #    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 338
@@ -870,7 +824,6 @@ Errors: 0, Warnings: 205
 # Loading /eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
 # coverage save -onexit cov_$Sv_Seed.ucdb
 # 
-#  force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100
 #  coverage exclude -du work.rf_pkg
 # ** UI-Msg: (vsim-4053) Design unit 'work.rf_pkg' was not found or has null coverage data.
 # ** UI-Msg: (vsim-4036) The 'coverage exclude' command had no effect on some/all objects because
@@ -878,214 +831,6 @@ Errors: 0, Warnings: 205
 # 
 #  coverage exclude -du work.Module_topTestbench
 #  coverage exclude -du work.Module_topTestbench_sv_unit
-=======
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 336
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_1_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 338
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_2_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 340
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_3_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 342
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_4_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 344
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_5_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_5_ File: ../syn/DP_MEMWB.v Line: 346
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_6_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_6_ File: ../syn/DP_MEMWB.v Line: 348
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_7_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_7_ File: ../syn/DP_MEMWB.v Line: 350
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_8_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_8_ File: ../syn/DP_MEMWB.v Line: 352
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_9_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_9_ File: ../syn/DP_MEMWB.v Line: 354
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_10_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_10_ File: ../syn/DP_MEMWB.v Line: 356
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_11_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_11_ File: ../syn/DP_MEMWB.v Line: 358
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_12_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_12_ File: ../syn/DP_MEMWB.v Line: 360
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_13_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_13_ File: ../syn/DP_MEMWB.v Line: 362
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_14_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_14_ File: ../syn/DP_MEMWB.v Line: 364
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_15_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_15_ File: ../syn/DP_MEMWB.v Line: 366
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_16_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_16_ File: ../syn/DP_MEMWB.v Line: 368
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_17_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_17_ File: ../syn/DP_MEMWB.v Line: 370
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_18_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_18_ File: ../syn/DP_MEMWB.v Line: 372
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_19_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_19_ File: ../syn/DP_MEMWB.v Line: 374
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_20_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_20_ File: ../syn/DP_MEMWB.v Line: 376
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_21_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_21_ File: ../syn/DP_MEMWB.v Line: 378
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_22_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_22_ File: ../syn/DP_MEMWB.v Line: 380
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_23_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_23_ File: ../syn/DP_MEMWB.v Line: 382
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_24_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_24_ File: ../syn/DP_MEMWB.v Line: 384
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_25_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_25_ File: ../syn/DP_MEMWB.v Line: 386
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_26_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_26_ File: ../syn/DP_MEMWB.v Line: 388
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_27_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_27_ File: ../syn/DP_MEMWB.v Line: 390
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_28_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_28_ File: ../syn/DP_MEMWB.v Line: 392
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_29_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_29_ File: ../syn/DP_MEMWB.v Line: 394
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_30_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_30_ File: ../syn/DP_MEMWB.v Line: 396
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_31_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_31_ File: ../syn/DP_MEMWB.v Line: 398
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_0_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 509
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_1_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 511
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_2_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 513
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_3_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 515
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_4_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 517
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_5_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_5_ File: ../syn/DP_MEMWB.v Line: 519
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_6_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_6_ File: ../syn/DP_MEMWB.v Line: 521
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_7_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_7_ File: ../syn/DP_MEMWB.v Line: 523
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_8_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_8_ File: ../syn/DP_MEMWB.v Line: 525
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_9_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_9_ File: ../syn/DP_MEMWB.v Line: 527
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_10_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_10_ File: ../syn/DP_MEMWB.v Line: 529
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_11_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_11_ File: ../syn/DP_MEMWB.v Line: 531
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_12_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_12_ File: ../syn/DP_MEMWB.v Line: 533
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_13_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_13_ File: ../syn/DP_MEMWB.v Line: 535
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_14_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_14_ File: ../syn/DP_MEMWB.v Line: 537
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_15_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_15_ File: ../syn/DP_MEMWB.v Line: 539
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_16_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_16_ File: ../syn/DP_MEMWB.v Line: 541
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_17_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_17_ File: ../syn/DP_MEMWB.v Line: 543
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_18_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_18_ File: ../syn/DP_MEMWB.v Line: 545
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_19_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_19_ File: ../syn/DP_MEMWB.v Line: 547
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_20_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_20_ File: ../syn/DP_MEMWB.v Line: 549
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_21_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_21_ File: ../syn/DP_MEMWB.v Line: 551
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_22_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_22_ File: ../syn/DP_MEMWB.v Line: 553
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_23_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_23_ File: ../syn/DP_MEMWB.v Line: 555
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_24_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_24_ File: ../syn/DP_MEMWB.v Line: 557
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_25_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_25_ File: ../syn/DP_MEMWB.v Line: 559
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_26_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_26_ File: ../syn/DP_MEMWB.v Line: 561
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_27_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_27_ File: ../syn/DP_MEMWB.v Line: 563
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_28_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_28_ File: ../syn/DP_MEMWB.v Line: 565
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_29_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_29_ File: ../syn/DP_MEMWB.v Line: 567
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_30_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_30_ File: ../syn/DP_MEMWB.v Line: 569
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_31_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_31_ File: ../syn/DP_MEMWB.v Line: 571
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_FF_JAL_EN_Q_reg_0_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_FF_JAL_EN_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 579
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_0_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 690
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_1_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 692
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_2_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 694
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_3_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 696
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_4_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 698
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_5_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_5_ File: ../syn/DP_MEMWB.v Line: 700
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_6_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_6_ File: ../syn/DP_MEMWB.v Line: 702
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_7_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_7_ File: ../syn/DP_MEMWB.v Line: 704
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_8_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_8_ File: ../syn/DP_MEMWB.v Line: 706
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_9_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_9_ File: ../syn/DP_MEMWB.v Line: 708
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_10_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_10_ File: ../syn/DP_MEMWB.v Line: 710
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_11_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_11_ File: ../syn/DP_MEMWB.v Line: 712
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_12_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_12_ File: ../syn/DP_MEMWB.v Line: 714
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_13_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_13_ File: ../syn/DP_MEMWB.v Line: 716
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_14_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_14_ File: ../syn/DP_MEMWB.v Line: 718
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_15_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_15_ File: ../syn/DP_MEMWB.v Line: 720
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_16_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_16_ File: ../syn/DP_MEMWB.v Line: 722
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_17_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_17_ File: ../syn/DP_MEMWB.v Line: 724
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_18_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_18_ File: ../syn/DP_MEMWB.v Line: 726
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_19_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_19_ File: ../syn/DP_MEMWB.v Line: 728
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_20_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_20_ File: ../syn/DP_MEMWB.v Line: 730
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_21_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_21_ File: ../syn/DP_MEMWB.v Line: 732
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_22_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_22_ File: ../syn/DP_MEMWB.v Line: 734
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_23_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_23_ File: ../syn/DP_MEMWB.v Line: 736
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_24_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_24_ File: ../syn/DP_MEMWB.v Line: 738
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_25_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_25_ File: ../syn/DP_MEMWB.v Line: 740
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_26_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_26_ File: ../syn/DP_MEMWB.v Line: 742
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_27_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_27_ File: ../syn/DP_MEMWB.v Line: 744
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_28_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_28_ File: ../syn/DP_MEMWB.v Line: 746
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_29_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_29_ File: ../syn/DP_MEMWB.v Line: 748
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_30_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_30_ File: ../syn/DP_MEMWB.v Line: 750
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_31_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_31_ File: ../syn/DP_MEMWB.v Line: 752
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_0_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 772
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_1_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 774
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_2_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 776
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_3_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 778
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_4_'.  Expected 4, found 3.
-#    Time: 0 ns  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 780
-# Loading /eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
-# coverage save -onexit cov_$Sv_Seed.ucdb
-# 
-
 #  
 #  run -all
 # ----------------------------------------------------------------
@@ -1111,12 +856,8 @@ Errors: 0, Warnings: 205
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test Class_MEMWB_Test...
-
-# UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(151) @ 0: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Generating 100 valid Sequence Items
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 1000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
 # UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(153) @ 0: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Generating 100 valid Sequence Items
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 1: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 1000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: x
 # s1_add_out: x
@@ -1127,13 +868,12 @@ Errors: 0, Warnings: 205
 # control signals: 0xxxxxxx
 # 	outputs
 # dp_to_dlx_pc:          x
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: x
+# s5_mux_datain_out: x
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(82) @ 1: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Reset signal is asserted
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(82) @ 1000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Reset signal is asserted
 #  
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 3: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1232893427
 # s1_add_out: 145264383
@@ -1144,17 +884,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100001
 # 	outputs
 # dp_to_dlx_pc:  145264383
-
-# s4_reg_add_wr_out: x
-# s5_mux_datain_out: x
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 30
-# s5_mux_datain_out: 1511807616
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 5: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1e, got 00
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 5a1c5a80, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2553151591
 # s1_add_out: 34749376
@@ -1165,18 +900,12 @@ Errors: 0, Warnings: 205
 # control signals: 1111001
 # 	outputs
 # dp_to_dlx_pc: 2260051151
-
 # s4_reg_add_wr_out: 30
 # s5_mux_datain_out: 1511807616
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ed2f9522, got 5a1c5a80
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 16
-# s5_mux_datain_out: 3979318562
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 7: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 10, got 1e
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ed2f9522, got 5a1c5a80
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2952210894
 # s1_add_out: 2224007192
@@ -1187,18 +916,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110100
 # 	outputs
 # dp_to_dlx_pc: 1269850684
-
 # s4_reg_add_wr_out: 16
 # s5_mux_datain_out: 3979318562
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4bb0623c, got ed2f9522
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 27
-# s5_mux_datain_out: 1269850684
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 9: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1b, got 10
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4bb0623c, got ed2f9522
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2927996506
 # s1_add_out: 46994459
@@ -1209,18 +932,12 @@ Errors: 0, Warnings: 205
 # control signals: 1111010
 # 	outputs
 # dp_to_dlx_pc: 1714842233
-
 # s4_reg_add_wr_out: 27
 # s5_mux_datain_out: 2553151591
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 81304cce, got 982e0067
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 9
-# s5_mux_datain_out: 2167426254
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 11: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 09, got 1b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 81304cce, got 982e0067
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3440282906
 # s1_add_out: 1343320670
@@ -1231,18 +948,12 @@ Errors: 0, Warnings: 205
 # control signals: 0001001
 # 	outputs
 # dp_to_dlx_pc: 1343320670
-
 # s4_reg_add_wr_out: 9
 # s5_mux_datain_out: 2167426254
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cd0e8d1a, got 81304cce
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 20
-# s5_mux_datain_out: 3440282906
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 13: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 14, got 09
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cd0e8d1a, got 81304cce
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3544163050
 # s1_add_out: 4263331207
@@ -1253,18 +964,12 @@ Errors: 0, Warnings: 205
 # control signals: 1000001
 # 	outputs
 # dp_to_dlx_pc: 4263331207
-
 # s4_reg_add_wr_out: 20
 # s5_mux_datain_out: 3440282906
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ea145a4f, got cd0e8d1a
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 5
-# s5_mux_datain_out: 3927202383
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 15: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 05, got 14
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ea145a4f, got cd0e8d1a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 15000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 176263344
 # s1_add_out: 2142743138
@@ -1275,18 +980,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101110
 # 	outputs
 # dp_to_dlx_pc: 2142743138
-
 # s4_reg_add_wr_out: 5
 # s5_mux_datain_out: 3927202383
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f8566104, got ea145a4f
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 15000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 28
-# s5_mux_datain_out: 4166410500
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 17: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 15000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1c, got 05
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 15000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f8566104, got ea145a4f
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 17000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3720821452
 # s1_add_out: 179817343
@@ -1297,17 +996,11 @@ Errors: 0, Warnings: 205
 # control signals: 0100000
 # 	outputs
 # dp_to_dlx_pc:  179817343
-
 # s4_reg_add_wr_out: 28
 # s5_mux_datain_out: 176263344
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 17000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 176263344
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 19: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 17000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 1c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1706779728
 # s1_add_out: 1463867656
@@ -1318,18 +1011,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001001
 # 	outputs
 # dp_to_dlx_pc: 1463867656
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 176263344
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 17000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4826059c, got 0a8190b0
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 8
-# s5_mux_datain_out: 1210451356
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 21: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 08, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4826059c, got 0a8190b0
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1699346173
 # s1_add_out: 1840631343
@@ -1340,18 +1027,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101110
 # 	outputs
 # dp_to_dlx_pc: 1840631343
-
 # s4_reg_add_wr_out: 8
 # s5_mux_datain_out: 1210451356
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 904d5bd9, got 4826059c
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 6
-# s5_mux_datain_out: 2420988889
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 23: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 06, got 08
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 904d5bd9, got 4826059c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2001652781
 # s1_add_out: 1995435824
@@ -1362,18 +1043,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100101
 # 	outputs
 # dp_to_dlx_pc: 1995435824
-
 # s4_reg_add_wr_out: 6
 # s5_mux_datain_out: 2420988889
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 841e4ec5, got 904d5bd9
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 29
-# s5_mux_datain_out: 2216578757
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 25: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1d, got 06
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 841e4ec5, got 904d5bd9
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3829495700
 # s1_add_out: 3626875441
@@ -1384,18 +1059,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011000
 # 	outputs
 # dp_to_dlx_pc: 3626875441
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 29
+# s5_mux_datain_out: 2216578757
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 619f4e30, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 25
-# s5_mux_datain_out: 1637830192
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 27: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 19, got 1d
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 619f4e30, got 841e4ec5
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3870349848
 # s1_add_out: 1458465430
@@ -1406,18 +1075,12 @@ Errors: 0, Warnings: 205
 # control signals: 0011001
 # 	outputs
 # dp_to_dlx_pc: 1458465430
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 25
+# s5_mux_datain_out: 1637830192
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e6b0da18, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 10
-# s5_mux_datain_out: 3870349848
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 29: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0a, got 19
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e6b0da18, got 619f4e30
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 126883654
 # s1_add_out: 3100236565
@@ -1428,18 +1091,12 @@ Errors: 0, Warnings: 205
 # control signals: 0000111
 # 	outputs
 # dp_to_dlx_pc: 3100236565
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 10
+# s5_mux_datain_out: 2107808255
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c0854e8e, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 9
-# s5_mux_datain_out: 3229961870
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 31: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 09, got 0a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c0854e8e, got 7da299ff
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3937206214
 # s1_add_out: 57454075
@@ -1450,18 +1107,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011100
 # 	outputs
 # dp_to_dlx_pc:   57454075
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 9
+# s5_mux_datain_out: 3229961870
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected caa74f55, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 14
-# s5_mux_datain_out: 3399962453
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 33: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0e, got 09
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected caa74f55, got c0854e8e
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 4045100040
 # s1_add_out: 3256070134
@@ -1472,18 +1123,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110011
 # 	outputs
 # dp_to_dlx_pc:  686812047
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 14
+# s5_mux_datain_out: 3399962453
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eaacffc6, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 3937206214
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 35: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 0e
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eaacffc6, got caa74f55
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 769865126
 # s1_add_out: 1082487786
@@ -1494,18 +1139,12 @@ Errors: 0, Warnings: 205
 # control signals: 1111000
 # 	outputs
 # dp_to_dlx_pc: 4183624917
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 3937206214
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f6ec879c, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 16
-# s5_mux_datain_out: 4142696348
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 37: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 10, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f6ec879c, got eaacffc6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1369498275
 # s1_add_out: 1328570299
@@ -1516,18 +1155,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001110
 # 	outputs
 # dp_to_dlx_pc: 1328570299
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 16
+# s5_mux_datain_out: 4142696348
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 985f3f28, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 19
-# s5_mux_datain_out: 2556378920
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 39: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 13, got 10
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 985f3f28, got f6ec879c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 643611326
 # s1_add_out: 1420193577
@@ -1538,18 +1171,12 @@ Errors: 0, Warnings: 205
 # control signals: 0111100
 # 	outputs
 # dp_to_dlx_pc: 4032340386
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 19
+# s5_mux_datain_out: 2556378920
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f058a1a2, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 2
-# s5_mux_datain_out: 4032340386
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 41: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 02, got 13
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f058a1a2, got 985f3f28
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1460686548
 # s1_add_out: 1153629157
@@ -1560,18 +1187,12 @@ Errors: 0, Warnings: 205
 # control signals: 0001001
 # 	outputs
 # dp_to_dlx_pc: 1153629157
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
+# s4_reg_add_wr_out: 2
+# s5_mux_datain_out: 643611326
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 57104ed4, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 24
-# s5_mux_datain_out: 1460686548
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 43: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 18, got 02
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 57104ed4, got 265cbabe
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 43000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 271579750
 # s1_add_out: 2132188956
@@ -1582,18 +1203,11 @@ Errors: 0, Warnings: 205
 # control signals: 0100010
 # 	outputs
 # dp_to_dlx_pc: 2132188956
-
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 0
-# 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 57104ed4, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 43000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 19
+# s4_reg_add_wr_out: 24
 # s5_mux_datain_out: 1460686548
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 45: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 43000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 13, got 18
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 739727216
 # s1_add_out: 3487877397
@@ -1604,18 +1218,12 @@ Errors: 0, Warnings: 205
 # control signals: 0100111
 # 	outputs
 # dp_to_dlx_pc: 3487877397
-
 # s4_reg_add_wr_out: 19
 # s5_mux_datain_out: 3659911387
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 43000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 06ff6270, got da25d0db
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 8
-# s5_mux_datain_out: 117400176
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 47: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 08, got 13
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 06ff6270, got da25d0db
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2182274584
 # s1_add_out: 2710930173
@@ -1626,18 +1234,12 @@ Errors: 0, Warnings: 205
 # control signals: 1000000
 # 	outputs
 # dp_to_dlx_pc: 2710930173
-
 # s4_reg_add_wr_out: 8
-# s5_mux_datain_out: 0
+# s5_mux_datain_out: 1460686548
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7875921e, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 12
-# s5_mux_datain_out: 2020971038
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 49: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0c, got 08
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7875921e, got 57104ed4
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2615252251
 # s1_add_out: 12937960
@@ -1648,18 +1250,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100000
 # 	outputs
 # dp_to_dlx_pc:   12937960
-
 # s4_reg_add_wr_out: 12
 # s5_mux_datain_out: 2020971038
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d99bfdaf, got 7875921e
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 27
-# s5_mux_datain_out: 3650878895
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 51: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1b, got 0c
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d99bfdaf, got 7875921e
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 948643731
 # s1_add_out: 1325956514
@@ -1670,18 +1266,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110101
 # 	outputs
 # dp_to_dlx_pc:  403857768
-
 # s4_reg_add_wr_out: 27
 # s5_mux_datain_out: 3650878895
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected af4e07c8, got d99bfdaf
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 19
-# s5_mux_datain_out: 2941126600
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 53: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 13, got 1b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected af4e07c8, got d99bfdaf
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3688418191
 # s1_add_out: 2426636079
@@ -1692,18 +1282,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110101
 # 	outputs
 # dp_to_dlx_pc: 4179254156
-
 # s4_reg_add_wr_out: 19
 # s5_mux_datain_out: 2941126600
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f91a5b8c, got af4e07c8
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 25
-# s5_mux_datain_out: 4179254156
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 55: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 19, got 13
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f91a5b8c, got af4e07c8
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3931068712
 # s1_add_out: 1738139939
@@ -1714,18 +1298,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110001
 # 	outputs
 # dp_to_dlx_pc: 1562413776
-
 # s4_reg_add_wr_out: 25
-# s5_mux_datain_out: 0
+# s5_mux_datain_out: 1460686548
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 23f6bdb6, got 00000000
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 13
-# s5_mux_datain_out: 603372982
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 57: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0d, got 19
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 23f6bdb6, got 57104ed4
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 4139729784
 # s1_add_out: 4245025761
@@ -1736,18 +1314,12 @@ Errors: 0, Warnings: 205
 # control signals: 0011111
 # 	outputs
 # dp_to_dlx_pc: 4245025761
-
 # s4_reg_add_wr_out: 13
 # s5_mux_datain_out: 603372982
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0f46c35c, got 23f6bdb6
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 0
-# s5_mux_datain_out: 256295772
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 59: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 00, got 0d
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0f46c35c, got 23f6bdb6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1520028071
 # s1_add_out: 293122562
@@ -1758,18 +1330,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011000
 # 	outputs
 # dp_to_dlx_pc:  293122562
-
 # s4_reg_add_wr_out: 0
 # s5_mux_datain_out: 4139729784
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f3cfd7e0, got f6bf4378
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 16
-# s5_mux_datain_out: 4090484704
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 61: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 10, got 00
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f3cfd7e0, got f6bf4378
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2293459179
 # s1_add_out: 2763868912
@@ -1780,18 +1346,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011001
 # 	outputs
 # dp_to_dlx_pc: 2763868912
-
 # s4_reg_add_wr_out: 16
 # s5_mux_datain_out: 4090484704
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c12f60be, got f3cfd7e0
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 2
-# s5_mux_datain_out: 3241107646
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 63: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 02, got 10
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c12f60be, got f3cfd7e0
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3568338401
 # s1_add_out: 2827854157
@@ -1802,18 +1362,12 @@ Errors: 0, Warnings: 205
 # control signals: 0011010
 # 	outputs
 # dp_to_dlx_pc: 2827854157
-
 # s4_reg_add_wr_out: 2
 # s5_mux_datain_out: 3241107646
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d4b085e1, got c12f60be
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 4
-# s5_mux_datain_out: 3568338401
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 65: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 04, got 02
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d4b085e1, got c12f60be
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 863774153
 # s1_add_out: 1066342299
@@ -1824,18 +1378,12 @@ Errors: 0, Warnings: 205
 # control signals: 0001010
 # 	outputs
 # dp_to_dlx_pc: 1066342299
-
 # s4_reg_add_wr_out: 4
 # s5_mux_datain_out: 3568338401
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 337c25c9, got d4b085e1
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 19
-# s5_mux_datain_out: 863774153
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 67: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 13, got 04
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 337c25c9, got d4b085e1
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3034791652
 # s1_add_out: 3977790712
@@ -1846,18 +1394,12 @@ Errors: 0, Warnings: 205
 # control signals: 1101100
 # 	outputs
 # dp_to_dlx_pc: 3977790712
-
 # s4_reg_add_wr_out: 19
 # s5_mux_datain_out: 1031149435
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4fd11084, got 3d76177b
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 1
-# s5_mux_datain_out: 1339101316
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 69: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 01, got 13
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4fd11084, got 3d76177b
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 528587238
 # s1_add_out: 660680669
@@ -1868,18 +1410,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100110
 # 	outputs
 # dp_to_dlx_pc:  660680669
-
 # s4_reg_add_wr_out: 1
 # s5_mux_datain_out: 1339101316
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e19737f9, got 4fd11084
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 3
-# s5_mux_datain_out: 3784783865
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 71: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 03, got 01
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e19737f9, got 4fd11084
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 785313624
 # s1_add_out: 328269432
@@ -1890,18 +1426,12 @@ Errors: 0, Warnings: 205
 # control signals: 1101011
 # 	outputs
 # dp_to_dlx_pc:  328269432
-
 # s4_reg_add_wr_out: 3
 # s5_mux_datain_out: 3784783865
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 142b9197, got e19737f9
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 21
-# s5_mux_datain_out: 338399639
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 73: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 15, got 03
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 142b9197, got e19737f9
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1530825933
 # s1_add_out: 2582762711
@@ -1912,18 +1442,12 @@ Errors: 0, Warnings: 205
 # control signals: 0100010
 # 	outputs
 # dp_to_dlx_pc: 2582762711
-
 # s4_reg_add_wr_out: 21
 # s5_mux_datain_out: 338399639
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2eceef58, got 142b9197
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 25
-# s5_mux_datain_out: 785313624
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 75: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 19, got 15
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2eceef58, got 142b9197
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 925118736
 # s1_add_out: 871267344
@@ -1934,18 +1458,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100011
 # 	outputs
 # dp_to_dlx_pc:  871267344
-
 # s4_reg_add_wr_out: 25
 # s5_mux_datain_out: 785313624
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected a5469097, got 2eceef58
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 11
-# s5_mux_datain_out: 2772865175
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 77: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0b, got 19
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected a5469097, got 2eceef58
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3986322526
 # s1_add_out: 2943314130
@@ -1956,18 +1474,12 @@ Errors: 0, Warnings: 205
 # control signals: 0100000
 # 	outputs
 # dp_to_dlx_pc: 2943314130
-
 # s4_reg_add_wr_out: 11
 # s5_mux_datain_out: 2772865175
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2eceef58, got a5469097
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 17
-# s5_mux_datain_out: 785313624
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 79: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 11, got 0b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2eceef58, got a5469097
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 525194039
 # s1_add_out: 2509047424
@@ -1978,18 +1490,12 @@ Errors: 0, Warnings: 205
 # control signals: 1000101
 # 	outputs
 # dp_to_dlx_pc: 2509047424
-
 # s4_reg_add_wr_out: 17
 # s5_mux_datain_out: 2432417261
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 316536ea, got 90fbbded
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 22
-# s5_mux_datain_out: 828716778
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 81: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 16, got 11
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 316536ea, got 90fbbded
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3567637713
 # s1_add_out: 1383076449
@@ -2000,18 +1506,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100100
 # 	outputs
 # dp_to_dlx_pc: 1383076449
-
 # s4_reg_add_wr_out: 22
 # s5_mux_datain_out: 828716778
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d6ff4191, got 316536ea
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 18
-# s5_mux_datain_out: 3607052689
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 83: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 12, got 16
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d6ff4191, got 316536ea
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 297879936
 # s1_add_out: 338511187
@@ -2022,18 +1522,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110001
 # 	outputs
 # dp_to_dlx_pc:  938658302
-
 # s4_reg_add_wr_out: 18
 # s5_mux_datain_out: 3607052689
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7b65c3c8, got d6ff4191
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 2070266824
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 85: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 12
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7b65c3c8, got d6ff4191
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3579006202
 # s1_add_out: 1018966532
@@ -2044,18 +1538,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110101
 # 	outputs
 # dp_to_dlx_pc:  174309631
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 2070266824
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0a63c0ff, got 7b65c3c8
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 10
-# s5_mux_datain_out: 174309631
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 87: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0a, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0a63c0ff, got 7b65c3c8
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 409602246
 # s1_add_out: 3001248793
@@ -2066,18 +1554,12 @@ Errors: 0, Warnings: 205
 # control signals: 1111100
 # 	outputs
 # dp_to_dlx_pc:  991987223
-
 # s4_reg_add_wr_out: 10
 # s5_mux_datain_out: 174309631
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected dde8e173, got 0a63c0ff
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 30
-# s5_mux_datain_out: 3723026803
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 89: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1e, got 0a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected dde8e173, got 0a63c0ff
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3374110629
 # s1_add_out: 1485979923
@@ -2088,18 +1570,12 @@ Errors: 0, Warnings: 205
 # control signals: 0100101
 # 	outputs
 # dp_to_dlx_pc: 1485979923
-
 # s4_reg_add_wr_out: 30
 # s5_mux_datain_out: 3723026803
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 74448c25, got dde8e173
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 10
-# s5_mux_datain_out: 1950649381
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 91: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0a, got 1e
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 74448c25, got dde8e173
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 511085438
 # s1_add_out: 3747515259
@@ -2110,18 +1586,12 @@ Errors: 0, Warnings: 205
 # control signals: 1000011
 # 	outputs
 # dp_to_dlx_pc: 3747515259
-
 # s4_reg_add_wr_out: 10
 # s5_mux_datain_out: 409602246
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 33022fe3, got 186a08c6
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 855781347
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 93: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 0a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 33022fe3, got 186a08c6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2267049500
 # s1_add_out: 386457841
@@ -2132,18 +1602,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100001
 # 	outputs
 # dp_to_dlx_pc:  386457841
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 855781347
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 816c2f10, got 33022fe3
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 17
-# s5_mux_datain_out: 2171350800
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 95: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 11, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 816c2f10, got 33022fe3
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2748843815
 # s1_add_out: 4154436485
@@ -2154,18 +1618,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101001
 # 	outputs
 # dp_to_dlx_pc: 4154436485
-
 # s4_reg_add_wr_out: 17
 # s5_mux_datain_out: 2171350800
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected a3d80727, got 816c2f10
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 27
-# s5_mux_datain_out: 2748843815
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 97: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1b, got 11
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected a3d80727, got 816c2f10
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3365103761
 # s1_add_out: 3563569868
@@ -2176,18 +1634,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100100
 # 	outputs
 # dp_to_dlx_pc: 3563569868
-
 # s4_reg_add_wr_out: 27
 # s5_mux_datain_out: 3994236679
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 13d943db, got ee133707
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 333005787
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 99: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 1b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 13d943db, got ee133707
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1607456450
 # s1_add_out: 282456693
@@ -2198,18 +1650,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011100
 # 	outputs
 # dp_to_dlx_pc:  282456693
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 333005787
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cda12679, got 13d943db
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 9
-# s5_mux_datain_out: 3449890425
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 101: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 09, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cda12679, got 13d943db
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 467818076
 # s1_add_out: 3625494645
@@ -2220,18 +1666,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100010
 # 	outputs
 # dp_to_dlx_pc: 3625494645
-
 # s4_reg_add_wr_out: 9
 # s5_mux_datain_out: 3449890425
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0e2d0745, got cda12679
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 3
-# s5_mux_datain_out: 237832005
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 103: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 03, got 09
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0e2d0745, got cda12679
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1909416755
 # s1_add_out: 2983793991
@@ -2242,18 +1682,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100101
 # 	outputs
 # dp_to_dlx_pc: 2983793991
-
 # s4_reg_add_wr_out: 3
 # s5_mux_datain_out: 237832005
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c41c9799, got 0e2d0745
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 7
-# s5_mux_datain_out: 3290208153
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 105: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 07, got 03
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c41c9799, got 0e2d0745
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 7014309
 # s1_add_out: 1046235969
@@ -2264,18 +1698,12 @@ Errors: 0, Warnings: 205
 # control signals: 1111011
 # 	outputs
 # dp_to_dlx_pc: 3141633103
-
 # s4_reg_add_wr_out: 7
 # s5_mux_datain_out: 3290208153
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cf610fb3, got c41c9799
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 25
-# s5_mux_datain_out: 3479244723
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 107: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 19, got 07
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cf610fb3, got c41c9799
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 939928654
 # s1_add_out: 2520239413
@@ -2286,18 +1714,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110000
 # 	outputs
 # dp_to_dlx_pc: 2944238301
-
 # s4_reg_add_wr_out: 25
 # s5_mux_datain_out: 3479244723
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 006b07a5, got cf610fb3
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 2
-# s5_mux_datain_out: 7014309
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 109: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 02, got 19
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 006b07a5, got cf610fb3
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 109000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3258357422
 # s1_add_out: 2007894857
@@ -2308,18 +1730,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101011
 # 	outputs
 # dp_to_dlx_pc: 2007894857
-
 # s4_reg_add_wr_out: 2
 # s5_mux_datain_out: 7014309
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c23696ae, got 006b07a5
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 109000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 4
-# s5_mux_datain_out: 3258357422
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 111: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 109000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 04, got 02
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 109000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c23696ae, got 006b07a5
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 111000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2653284037
 # s1_add_out: 2371584755
@@ -2330,17 +1746,11 @@ Errors: 0, Warnings: 205
 # control signals: 0110010
 # 	outputs
 # dp_to_dlx_pc:  164253443
-
 # s4_reg_add_wr_out: 4
 # s5_mux_datain_out: 3258357422
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 111000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 3
-# s5_mux_datain_out: 3258357422
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 113: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 111000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 03, got 04
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 998617496
 # s1_add_out: 950464780
@@ -2351,18 +1761,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011011
 # 	outputs
 # dp_to_dlx_pc:  950464780
-
 # s4_reg_add_wr_out: 3
 # s5_mux_datain_out: 3258357422
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 111000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 772a914a, got c23696ae
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 1999278410
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 115: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 03
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 772a914a, got c23696ae
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1896798043
 # s1_add_out: 369445020
@@ -2373,18 +1777,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110011
 # 	outputs
 # dp_to_dlx_pc: 1892687808
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 1999278410
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f0b2cdf7, got 772a914a
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 13
-# s5_mux_datain_out: 4038249975
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 117: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0d, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f0b2cdf7, got 772a914a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3140563071
 # s1_add_out: 591229924
@@ -2395,18 +1793,12 @@ Errors: 0, Warnings: 205
 # control signals: 1000001
 # 	outputs
 # dp_to_dlx_pc:  591229924
-
 # s4_reg_add_wr_out: 13
 # s5_mux_datain_out: 4038249975
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7c02d823, got f0b2cdf7
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 17
-# s5_mux_datain_out: 2080561187
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 119: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 11, got 0d
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7c02d823, got f0b2cdf7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 119000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 4264550291
 # s1_add_out: 4100853473
@@ -2417,18 +1809,12 @@ Errors: 0, Warnings: 205
 # control signals: 0000100
 # 	outputs
 # dp_to_dlx_pc: 4100853473
-
 # s4_reg_add_wr_out: 17
 # s5_mux_datain_out: 2080561187
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 8e38ed8d, got 7c02d823
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 119000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 12
-# s5_mux_datain_out: 2386095501
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 121: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 119000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0c, got 11
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 119000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 8e38ed8d, got 7c02d823
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 121000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2388565726
 # s1_add_out: 3850885616
@@ -2439,17 +1825,11 @@ Errors: 0, Warnings: 205
 # control signals: 0000000
 # 	outputs
 # dp_to_dlx_pc: 3850885616
-
 # s4_reg_add_wr_out: 12
 # s5_mux_datain_out: 998617496
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 121000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 25
-# s5_mux_datain_out: 998617496
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 123: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 121000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 19, got 0c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 123000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3673940146
 # s1_add_out: 1872199666
@@ -2460,17 +1840,11 @@ Errors: 0, Warnings: 205
 # control signals: 0000011
 # 	outputs
 # dp_to_dlx_pc: 1872199666
-
 # s4_reg_add_wr_out: 25
 # s5_mux_datain_out: 998617496
 # 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 123000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 30
-# s5_mux_datain_out: 998617496
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 125: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 123000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1e, got 19
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1058845070
 # s1_add_out: 2150453597
@@ -2481,18 +1855,12 @@ Errors: 0, Warnings: 205
 # control signals: 1010100
 # 	outputs
 # dp_to_dlx_pc: 2150453597
-
 # s4_reg_add_wr_out: 30
 # s5_mux_datain_out: 756006823
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 123000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f0361ac0, got 2d0fbfa7
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 31
-# s5_mux_datain_out: 4030077632
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 127: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1f, got 1e
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f0361ac0, got 2d0fbfa7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2226130824
 # s1_add_out: 2968260933
@@ -2503,18 +1871,12 @@ Errors: 0, Warnings: 205
 # control signals: 0000100
 # 	outputs
 # dp_to_dlx_pc: 2968260933
-
 # s4_reg_add_wr_out: 31
 # s5_mux_datain_out: 4030077632
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c14ca4a5, got f0361ac0
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 12
-# s5_mux_datain_out: 3243025573
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 129: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0c, got 1f
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c14ca4a5, got f0361ac0
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 834045310
 # s1_add_out: 359807740
@@ -2525,18 +1887,12 @@ Errors: 0, Warnings: 205
 # control signals: 1100001
 # 	outputs
 # dp_to_dlx_pc:  359807740
-
 # s4_reg_add_wr_out: 12
 # s5_mux_datain_out: 998617496
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 862f8251, got 3b85b198
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 17
-# s5_mux_datain_out: 2251260497
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 131: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 11, got 0c
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 862f8251, got 3b85b198
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 4149675430
 # s1_add_out: 3584456887
@@ -2547,18 +1903,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001011
 # 	outputs
 # dp_to_dlx_pc: 3584456887
-
 # s4_reg_add_wr_out: 17
 # s5_mux_datain_out: 2251260497
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 249ddd9c, got 862f8251
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 9
-# s5_mux_datain_out: 614325660
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 133: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 09, got 11
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 249ddd9c, got 862f8251
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3314077422
 # s1_add_out: 1076077348
@@ -2569,18 +1919,12 @@ Errors: 0, Warnings: 205
 # control signals: 1101110
 # 	outputs
 # dp_to_dlx_pc: 1076077348
-
 # s4_reg_add_wr_out: 9
 # s5_mux_datain_out: 614325660
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 33605ece, got 249ddd9c
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 23
-# s5_mux_datain_out: 861953742
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 135: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 17, got 09
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 33605ece, got 249ddd9c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 4051996028
 # s1_add_out: 296322168
@@ -2591,18 +1935,12 @@ Errors: 0, Warnings: 205
 # control signals: 0100010
 # 	outputs
 # dp_to_dlx_pc:  296322168
-
 # s4_reg_add_wr_out: 23
 # s5_mux_datain_out: 861953742
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c588ceee, got 33605ece
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 21
-# s5_mux_datain_out: 3314077422
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 137: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 15, got 17
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c588ceee, got 33605ece
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1386803909
 # s1_add_out: 162004095
@@ -2613,18 +1951,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001000
 # 	outputs
 # dp_to_dlx_pc:  162004095
-
 # s4_reg_add_wr_out: 21
 # s5_mux_datain_out: 3314077422
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 267ec432, got c588ceee
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 6
-# s5_mux_datain_out: 645841970
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 139: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 06, got 15
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 267ec432, got c588ceee
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1506147309
 # s1_add_out: 3885274
@@ -2635,18 +1967,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101011
 # 	outputs
 # dp_to_dlx_pc:    3885274
-
 # s4_reg_add_wr_out: 6
 # s5_mux_datain_out: 645841970
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 59c5fbed, got 267ec432
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 13
-# s5_mux_datain_out: 1506147309
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 141: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0d, got 06
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 59c5fbed, got 267ec432
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2039967331
 # s1_add_out: 2919921831
@@ -2657,18 +1983,12 @@ Errors: 0, Warnings: 205
 # control signals: 1111110
 # 	outputs
 # dp_to_dlx_pc: 2775424423
-
 # s4_reg_add_wr_out: 13
 # s5_mux_datain_out: 1422115702
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 8d193a2b, got 54c3c376
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 7
-# s5_mux_datain_out: 2367240747
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 143: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 07, got 0d
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 8d193a2b, got 54c3c376
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2939401636
 # s1_add_out: 3672091202
@@ -2679,18 +1999,12 @@ Errors: 0, Warnings: 205
 # control signals: 0100100
 # 	outputs
 # dp_to_dlx_pc: 3672091202
-
 # s4_reg_add_wr_out: 7
 # s5_mux_datain_out: 2367240747
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 82e9498c, got 8d193a2b
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 29
-# s5_mux_datain_out: 2196326796
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 145: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1d, got 07
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 82e9498c, got 8d193a2b
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 368360940
 # s1_add_out: 1504153602
@@ -2701,18 +2015,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001000
 # 	outputs
 # dp_to_dlx_pc: 1504153602
-
 # s4_reg_add_wr_out: 29
 # s5_mux_datain_out: 2039967331
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d77da2cc, got 79976e63
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 7
-# s5_mux_datain_out: 3615335116
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 147: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 07, got 1d
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d77da2cc, got 79976e63
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2954857220
 # s1_add_out: 2456673039
@@ -2723,18 +2031,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011100
 # 	outputs
 # dp_to_dlx_pc: 2456673039
-
 # s4_reg_add_wr_out: 7
 # s5_mux_datain_out: 3615335116
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 92b52483, got d77da2cc
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 20
-# s5_mux_datain_out: 2461344899
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 149: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 14, got 07
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 92b52483, got d77da2cc
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2172238636
 # s1_add_out: 1487463023
@@ -2745,18 +2047,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011111
 # 	outputs
 # dp_to_dlx_pc: 1487463023
-
 # s4_reg_add_wr_out: 20
 # s5_mux_datain_out: 2461344899
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f63c8783, got 92b52483
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 21
-# s5_mux_datain_out: 4131161987
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 151: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 15, got 14
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f63c8783, got 92b52483
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2609718091
 # s1_add_out: 2523736795
@@ -2767,18 +2063,12 @@ Errors: 0, Warnings: 205
 # control signals: 1010111
 # 	outputs
 # dp_to_dlx_pc: 2523736795
-
 # s4_reg_add_wr_out: 21
 # s5_mux_datain_out: 4131161987
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected aab260b1, got f63c8783
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 27
-# s5_mux_datain_out: 2863816881
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 153: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1b, got 15
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected aab260b1, got f63c8783
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1693549036
 # s1_add_out: 2813879852
@@ -2789,18 +2079,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101001
 # 	outputs
 # dp_to_dlx_pc: 2813879852
-
 # s4_reg_add_wr_out: 27
 # s5_mux_datain_out: 2863816881
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 64f181ec, got aab260b1
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 31
-# s5_mux_datain_out: 1693549036
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 155: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1f, got 1b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 64f181ec, got aab260b1
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2584500686
 # s1_add_out: 1017127050
@@ -2811,18 +2095,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110011
 # 	outputs
 # dp_to_dlx_pc: 2185356690
-
 # s4_reg_add_wr_out: 31
 # s5_mux_datain_out: 1693549036
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected b282efa6, got 64f181ec
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 19
-# s5_mux_datain_out: 2994925478
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 157: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 13, got 1f
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected b282efa6, got 64f181ec
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 539424591
 # s1_add_out: 1103635397
@@ -2833,18 +2111,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110110
 # 	outputs
 # dp_to_dlx_pc: 1252626525
-
 # s4_reg_add_wr_out: 19
 # s5_mux_datain_out: 2994925478
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4aa9905d, got b282efa6
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 11
-# s5_mux_datain_out: 1252626525
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 159: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0b, got 13
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4aa9905d, got b282efa6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1327258298
 # s1_add_out: 3494508482
@@ -2855,18 +2127,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001000
 # 	outputs
 # dp_to_dlx_pc: 3494508482
-
 # s4_reg_add_wr_out: 11
 # s5_mux_datain_out: 1693549036
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 5c1ea94e, got 64f181ec
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 6
-# s5_mux_datain_out: 1545513294
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 161: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 06, got 0b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 5c1ea94e, got 64f181ec
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2680942342
 # s1_add_out: 2132985311
@@ -2877,18 +2143,12 @@ Errors: 0, Warnings: 205
 # control signals: 0111100
 # 	outputs
 # dp_to_dlx_pc:  596835738
-
 # s4_reg_add_wr_out: 6
 # s5_mux_datain_out: 1545513294
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2392fd9a, got 5c1ea94e
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 17
-# s5_mux_datain_out: 596835738
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 163: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 11, got 06
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2392fd9a, got 5c1ea94e
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 266848562
 # s1_add_out: 3147537115
@@ -2899,18 +2159,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011100
 # 	outputs
 # dp_to_dlx_pc: 3147537115
-
 # s4_reg_add_wr_out: 17
 # s5_mux_datain_out: 596835738
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 15414471, got 2392fd9a
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 27
-# s5_mux_datain_out: 356598897
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 165: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1b, got 11
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 15414471, got 2392fd9a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 4143583680
 # s1_add_out: 2083104579
@@ -2921,18 +2175,12 @@ Errors: 0, Warnings: 205
 # control signals: 0011000
 # 	outputs
 # dp_to_dlx_pc: 2083104579
-
 # s4_reg_add_wr_out: 27
 # s5_mux_datain_out: 356598897
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f6fa11c0, got 15414471
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 6
-# s5_mux_datain_out: 4143583680
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 167: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 06, got 1b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f6fa11c0, got 15414471
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3145672063
 # s1_add_out: 3716660924
@@ -2943,18 +2191,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011111
 # 	outputs
 # dp_to_dlx_pc: 3716660924
-
 # s4_reg_add_wr_out: 6
 # s5_mux_datain_out: 1541663412
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 687c4c29, got 5be3eab4
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 16
-# s5_mux_datain_out: 1752976425
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 169: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 10, got 06
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 687c4c29, got 5be3eab4
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 528146017
 # s1_add_out: 1876155928
@@ -2965,18 +2207,12 @@ Errors: 0, Warnings: 205
 # control signals: 1000110
 # 	outputs
 # dp_to_dlx_pc: 1876155928
-
 # s4_reg_add_wr_out: 16
 # s5_mux_datain_out: 1752976425
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 6d2e407a, got 687c4c29
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 5
-# s5_mux_datain_out: 1831747706
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 171: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 05, got 10
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 6d2e407a, got 687c4c29
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3500186995
 # s1_add_out: 203633245
@@ -2987,18 +2223,12 @@ Errors: 0, Warnings: 205
 # control signals: 1101111
 # 	outputs
 # dp_to_dlx_pc:  203633245
-
 # s4_reg_add_wr_out: 5
 # s5_mux_datain_out: 1831747706
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ba79e2c7, got 6d2e407a
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 8
-# s5_mux_datain_out: 3128550087
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 173: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 08, got 05
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ba79e2c7, got 6d2e407a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3939015410
 # s1_add_out: 991874457
@@ -3009,18 +2239,12 @@ Errors: 0, Warnings: 205
 # control signals: 0011001
 # 	outputs
 # dp_to_dlx_pc:  991874457
-
 # s4_reg_add_wr_out: 8
 # s5_mux_datain_out: 3128550087
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eac89af2, got ba79e2c7
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 15
-# s5_mux_datain_out: 3939015410
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 175: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0f, got 08
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eac89af2, got ba79e2c7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3827362640
 # s1_add_out: 1127269583
@@ -3031,18 +2255,12 @@ Errors: 0, Warnings: 205
 # control signals: 0101011
 # 	outputs
 # dp_to_dlx_pc: 1127269583
-
 # s4_reg_add_wr_out: 15
 # s5_mux_datain_out: 3939015410
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e420eb50, got eac89af2
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 3
-# s5_mux_datain_out: 3827362640
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 177: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 03, got 0f
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e420eb50, got eac89af2
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 13038775
 # s1_add_out: 579556459
@@ -3053,18 +2271,12 @@ Errors: 0, Warnings: 205
 # control signals: 0111011
 # 	outputs
 # dp_to_dlx_pc: 1129081596
-
 # s4_reg_add_wr_out: 3
 # s5_mux_datain_out: 3827362640
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 00c6f4b7, got e420eb50
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 1
-# s5_mux_datain_out: 13038775
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 179: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 01, got 03
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 00c6f4b7, got e420eb50
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1794687759
 # s1_add_out: 1970539680
@@ -3075,18 +2287,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110111
 # 	outputs
 # dp_to_dlx_pc: 3952462222
-
 # s4_reg_add_wr_out: 1
 # s5_mux_datain_out: 1129081596
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eb95c98e, got 434c6afc
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 4
-# s5_mux_datain_out: 3952462222
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 181: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 04, got 01
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eb95c98e, got 434c6afc
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1632495826
 # s1_add_out: 3591127844
@@ -3097,18 +2303,12 @@ Errors: 0, Warnings: 205
 # control signals: 1101001
 # 	outputs
 # dp_to_dlx_pc: 3591127844
-
 # s4_reg_add_wr_out: 4
 # s5_mux_datain_out: 13038775
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4b2caf2f, got 00c6f4b7
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 27
-# s5_mux_datain_out: 1261219631
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 183: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1b, got 04
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4b2caf2f, got 00c6f4b7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2859910375
 # s1_add_out: 4166863983
@@ -3119,18 +2319,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110111
 # 	outputs
 # dp_to_dlx_pc: 1540389901
-
 # s4_reg_add_wr_out: 27
 # s5_mux_datain_out: 1261219631
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected afe9a95f, got 4b2caf2f
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 21
-# s5_mux_datain_out: 2951326047
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 185: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 15, got 1b
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected afe9a95f, got 4b2caf2f
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 2290174277
 # s1_add_out: 2562315923
@@ -3141,18 +2335,12 @@ Errors: 0, Warnings: 205
 # control signals: 1010111
 # 	outputs
 # dp_to_dlx_pc: 2562315923
-
 # s4_reg_add_wr_out: 21
 # s5_mux_datain_out: 2951326047
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0df4f744, got afe9a95f
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 234157892
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 187: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 15
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0df4f744, got afe9a95f
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3898282533
 # s1_add_out: 1119543446
@@ -3163,18 +2351,12 @@ Errors: 0, Warnings: 205
 # control signals: 1001000
 # 	outputs
 # dp_to_dlx_pc: 1119543446
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 234157892
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 52a8e087, got 0df4f744
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 19
-# s5_mux_datain_out: 1386799239
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 189: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 13, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 52a8e087, got 0df4f744
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 323115378
 # s1_add_out: 819329041
@@ -3185,18 +2367,12 @@ Errors: 0, Warnings: 205
 # control signals: 0010100
 # 	outputs
 # dp_to_dlx_pc:  819329041
-
 # s4_reg_add_wr_out: 19
 # s5_mux_datain_out: 1386799239
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 98bf8353, got 52a8e087
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 10
-# s5_mux_datain_out: 2562687827
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 191: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0a, got 13
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 98bf8353, got 52a8e087
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3572471002
 # s1_add_out: 320522879
@@ -3207,18 +2383,12 @@ Errors: 0, Warnings: 205
 # control signals: 0110101
 # 	outputs
 # dp_to_dlx_pc: 2125907583
-
 # s4_reg_add_wr_out: 10
 # s5_mux_datain_out: 2562687827
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7eb6c67f, got 98bf8353
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 9
-# s5_mux_datain_out: 2125907583
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 193: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 09, got 0a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7eb6c67f, got 98bf8353
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 865237957
 # s1_add_out: 4165165610
@@ -3229,18 +2399,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011010
 # 	outputs
 # dp_to_dlx_pc: 4165165610
-
 # s4_reg_add_wr_out: 9
 # s5_mux_datain_out: 3898282533
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0ada64a5, got e85b1225
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 26
-# s5_mux_datain_out: 182084773
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 195: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1a, got 09
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0ada64a5, got e85b1225
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1828468958
 # s1_add_out: 1249053042
@@ -3251,18 +2415,12 @@ Errors: 0, Warnings: 205
 # control signals: 1110001
 # 	outputs
 # dp_to_dlx_pc: 4113023561
-
 # s4_reg_add_wr_out: 26
 # s5_mux_datain_out: 182084773
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 1aac97ae, got 0ada64a5
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 28
-# s5_mux_datain_out: 447518638
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 197: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 1c, got 1a
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 1aac97ae, got 0ada64a5
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 1445694222
 # s1_add_out: 3917500475
@@ -3273,18 +2431,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011110
 # 	outputs
 # dp_to_dlx_pc: 3917500475
-
 # s4_reg_add_wr_out: 28
 # s5_mux_datain_out: 447518638
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 26a2b8ca, got 1aac97ae
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 22
-# s5_mux_datain_out: 648198346
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 199: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 16, got 1c
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 26a2b8ca, got 1aac97ae
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3260088864
 # s1_add_out: 3679800771
@@ -3295,18 +2447,12 @@ Errors: 0, Warnings: 205
 # control signals: 1011101
 # 	outputs
 # dp_to_dlx_pc: 3679800771
-
 # s4_reg_add_wr_out: 22
 # s5_mux_datain_out: 648198346
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected dfa8370c, got 26a2b8ca
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-=======
-# s4_reg_add_wr_out: 13
-# s5_mux_datain_out: 3752343308
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 201: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 0d, got 16
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected dfa8370c, got 26a2b8ca
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 201000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
 #  	inputs
 # dram out: 3728472225
 # s1_add_out: 696673283
@@ -3317,64 +2463,33 @@ Errors: 0, Warnings: 205
 # control signals: 1111111
 # 	outputs
 # dp_to_dlx_pc:  239793094
-
 # s4_reg_add_wr_out: 13
 # s5_mux_datain_out: 3752343308
 # 
-# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 194363a7, got dfa8370c
-# UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(173) @ 199000: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Done generating 100 Sequence Items...
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 199000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-# UVM_INFO ../tb/classes/Class_MEMWB_CoverageTracker.sv(69) @ 199000: uvm_test_top.memwb_environment.memwb_coverage_tracker [COVERAGE TRACKER] Functional Coverage: 100.00%
-=======
-# s4_reg_add_wr_out: 2
-# s5_mux_datain_out: 423846823
-# 
-# UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(175) @ 201: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Done generating 100 Sequence Items...
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 201: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-# UVM_INFO ../tb/classes/Class_MEMWB_CoverageTracker.sv(69) @ 201: uvm_test_top.memwb_environment.memwb_coverage_tracker [COVERAGE TRACKER] Functional Coverage: 100.00%
-
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(66) @ 201000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S4_REG_ADD_WR_OUT: expected 02, got 0d
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(70) @ 201000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 194363a7, got dfa8370c
+# UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(175) @ 201000: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Done generating 100 Sequence Items...
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 201000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../tb/classes/Class_MEMWB_CoverageTracker.sv(69) @ 201000: uvm_test_top.memwb_environment.memwb_coverage_tracker [COVERAGE TRACKER] Functional Coverage: 100.00%
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-
-# UVM_INFO :  107
-# UVM_WARNING :    0
-# UVM_ERROR :   95
-# UVM_FATAL :    0
-# ** Report counts by id
-# [COVERAGE TRACKER]     1
-# [Class_MEMWB_Scoreboard]   195
-=======
 # UVM_INFO :  109
 # UVM_WARNING :    0
-# UVM_ERROR :    0
+# UVM_ERROR :  195
 # UVM_FATAL :    0
 # ** Report counts by id
 # [COVERAGE TRACKER]     1
-# [Class_MEMWB_Scoreboard]   102
-
+# [Class_MEMWB_Scoreboard]   297
 # [Questa UVM]     2
 # [RNTST]     1
 # [SEQUENCE]     2
 # [TEST_DONE]     1
 # ** Note: $finish    : /eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-
-#    Time: 199 ns  Iteration: 62  Instance: /Module_topTestbench
+#    Time: 201 ns  Iteration: 62  Instance: /Module_topTestbench
 # Saving coverage database on exit...
-# End time: 02:00:27 on Dec 15,2025, Elapsed time: 0:00:02
-# Errors: 0, Warnings: 102
-# *** Summary *********************************************
-#     qrun: Errors:   0, Warnings:   0
-#     vcom: Errors:   0, Warnings:   0
-#     vlog: Errors:   0, Warnings:   0
-#     vopt: Errors:   0, Warnings: 205
-#     vsim: Errors:   0, Warnings: 102
-#   Totals: Errors:   0, Warnings: 307
-=======
-#    Time: 201 ns  Iteration: 65  Instance: /Module_topTestbench
-# Saving coverage database on exit...
-# End time: 18:27:57 on Dec 15,2025, Elapsed time: 0:00:02
+# End time: 17:15:22 on Dec 15,2025, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 102
 # *** Summary *********************************************
 #     qrun: Errors:   0, Warnings:   0
@@ -3382,4 +2497,9 @@ Errors: 0, Warnings: 205
 #     vopt: Errors:   0, Warnings: 205
 #     vsim: Errors:   0, Warnings: 102
 #   Totals: Errors:   0, Warnings: 308
+QuestaSim-64 vcover 2020.4 Coverage Utility 2020.10 Oct 13 2020
+Start time: 17:15:22 on Dec 15,2025
+vcover report -details -html cov_0.ucdb 
 
+End time: 17:15:22 on Dec 15,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

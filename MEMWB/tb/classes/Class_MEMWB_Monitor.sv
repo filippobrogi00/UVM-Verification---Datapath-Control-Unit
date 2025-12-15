@@ -50,7 +50,7 @@ class Class_MEMWB_Monitor extends uvm_monitor;
     super.run_phase(phase);
 
     // Wait for reset signal
-    @(posedge memwb_dut_iface.rst_n);
+    //@(posedge memwb_dut_iface.rst_n);
 
     //Wait for the delay specified delay
     repeat (wait_cycles) @(memwb_dut_iface.ClockingBlock_MEMWB);
@@ -72,6 +72,7 @@ class Class_MEMWB_Monitor extends uvm_monitor;
       memwb_seqitem.S3_REG_ALU_OUT    = memwb_dut_iface.S3_REG_ALU_OUT;
       memwb_seqitem.S3_REG_DATA_OUT   = memwb_dut_iface.S3_REG_DATA_OUT;
 
+      memwb_seqitem.RST_N             = memwb_dut_iface.rst_n;
       memwb_seqitem.S3_FF_JAL_EN_OUT  = memwb_dut_iface.S3_FF_JAL_EN_OUT;
       memwb_seqitem.S3_FF_COND_OUT    = memwb_dut_iface.S3_FF_COND_OUT;
       memwb_seqitem.DRAM_WE           = memwb_dut_iface.DRAM_WE;

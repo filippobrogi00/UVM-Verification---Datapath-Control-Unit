@@ -1,29 +1,32 @@
 #!/bin/bash
 
+SYN_DIR=../syn
 SRC_DIR=../src
 TB_DIR=../tb
 GM_DIR=../tb/golden
+
 COV_EXCLUDE="work.rf_pkg work.Module_topTestbench work.Module_topTestbench_sv_unit"
 SEED=0
 DUT_HIERARCHY="/Module_topTestbench/memwb_toplevel/DUT"
+
 FAULT_LIST="stuckat_fault_list.txt"
 FAULT_DURATION="100"
+FAULT_INJECT="n"
 
-#SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
-SRC_FILES="
-/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
-../src/000-pkg-globals.vhd
-../src/001-pkg-registerfile.vhd
-../syn/DP_MEMWB.v
-"
-PKG_FILES=$(find $TB_DIR -maxdepth 1 -name "pkg_*.sv")
-SV_COMPILE_LIST="$(find $TB_DIR -maxdepth 1 -name "*.sv" ! -name "pkg_*.sv") $(find $GM_DIR -maxdepth 1 -name "*.sv")"
+GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
+POSTSYN_SIMULATION="y"
+
+SYN_FILES=$(find $SYN_DIR -maxdepth 1 -name "*.v")
+echo $SYN_FILES
+SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
+SV_COMPILE_LIST="$(find $TB_DIR -maxdepth 1 -name "*.sv") $(find $GM_DIR -maxdepth 1 -name "*.sv")"
 TOPLEVEL="Module_topTestbench"
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.cpp")
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.c")
-COV_EXCLUDE_COMMAND=$(printf "coverage exclude -du %s; " $COV_EXCLUDE)
+#COV_EXCLUDE_COMMAND=$(printf "coverage exclude -du %s; " $COV_EXCLUDE)
 FORCE_COMMAND=""
 
+if [ "$FAULT_INJECT" = "y" ]; then
 for i in $(seq 1 $(cat $FAULT_LIST | wc -l))
 do
     echo $i
@@ -32,6 +35,7 @@ do
     FORCE_COMMAND="$FORCE_COMMAND; force -freeze $DUT_HIERARCHY/$SIGNAL $FAULT $(($FAULT_DURATION*($i - 1))) -cancel $(($FAULT_DURATION*$i))"
 done
 echo $FORCE_COMMAND
+fi
 
 #############################################################
 ###########     SCRIPT INCLUDES AND DIRECTORY     ###########
@@ -60,5 +64,9 @@ source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 #qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
 rm -rf cov_$SEED.ucdb covhtmlreport
 
-qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $PKG_FILES $SV_COMPILE_LIST $GM_FILES -timescale=1ns/1ps -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
+if [ "$POSTSYN_SIMULATION" = "y" ]; then
+  qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbcexf +define+POSTSYN -timescale=1ns/1ns $GATE_LIBRARY  $SYN_FILES $SV_COMPILE_LIST -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
+else
+  qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $SV_COMPILE_LIST -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
+fi
 vcover report -details -html cov_$SEED.ucdb
