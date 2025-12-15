@@ -1,2 +1,2 @@
-var g_data = {"35":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":4,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_IFID_CoverageTracker/Covergroup_IFID",1,1,36],"cov":[238,223,95.73],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
+var g_data = {"6071":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":3,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_IFID_CoverageTracker/Covergroup_IFID",1,1,6072],"cov":[238,76,74.43],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
 processCovergroupsData(g_data);

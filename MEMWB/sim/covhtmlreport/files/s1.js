@@ -1,0 +1,2 @@
+var g_data = {"17":{"pr":"/Module_topTestbench/memwb_dut_iface","stmts":[{"f":2,"cov":[{"l":48,"i":[{"h":1,"in":1}]}],"mi":1}]},"7":{"pr":"work.Iface_MEMWB","stmts":[{"f":2,"cov":[{"l":48,"i":[{"h":1,"in":1}]}],"mi":1}]}};
+processStatementsData(g_data);

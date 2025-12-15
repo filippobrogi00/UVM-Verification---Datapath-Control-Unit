@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP4 for linux64 -- Nov 23, 2021
-#@ # Date:   Sat Dec 13 23:17:06 2025
+#@ # Date:   Mon Dec 15 00:07:45 2025
 #@ # Run by: ws25.1@localhost.localdomain
 #@ 
 
@@ -8033,8 +8033,18 @@ source /eda/synopsys/2021-22/RHELx86/SYN_2021.06-SP4/admin/setup/.synopsys_dc.se
 
 #@ # -- End source /eda/synopsys/2021-22/RHELx86/SYN_2021.06-SP4/admin/setup/.synopsys_dc.setup
 
-source -echo -verbose /home/ws25.1/Task3/IFID/syn/synthesis.tcl
-#@ # -- Starting source /home/ws25.1/Task3/IFID/syn/synthesis.tcl
+source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/.synopsys_dc.setup
+#@ # -- Starting source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/.synopsys_dc.setup
+
+#@ define_design_lib WORK -path ./work
+#@ set search_path [list . /eda/synopsys/2021-22/RHELx86/SYN_2021.06-SP4/libraries/syn /eda/dk/nangate45/synopsys ]
+#@ set link_library [list "*" "NangateOpenCellLibrary_typical_ecsm.db" "dw_foundation.sldb" ]
+#@ set target_library [list "NangateOpenCellLibrary_typical_ecsm.db" ]
+#@ set synthetic_library [list "dw_foundation.sldb" ]
+#@ # -- End source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/.synopsys_dc.setup
+
+source -echo -verbose /home/ws25.1/Task3Maganuco/step-3/IFID/syn/synthesis.tcl
+#@ # -- Starting source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/synthesis.tcl
 
 #@ #####################################
 #@ # READING SOURCE FILES

@@ -1,20 +1,2389 @@
 QuestaSim-64 qrun 2020.4 Utility 2020.10 Oct 13 2020
-Start time: 22:47:21 on Dec 14,2025
-qrun -clean -uvm -autoorder -mixedsvvh -coverage "+cover=sbce" ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd ../src/a.b-DP-MEMWB.vhd ../src/a.b.a.a-generic_shifter.vhd ../src/a.b.b-DRAM.vhd ../src/a.b.c-SignExtender26-32.vhd ../src/a.b.c-UnsignExtender26-32.vhd ../src/a.b.d-MUX.vhd ../src/a.b.e-PC_Add.vhd ../src/a.b.f-RegisterFile.vhd ../src/a.b.g-FlipFlop.vhd ../src/a.b.h-SignExtender16-32.vhd ../src/a.b.i-ZeroComparator.vhd ../src/a.c-IRAM.vhd ../tb/Iface_MEMWB.sv ../tb/Module_MEMWB_Wrapper.sv ../tb/Module_topTestbench.sv ../tb/pkg_constants.sv -do "; force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -top Module_topTestbench 
+Start time: 02:00:17 on Dec 15,2025
+qrun -clean -uvm -autoorder -mixedsvvh -coverage "+cover=sbce" /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -timescale=1ns/1ps -do "; force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -top Module_topTestbench 
 Deleting directory qrun.out...
 Creating library 'qrun.out/work'.
 Mapping library 'mtiUvm' to '/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/uvm-1.1d'.
 QuestaSim-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 22:47:21 on Dec 14,2025
-vlog -mixedsvvh ../tb/Iface_MEMWB.sv ../tb/Module_MEMWB_Wrapper.sv ../tb/Module_topTestbench.sv ../tb/pkg_constants.sv -work qrun.out/work "+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src" -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
-** Error: ../tb/Iface_MEMWB.sv(3): (vlog-13006) Could not find the package (pkg_const).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+Start time: 02:00:18 on Dec 15,2025
+vlog -mixedsvvh -timescale=1ns/1ps /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -work qrun.out/work "+incdir+/eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/verilog_src/uvm-1.1d/src" -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
+-- Compiling module AND2_X1
+-- Compiling module AND2_X2
+-- Compiling module AND2_X4
+-- Compiling module AND3_X1
+-- Compiling module AND3_X2
+-- Compiling module AND3_X4
+-- Compiling module AND4_X1
+-- Compiling module AND4_X2
+-- Compiling module AND4_X4
+-- Compiling module ANTENNA_X1
+-- Compiling module AOI211_X1
+-- Compiling module AOI211_X2
+-- Compiling module AOI211_X4
+-- Compiling module AOI21_X1
+-- Compiling module AOI21_X2
+-- Compiling module AOI21_X4
+-- Compiling module AOI221_X1
+-- Compiling module AOI221_X2
+-- Compiling module AOI221_X4
+-- Compiling module AOI222_X1
+-- Compiling module AOI222_X2
+-- Compiling module AOI222_X4
+-- Compiling module AOI22_X1
+-- Compiling module AOI22_X2
+-- Compiling module AOI22_X4
+-- Compiling module BUF_X1
+-- Compiling module BUF_X16
+-- Compiling module BUF_X2
+-- Compiling module BUF_X32
+-- Compiling module BUF_X4
+-- Compiling module BUF_X8
+-- Compiling module CLKBUF_X1
+-- Compiling module CLKBUF_X2
+-- Compiling module CLKBUF_X3
+-- Compiling UDP seq_CLKGATETST_X1
+-- Compiling module CLKGATETST_X1
+-- Compiling UDP seq_CLKGATETST_X2
+-- Compiling module CLKGATETST_X2
+-- Compiling UDP seq_CLKGATETST_X4
+-- Compiling module CLKGATETST_X4
+-- Compiling UDP seq_CLKGATETST_X8
+-- Compiling module CLKGATETST_X8
+-- Compiling UDP seq_CLKGATE_X1
+-- Compiling module CLKGATE_X1
+-- Compiling UDP seq_CLKGATE_X2
+-- Compiling module CLKGATE_X2
+-- Compiling UDP seq_CLKGATE_X4
+-- Compiling module CLKGATE_X4
+-- Compiling UDP seq_CLKGATE_X8
+-- Compiling module CLKGATE_X8
+-- Compiling UDP seq_DFFRS_X1
+-- Compiling module DFFRS_X1
+-- Compiling UDP seq_DFFRS_X2
+-- Compiling module DFFRS_X2
+-- Compiling UDP seq_DFFR_X1
+-- Compiling module DFFR_X1
+-- Compiling UDP seq_DFFR_X2
+-- Compiling module DFFR_X2
+-- Compiling UDP seq_DFFS_X1
+-- Compiling module DFFS_X1
+-- Compiling UDP seq_DFFS_X2
+-- Compiling module DFFS_X2
+-- Compiling UDP seq_DFF_X1
+-- Compiling module DFF_X1
+-- Compiling UDP seq_DFF_X2
+-- Compiling module DFF_X2
+-- Compiling UDP seq_DLH_X1
+-- Compiling module DLH_X1
+-- Compiling UDP seq_DLH_X2
+-- Compiling module DLH_X2
+-- Compiling UDP seq_DLL_X1
+-- Compiling module DLL_X1
+-- Compiling UDP seq_DLL_X2
+-- Compiling module DLL_X2
+-- Compiling module FA_X1
+-- Compiling module FILLCELL_X1
+-- Compiling module FILLCELL_X2
+-- Compiling module FILLCELL_X4
+-- Compiling module FILLCELL_X8
+-- Compiling module FILLCELL_X16
+-- Compiling module FILLCELL_X32
+-- Compiling module HA_X1
+-- Compiling module INV_X1
+-- Compiling module INV_X16
+-- Compiling module INV_X2
+-- Compiling module INV_X32
+-- Compiling module INV_X4
+-- Compiling module INV_X8
+-- Compiling module LOGIC0_X1
+-- Compiling module LOGIC1_X1
+-- Compiling module MUX2_X1
+-- Compiling module MUX2_X2
+-- Compiling module NAND2_X1
+-- Compiling module NAND2_X2
+-- Compiling module NAND2_X4
+-- Compiling module NAND3_X1
+-- Compiling module NAND3_X2
+-- Compiling module NAND3_X4
+-- Compiling module NAND4_X1
+-- Compiling module NAND4_X2
+-- Compiling module NAND4_X4
+-- Compiling module NOR2_X1
+-- Compiling module NOR2_X2
+-- Compiling module NOR2_X4
+-- Compiling module NOR3_X1
+-- Compiling module NOR3_X2
+-- Compiling module NOR3_X4
+-- Compiling module NOR4_X1
+-- Compiling module NOR4_X2
+-- Compiling module NOR4_X4
+-- Compiling module OAI211_X1
+-- Compiling module OAI211_X2
+-- Compiling module OAI211_X4
+-- Compiling module OAI21_X1
+-- Compiling module OAI21_X2
+-- Compiling module OAI21_X4
+-- Compiling module OAI221_X1
+-- Compiling module OAI221_X2
+-- Compiling module OAI221_X4
+-- Compiling module OAI222_X1
+-- Compiling module OAI222_X2
+-- Compiling module OAI222_X4
+-- Compiling module OAI22_X1
+-- Compiling module OAI22_X2
+-- Compiling module OAI22_X4
+-- Compiling module OAI33_X1
+-- Compiling module OR2_X1
+-- Compiling module OR2_X2
+-- Compiling module OR2_X4
+-- Compiling module OR3_X1
+-- Compiling module OR3_X2
+-- Compiling module OR3_X4
+-- Compiling module OR4_X1
+-- Compiling module OR4_X2
+-- Compiling module OR4_X4
+-- Compiling UDP seq_SDFFRS_X1
+-- Compiling module SDFFRS_X1
+-- Compiling UDP seq_SDFFRS_X2
+-- Compiling module SDFFRS_X2
+-- Compiling UDP seq_SDFFR_X1
+-- Compiling module SDFFR_X1
+-- Compiling UDP seq_SDFFR_X2
+-- Compiling module SDFFR_X2
+-- Compiling UDP seq_SDFFS_X1
+-- Compiling module SDFFS_X1
+-- Compiling UDP seq_SDFFS_X2
+-- Compiling module SDFFS_X2
+-- Compiling UDP seq_SDFF_X1
+-- Compiling module SDFF_X1
+-- Compiling UDP seq_SDFF_X2
+-- Compiling module SDFF_X2
+-- Compiling module TBUF_X1
+-- Compiling module TBUF_X16
+-- Compiling module TBUF_X2
+-- Compiling module TBUF_X4
+-- Compiling module TBUF_X8
+-- Compiling module TINV_X1
+-- Compiling UDP seq_TLAT_X1
+-- Compiling module TLAT_X1
+-- Compiling module XNOR2_X1
+-- Compiling module XNOR2_X2
+-- Compiling module XOR2_X1
+-- Compiling module XOR2_X2
+-- Compiling UDP ng_xbuf
+-- Compiling module DP_MEMWB
+-- Compiling package pkg_constants_sv_unit
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
 -- Compiling package pkg_const
-** Warning: ../tb/pkg_constants.sv(6): (vlog-2275) Existing package 'pkg_const' at line 6 will be overwritten.
-End time: 22:47:21 on Dec 14,2025, Elapsed time: 0:00:00
-Errors: 1, Warnings: 1
-child process exited abnormally
-End time: 22:47:21 on Dec 14,2025, Elapsed time: 0:00:00
-*** Summary *********************************************
-    qrun: Errors:   0, Warnings:   0
-    vlog: Errors:   1, Warnings:   1
-  Totals: Errors:   1, Warnings:   1
+-- Compiling package Iface_MEMWB_sv_unit
+-- Importing package pkg_const
+-- Compiling interface Iface_MEMWB
+-- Compiling package Module_topTestbench_sv_unit
+-- Compiling module Module_topTestbench
+-- Compiling module Module_MEMWB_Wrapper
+
+Top level modules:
+	AND2_X2
+	AND2_X4
+	AND3_X1
+	AND3_X2
+	AND3_X4
+	AND4_X1
+	AND4_X2
+	AND4_X4
+	ANTENNA_X1
+	AOI211_X1
+	AOI211_X2
+	AOI211_X4
+	AOI21_X1
+	AOI21_X2
+	AOI21_X4
+	AOI221_X1
+	AOI221_X2
+	AOI221_X4
+	AOI222_X1
+	AOI222_X2
+	AOI222_X4
+	AOI22_X2
+	AOI22_X4
+	BUF_X16
+	BUF_X2
+	BUF_X32
+	BUF_X4
+	BUF_X8
+	CLKBUF_X1
+	CLKBUF_X2
+	CLKBUF_X3
+	CLKGATETST_X1
+	CLKGATETST_X2
+	CLKGATETST_X4
+	CLKGATETST_X8
+	CLKGATE_X1
+	CLKGATE_X2
+	CLKGATE_X4
+	CLKGATE_X8
+	DFFRS_X1
+	DFFRS_X2
+	DFFR_X1
+	DFFR_X2
+	DFFS_X1
+	DFFS_X2
+	DFF_X2
+	DLH_X1
+	DLH_X2
+	DLL_X1
+	DLL_X2
+	FA_X1
+	FILLCELL_X1
+	FILLCELL_X2
+	FILLCELL_X4
+	FILLCELL_X8
+	FILLCELL_X16
+	FILLCELL_X32
+	HA_X1
+	INV_X16
+	INV_X2
+	INV_X32
+	INV_X4
+	INV_X8
+	LOGIC0_X1
+	LOGIC1_X1
+	MUX2_X1
+	MUX2_X2
+	NAND2_X1
+	NAND2_X2
+	NAND2_X4
+	NAND3_X1
+	NAND3_X2
+	NAND3_X4
+	NAND4_X1
+	NAND4_X2
+	NAND4_X4
+	NOR2_X2
+	NOR2_X4
+	NOR3_X1
+	NOR3_X2
+	NOR3_X4
+	NOR4_X1
+	NOR4_X2
+	NOR4_X4
+	OAI211_X1
+	OAI211_X2
+	OAI211_X4
+	OAI21_X1
+	OAI21_X2
+	OAI21_X4
+	OAI221_X1
+	OAI221_X2
+	OAI221_X4
+	OAI222_X1
+	OAI222_X2
+	OAI222_X4
+	OAI22_X1
+	OAI22_X2
+	OAI22_X4
+	OAI33_X1
+	OR2_X1
+	OR2_X2
+	OR2_X4
+	OR3_X1
+	OR3_X2
+	OR3_X4
+	OR4_X1
+	OR4_X2
+	OR4_X4
+	SDFFRS_X1
+	SDFFRS_X2
+	SDFFR_X1
+	SDFFR_X2
+	SDFFS_X1
+	SDFFS_X2
+	SDFF_X1
+	SDFF_X2
+	TBUF_X1
+	TBUF_X16
+	TBUF_X2
+	TBUF_X4
+	TBUF_X8
+	TINV_X1
+	TLAT_X1
+	XNOR2_X1
+	XNOR2_X2
+	XOR2_X1
+	XOR2_X2
+	Module_topTestbench
+End time: 02:00:19 on Dec 15,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 02:00:19 on Dec 15,2025
+vcom -autoorder -mixedsvvh ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd -work qrun.out/work -csession=incr -writesessionid "+qrun.out/top_dus" -statslog qrun.out/stats_log 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Scanning package myTypes
+-- Scanning package rf_pkg
+-- Scanning package body rf_pkg
+-- Loading package rf_pkg
+End time: 02:00:19 on Dec 15,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 02:00:19 on Dec 15,2025
+vcom -refresh_marked -work qrun.out/work 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package myTypes
+-- Compiling package rf_pkg
+-- Compiling package body rf_pkg
+-- Loading package rf_pkg
+End time: 02:00:20 on Dec 15,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+QuestaSim-64 vopt 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 02:00:20 on Dec 15,2025
+vopt -mixedsvvh "+cover=sbce" -timescale=1ns/1ps Module_topTestbench -work qrun.out/work -statslog qrun.out/stats_log -o qrun_opt 
+
+Top level modules:
+	Module_topTestbench
+
+Analyzing design...
+-- Loading module Module_topTestbench
+** Note: (vopt-2071) ../tb/classes/Class_MEMWB_CoverageTracker.sv(55) : enabling branch coverage.
+** Note: (vopt-2071) ../tb/Module_topTestbench.sv(79) : enabling branch coverage.
+-- Loading package mtiUvm.questa_uvm_pkg
+-- Loading interface Iface_MEMWB
+-- Loading module Module_MEMWB_Wrapper
+-- Loading module DP_MEMWB
+-- Loading module AND2_X1
+-- Loading module AOI22_X1
+-- Loading module INV_X1
+-- Loading module BUF_X1
+-- Loading module NOR2_X1
+-- Loading module DFF_X1
+-- Loading UDP seq_DFF_X1
+** Warning: (vopt-13407) Code coverage will be disabled for some DUs/packages/classes and source files.
+Optimizing 17 design-units (inlining 1/4 module instances, 0/556 cell instances, 102/102 UDP instances):
+-- Optimizing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)(fast)
+-- Optimizing package mtiUvm.questa_uvm_pkg(fast)
+-- Optimizing package pkg_const(fast)
+-- Optimizing package Module_topTestbench_sv_unit(fast)
+** Note: (vopt-2071) ../tb/classes/Class_MEMWB_CoverageTracker.sv(55) : enabling branch coverage.
+-- Optimizing package Iface_MEMWB_sv_unit(fast)
+-- Optimizing module DP_MEMWB(fast)
+** Warning: ../syn/DP_MEMWB.v(336): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_0_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(336): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(338): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_1_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(338): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(340): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_2_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(340): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(342): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_3_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(342): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(344): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_4_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(344): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(346): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_5_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(346): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(348): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_6_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(348): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(350): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_7_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(350): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(352): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_8_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(352): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(354): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_9_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(354): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(356): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_10_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(356): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(358): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_11_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(358): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(360): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_12_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(360): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(362): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_13_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(362): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(364): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_14_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(364): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(366): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_15_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(366): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(368): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_16_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(368): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(370): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_17_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(370): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(372): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_18_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(372): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(374): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_19_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(374): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(376): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_20_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(376): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(378): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_21_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(378): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(380): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_22_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(380): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(382): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_23_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(382): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(384): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_24_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(384): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(386): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_25_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(386): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(388): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_26_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(388): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(390): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_27_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(390): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(392): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_28_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(392): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(394): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_29_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(394): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(396): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_30_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(396): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(398): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_31_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(398): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(509): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_0_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(509): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(511): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_1_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(511): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(513): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_2_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(513): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(515): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_3_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(515): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(517): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_4_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(517): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(519): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_5_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(519): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(521): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_6_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(521): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(523): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_7_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(523): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(525): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_8_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(525): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(527): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_9_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(527): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(529): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_10_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(529): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(531): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_11_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(533): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_12_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(533): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(535): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_13_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(535): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(537): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_14_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(537): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(539): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_15_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(539): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(541): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_16_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(541): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(543): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_17_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(543): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(545): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_18_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(545): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(547): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_19_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(547): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(549): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_20_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(549): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(551): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_21_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(551): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(553): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_22_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(553): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(555): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_23_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(555): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(557): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_24_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(557): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(559): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_25_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(559): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(561): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_26_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(561): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(563): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_27_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(563): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(565): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_28_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(565): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(567): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_29_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(567): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(569): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_30_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(569): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(571): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_31_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(571): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(579): (vopt-2685) [TFMPC] - Too few port connections for 'S4_FF_JAL_EN_Q_reg_0_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(579): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(690): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_0_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(690): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(692): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_1_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(692): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(694): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_2_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(694): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(696): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_3_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(696): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(698): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_4_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(698): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(700): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_5_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(700): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(702): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_6_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(702): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(704): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_7_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(704): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(706): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_8_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(706): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(708): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_9_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(708): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(710): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_10_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(710): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(712): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_11_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(712): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(714): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_12_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(714): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(716): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_13_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(716): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(718): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_14_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(718): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(720): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_15_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(720): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(722): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_16_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(722): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(724): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_17_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(724): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(726): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_18_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(726): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(728): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_19_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(728): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(730): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_20_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(730): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(732): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_21_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(732): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(734): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_22_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(734): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(736): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_23_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(736): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(738): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_24_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(738): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(740): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_25_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(740): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(742): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_26_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(742): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(744): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_27_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(744): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(746): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_28_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(746): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(748): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_29_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(748): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(750): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_30_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(750): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(752): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_31_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(752): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(772): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_0_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(772): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(774): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_1_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(774): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(776): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_2_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(776): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(778): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_3_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(778): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+** Warning: ../syn/DP_MEMWB.v(780): (vopt-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_4_'.  Expected 4, found 3.
+** Warning: ../syn/DP_MEMWB.v(780): (vopt-2718) [TFMPC] - Missing connection for port 'QN'.
+-- Optimizing module AOI22_X1(fast)
+-- Inlining interface Iface_MEMWB(fast__2)
+-- Optimizing module Module_topTestbench(fast)
+** Note: (vopt-2071) ../tb/classes/Class_MEMWB_CoverageTracker.sv(55) : enabling branch coverage.
+** Note: (vopt-2071) ../tb/Module_topTestbench.sv(79) : enabling branch coverage.
+-- Inlining UDP seq_DFF_X1
+-- Optimizing module DFF_X1(fast)
+-- Optimizing module Module_MEMWB_Wrapper(fast)
+-- Optimizing module NOR2_X1(fast)
+-- Optimizing module AND2_X1(fast)
+-- Optimizing module INV_X1(fast)
+-- Optimizing module BUF_X1(fast)
+-- Optimizing interface Iface_MEMWB(fast)
+Optimized design name is qrun_opt
+End time: 02:00:22 on Dec 15,2025, Elapsed time: 0:00:02
+Errors: 0, Warnings: 205
+# vsim -lib qrun.out/work -c -coverage -do "coverage save -onexit cov_$Sv_Seed.ucdb" -do "; force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100; coverage exclude -du work.rf_pkg; coverage exclude -du work.Module_topTestbench; coverage exclude -du work.Module_topTestbench_sv_unit; ; run -all" -statslog qrun.out/stats_log qrun_opt -appendlog -l qrun.log 
+# Start time: 02:00:25 on Dec 15,2025
+# //  Questa Sim-64
+# //  Version 2020.4 linux_x86_64 Oct 13 2020
+# //
+# //  Copyright 1991-2020 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.pkg_const(fast)
+# Loading work.Iface_MEMWB_sv_unit(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.Module_topTestbench_sv_unit(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.Module_topTestbench(fast)
+# Loading work.Module_MEMWB_Wrapper(fast)
+# Loading work.DP_MEMWB(fast)
+# Loading work.AND2_X1(fast)
+# Loading work.AOI22_X1(fast)
+# Loading work.INV_X1(fast)
+# Loading work.BUF_X1(fast)
+# Loading work.NOR2_X1(fast)
+# Loading work.DFF_X1(fast)
+# Loading work.Iface_MEMWB(fast)
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_0_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 336
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_1_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 338
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_2_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 340
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_3_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 342
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_4_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 344
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_5_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_5_ File: ../syn/DP_MEMWB.v Line: 346
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_6_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_6_ File: ../syn/DP_MEMWB.v Line: 348
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_7_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_7_ File: ../syn/DP_MEMWB.v Line: 350
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_8_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_8_ File: ../syn/DP_MEMWB.v Line: 352
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_9_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_9_ File: ../syn/DP_MEMWB.v Line: 354
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_10_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_10_ File: ../syn/DP_MEMWB.v Line: 356
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_11_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_11_ File: ../syn/DP_MEMWB.v Line: 358
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_12_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_12_ File: ../syn/DP_MEMWB.v Line: 360
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_13_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_13_ File: ../syn/DP_MEMWB.v Line: 362
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_14_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_14_ File: ../syn/DP_MEMWB.v Line: 364
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_15_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_15_ File: ../syn/DP_MEMWB.v Line: 366
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_16_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_16_ File: ../syn/DP_MEMWB.v Line: 368
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_17_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_17_ File: ../syn/DP_MEMWB.v Line: 370
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_18_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_18_ File: ../syn/DP_MEMWB.v Line: 372
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_19_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_19_ File: ../syn/DP_MEMWB.v Line: 374
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_20_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_20_ File: ../syn/DP_MEMWB.v Line: 376
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_21_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_21_ File: ../syn/DP_MEMWB.v Line: 378
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_22_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_22_ File: ../syn/DP_MEMWB.v Line: 380
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_23_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_23_ File: ../syn/DP_MEMWB.v Line: 382
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_24_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_24_ File: ../syn/DP_MEMWB.v Line: 384
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_25_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_25_ File: ../syn/DP_MEMWB.v Line: 386
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_26_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_26_ File: ../syn/DP_MEMWB.v Line: 388
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_27_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_27_ File: ../syn/DP_MEMWB.v Line: 390
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_28_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_28_ File: ../syn/DP_MEMWB.v Line: 392
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_29_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_29_ File: ../syn/DP_MEMWB.v Line: 394
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_30_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_30_ File: ../syn/DP_MEMWB.v Line: 396
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_LMD_Q_reg_31_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_LMD_Q_reg_31_ File: ../syn/DP_MEMWB.v Line: 398
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_0_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 509
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_1_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 511
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_2_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 513
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_3_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 515
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_4_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 517
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_5_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_5_ File: ../syn/DP_MEMWB.v Line: 519
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_6_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_6_ File: ../syn/DP_MEMWB.v Line: 521
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_7_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_7_ File: ../syn/DP_MEMWB.v Line: 523
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_8_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_8_ File: ../syn/DP_MEMWB.v Line: 525
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_9_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_9_ File: ../syn/DP_MEMWB.v Line: 527
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_10_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_10_ File: ../syn/DP_MEMWB.v Line: 529
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_11_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_11_ File: ../syn/DP_MEMWB.v Line: 531
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_12_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_12_ File: ../syn/DP_MEMWB.v Line: 533
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_13_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_13_ File: ../syn/DP_MEMWB.v Line: 535
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_14_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_14_ File: ../syn/DP_MEMWB.v Line: 537
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_15_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_15_ File: ../syn/DP_MEMWB.v Line: 539
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_16_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_16_ File: ../syn/DP_MEMWB.v Line: 541
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_17_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_17_ File: ../syn/DP_MEMWB.v Line: 543
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_18_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_18_ File: ../syn/DP_MEMWB.v Line: 545
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_19_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_19_ File: ../syn/DP_MEMWB.v Line: 547
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_20_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_20_ File: ../syn/DP_MEMWB.v Line: 549
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_21_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_21_ File: ../syn/DP_MEMWB.v Line: 551
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_22_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_22_ File: ../syn/DP_MEMWB.v Line: 553
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_23_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_23_ File: ../syn/DP_MEMWB.v Line: 555
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_24_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_24_ File: ../syn/DP_MEMWB.v Line: 557
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_25_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_25_ File: ../syn/DP_MEMWB.v Line: 559
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_26_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_26_ File: ../syn/DP_MEMWB.v Line: 561
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_27_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_27_ File: ../syn/DP_MEMWB.v Line: 563
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_28_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_28_ File: ../syn/DP_MEMWB.v Line: 565
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_29_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_29_ File: ../syn/DP_MEMWB.v Line: 567
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_30_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_30_ File: ../syn/DP_MEMWB.v Line: 569
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ALU_Q_reg_31_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ALU_Q_reg_31_ File: ../syn/DP_MEMWB.v Line: 571
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_FF_JAL_EN_Q_reg_0_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_FF_JAL_EN_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 579
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_0_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 690
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_1_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 692
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_2_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 694
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_3_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 696
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_4_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 698
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_5_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_5_ File: ../syn/DP_MEMWB.v Line: 700
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_6_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_6_ File: ../syn/DP_MEMWB.v Line: 702
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_7_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_7_ File: ../syn/DP_MEMWB.v Line: 704
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_8_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_8_ File: ../syn/DP_MEMWB.v Line: 706
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_9_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_9_ File: ../syn/DP_MEMWB.v Line: 708
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_10_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_10_ File: ../syn/DP_MEMWB.v Line: 710
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_11_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_11_ File: ../syn/DP_MEMWB.v Line: 712
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_12_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_12_ File: ../syn/DP_MEMWB.v Line: 714
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_13_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_13_ File: ../syn/DP_MEMWB.v Line: 716
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_14_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_14_ File: ../syn/DP_MEMWB.v Line: 718
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_15_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_15_ File: ../syn/DP_MEMWB.v Line: 720
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_16_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_16_ File: ../syn/DP_MEMWB.v Line: 722
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_17_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_17_ File: ../syn/DP_MEMWB.v Line: 724
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_18_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_18_ File: ../syn/DP_MEMWB.v Line: 726
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_19_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_19_ File: ../syn/DP_MEMWB.v Line: 728
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_20_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_20_ File: ../syn/DP_MEMWB.v Line: 730
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_21_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_21_ File: ../syn/DP_MEMWB.v Line: 732
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_22_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_22_ File: ../syn/DP_MEMWB.v Line: 734
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_23_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_23_ File: ../syn/DP_MEMWB.v Line: 736
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_24_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_24_ File: ../syn/DP_MEMWB.v Line: 738
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_25_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_25_ File: ../syn/DP_MEMWB.v Line: 740
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_26_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_26_ File: ../syn/DP_MEMWB.v Line: 742
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_27_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_27_ File: ../syn/DP_MEMWB.v Line: 744
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_28_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_28_ File: ../syn/DP_MEMWB.v Line: 746
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_29_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_29_ File: ../syn/DP_MEMWB.v Line: 748
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_30_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_30_ File: ../syn/DP_MEMWB.v Line: 750
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_NPC_Q_reg_31_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_NPC_Q_reg_31_ File: ../syn/DP_MEMWB.v Line: 752
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_0_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_0_ File: ../syn/DP_MEMWB.v Line: 772
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_1_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_1_ File: ../syn/DP_MEMWB.v Line: 774
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_2_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_2_ File: ../syn/DP_MEMWB.v Line: 776
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_3_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_3_ File: ../syn/DP_MEMWB.v Line: 778
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'S4_REG_ADD_WR_Q_reg_4_'.  Expected 4, found 3.
+#    Time: 0 ps  Iteration: 0  Instance: /Module_topTestbench/memwb_toplevel/DUT/S4_REG_ADD_WR_Q_reg_4_ File: ../syn/DP_MEMWB.v Line: 780
+# Loading /eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+# coverage save -onexit cov_$Sv_Seed.ucdb
+# 
+#  force -freeze /Module_topTestbench/memwb_toplevel/DUT/S4_MUX_JMP_SEL 0 0 -cancel 100
+#  coverage exclude -du work.rf_pkg
+# ** UI-Msg: (vsim-4053) Design unit 'work.rf_pkg' was not found or has null coverage data.
+# ** UI-Msg: (vsim-4036) The 'coverage exclude' command had no effect on some/all objects because
+# no matching coverage data was found.
+# 
+#  coverage exclude -du work.Module_topTestbench
+#  coverage exclude -du work.Module_topTestbench_sv_unit
+#  
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test Class_MEMWB_Test...
+# UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(151) @ 0: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Generating 100 valid Sequence Items
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 1000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1232893427
+# s1_add_out: 145264383
+# s3_reg_npc_out: 1511807616
+# s3_reg_alu_out: 2290673618
+# s3_reg_data_out:1811957698
+# s3_reg_add_wr_out:    30
+# control signals: 1100001
+# 	outputs
+# dp_to_dlx_pc:  145264383
+# s4_reg_add_wr_out: x
+# s5_mux_datain_out: x
+# 
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2553151591
+# s1_add_out: 34749376
+# s3_reg_npc_out: 3979318562
+# s3_reg_alu_out: 2260051151
+# s3_reg_data_out:1025021293
+# s3_reg_add_wr_out:    16
+# control signals: 1111001
+# 	outputs
+# dp_to_dlx_pc: 2260051151
+# s4_reg_add_wr_out: 30
+# s5_mux_datain_out: 1511807616
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 3000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ed2f9522, got 5a1c5a80
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2952210894
+# s1_add_out: 2224007192
+# s3_reg_npc_out: 597420478
+# s3_reg_alu_out: 1269850684
+# s3_reg_data_out: 252498946
+# s3_reg_add_wr_out:    27
+# control signals: 0110100
+# 	outputs
+# dp_to_dlx_pc: 1269850684
+# s4_reg_add_wr_out: 16
+# s5_mux_datain_out: 3979318562
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 5000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4bb0623c, got ed2f9522
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2927996506
+# s1_add_out: 46994459
+# s3_reg_npc_out: 2167426254
+# s3_reg_alu_out: 1714842233
+# s3_reg_data_out:4103376976
+# s3_reg_add_wr_out:     9
+# control signals: 1111010
+# 	outputs
+# dp_to_dlx_pc: 1714842233
+# s4_reg_add_wr_out: 27
+# s5_mux_datain_out: 2553151591
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 7000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 81304cce, got 982e0067
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3440282906
+# s1_add_out: 1343320670
+# s3_reg_npc_out: 3879550418
+# s3_reg_alu_out: 1725342069
+# s3_reg_data_out:3829125724
+# s3_reg_add_wr_out:    20
+# control signals: 0001001
+# 	outputs
+# dp_to_dlx_pc: 1343320670
+# s4_reg_add_wr_out: 9
+# s5_mux_datain_out: 2167426254
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 9000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cd0e8d1a, got 81304cce
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3544163050
+# s1_add_out: 4263331207
+# s3_reg_npc_out: 3927202383
+# s3_reg_alu_out: 104183493
+# s3_reg_data_out:   9673814
+# s3_reg_add_wr_out:     5
+# control signals: 1000001
+# 	outputs
+# dp_to_dlx_pc: 4263331207
+# s4_reg_add_wr_out: 20
+# s5_mux_datain_out: 3440282906
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 11000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ea145a4f, got cd0e8d1a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 176263344
+# s1_add_out: 2142743138
+# s3_reg_npc_out: 2115454272
+# s3_reg_alu_out: 4166410500
+# s3_reg_data_out: 456637196
+# s3_reg_add_wr_out:    28
+# control signals: 0101110
+# 	outputs
+# dp_to_dlx_pc: 2142743138
+# s4_reg_add_wr_out: 5
+# s5_mux_datain_out: 3927202383
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 13000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f8566104, got ea145a4f
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 15000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3720821452
+# s1_add_out: 179817343
+# s3_reg_npc_out: 4128218802
+# s3_reg_alu_out: 3685706580
+# s3_reg_data_out:2942549504
+# s3_reg_add_wr_out:    26
+# control signals: 0100000
+# 	outputs
+# dp_to_dlx_pc:  179817343
+# s4_reg_add_wr_out: 28
+# s5_mux_datain_out: 176263344
+# 
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 17000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1706779728
+# s1_add_out: 1463867656
+# s3_reg_npc_out: 1210451356
+# s3_reg_alu_out: 2498097583
+# s3_reg_data_out: 169250233
+# s3_reg_add_wr_out:     8
+# control signals: 1001001
+# 	outputs
+# dp_to_dlx_pc: 1463867656
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 176263344
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 17000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4826059c, got 0a8190b0
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1699346173
+# s1_add_out: 1840631343
+# s3_reg_npc_out: 3462562084
+# s3_reg_alu_out: 2420988889
+# s3_reg_data_out:3282704555
+# s3_reg_add_wr_out:     6
+# control signals: 0101110
+# 	outputs
+# dp_to_dlx_pc: 1840631343
+# s4_reg_add_wr_out: 8
+# s5_mux_datain_out: 1210451356
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 19000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 904d5bd9, got 4826059c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2001652781
+# s1_add_out: 1995435824
+# s3_reg_npc_out: 2216578757
+# s3_reg_alu_out: 933631427
+# s3_reg_data_out:1442508836
+# s3_reg_add_wr_out:    29
+# control signals: 1100101
+# 	outputs
+# dp_to_dlx_pc: 1995435824
+# s4_reg_add_wr_out: 6
+# s5_mux_datain_out: 2420988889
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 21000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 841e4ec5, got 904d5bd9
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3829495700
+# s1_add_out: 3626875441
+# s3_reg_npc_out: 1637830192
+# s3_reg_alu_out: 429950472
+# s3_reg_data_out:3654753794
+# s3_reg_add_wr_out:    25
+# control signals: 1011000
+# 	outputs
+# dp_to_dlx_pc: 3626875441
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 23000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 619f4e30, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3870349848
+# s1_add_out: 1458465430
+# s3_reg_npc_out: 2016587047
+# s3_reg_alu_out: 2107808255
+# s3_reg_data_out:2409425026
+# s3_reg_add_wr_out:    10
+# control signals: 0011001
+# 	outputs
+# dp_to_dlx_pc: 1458465430
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 25000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e6b0da18, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 126883654
+# s1_add_out: 3100236565
+# s3_reg_npc_out: 4134531504
+# s3_reg_alu_out: 3229961870
+# s3_reg_data_out:3828176984
+# s3_reg_add_wr_out:     9
+# control signals: 0000111
+# 	outputs
+# dp_to_dlx_pc: 3100236565
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 27000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c0854e8e, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3937206214
+# s1_add_out: 57454075
+# s3_reg_npc_out: 3399962453
+# s3_reg_alu_out: 2415399717
+# s3_reg_data_out:2904242225
+# s3_reg_add_wr_out:    14
+# control signals: 1011100
+# 	outputs
+# dp_to_dlx_pc:   57454075
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 29000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected caa74f55, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 4045100040
+# s1_add_out: 3256070134
+# s3_reg_npc_out: 168830855
+# s3_reg_alu_out: 686812047
+# s3_reg_data_out:1500611127
+# s3_reg_add_wr_out:    26
+# control signals: 0110011
+# 	outputs
+# dp_to_dlx_pc:  686812047
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 31000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eaacffc6, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 769865126
+# s1_add_out: 1082487786
+# s3_reg_npc_out: 4142696348
+# s3_reg_alu_out: 4183624917
+# s3_reg_data_out:3744737882
+# s3_reg_add_wr_out:    16
+# control signals: 1111000
+# 	outputs
+# dp_to_dlx_pc: 4183624917
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 33000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f6ec879c, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1369498275
+# s1_add_out: 1328570299
+# s3_reg_npc_out: 2556378920
+# s3_reg_alu_out: 3826279030
+# s3_reg_data_out:1250927094
+# s3_reg_add_wr_out:    19
+# control signals: 1001110
+# 	outputs
+# dp_to_dlx_pc: 1328570299
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 35000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 985f3f28, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 643611326
+# s1_add_out: 1420193577
+# s3_reg_npc_out: 2944410272
+# s3_reg_alu_out: 4032340386
+# s3_reg_data_out:3351479161
+# s3_reg_add_wr_out:     2
+# control signals: 0111100
+# 	outputs
+# dp_to_dlx_pc: 4032340386
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 37000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f058a1a2, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1460686548
+# s1_add_out: 1153629157
+# s3_reg_npc_out: 4244270769
+# s3_reg_alu_out: 4041742896
+# s3_reg_data_out:3955824302
+# s3_reg_add_wr_out:    24
+# control signals: 0001001
+# 	outputs
+# dp_to_dlx_pc: 1153629157
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 39000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 57104ed4, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 271579750
+# s1_add_out: 2132188956
+# s3_reg_npc_out: 3545282607
+# s3_reg_alu_out: 3659911387
+# s3_reg_data_out:  53473668
+# s3_reg_add_wr_out:    19
+# control signals: 0100010
+# 	outputs
+# dp_to_dlx_pc: 2132188956
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 41000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 57104ed4, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 43000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 739727216
+# s1_add_out: 3487877397
+# s3_reg_npc_out: 2715856961
+# s3_reg_alu_out: 117400176
+# s3_reg_data_out: 830982198
+# s3_reg_add_wr_out:     8
+# control signals: 0100111
+# 	outputs
+# dp_to_dlx_pc: 3487877397
+# s4_reg_add_wr_out: 19
+# s5_mux_datain_out: 3659911387
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 43000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 06ff6270, got da25d0db
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2182274584
+# s1_add_out: 2710930173
+# s3_reg_npc_out: 2020971038
+# s3_reg_alu_out: 3660356339
+# s3_reg_data_out:3574963955
+# s3_reg_add_wr_out:    12
+# control signals: 1000000
+# 	outputs
+# dp_to_dlx_pc: 2710930173
+# s4_reg_add_wr_out: 8
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 45000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7875921e, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2615252251
+# s1_add_out: 12937960
+# s3_reg_npc_out: 3650878895
+# s3_reg_alu_out: 4167064870
+# s3_reg_data_out:1698642838
+# s3_reg_add_wr_out:    27
+# control signals: 1100000
+# 	outputs
+# dp_to_dlx_pc:   12937960
+# s4_reg_add_wr_out: 12
+# s5_mux_datain_out: 2020971038
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 47000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d99bfdaf, got 7875921e
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 948643731
+# s1_add_out: 1325956514
+# s3_reg_npc_out: 2941126600
+# s3_reg_alu_out: 403857768
+# s3_reg_data_out:3925479800
+# s3_reg_add_wr_out:    19
+# control signals: 1110101
+# 	outputs
+# dp_to_dlx_pc:  403857768
+# s4_reg_add_wr_out: 27
+# s5_mux_datain_out: 3650878895
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 49000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected af4e07c8, got d99bfdaf
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3688418191
+# s1_add_out: 2426636079
+# s3_reg_npc_out: 910796531
+# s3_reg_alu_out: 4179254156
+# s3_reg_data_out:1039753510
+# s3_reg_add_wr_out:    25
+# control signals: 0110101
+# 	outputs
+# dp_to_dlx_pc: 4179254156
+# s4_reg_add_wr_out: 19
+# s5_mux_datain_out: 2941126600
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 51000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f91a5b8c, got af4e07c8
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3931068712
+# s1_add_out: 1738139939
+# s3_reg_npc_out: 603372982
+# s3_reg_alu_out: 1562413776
+# s3_reg_data_out:3654167439
+# s3_reg_add_wr_out:    13
+# control signals: 1110001
+# 	outputs
+# dp_to_dlx_pc: 1562413776
+# s4_reg_add_wr_out: 25
+# s5_mux_datain_out: 0
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 53000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 23f6bdb6, got 00000000
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 4139729784
+# s1_add_out: 4245025761
+# s3_reg_npc_out: 2977894862
+# s3_reg_alu_out: 256295772
+# s3_reg_data_out:3313678396
+# s3_reg_add_wr_out:     0
+# control signals: 0011111
+# 	outputs
+# dp_to_dlx_pc: 4245025761
+# s4_reg_add_wr_out: 13
+# s5_mux_datain_out: 603372982
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 55000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0f46c35c, got 23f6bdb6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1520028071
+# s1_add_out: 293122562
+# s3_reg_npc_out: 4090484704
+# s3_reg_alu_out: 2183312492
+# s3_reg_data_out:2744439033
+# s3_reg_add_wr_out:    16
+# control signals: 1011000
+# 	outputs
+# dp_to_dlx_pc:  293122562
+# s4_reg_add_wr_out: 0
+# s5_mux_datain_out: 4139729784
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 57000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f3cfd7e0, got f6bf4378
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2293459179
+# s1_add_out: 2763868912
+# s3_reg_npc_out: 3241107646
+# s3_reg_alu_out: 2586033852
+# s3_reg_data_out:3495822458
+# s3_reg_add_wr_out:     2
+# control signals: 1011001
+# 	outputs
+# dp_to_dlx_pc: 2763868912
+# s4_reg_add_wr_out: 16
+# s5_mux_datain_out: 4090484704
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 59000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c12f60be, got f3cfd7e0
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3568338401
+# s1_add_out: 2827854157
+# s3_reg_npc_out: 1529450152
+# s3_reg_alu_out: 4108433285
+# s3_reg_data_out:2873382570
+# s3_reg_add_wr_out:     4
+# control signals: 0011010
+# 	outputs
+# dp_to_dlx_pc: 2827854157
+# s4_reg_add_wr_out: 2
+# s5_mux_datain_out: 3241107646
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 61000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d4b085e1, got c12f60be
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 863774153
+# s1_add_out: 1066342299
+# s3_reg_npc_out: 3635390664
+# s3_reg_alu_out: 1031149435
+# s3_reg_data_out:1484557913
+# s3_reg_add_wr_out:    19
+# control signals: 0001010
+# 	outputs
+# dp_to_dlx_pc: 1066342299
+# s4_reg_add_wr_out: 4
+# s5_mux_datain_out: 3568338401
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 63000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 337c25c9, got d4b085e1
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3034791652
+# s1_add_out: 3977790712
+# s3_reg_npc_out: 1339101316
+# s3_reg_alu_out: 762440402
+# s3_reg_data_out: 426523759
+# s3_reg_add_wr_out:     1
+# control signals: 1101100
+# 	outputs
+# dp_to_dlx_pc: 3977790712
+# s4_reg_add_wr_out: 19
+# s5_mux_datain_out: 1031149435
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 65000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4fd11084, got 3d76177b
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 528587238
+# s1_add_out: 660680669
+# s3_reg_npc_out: 3784783865
+# s3_reg_alu_out: 3585768186
+# s3_reg_data_out:2254747666
+# s3_reg_add_wr_out:     3
+# control signals: 1100110
+# 	outputs
+# dp_to_dlx_pc:  660680669
+# s4_reg_add_wr_out: 1
+# s5_mux_datain_out: 1339101316
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 67000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e19737f9, got 4fd11084
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 785313624
+# s1_add_out: 328269432
+# s3_reg_npc_out: 338399639
+# s3_reg_alu_out: 1189422212
+# s3_reg_data_out:1993196186
+# s3_reg_add_wr_out:    21
+# control signals: 1101011
+# 	outputs
+# dp_to_dlx_pc:  328269432
+# s4_reg_add_wr_out: 3
+# s5_mux_datain_out: 3784783865
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 69000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 142b9197, got e19737f9
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1530825933
+# s1_add_out: 2582762711
+# s3_reg_npc_out: 2292498740
+# s3_reg_alu_out: 215069358
+# s3_reg_data_out:3226519792
+# s3_reg_add_wr_out:    25
+# control signals: 0100010
+# 	outputs
+# dp_to_dlx_pc: 2582762711
+# s4_reg_add_wr_out: 21
+# s5_mux_datain_out: 338399639
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 71000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2eceef58, got 142b9197
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 925118736
+# s1_add_out: 871267344
+# s3_reg_npc_out: 2772865175
+# s3_reg_alu_out: 592150118
+# s3_reg_data_out:4272554552
+# s3_reg_add_wr_out:    11
+# control signals: 1100011
+# 	outputs
+# dp_to_dlx_pc:  871267344
+# s4_reg_add_wr_out: 25
+# s5_mux_datain_out: 785313624
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 73000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected a5469097, got 2eceef58
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3986322526
+# s1_add_out: 2943314130
+# s3_reg_npc_out: 278116400
+# s3_reg_alu_out: 2432417261
+# s3_reg_data_out:1572541808
+# s3_reg_add_wr_out:    17
+# control signals: 0100000
+# 	outputs
+# dp_to_dlx_pc: 2943314130
+# s4_reg_add_wr_out: 11
+# s5_mux_datain_out: 2772865175
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 75000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2eceef58, got a5469097
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 525194039
+# s1_add_out: 2509047424
+# s3_reg_npc_out: 828716778
+# s3_reg_alu_out: 587564308
+# s3_reg_data_out:2363291950
+# s3_reg_add_wr_out:    22
+# control signals: 1000101
+# 	outputs
+# dp_to_dlx_pc: 2509047424
+# s4_reg_add_wr_out: 17
+# s5_mux_datain_out: 2432417261
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 77000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 316536ea, got 90fbbded
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3567637713
+# s1_add_out: 1383076449
+# s3_reg_npc_out: 3607052689
+# s3_reg_alu_out: 63918371
+# s3_reg_data_out:1894084525
+# s3_reg_add_wr_out:    18
+# control signals: 1100100
+# 	outputs
+# dp_to_dlx_pc: 1383076449
+# s4_reg_add_wr_out: 22
+# s5_mux_datain_out: 828716778
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 79000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d6ff4191, got 316536ea
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 297879936
+# s1_add_out: 338511187
+# s3_reg_npc_out: 2070266824
+# s3_reg_alu_out: 938658302
+# s3_reg_data_out:3639289288
+# s3_reg_add_wr_out:    26
+# control signals: 1110001
+# 	outputs
+# dp_to_dlx_pc:  938658302
+# s4_reg_add_wr_out: 18
+# s5_mux_datain_out: 3607052689
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 81000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7b65c3c8, got d6ff4191
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3579006202
+# s1_add_out: 1018966532
+# s3_reg_npc_out: 3027083846
+# s3_reg_alu_out: 174309631
+# s3_reg_data_out:2593398862
+# s3_reg_add_wr_out:    10
+# control signals: 0110101
+# 	outputs
+# dp_to_dlx_pc:  174309631
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 2070266824
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 83000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0a63c0ff, got 7b65c3c8
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 409602246
+# s1_add_out: 3001248793
+# s3_reg_npc_out: 3723026803
+# s3_reg_alu_out: 991987223
+# s3_reg_data_out:2921166769
+# s3_reg_add_wr_out:    30
+# control signals: 1111100
+# 	outputs
+# dp_to_dlx_pc:  991987223
+# s4_reg_add_wr_out: 10
+# s5_mux_datain_out: 174309631
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 85000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected dde8e173, got 0a63c0ff
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3374110629
+# s1_add_out: 1485979923
+# s3_reg_npc_out: 3589793538
+# s3_reg_alu_out: 1950649381
+# s3_reg_data_out:3566803920
+# s3_reg_add_wr_out:    10
+# control signals: 0100101
+# 	outputs
+# dp_to_dlx_pc: 1485979923
+# s4_reg_add_wr_out: 30
+# s5_mux_datain_out: 3723026803
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 87000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 74448c25, got dde8e173
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 511085438
+# s1_add_out: 3747515259
+# s3_reg_npc_out: 855781347
+# s3_reg_alu_out: 2418483147
+# s3_reg_data_out:4293892045
+# s3_reg_add_wr_out:    26
+# control signals: 1000011
+# 	outputs
+# dp_to_dlx_pc: 3747515259
+# s4_reg_add_wr_out: 10
+# s5_mux_datain_out: 409602246
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 89000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 33022fe3, got 186a08c6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2267049500
+# s1_add_out: 386457841
+# s3_reg_npc_out: 2171350800
+# s3_reg_alu_out: 2152623204
+# s3_reg_data_out:3620536976
+# s3_reg_add_wr_out:    17
+# control signals: 1100001
+# 	outputs
+# dp_to_dlx_pc:  386457841
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 855781347
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 91000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 816c2f10, got 33022fe3
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2748843815
+# s1_add_out: 4154436485
+# s3_reg_npc_out: 341013171
+# s3_reg_alu_out: 3994236679
+# s3_reg_data_out:3221708136
+# s3_reg_add_wr_out:    27
+# control signals: 0101001
+# 	outputs
+# dp_to_dlx_pc: 4154436485
+# s4_reg_add_wr_out: 17
+# s5_mux_datain_out: 2171350800
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 93000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected a3d80727, got 816c2f10
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3365103761
+# s1_add_out: 3563569868
+# s3_reg_npc_out: 333005787
+# s3_reg_alu_out: 3490081746
+# s3_reg_data_out:2055980145
+# s3_reg_add_wr_out:    26
+# control signals: 1100100
+# 	outputs
+# dp_to_dlx_pc: 3563569868
+# s4_reg_add_wr_out: 27
+# s5_mux_datain_out: 3994236679
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 95000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 13d943db, got ee133707
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1607456450
+# s1_add_out: 282456693
+# s3_reg_npc_out: 3449890425
+# s3_reg_alu_out: 2402884897
+# s3_reg_data_out:1098002187
+# s3_reg_add_wr_out:     9
+# control signals: 1011100
+# 	outputs
+# dp_to_dlx_pc:  282456693
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 333005787
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 97000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cda12679, got 13d943db
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 467818076
+# s1_add_out: 3625494645
+# s3_reg_npc_out: 237832005
+# s3_reg_alu_out: 3187944335
+# s3_reg_data_out:2546767174
+# s3_reg_add_wr_out:     3
+# control signals: 1100010
+# 	outputs
+# dp_to_dlx_pc: 3625494645
+# s4_reg_add_wr_out: 9
+# s5_mux_datain_out: 3449890425
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 99000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0e2d0745, got cda12679
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1909416755
+# s1_add_out: 2983793991
+# s3_reg_npc_out: 3290208153
+# s3_reg_alu_out: 3168174234
+# s3_reg_data_out: 308624235
+# s3_reg_add_wr_out:     7
+# control signals: 1100101
+# 	outputs
+# dp_to_dlx_pc: 2983793991
+# s4_reg_add_wr_out: 3
+# s5_mux_datain_out: 237832005
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 101000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c41c9799, got 0e2d0745
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 7014309
+# s1_add_out: 1046235969
+# s3_reg_npc_out: 3479244723
+# s3_reg_alu_out: 3141633103
+# s3_reg_data_out:3257173869
+# s3_reg_add_wr_out:    25
+# control signals: 1111011
+# 	outputs
+# dp_to_dlx_pc: 3141633103
+# s4_reg_add_wr_out: 7
+# s5_mux_datain_out: 3290208153
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 103000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected cf610fb3, got c41c9799
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 939928654
+# s1_add_out: 2520239413
+# s3_reg_npc_out: 1503507240
+# s3_reg_alu_out: 2944238301
+# s3_reg_data_out:3508806764
+# s3_reg_add_wr_out:     2
+# control signals: 0110000
+# 	outputs
+# dp_to_dlx_pc: 2944238301
+# s4_reg_add_wr_out: 25
+# s5_mux_datain_out: 3479244723
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 105000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 006b07a5, got cf610fb3
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3258357422
+# s1_add_out: 2007894857
+# s3_reg_npc_out: 1251438923
+# s3_reg_alu_out: 515154475
+# s3_reg_data_out:1895798472
+# s3_reg_add_wr_out:     4
+# control signals: 0101011
+# 	outputs
+# dp_to_dlx_pc: 2007894857
+# s4_reg_add_wr_out: 2
+# s5_mux_datain_out: 7014309
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 107000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c23696ae, got 006b07a5
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 109000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2653284037
+# s1_add_out: 2371584755
+# s3_reg_npc_out: 3311271263
+# s3_reg_alu_out: 164253443
+# s3_reg_data_out:2696100770
+# s3_reg_add_wr_out:     3
+# control signals: 0110010
+# 	outputs
+# dp_to_dlx_pc:  164253443
+# s4_reg_add_wr_out: 4
+# s5_mux_datain_out: 3258357422
+# 
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 111000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 998617496
+# s1_add_out: 950464780
+# s3_reg_npc_out: 1999278410
+# s3_reg_alu_out: 1719600086
+# s3_reg_data_out: 267761439
+# s3_reg_add_wr_out:    26
+# control signals: 1011011
+# 	outputs
+# dp_to_dlx_pc:  950464780
+# s4_reg_add_wr_out: 3
+# s5_mux_datain_out: 3258357422
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 111000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 772a914a, got c23696ae
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1896798043
+# s1_add_out: 369445020
+# s3_reg_npc_out: 4038249975
+# s3_reg_alu_out: 1892687808
+# s3_reg_data_out:3692411871
+# s3_reg_add_wr_out:    13
+# control signals: 1110011
+# 	outputs
+# dp_to_dlx_pc: 1892687808
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 1999278410
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 113000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f0b2cdf7, got 772a914a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3140563071
+# s1_add_out: 591229924
+# s3_reg_npc_out: 2080561187
+# s3_reg_alu_out: 1812116437
+# s3_reg_data_out: 463708910
+# s3_reg_add_wr_out:    17
+# control signals: 1000001
+# 	outputs
+# dp_to_dlx_pc:  591229924
+# s4_reg_add_wr_out: 13
+# s5_mux_datain_out: 4038249975
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 115000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7c02d823, got f0b2cdf7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 4264550291
+# s1_add_out: 4100853473
+# s3_reg_npc_out: 890567256
+# s3_reg_alu_out: 2386095501
+# s3_reg_data_out:3759503039
+# s3_reg_add_wr_out:    12
+# control signals: 0000100
+# 	outputs
+# dp_to_dlx_pc: 4100853473
+# s4_reg_add_wr_out: 17
+# s5_mux_datain_out: 2080561187
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 117000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 8e38ed8d, got 7c02d823
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 119000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2388565726
+# s1_add_out: 3850885616
+# s3_reg_npc_out: 1022432199
+# s3_reg_alu_out: 1561813199
+# s3_reg_data_out:1709072343
+# s3_reg_add_wr_out:    25
+# control signals: 0000000
+# 	outputs
+# dp_to_dlx_pc: 3850885616
+# s4_reg_add_wr_out: 12
+# s5_mux_datain_out: 998617496
+# 
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 121000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3673940146
+# s1_add_out: 1872199666
+# s3_reg_npc_out: 3840046088
+# s3_reg_alu_out: 756006823
+# s3_reg_data_out:1195706715
+# s3_reg_add_wr_out:    30
+# control signals: 0000011
+# 	outputs
+# dp_to_dlx_pc: 1872199666
+# s4_reg_add_wr_out: 25
+# s5_mux_datain_out: 998617496
+# 
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 123000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1058845070
+# s1_add_out: 2150453597
+# s3_reg_npc_out: 4030077632
+# s3_reg_alu_out: 421130794
+# s3_reg_data_out:1332039382
+# s3_reg_add_wr_out:    31
+# control signals: 1010100
+# 	outputs
+# dp_to_dlx_pc: 2150453597
+# s4_reg_add_wr_out: 30
+# s5_mux_datain_out: 756006823
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 123000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f0361ac0, got 2d0fbfa7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2226130824
+# s1_add_out: 2968260933
+# s3_reg_npc_out: 1145432578
+# s3_reg_alu_out: 3243025573
+# s3_reg_data_out: 633812693
+# s3_reg_add_wr_out:    12
+# control signals: 0000100
+# 	outputs
+# dp_to_dlx_pc: 2968260933
+# s4_reg_add_wr_out: 31
+# s5_mux_datain_out: 4030077632
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 125000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c14ca4a5, got f0361ac0
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 834045310
+# s1_add_out: 359807740
+# s3_reg_npc_out: 2251260497
+# s3_reg_alu_out: 110725224
+# s3_reg_data_out:3842147470
+# s3_reg_add_wr_out:    17
+# control signals: 1100001
+# 	outputs
+# dp_to_dlx_pc:  359807740
+# s4_reg_add_wr_out: 12
+# s5_mux_datain_out: 998617496
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 127000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 862f8251, got 3b85b198
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 4149675430
+# s1_add_out: 3584456887
+# s3_reg_npc_out: 614325660
+# s3_reg_alu_out: 1238506094
+# s3_reg_data_out:1190678984
+# s3_reg_add_wr_out:     9
+# control signals: 1001011
+# 	outputs
+# dp_to_dlx_pc: 3584456887
+# s4_reg_add_wr_out: 17
+# s5_mux_datain_out: 2251260497
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 129000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 249ddd9c, got 862f8251
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3314077422
+# s1_add_out: 1076077348
+# s3_reg_npc_out: 861953742
+# s3_reg_alu_out: 693387830
+# s3_reg_data_out:  60540808
+# s3_reg_add_wr_out:    23
+# control signals: 1101110
+# 	outputs
+# dp_to_dlx_pc: 1076077348
+# s4_reg_add_wr_out: 9
+# s5_mux_datain_out: 614325660
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 131000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 33605ece, got 249ddd9c
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 4051996028
+# s1_add_out: 296322168
+# s3_reg_npc_out: 4067622804
+# s3_reg_alu_out: 2785963627
+# s3_reg_data_out:1345752108
+# s3_reg_add_wr_out:    21
+# control signals: 0100010
+# 	outputs
+# dp_to_dlx_pc:  296322168
+# s4_reg_add_wr_out: 23
+# s5_mux_datain_out: 861953742
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 133000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected c588ceee, got 33605ece
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1386803909
+# s1_add_out: 162004095
+# s3_reg_npc_out: 645841970
+# s3_reg_alu_out: 3915232119
+# s3_reg_data_out: 297988693
+# s3_reg_add_wr_out:     6
+# control signals: 1001000
+# 	outputs
+# dp_to_dlx_pc:  162004095
+# s4_reg_add_wr_out: 21
+# s5_mux_datain_out: 3314077422
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 135000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 267ec432, got c588ceee
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1506147309
+# s1_add_out: 3885274
+# s3_reg_npc_out: 3344095458
+# s3_reg_alu_out: 1422115702
+# s3_reg_data_out: 829181477
+# s3_reg_add_wr_out:    13
+# control signals: 0101011
+# 	outputs
+# dp_to_dlx_pc:    3885274
+# s4_reg_add_wr_out: 6
+# s5_mux_datain_out: 645841970
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 137000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 59c5fbed, got 267ec432
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2039967331
+# s1_add_out: 2919921831
+# s3_reg_npc_out: 2367240747
+# s3_reg_alu_out: 2775424423
+# s3_reg_data_out: 126056365
+# s3_reg_add_wr_out:     7
+# control signals: 1111110
+# 	outputs
+# dp_to_dlx_pc: 2775424423
+# s4_reg_add_wr_out: 13
+# s5_mux_datain_out: 1422115702
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 139000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 8d193a2b, got 54c3c376
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2939401636
+# s1_add_out: 3672091202
+# s3_reg_npc_out: 2247850978
+# s3_reg_alu_out: 2196326796
+# s3_reg_data_out:2404166157
+# s3_reg_add_wr_out:    29
+# control signals: 0100100
+# 	outputs
+# dp_to_dlx_pc: 3672091202
+# s4_reg_add_wr_out: 7
+# s5_mux_datain_out: 2367240747
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 141000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 82e9498c, got 8d193a2b
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 368360940
+# s1_add_out: 1504153602
+# s3_reg_npc_out: 3615335116
+# s3_reg_alu_out: 965596806
+# s3_reg_data_out:4030320900
+# s3_reg_add_wr_out:     7
+# control signals: 1001000
+# 	outputs
+# dp_to_dlx_pc: 1504153602
+# s4_reg_add_wr_out: 29
+# s5_mux_datain_out: 2039967331
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 143000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected d77da2cc, got 79976e63
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2954857220
+# s1_add_out: 2456673039
+# s3_reg_npc_out: 2461344899
+# s3_reg_alu_out: 179904010
+# s3_reg_data_out:3719500501
+# s3_reg_add_wr_out:    20
+# control signals: 1011100
+# 	outputs
+# dp_to_dlx_pc: 2456673039
+# s4_reg_add_wr_out: 7
+# s5_mux_datain_out: 3615335116
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 145000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 92b52483, got d77da2cc
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2172238636
+# s1_add_out: 1487463023
+# s3_reg_npc_out: 4131161987
+# s3_reg_alu_out: 2955943113
+# s3_reg_data_out: 786602505
+# s3_reg_add_wr_out:    21
+# control signals: 1011111
+# 	outputs
+# dp_to_dlx_pc: 1487463023
+# s4_reg_add_wr_out: 20
+# s5_mux_datain_out: 2461344899
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 147000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f63c8783, got 92b52483
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2609718091
+# s1_add_out: 2523736795
+# s3_reg_npc_out: 2863816881
+# s3_reg_alu_out: 2087950728
+# s3_reg_data_out:1921744438
+# s3_reg_add_wr_out:    27
+# control signals: 1010111
+# 	outputs
+# dp_to_dlx_pc: 2523736795
+# s4_reg_add_wr_out: 21
+# s5_mux_datain_out: 4131161987
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 149000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected aab260b1, got f63c8783
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1693549036
+# s1_add_out: 2813879852
+# s3_reg_npc_out: 2418434561
+# s3_reg_alu_out: 3551443082
+# s3_reg_data_out:2461778059
+# s3_reg_add_wr_out:    31
+# control signals: 0101001
+# 	outputs
+# dp_to_dlx_pc: 2813879852
+# s4_reg_add_wr_out: 27
+# s5_mux_datain_out: 2863816881
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 151000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 64f181ec, got aab260b1
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2584500686
+# s1_add_out: 1017127050
+# s3_reg_npc_out: 2994925478
+# s3_reg_alu_out: 2185356690
+# s3_reg_data_out:3177007603
+# s3_reg_add_wr_out:    19
+# control signals: 1110011
+# 	outputs
+# dp_to_dlx_pc: 2185356690
+# s4_reg_add_wr_out: 31
+# s5_mux_datain_out: 1693549036
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 153000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected b282efa6, got 64f181ec
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 539424591
+# s1_add_out: 1103635397
+# s3_reg_npc_out: 882084947
+# s3_reg_alu_out: 1252626525
+# s3_reg_data_out:3959985455
+# s3_reg_add_wr_out:    11
+# control signals: 0110110
+# 	outputs
+# dp_to_dlx_pc: 1252626525
+# s4_reg_add_wr_out: 19
+# s5_mux_datain_out: 2994925478
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 155000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4aa9905d, got b282efa6
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1327258298
+# s1_add_out: 3494508482
+# s3_reg_npc_out: 1545513294
+# s3_reg_alu_out: 3092622525
+# s3_reg_data_out: 113313696
+# s3_reg_add_wr_out:     6
+# control signals: 1001000
+# 	outputs
+# dp_to_dlx_pc: 3494508482
+# s4_reg_add_wr_out: 11
+# s5_mux_datain_out: 1693549036
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 157000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 5c1ea94e, got 64f181ec
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2680942342
+# s1_add_out: 2132985311
+# s3_reg_npc_out: 1790266382
+# s3_reg_alu_out: 596835738
+# s3_reg_data_out:1418369249
+# s3_reg_add_wr_out:    17
+# control signals: 0111100
+# 	outputs
+# dp_to_dlx_pc:  596835738
+# s4_reg_add_wr_out: 6
+# s5_mux_datain_out: 1545513294
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 159000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 2392fd9a, got 5c1ea94e
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 266848562
+# s1_add_out: 3147537115
+# s3_reg_npc_out: 356598897
+# s3_reg_alu_out: 2692629535
+# s3_reg_data_out:2873797611
+# s3_reg_add_wr_out:    27
+# control signals: 1011100
+# 	outputs
+# dp_to_dlx_pc: 3147537115
+# s4_reg_add_wr_out: 17
+# s5_mux_datain_out: 596835738
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 161000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 15414471, got 2392fd9a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 4143583680
+# s1_add_out: 2083104579
+# s3_reg_npc_out: 4032708539
+# s3_reg_alu_out: 1541663412
+# s3_reg_data_out:3827406686
+# s3_reg_add_wr_out:     6
+# control signals: 0011000
+# 	outputs
+# dp_to_dlx_pc: 2083104579
+# s4_reg_add_wr_out: 27
+# s5_mux_datain_out: 356598897
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 163000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected f6fa11c0, got 15414471
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3145672063
+# s1_add_out: 3716660924
+# s3_reg_npc_out: 1752976425
+# s3_reg_alu_out: 2780924983
+# s3_reg_data_out:3425520509
+# s3_reg_add_wr_out:    16
+# control signals: 1011111
+# 	outputs
+# dp_to_dlx_pc: 3716660924
+# s4_reg_add_wr_out: 6
+# s5_mux_datain_out: 1541663412
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 165000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 687c4c29, got 5be3eab4
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 528146017
+# s1_add_out: 1876155928
+# s3_reg_npc_out: 1831747706
+# s3_reg_alu_out: 1378040147
+# s3_reg_data_out:2200180353
+# s3_reg_add_wr_out:     5
+# control signals: 1000110
+# 	outputs
+# dp_to_dlx_pc: 1876155928
+# s4_reg_add_wr_out: 16
+# s5_mux_datain_out: 1752976425
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 167000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 6d2e407a, got 687c4c29
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3500186995
+# s1_add_out: 203633245
+# s3_reg_npc_out: 3128550087
+# s3_reg_alu_out: 1817006094
+# s3_reg_data_out:1582852969
+# s3_reg_add_wr_out:     8
+# control signals: 1101111
+# 	outputs
+# dp_to_dlx_pc:  203633245
+# s4_reg_add_wr_out: 5
+# s5_mux_datain_out: 1831747706
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 169000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected ba79e2c7, got 6d2e407a
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3939015410
+# s1_add_out: 991874457
+# s3_reg_npc_out: 1349506666
+# s3_reg_alu_out: 927570362
+# s3_reg_data_out:3562954266
+# s3_reg_add_wr_out:    15
+# control signals: 0011001
+# 	outputs
+# dp_to_dlx_pc:  991874457
+# s4_reg_add_wr_out: 8
+# s5_mux_datain_out: 3128550087
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 171000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eac89af2, got ba79e2c7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3827362640
+# s1_add_out: 1127269583
+# s3_reg_npc_out: 2804879546
+# s3_reg_alu_out: 3036758665
+# s3_reg_data_out: 603933137
+# s3_reg_add_wr_out:     3
+# control signals: 0101011
+# 	outputs
+# dp_to_dlx_pc: 1127269583
+# s4_reg_add_wr_out: 15
+# s5_mux_datain_out: 3939015410
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 173000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected e420eb50, got eac89af2
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 13038775
+# s1_add_out: 579556459
+# s3_reg_npc_out: 3364946180
+# s3_reg_alu_out: 1129081596
+# s3_reg_data_out:4166635099
+# s3_reg_add_wr_out:     1
+# control signals: 0111011
+# 	outputs
+# dp_to_dlx_pc: 1129081596
+# s4_reg_add_wr_out: 3
+# s5_mux_datain_out: 3827362640
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 175000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 00c6f4b7, got e420eb50
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1794687759
+# s1_add_out: 1970539680
+# s3_reg_npc_out: 827350447
+# s3_reg_alu_out: 3952462222
+# s3_reg_data_out: 660525538
+# s3_reg_add_wr_out:     4
+# control signals: 0110111
+# 	outputs
+# dp_to_dlx_pc: 3952462222
+# s4_reg_add_wr_out: 1
+# s5_mux_datain_out: 1129081596
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 177000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected eb95c98e, got 434c6afc
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1632495826
+# s1_add_out: 3591127844
+# s3_reg_npc_out: 1261219631
+# s3_reg_alu_out: 902405828
+# s3_reg_data_out: 181469481
+# s3_reg_add_wr_out:    27
+# control signals: 1101001
+# 	outputs
+# dp_to_dlx_pc: 3591127844
+# s4_reg_add_wr_out: 4
+# s5_mux_datain_out: 13038775
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 179000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 4b2caf2f, got 00c6f4b7
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2859910375
+# s1_add_out: 4166863983
+# s3_reg_npc_out: 2951326047
+# s3_reg_alu_out: 1540389901
+# s3_reg_data_out: 271619306
+# s3_reg_add_wr_out:    21
+# control signals: 1110111
+# 	outputs
+# dp_to_dlx_pc: 1540389901
+# s4_reg_add_wr_out: 27
+# s5_mux_datain_out: 1261219631
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 181000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected afe9a95f, got 4b2caf2f
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 2290174277
+# s1_add_out: 2562315923
+# s3_reg_npc_out: 234157892
+# s3_reg_alu_out: 3869697398
+# s3_reg_data_out:3729575401
+# s3_reg_add_wr_out:    26
+# control signals: 1010111
+# 	outputs
+# dp_to_dlx_pc: 2562315923
+# s4_reg_add_wr_out: 21
+# s5_mux_datain_out: 2951326047
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 183000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0df4f744, got afe9a95f
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3898282533
+# s1_add_out: 1119543446
+# s3_reg_npc_out: 1386799239
+# s3_reg_alu_out: 2396982694
+# s3_reg_data_out:1737982861
+# s3_reg_add_wr_out:    19
+# control signals: 1001000
+# 	outputs
+# dp_to_dlx_pc: 1119543446
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 234157892
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 185000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 52a8e087, got 0df4f744
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 323115378
+# s1_add_out: 819329041
+# s3_reg_npc_out: 396228319
+# s3_reg_alu_out: 2562687827
+# s3_reg_data_out:3841411765
+# s3_reg_add_wr_out:    10
+# control signals: 0010100
+# 	outputs
+# dp_to_dlx_pc:  819329041
+# s4_reg_add_wr_out: 19
+# s5_mux_datain_out: 1386799239
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 187000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 98bf8353, got 52a8e087
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3572471002
+# s1_add_out: 320522879
+# s3_reg_npc_out: 3527484818
+# s3_reg_alu_out: 2125907583
+# s3_reg_data_out:3402867084
+# s3_reg_add_wr_out:     9
+# control signals: 0110101
+# 	outputs
+# dp_to_dlx_pc: 2125907583
+# s4_reg_add_wr_out: 10
+# s5_mux_datain_out: 2562687827
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 189000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 7eb6c67f, got 98bf8353
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 865237957
+# s1_add_out: 4165165610
+# s3_reg_npc_out: 182084773
+# s3_reg_alu_out: 3695718743
+# s3_reg_data_out: 682117312
+# s3_reg_add_wr_out:    26
+# control signals: 1011010
+# 	outputs
+# dp_to_dlx_pc: 4165165610
+# s4_reg_add_wr_out: 9
+# s5_mux_datain_out: 3898282533
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 191000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 0ada64a5, got e85b1225
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1828468958
+# s1_add_out: 1249053042
+# s3_reg_npc_out: 447518638
+# s3_reg_alu_out: 4113023561
+# s3_reg_data_out:3521586006
+# s3_reg_add_wr_out:    28
+# control signals: 1110001
+# 	outputs
+# dp_to_dlx_pc: 4113023561
+# s4_reg_add_wr_out: 26
+# s5_mux_datain_out: 182084773
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 193000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 1aac97ae, got 0ada64a5
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 1445694222
+# s1_add_out: 3917500475
+# s3_reg_npc_out: 648198346
+# s3_reg_alu_out: 4227186939
+# s3_reg_data_out:3046259565
+# s3_reg_add_wr_out:    22
+# control signals: 1011110
+# 	outputs
+# dp_to_dlx_pc: 3917500475
+# s4_reg_add_wr_out: 28
+# s5_mux_datain_out: 447518638
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 195000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 26a2b8ca, got 1aac97ae
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3260088864
+# s1_add_out: 3679800771
+# s3_reg_npc_out: 3752343308
+# s3_reg_alu_out: 1155491150
+# s3_reg_data_out:3797968140
+# s3_reg_add_wr_out:    13
+# control signals: 1011101
+# 	outputs
+# dp_to_dlx_pc: 3679800771
+# s4_reg_add_wr_out: 22
+# s5_mux_datain_out: 648198346
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 197000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected dfa8370c, got 26a2b8ca
+# UVM_INFO ../tb/classes/Class_MEMWB_Scoreboard.sv(55) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] Packet received:
+#  	inputs
+# dram out: 3728472225
+# s1_add_out: 696673283
+# s3_reg_npc_out: 423846823
+# s3_reg_alu_out: 239793094
+# s3_reg_data_out:1685945363
+# s3_reg_add_wr_out:     2
+# control signals: 1111111
+# 	outputs
+# dp_to_dlx_pc:  239793094
+# s4_reg_add_wr_out: 13
+# s5_mux_datain_out: 3752343308
+# 
+# UVM_ERROR ../tb/classes/Class_MEMWB_Scoreboard.sv(69) @ 199000: uvm_test_top.memwb_environment.memwb_scoreboard [Class_MEMWB_Scoreboard] S5_MUX_DATAIN_OUT: expected 194363a7, got dfa8370c
+# UVM_INFO ../tb/classes/Class_MEMWB_Sequence.sv(173) @ 199000: uvm_test_top.memwb_environment.memwb_agent.memwb_sequencer@@memwb_sequence [SEQUENCE] body(): Done generating 100 Sequence Items...
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 199000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../tb/classes/Class_MEMWB_CoverageTracker.sv(69) @ 199000: uvm_test_top.memwb_environment.memwb_coverage_tracker [COVERAGE TRACKER] Functional Coverage: 100.00%
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :  107
+# UVM_WARNING :    0
+# UVM_ERROR :   95
+# UVM_FATAL :    0
+# ** Report counts by id
+# [COVERAGE TRACKER]     1
+# [Class_MEMWB_Scoreboard]   195
+# [Questa UVM]     2
+# [RNTST]     1
+# [SEQUENCE]     2
+# [TEST_DONE]     1
+# ** Note: $finish    : /eda/mentor/2020-21/RHELx86/QUESTA-CORE-PRIME_2020.4/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 199 ns  Iteration: 62  Instance: /Module_topTestbench
+# Saving coverage database on exit...
+# End time: 02:00:27 on Dec 15,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 102
+# *** Summary *********************************************
+#     qrun: Errors:   0, Warnings:   0
+#     vcom: Errors:   0, Warnings:   0
+#     vlog: Errors:   0, Warnings:   0
+#     vopt: Errors:   0, Warnings: 205
+#     vsim: Errors:   0, Warnings: 102
+#   Totals: Errors:   0, Warnings: 307

@@ -16,13 +16,13 @@ module Module_IFID_Wrapper #(
   // to an interface's signals
 
   DP_IFID #(
-      .IR_SIZE        (IR_SIZE),
+/*      .IR_SIZE        (IR_SIZE),
       .OPERAND_SIZE   (OPERAND_SIZE),
       .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
       .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
       .RF_REGBITS     (RF_REGBITS),
       .RF_NUMREGS     (RF_NUMREGS)
-  ) DP_IFID_inst (
+  */) DP_IFID_inst (
       // Inputs
       .CLK              (ifid_iface.CLK),
       .nRST             (ifid_iface.nRST),

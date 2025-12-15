@@ -4,4 +4,10 @@
 */coverage
 */covhtmlreport
 Session.vim
-
+work/
+*/qrun.out
+*/*.sdc
+*/*.sdf
+*/*.txt
+*/*.log
+*/modelsim.ini

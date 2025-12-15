@@ -1,7 +1,8 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
 // Wrapper for plug-and-play DUT instantiation
-module Module_MEMWB_Wrapper #(
+module Module_MEMWB_Wrapper 
+#(
     parameter IR_SIZE         = 32, 
     parameter OPERAND_SIZE    = 5,  
     parameter I_TYPE_IMM_SIZE = 16, 
@@ -21,14 +22,16 @@ module Module_MEMWB_Wrapper #(
 
         output DP_TO_DLX_PC, S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT;
     */
-    DP_MEMWB #(
+    DP_MEMWB 
+	/*#(
         .IR_SIZE        (IR_SIZE),
         .OPERAND_SIZE   (OPERAND_SIZE),
         .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
         .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
         .RF_regBits     (RF_regBits),
         .RF_numRegs     (RF_numRegs)
-    ) DUT (
+    ) */
+	DUT (
         /* INPUTS */
         .CLK(memwb_iface.clk),
         .nRST(memwb_iface.rst_n),
@@ -51,7 +54,7 @@ module Module_MEMWB_Wrapper #(
         .RF_WE(memwb_iface.RF_WE),
 
         /* Outputs */
-        .DP_TO_DLX_PC(memwb_iface.DP_TO_DLX_PC),
+        .DP_to_DLX_PC(memwb_iface.DP_TO_DLX_PC),
         .S4_REG_ADD_WR_OUT(memwb_iface.S4_REG_ADD_WR_OUT),
         .S5_MUX_DATAIN_OUT(memwb_iface.S5_MUX_DATAIN_OUT)
   );

@@ -4,7 +4,7 @@
 * TOP LEVEL TESTBENCH: All components get instantiated inside this top-level
 * module
 * */
-
+`timescale 1ns / 1ns
 
 // Standard UVM packages for UVM macros and functions
 `include "uvm_macros.svh"

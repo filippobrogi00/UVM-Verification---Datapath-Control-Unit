@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : dlx_cu
+Version: S-2021.06-SP4
+Date   : Mon Dec 15 00:13:27 2025
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /eda/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm.db)
+
+Number of ports:                           57
+Number of nets:                           148
+Number of cells:                          128
+Number of combinational cells:            101
+Number of sequential cells:                10
+Number of macros/black boxes:               0
+Number of buf/inv:                         21
+Number of references:                      18
+
+Combinational area:                103.474001
+Buf/Inv area:                       11.172000
+Noncombinational area:              53.200002
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                   156.674002
+Total area:                 undefined
+1

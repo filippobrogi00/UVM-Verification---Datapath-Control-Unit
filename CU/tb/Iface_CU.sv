@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
-
+`timescale 1ns / 1ns
 import pkg_const::*;
 
 // DUT Interface

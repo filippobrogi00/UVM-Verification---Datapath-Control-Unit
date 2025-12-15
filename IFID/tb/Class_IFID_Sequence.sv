@@ -203,6 +203,7 @@ endclass
 //
 //   // Defined by child classes
 //   pure virtual task body();
+//
 // endclass : Class_IFID_BaseSequence
 
 
@@ -323,9 +324,7 @@ class Class_IFID_LegalSequence extends uvm_sequence #(Class_IFID_SequenceItem);
           instr.rtype.rd inside {[0 : DLX_CPU_NUMREGS - 1]};
 
           // FUNC field, every possible type of R_TYPE operation
-          instr.rtype.func inside {
-          // --- DLX Basic Version ---
-          RTYPE_FUNC_SLL,  // sll
+          instr.rtype.func inside {RTYPE_FUNC_SLL,  // sll
           RTYPE_FUNC_SRL,  // srl
           RTYPE_FUNC_ADD,  // add
           RTYPE_FUNC_SUB,  // sub

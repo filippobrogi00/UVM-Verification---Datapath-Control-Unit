@@ -9,8 +9,15 @@ DUT_HIERARCHY="/Module_topTestbench/memwb_toplevel/DUT"
 FAULT_LIST="stuckat_fault_list.txt"
 FAULT_DURATION="100"
 
-SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
-SV_COMPILE_LIST="$(find $TB_DIR -maxdepth 1 -name "*.sv") $(find $GM_DIR -maxdepth 1 -name "*.sv")"
+#SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
+SRC_FILES="
+/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
+../src/000-pkg-globals.vhd
+../src/001-pkg-registerfile.vhd
+../syn/DP_MEMWB.v
+"
+PKG_FILES=$(find $TB_DIR -maxdepth 1 -name "pkg_*.sv")
+SV_COMPILE_LIST="$(find $TB_DIR -maxdepth 1 -name "*.sv" ! -name "pkg_*.sv") $(find $GM_DIR -maxdepth 1 -name "*.sv")"
 TOPLEVEL="Module_topTestbench"
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.cpp")
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.c")
@@ -53,5 +60,5 @@ source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 #qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
 rm -rf cov_$SEED.ucdb covhtmlreport
 
-qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $SV_COMPILE_LIST $GM_FILES -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
+qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $PKG_FILES $SV_COMPILE_LIST $GM_FILES -timescale=1ns/1ps -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
 vcover report -details -html cov_$SEED.ucdb

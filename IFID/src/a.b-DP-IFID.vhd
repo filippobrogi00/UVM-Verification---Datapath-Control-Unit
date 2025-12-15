@@ -175,7 +175,8 @@ architecture structural of DP_IFID is
 
   -- ******************************** STAGE 1 SIGNALS ********************************
   signal S1_REG_IR_OUT : std_logic_vector(IR_SIZE - 1 downto 0); -- Read as "Output of Stage 1 Register named "IR"."
-
+  signal S1_ADD_OUT_si : std_logic_vector(IR_SIZE - 1 downto 0);
+  signal S1_REG_NPC_si : std_logic_vector(IR_SIZE - 1 downto 0);
   -- ******************************** STAGE 2 SIGNALS ********************************
   signal S2_SE16_OUT       : std_logic_vector(IR_SIZE - 1 downto 0);      -- SE16 = Sign Extender w/16-bit input.
   signal S2_SE26_OUT       : std_logic_vector(IR_SIZE - 1 downto 0);      -- SE26 = Sign Extender w/26-bit input.
@@ -186,8 +187,9 @@ architecture structural of DP_IFID is
 
 begin
 
-  S1_REG_IR_OUT <= DLX_IR_to_DP; -- Connects DLX Entity's Instruction Register (DLX_IR_to_DP) value to the Datapath (S1_REG_IR_OUT).
-
+  S1_REG_IR_OUT  <= DLX_IR_to_DP; -- Connects DLX Entity's Instruction Register (DLX_IR_to_DP) value to the Datapath (S1_REG_IR_OUT).
+  S1_ADD_OUT	 <= S1_ADD_OUT_si;
+  S1_REG_NPC_OUT <= S1_REG_NPC_si;
   -- ****************************************************************************************
   -- ******************************** STAGE 1 INSTANTIATIONS ********************************
   -- ****************************************************************************************
@@ -198,7 +200,7 @@ begin
     )
     port map (
       A => DLX_PC_to_DP,
-      Y => S1_ADD_OUT
+      Y => S1_ADD_OUT_si
     );
 
   S1_REG_NPC : component NBit_Reg
@@ -209,8 +211,8 @@ begin
       CLK   => CLK,
       nRST  => nRST,
       LD_EN => NPC_LATCH_EN,
-      D     => S1_ADD_OUT,
-      Q     => S1_REG_NPC_OUT
+      D     => S1_ADD_OUT_si,
+      Q     => S1_REG_NPC_si
     );
 
   -- ****************************************************************************************
@@ -334,7 +336,7 @@ begin
       CLK   => CLK,
       nRST  => nRST,
       LD_EN => '1',
-      D     => S1_REG_NPC_OUT,
+      D     => S1_REG_NPC_si,
       Q     => S2_REG_NPC_OUT
     );
 

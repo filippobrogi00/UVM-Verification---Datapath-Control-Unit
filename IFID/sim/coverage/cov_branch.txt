@@ -1,258 +1,13 @@
 Coverage Report by instance with details
 
 =================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         1         1         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S1_REG_NPC
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.g-FlipFlop.vhd
-------------------------------------IF Branch------------------------------------
-    24                                      2001     Count coming in to IF
-    24              1                       2001     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
-=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         2         2         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_IorR
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.d-MUX.vhd
-------------------------------------IF Branch------------------------------------
-    15                                      4002     Count coming in to IF
-    15              1                       1010     
-    15              2                       2992     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR
-=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         2         2         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_MUX_ADD_WR
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.d-MUX.vhd
-------------------------------------IF Branch------------------------------------
-    15                                      4486     Count coming in to IF
-    15              1                        978     
-    15              2                       3508     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         1         1         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_ADD_WR
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.g-FlipFlop.vhd
-------------------------------------IF Branch------------------------------------
-    24                                      2001     Count coming in to IF
-    24              1                       2001     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE
-=== Design Unit: work.gen_register_file(beh)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         5         5         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_RFILE
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.f-RegisterFile.vhd
-------------------------------------IF Branch------------------------------------
-    48                                      2001     Count coming in to IF
-    48              1                       2001     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    50                                      2001     Count coming in to IF
-    50              1                          7     
-                                            1994     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    67                                      1994     Count coming in to IF
-    67              1                        483     
-                                            1511     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
-=== Design Unit: work.sign_extender16_32(BEH_COMB_sign_extender)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         2         2         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_SE16
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.h-SignExtender16-32.vhd
-------------------------------------IF Branch------------------------------------
-    39                                      4003     Count coming in to IF
-    39              1                        986     
-    39              2                       3017     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         1         1         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE16_IMM
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.g-FlipFlop.vhd
-------------------------------------IF Branch------------------------------------
-    24                                      2001     Count coming in to IF
-    24              1                       2001     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         1         1         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_SE26_IMM
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.g-FlipFlop.vhd
-------------------------------------IF Branch------------------------------------
-    24                                      2001     Count coming in to IF
-    24              1                       2001     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN
-=== Design Unit: work.nbit_reg(beh_nbit_reg)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         1         1         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_FF_JAL_EN
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.g-FlipFlop.vhd
-------------------------------------IF Branch------------------------------------
-    24                                      2001     Count coming in to IF
-    24              1                       2001     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-
-
-=================================================================================
-=== Instance: /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Branch Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Branches                         1         1         0   100.00%
-
-================================Branch Details================================
-
-Branch Coverage for instance /Module_topTestbench/ifid_toplevel/DP_IFID_inst/S2_REG_NPC
-
-    Line         Item                      Count     Source 
-    ----         ----                      -----     ------ 
-  File ../src/a.b.g-FlipFlop.vhd
-------------------------------------IF Branch------------------------------------
-    24                                       485     Count coming in to IF
-    24              1                        485     
-Branch totals: 1 hit of 1 branch = 100.00%
-
-
-
-=================================================================================
 === Instance: /Module_topTestbench_sv_unit
 === Design Unit: work.Module_topTestbench_sv_unit
 =================================================================================
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                         6         6         0   100.00%
+    Branches                        30        11        19    36.66%
 
 ================================Branch Details================================
 
@@ -260,27 +15,97 @@ Branch Coverage for instance /Module_topTestbench_sv_unit
 
     Line         Item                      Count     Source 
     ----         ----                      -----     ------ 
+  File ../tb/Class_IFID_Sequence.sv
+------------------------------------IF Branch------------------------------------
+    215                                  ***0***     Count coming in to IF
+    215             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    215                                  ***0***     Count coming in to IF
+    215             2                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    215                                  ***0***     Count coming in to IF
+    215             3                    ***0***     
+    215             4                    ***0***     
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    215                                  ***0***     Count coming in to IF
+    215             5                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    215                                  ***0***     Count coming in to IF
+    215             6                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    231                                        1     Count coming in to IF
+    231             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    232                                  ***0***     Count coming in to IF
+    232             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    237                                        1     Count coming in to IF
+    237             1                          1     
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    279                                       10     Count coming in to IF
+    279             1                    ***0***     
+    284             1                         10     
+    291             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 1 hit of 4 branches = 25.00%
+
+------------------------------------IF Branch------------------------------------
+    287                                       10     Count coming in to IF
+    287             1                    ***0***     
+    289             1                         10     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    301                                        1     Count coming in to IF
+    301             1                          1     
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
   File ../tb/Class_IFID_Scoreboard.sv
 ------------------------------------IF Branch------------------------------------
-    97                                      1000     Count coming in to IF
-    97              1                        505     
-    97              2                        495     
+    97                                        20     Count coming in to IF
+    97              1                          7     
+    97              2                         13     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    99                                      1000     Count coming in to IF
-    99              1                        489     
-    99              2                        511     
+    99                                        20     Count coming in to IF
+    99              1                         13     
+    99              2                          7     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    118                                     3000     Count coming in to IF
-    118             1                        513     
-                                            2487     All False Count
+    118                                       30     Count coming in to IF
+    118             1                         12     
+                                              18     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
 
 
-Total Coverage By Instance (filtered view): 100.00%
+Total Coverage By Instance (filtered view): 36.66%
 

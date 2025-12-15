@@ -17,12 +17,12 @@ module Module_CU_Wrapper #(
   // to an interface's signals
 
   dlx_cu #(
-      .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
+/*      .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
       .FUNC_SIZE         (FUNC_SIZE),
       .OP_CODE_SIZE      (OP_CODE_SIZE),
       .IR_SIZE           (IR_SIZE),
       .CW_SIZE           (CW_SIZE)
-  ) DP_CU_inst (
+  */) DP_CU_inst (
       /* Inputs */
       .Clk            (cu_iface.Clk),
       .nRst           (cu_iface.nRst),
