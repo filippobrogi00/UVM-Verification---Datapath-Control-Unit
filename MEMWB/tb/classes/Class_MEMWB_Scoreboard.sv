@@ -81,7 +81,7 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
     if (predictor_result.RST_N == 0) begin
       `uvm_info(get_type_name(), "Reset signal is asserted\n ", UVM_LOW)
       prev_s4_reg_lmd = 0;
-      predictor_result.DP_TO_DLX_PC = 0;
+      predictor_result.DP_TO_DLX_PC = predictor_result.S1_ADD_OUT;
       s5_mux_wb_out = 0;
       predictor_result.S5_MUX_DATAIN_OUT = 0;
       predictor_result.S4_REG_ADD_WR_OUT = 0;

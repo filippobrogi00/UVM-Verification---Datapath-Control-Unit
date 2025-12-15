@@ -41,7 +41,8 @@ module Module_topTestbench;
 
   bit globalRst_n;
   initial begin : PROC_ResetDUT
-    globalRst_n <= 1'b0;  // active
+    globalRst_n <= 1'b1;  // active
+    #1ns globalRst_n <= 1'b0;  // de-activate after a clock period
     #CLKPERIOD globalRst_n <= 1'b1;  // de-activate after a clock period
   end : PROC_ResetDUT
 
