@@ -57,6 +57,7 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
     predictor_predict(memwb_seqitem);
 
     //Check results
+
     if (predictor_result.DP_TO_DLX_PC != memwb_seqitem.DP_TO_DLX_PC) begin
       `uvm_error(get_type_name(), $sformatf("DP_TO_DLX_PC: expected %h, got %h",
         predictor_result.DP_TO_DLX_PC, memwb_seqitem.DP_TO_DLX_PC))
@@ -77,6 +78,16 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
     logic [IR_SIZE - 1 : 0] s5_mux_wb_out;
     predictor_result.copy(item);
 
+    if (predictor_result.RST_N == 0) begin
+      `uvm_info(get_type_name(), "Reset signal is asserted\n ", UVM_LOW)
+      prev_s4_reg_lmd = 0;
+      predictor_result.DP_TO_DLX_PC = 0;
+      s5_mux_wb_out = 0;
+      predictor_result.S5_MUX_DATAIN_OUT = 0;
+      predictor_result.S4_REG_ADD_WR_OUT = 0;
+      return;
+    end
+
     if (predictor_result.LMD_LATCH_EN)
       prev_s4_reg_lmd = predictor_result.DRAM_OUT;
 
@@ -94,6 +105,8 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
       predictor_result.S5_MUX_DATAIN_OUT = predictor_result.S3_REG_NPC_OUT;
     else
       predictor_result.S5_MUX_DATAIN_OUT = s5_mux_wb_out;
+
+    predictor_result.S4_REG_ADD_WR_OUT = predictor_result.S3_REG_ADD_WR_OUT;
 
 endfunction
 endclass

@@ -38,6 +38,7 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
   rand logic [IR_SIZE - 1 : 0] S3_REG_DATA_OUT;
 
   //Control signal inputs
+  rand logic                   RST_N;
   rand logic                   S3_FF_JAL_EN_OUT;
   rand logic                   S3_FF_COND_OUT;
   rand logic                   DRAM_WE;
@@ -72,6 +73,7 @@ class Class_MEMWB_SequenceItem extends uvm_sequence_item;
     this.S3_REG_ALU_OUT    = targetItem.S3_REG_ALU_OUT;
     this.S3_REG_DATA_OUT   = targetItem.S3_REG_DATA_OUT;
 
+    this.RST_N             = targetItem.RST_N;
     this.S3_FF_JAL_EN_OUT  = targetItem.S3_FF_JAL_EN_OUT;
     this.S3_FF_COND_OUT    = targetItem.S3_FF_COND_OUT;
     this.DRAM_WE           = targetItem.DRAM_WE;

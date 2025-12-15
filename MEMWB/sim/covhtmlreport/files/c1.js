@@ -1,0 +1,2 @@
+var g_data = {"580":{"cvpc":[{"h":["s4_mux_jmp",4,1,581],"cov":[2,2,100.00],"opts":{"goal":"100"}},{"h":["s5_mux_wb",4,1,582],"cov":[2,2,100.00],"opts":{"goal":"100"}},{"h":["s5_mux_datain",4,1,583],"cov":[2,2,100.00],"opts":{"goal":"100"}},{"h":["s4_reg_lmd",4,1,584],"cov":[2,2,100.00],"opts":{"goal":"100"}}],"cvg":["/Module_topTestbench_sv_unit/Class_MEMWB_CoverageTracker/Covergroup_MEMWB",1],"cvgdata":[8,8,0,0]}};
+processCoverpointsData(g_data);
