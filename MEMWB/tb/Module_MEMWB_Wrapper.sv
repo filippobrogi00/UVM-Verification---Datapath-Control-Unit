@@ -22,9 +22,6 @@ module Module_MEMWB_Wrapper
 
         output DP_TO_DLX_PC, S4_REG_ADD_WR_OUT, S5_MUX_DATAIN_OUT;
     */
-    DP_MEMWB 
-	/*#(
-=======
 `ifdef POSTSYN
     DP_MEMWB DUT (
         /* INPUTS */

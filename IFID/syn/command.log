@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP4 for linux64 -- Nov 23, 2021
-#@ # Date:   Mon Dec 15 00:07:45 2025
+#@ # Date:   Mon Dec 15 18:56:25 2025
 #@ # Run by: ws25.1@localhost.localdomain
 #@ 
 
@@ -8043,29 +8043,33 @@ source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/.synopsys_dc.setup
 #@ set synthetic_library [list "dw_foundation.sldb" ]
 #@ # -- End source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/.synopsys_dc.setup
 
-source -echo -verbose /home/ws25.1/Task3Maganuco/step-3/IFID/syn/synthesis.tcl
-#@ # -- Starting source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/synthesis.tcl
+source -echo -verbose /home/ws25.1/Task3Maganuco/step-3/IFID/syn/../sim/synthesis.tcl
+#@ # -- Starting source /home/ws25.1/Task3Maganuco/step-3/IFID/syn/../sim/synthesis.tcl
 
+#@ set SRC_DIR [getenv SRC_DIR]
+#@ set SYN_DIR [getenv SYN_DIR]
+#@ 
+#@ 
 #@ #####################################
 #@ # READING SOURCE FILES
 #@ #####################################
-#@ analyze -f vhdl -lib WORK ../src/000-pkg-globals.vhd
-#@ analyze -f vhdl -lib WORK ../src/001-pkg-registerfile.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/000-pkg-globals.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/001-pkg-registerfile.vhd
 #@ 
-#@ analyze -f vhdl -lib WORK ../src/a.b.a.a-generic_shifter.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.a.a-generic_shifter.vhd
 #@ 
-#@ analyze -f vhdl -lib WORK ../src/a.b.i-ZeroComparator.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.h-SignExtender16-32.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.g-FlipFlop.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.f-RegisterFile.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.e-PC_Add.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.d-MUX.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.c-UnsignExtender26-32.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.c-SignExtender26-32.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.b-DRAM.vhd
-#@ analyze -f vhdl -lib WORK ../src/a.b.a-ALU.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.i-ZeroComparator.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.h-SignExtender16-32.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.g-FlipFlop.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.f-RegisterFile.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.e-PC_Add.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.d-MUX.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.c-UnsignExtender26-32.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.c-SignExtender26-32.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.b-DRAM.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b.a-ALU.vhd
 #@ 
-#@ analyze -f vhdl -lib WORK ../src/a.b-DP-IFID.vhd
+#@ analyze -f vhdl -lib WORK $SRC_DIR/a.b-DP-IFID.vhd
 #@ 
 #@ # To preserve rtl names in the netlist to ease the procedure for power consumption estimation
 #@ set power_preserve_rtl_hier_names true
@@ -8115,8 +8119,8 @@ source -echo -verbose /home/ws25.1/Task3Maganuco/step-3/IFID/syn/synthesis.tcl
 #@ #####################################
 #@ # REPORTING
 #@ #####################################
-#@ report_timing > ./timing_rpt.txt
-#@ report_area > ./area_rpt.txt
+#@ report_timing > ${SYN_DIR}/timing_rpt.txt
+#@ report_area > ${SYN_DIR}/area_rpt.txt
 #@ 
 #@ # To ease the reading of power consumption?
 #@ ungroup -all -flatten
@@ -8125,12 +8129,12 @@ source -echo -verbose /home/ws25.1/Task3Maganuco/step-3/IFID/syn/synthesis.tcl
 #@ change_names -hierarchy -rules verilog
 #@ 
 #@ # Saving the Standard Delay Format file
-#@ write_sdf ./DP_IFID.sdf
+#@ write_sdf ${SYN_DIR}/DP_IFID.sdf
 #@ 
 #@ # Saving the Synopsys Design Constraints
-#@ write_sdc ./DP_IFID.sdc
+#@ write_sdc ${SYN_DIR}/DP_IFID.sdc
 #@ 
 #@ # Saving the verilog netlist
-#@ write -f verilog -hierarchy -output ./DP_IFID.v
+#@ write -f verilog -hierarchy -output ${SYN_DIR}/DP_IFID.v
 #@ 
 #@ quit

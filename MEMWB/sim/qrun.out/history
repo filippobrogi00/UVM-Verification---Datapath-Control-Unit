@@ -1,3 +1,3 @@
 - Entry: 1
-  Time: Mon Dec 15 18:27:48 2025
-  Command: qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbcexf +define+POSTSYN -timescale=1ns/1ns /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v ../syn/DP_MEMWB.v ../tb/pkg_constants.sv ../tb/Iface_MEMWB.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv -do "; ; run -all" -top Module_topTestbench 
+  Time: Tue Dec 16 01:16:04 2025
+  Command: qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce ../src/000-pkg-globals.vhd ../src/001-pkg-registerfile.vhd ../src/a.b-DP-MEMWB.vhd ../src/a.b.a.a-generic_shifter.vhd ../src/a.b.b-DRAM.vhd ../src/a.b.c-SignExtender26-32.vhd ../src/a.b.c-UnsignExtender26-32.vhd ../src/a.b.d-MUX.vhd ../src/a.b.e-PC_Add.vhd ../src/a.b.f-RegisterFile.vhd ../src/a.b.g-FlipFlop.vhd ../src/a.b.h-SignExtender16-32.vhd ../src/a.b.i-ZeroComparator.vhd ../src/a.c-IRAM.vhd ../tb/pkg_constants.sv ../tb/Module_topTestbench.sv ../tb/Module_MEMWB_Wrapper.sv ../tb/Iface_MEMWB.sv -do "; ; run -all" -top Module_topTestbench 

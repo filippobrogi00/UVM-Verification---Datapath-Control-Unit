@@ -64,19 +64,34 @@ class Class_IFID_Test extends uvm_test;
   virtual task run_phase(uvm_phase phase);
 
     /* SEQUENCES CREATION */
-    // Create "Legal Inputs" test sequence
-    Class_IFID_LegalSequence ifid_legalsequence = Class_IFID_LegalSequence::type_id::create(
-        "ifid_legalsequence", this
+    // Create "I-Type instruction" test sequence
+    Class_IFID_RTYPE_Sequence ifid_rtype_sequence = Class_IFID_RTYPE_Sequence::type_id::create(
+        "ifid_rtype_sequence", this
+    );
+    
+    // Create "I-Type instruction" test sequence
+    Class_IFID_ITYPE_Sequence ifid_itype_sequence = Class_IFID_ITYPE_Sequence::type_id::create(
+        "ifid_itype_sequence", this
     );
 
-    // Create "Random Inputs" test sequence
+    // Create "J-Type instruction" test sequence
+    Class_IFID_JTYPE_Sequence ifid_jtype_sequence = Class_IFID_JTYPE_Sequence::type_id::create(
+        "ifid_jtype_sequence", this
+    );
+
+    // Create "Random" test sequence
     Class_IFID_RandomSequence ifid_randomsequence = Class_IFID_RandomSequence::type_id::create(
         "ifid_randomsequence", this
     );
 
-    // Create "Addition" test sequence
-    Class_IFID_AdditionSequence ifid_additionsequence = Class_IFID_AdditionSequence::type_id::create(
-        "ifid_legalsequence", this
+    // Create "R-Type Signed Addition" test sequence
+    Class_IFID_RTYPE_SignedADDSequence ifid_rtype_signedadd_sequence = Class_IFID_RTYPE_SignedADDSequence::type_id::create(
+        "ifid_rtype_signedadd_sequence", this
+    );
+
+    // Create "R-Type Unsigned Addition" test sequence
+    Class_IFID_RTYPE_UnsignedADDSequence ifid_rtype_unsignedadd_sequence = Class_IFID_RTYPE_UnsignedADDSequence::type_id::create(
+        "ifid_rtype_unsignedadd_sequence", this
     );
 
     /* Start the test */
@@ -90,9 +105,12 @@ class Class_IFID_Test extends uvm_test;
 
     // Start all sequences in parallel
     fork
-      ifid_legalsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_jtype_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_itype_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_rtype_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
       ifid_randomsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
-      ifid_additionsequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_rtype_signedadd_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
+      ifid_rtype_unsignedadd_sequence.start(ifid_environment.ifid_agent.ifid_sequencer);
     join
 
     // Stop coverage tracking

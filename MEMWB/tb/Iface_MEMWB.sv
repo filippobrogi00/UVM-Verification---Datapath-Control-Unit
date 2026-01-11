@@ -1,5 +1,5 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
-
+`include "pkg_constants.sv"
 import pkg_const::CLKPERIOD;
 
 `timescale 1ns / 1ns

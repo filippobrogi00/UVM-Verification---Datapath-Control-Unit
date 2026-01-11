@@ -1,2 +1,0 @@
-var g_data = {"data":[{"n":"work.DP_IFID","id":8,"zf":1,"tc":30.90,"t":30.90},{"n":"work.Iface_IFID","id":6,"zf":1,"tc":75.36,"s":100.00,"t":50.73},{"n":"work.Module_topTestbench","id":5,"zf":1,"tc":100.00,"s":100.00,"t":100.00},{"n":"work.Module_topTestbench_sv_unit","id":3,"zf":1,"tc":42.54,"s":86.25,"b":36.66,"fc":0.00,"g":74.43,"a":15.38}]};
-processDuData(g_data);

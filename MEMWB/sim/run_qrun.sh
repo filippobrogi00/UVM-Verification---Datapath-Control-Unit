@@ -14,7 +14,7 @@ FAULT_DURATION="100"
 FAULT_INJECT="n"
 
 GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
-POSTSYN_SIMULATION="y"
+POSTSYN_SIMULATION="n"
 
 SYN_FILES=$(find $SYN_DIR -maxdepth 1 -name "*.v")
 echo $SYN_FILES

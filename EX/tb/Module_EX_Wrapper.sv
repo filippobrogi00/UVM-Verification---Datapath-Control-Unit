@@ -16,14 +16,14 @@ module Module_EXE_Wrapper #(
   // to an interface's signals
 
   	DP_EX 
-	/*#(
+	#(
       	.IR_SIZE        (IR_SIZE),
       	.OPERAND_SIZE   (OPERAND_SIZE),
       	.I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
       	.J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
       	.RF_REGBITS     (RF_REGBITS),
       	.RF_NUMREGS     (RF_NUMREGS)
-  	) */
+  	) 
 	DP_EXE_inst (
       	// Inputs
       	.CLK              	(exe_iface.CLK),

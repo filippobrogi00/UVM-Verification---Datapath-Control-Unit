@@ -184,15 +184,15 @@ vlib work
 vmap work work
 
 # Compile VHDL Source Files if present
-#compile_files $SRC_DIR VHDL SOURCE
+compile_files $SRC_DIR VHDL SOURCE
 
 # Compile Verilog Source Files if present
-#compile_files $SRC_DIR VERILOG SOURCE
+compile_files $SRC_DIR VERILOG SOURCE
 
 # Compile gate library
-vlog -timescale=1ns/1ps -work work /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
+#vlog -timescale=1ns/1ps -work work /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
 # Compile postsyn netlist
-vlog -timescale=1ns/1ps -work work ../syn/DP_EX.v
+#vlog -timescale=1ns/1ps -work work ../syn/DP_EX.v
 
 
 ###############################################
@@ -256,11 +256,11 @@ SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 #colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
 #  $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV"
 
-#colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
-#  $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV"
-
 colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
-  $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV" -sdftyp /Module_topTestbench/exe_toplevel/DP_EXE_inst=../syn/DP_EX.sdf
+  $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV"
+
+#colorize vsim -c -coverage "$tb_module_opt" -t $SIM_TIMESCALE $SIM_SEQITEMS \
+#  $SIM_OPTIONS -do "$VSIM_RUN_AND_REPORT_COV" -sdftyp /Module_topTestbench/exe_toplevel/DP_EXE_inst=../syn/DP_EX.sdf
 
 # Create "covhtmlreport" dir from .ucdb coverage file
 [[ -d "$COV_HTML_DIR" ]] && rm -rf $COV_HTML_DIR

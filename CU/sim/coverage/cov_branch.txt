@@ -1,6 +1,88 @@
 Coverage Report by instance with details
 
 =================================================================================
+=== Instance: /Module_topTestbench/cu_toplevel/DP_CU_inst
+=== Design Unit: work.dlx_cu(dlx_cu_hw)
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        52        52         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.a-CU_HW.vhd
+------------------------------------IF Branch------------------------------------
+    199                                     4002     Count coming in to IF
+    199             1                         12     
+    209             1                       3990     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    237                                     8001     Count coming in to CASE
+    240             1                       2029     
+    270             1                        522     
+    271             1                        516     
+    272             1                        570     
+    273             1                        524     
+    274             1                         40     
+    275             1                         28     
+    276             1                        264     
+    277             1                        256     
+    278             1                        192     
+    279             1                        176     
+    280             1                        184     
+    281             1                        184     
+    282             1                         28     
+    283             1                         38     
+    284             1                         22     
+    285             1                         20     
+    286             1                         24     
+    289             1                        198     
+    290             1                        226     
+    291             1                         36     
+    292             1                         42     
+    293             1                         28     
+    294             1                         40     
+    295             1                        204     
+    296             1                        200     
+    297             1                        200     
+    298             1                        168     
+    299             1                       1042     
+Branch totals: 29 hits of 29 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    241                                     2029     Count coming in to CASE
+    243             1                         96     
+    244             1                        118     
+    245             1                         84     
+    246             1                         90     
+    247             1                         96     
+    248             1                        106     
+    249             1                        100     
+    250             1                         90     
+    251             1                         92     
+    252             1                        130     
+    255             1                         80     
+    256             1                         84     
+    257             1                        108     
+    258             1                         96     
+    259             1                         90     
+    260             1                        108     
+    261             1                        104     
+    262             1                        116     
+    263             1                         94     
+    264             1                        118     
+    265             1                         29     
+Branch totals: 21 hits of 21 branches = 100.00%
+
+
+
+=================================================================================
 === Instance: /Module_topTestbench_sv_unit
 === Design Unit: work.Module_topTestbench_sv_unit
 =================================================================================
@@ -28,5 +110,5 @@ Branch totals: 0 hits of 5 branches = 0.00%
 
 
 
-Total Coverage By Instance (filtered view): 0.00%
+Total Coverage By Instance (filtered view): 91.22%
 

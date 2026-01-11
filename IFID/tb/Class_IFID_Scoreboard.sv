@@ -126,7 +126,8 @@ class Class_IFID_Scoreboard extends uvm_scoreboard;
     /*************************************************
     * Compare Expected vs DUT (compare NBITS fields) *
     **************************************************/
-    // Print current item
+    // Print current item with type of class
+    `uvm_info("GREEN", $sformatf("Current item: %s", ifid_seqitem.get_name()), UVM_MEDIUM)
     ifid_seqitem.print();
 
     // S1_REG_NPC_OUT Comparison

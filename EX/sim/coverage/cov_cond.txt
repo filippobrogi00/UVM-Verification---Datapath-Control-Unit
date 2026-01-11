@@ -1,6 +1,30 @@
 Coverage Report by instance with details
 
 =================================================================================
+=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ZeroCompa
+=== Design Unit: work.ZeroCompa(BEH_COMB)
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       4         4         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ZeroCompa --
+
+  File ../src/a.b.i-ZeroComparator.vhd
+----------------Focused Condition View-------------------
+Line       22 Item    1  ((NUMtoCHECK = (<type>)TO_UNSIGNED(0, IR_SIZE)) and (EQZ = '1'))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       23 Item    1  ((NUMtoCHECK /= (<type>)TO_UNSIGNED(0, IR_SIZE)) and (EQZ = '0'))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+
+=================================================================================
 === Instance: /Module_topTestbench_sv_unit
 === Design Unit: work.Module_topTestbench_sv_unit
 =================================================================================
@@ -30,5 +54,5 @@ Condition totals: 0 of 1 input term covered = 0.00%
 
 
 
-Total Coverage By Instance (filtered view): 0.00%
+Total Coverage By Instance (filtered view): 80.00%
 

@@ -1,2 +1,2 @@
-var g_data = {"8":["work.DP_EX",95.90,1],"6":["work.Iface_EXE",100.00,1],"5":["work.Module_topTestbench",93.33,1],"3":["work.Module_topTestbench_sv_unit",63.79,1]};
+var g_data = {"11":["work.ALU(BEH_COMB)",99.87,1],"7":["work.Iface_EXE",100.00,1],"6":["work.Module_topTestbench",93.33,1],"4":["work.Module_topTestbench_sv_unit",62.88,1],"10":["work.NBit_2to1MUX(BEH_NBit_2to1MUX)",100.00,1],"13":["work.NBit_Reg(BEH_NBit_Reg)",100.00,1],"12":["work.SHIFTER_GENERIC(BEHAVIORAL)",74.60,1],"15":["work.ZeroCompa(BEH_COMB)",100.00,1],"9":["work.dp_ex(structural)",100.00,1],"14":["work.nbit_reg(beh_nbit_reg)",100.00,1]};
 processDuLinks(g_data);

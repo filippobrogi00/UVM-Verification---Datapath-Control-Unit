@@ -39,185 +39,354 @@ Statement Coverage for instance /Module_topTestbench/cu_dut_iface --
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        114        78        36    68.42%
+    Toggles                        114       114         0   100.00%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench/cu_dut_iface --
 
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                   ALU_OPCODE[4-0]           1           1      100.00 
-                                     ALU_OUTREG_EN           0           0        0.00 
-                                               Clk           1           1      100.00 
-                                           DRAM_WE           0           0        0.00 
-                                          EQZ_NEQZ           0           0        0.00 
-                                           EQ_COND           0           0        0.00 
-                                       IR_IN[31-0]           1           1      100.00 
-                                       IR_LATCH_EN           0           0        0.00 
-                                            JAL_EN           0           0        0.00 
-                                               JMP           0           0        0.00 
-                                           JUMP_EN           0           0        0.00 
-                                      LMD_LATCH_EN           0           0        0.00 
-                                          MUXA_SEL           0           0        0.00 
-                                          MUXB_SEL           0           0        0.00 
-                                      NPC_LATCH_EN           0           0        0.00 
-                                       PC_LATCH_EN           0           0        0.00 
-                                             RF_WE           0           0        0.00 
-                                     RegA_LATCH_EN           0           0        0.00 
-                                   RegIMM_LATCH_EN           0           0        0.00 
-                                    SIGN_UNSIGN_EN           0           0        0.00 
-                                        WB_MUX_SEL           0           0        0.00 
-                                              nRst           1           1      100.00 
+                                              Node      1H->0L      0L->1H                          "Coverage"
+                                              ---------------------------------------------------------------
+                                   ALU_OPCODE[4-0]           1           1                              100.00 
+                                     ALU_OUTREG_EN           1           1                              100.00 
+                                               Clk           1           1                              100.00 
+                                           DRAM_WE           1           1                              100.00 
+                                          EQZ_NEQZ           1           1                              100.00 
+                                           EQ_COND           1           1                              100.00 
+                                       IR_IN[31-0]           1           1                              100.00 
+                                       IR_LATCH_EN           1           1                              100.00 
+                                            JAL_EN           1           1                              100.00 
+                                               JMP           1           1                              100.00 
+                                           JUMP_EN           1           1                              100.00 
+                                      LMD_LATCH_EN           1           1                              100.00 
+                                          MUXA_SEL           1           1                              100.00 
+                                          MUXB_SEL           1           1                              100.00 
+                                      NPC_LATCH_EN           1           1                              100.00 
+                                       PC_LATCH_EN           1           1                              100.00 
+                                             RF_WE           1           1                              100.00 
+                                     RegA_LATCH_EN           1           1                              100.00 
+                                   RegIMM_LATCH_EN           1           1                              100.00 
+                                    SIGN_UNSIGN_EN           1           1                              100.00 
+                                        WB_MUX_SEL           1           1                              100.00 
+                                              nRst           1           1                              100.00 
 
 Total Node Count     =         57 
-Toggled Node Count   =         39 
-Untoggled Node Count =         18 
+Toggled Node Count   =         57 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      68.42% (78 of 114 bins)
+Toggle Coverage      =     100.00% (114 of 114 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/cu_toplevel/DP_CU_inst
-=== Design Unit: work.dlx_cu
+=== Design Unit: work.dlx_cu(dlx_cu_hw)
 =================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        52        52         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.a-CU_HW.vhd
+------------------------------------IF Branch------------------------------------
+    199                                     4002     Count coming in to IF
+    199             1                         12     
+    209             1                       3990     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    237                                     8001     Count coming in to CASE
+    240             1                       2029     
+    270             1                        522     
+    271             1                        516     
+    272             1                        570     
+    273             1                        524     
+    274             1                         40     
+    275             1                         28     
+    276             1                        264     
+    277             1                        256     
+    278             1                        192     
+    279             1                        176     
+    280             1                        184     
+    281             1                        184     
+    282             1                         28     
+    283             1                         38     
+    284             1                         22     
+    285             1                         20     
+    286             1                         24     
+    289             1                        198     
+    290             1                        226     
+    291             1                         36     
+    292             1                         42     
+    293             1                         28     
+    294             1                         40     
+    295             1                        204     
+    296             1                        200     
+    297             1                        200     
+    298             1                        168     
+    299             1                       1042     
+Branch totals: 29 hits of 29 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    241                                     2029     Count coming in to CASE
+    243             1                         96     
+    244             1                        118     
+    245             1                         84     
+    246             1                         90     
+    247             1                         96     
+    248             1                        106     
+    249             1                        100     
+    250             1                         90     
+    251             1                         92     
+    252             1                        130     
+    255             1                         80     
+    256             1                         84     
+    257             1                        108     
+    258             1                         96     
+    259             1                         90     
+    260             1                        108     
+    261             1                        104     
+    262             1                        116     
+    263             1                         94     
+    264             1                        118     
+    265             1                         29     
+Branch totals: 21 hits of 21 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      84        84         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/a.a-CU_HW.vhd
+    159             1                       3977     
+    160             1                       4001     
+    162             1                       3978     
+    166             1                       1044     
+    167             1                       2002     
+    170             1                       1649     
+    172             1                       1965     
+    173             1                       3027     
+    174             1                        512     
+    177             1                       2059     
+    178             1                       3024     
+    179             1                       1157     
+    180             1                       1994     
+    181             1                       1016     
+    182             1                        558     
+    185             1                         26     
+    186             1                         22     
+    187             1                       1994     
+    188             1                       1045     
+    191             1                       2058     
+    192             1                       1862     
+    201             1                         12     
+    202             1                         12     
+    203             1                         12     
+    204             1                         12     
+    205             1                         12     
+    206             1                         12     
+    211             1                       3990     
+    212             1                       3990     
+    213             1                       3990     
+    214             1                       3990     
+    215             1                       3990     
+    216             1                       3990     
+    226             1                       3739     
+    234             1                       8001     
+    243             1                         96     
+    244             1                        118     
+    245             1                         84     
+    246             1                         90     
+    247             1                         96     
+    248             1                        106     
+    249             1                        100     
+    250             1                         90     
+    251             1                         92     
+    252             1                        130     
+    255             1                         80     
+    256             1                         84     
+    257             1                        108     
+    258             1                         96     
+    259             1                         90     
+    260             1                        108     
+    261             1                        104     
+    262             1                        116     
+    263             1                         94     
+    264             1                        118     
+    265             1                         29     
+    270             1                        522     
+    271             1                        516     
+    272             1                        570     
+    273             1                        524     
+    274             1                         40     
+    275             1                         28     
+    276             1                        264     
+    277             1                        256     
+    278             1                        192     
+    279             1                        176     
+    280             1                        184     
+    281             1                        184     
+    282             1                         28     
+    283             1                         38     
+    284             1                         22     
+    285             1                         20     
+    286             1                         24     
+    289             1                        198     
+    290             1                        226     
+    291             1                         36     
+    292             1                         42     
+    293             1                         28     
+    294             1                         40     
+    295             1                        204     
+    296             1                        200     
+    297             1                        200     
+    298             1                        168     
+    299             1                       1042     
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        328       290        38    88.41%
+    Toggles                        340       319        21    93.82%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst --
 
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                   ALU_OPCODE[0-4]           1           1      100.00 
-                                     ALU_OUTREG_EN           0           0        0.00 
-                                               Clk           1           1      100.00 
-                                           DRAM_WE           0           0        0.00 
-                                          EQZ_NEQZ           0           0        0.00 
-                                           EQ_COND           0           0        0.00 
-                                       IR_IN[0-31]           1           1      100.00 
-                                       IR_LATCH_EN           0           0        0.00 
-                                            JAL_EN           0           0        0.00 
-                                               JMP           0           0        0.00 
-                                           JUMP_EN           0           0        0.00 
-                                      LMD_LATCH_EN           0           0        0.00 
-                                          MUXA_SEL           0           0        0.00 
-                                          MUXB_SEL           0           0        0.00 
-                                      NPC_LATCH_EN           0           0        0.00 
-                                       PC_LATCH_EN           0           0        0.00 
-                                             RF_WE           0           0        0.00 
-                                     RegA_LATCH_EN           0           0        0.00 
-                                   RegIMM_LATCH_EN           0           0        0.00 
-                                    SIGN_UNSIGN_EN           0           0        0.00 
-                                        WB_MUX_SEL           0           0        0.00 
-                                   aluOpcode1[0-4]           1           1      100.00 
-                                  aluOpcode_i[0-4]           1           1      100.00 
-                                                n2           1           1      100.00 
-                                                n5           1           1      100.00 
-                                              n111           1           1      100.00 
-                                              n112           1           1      100.00 
-                                              n113           1           1      100.00 
-                                              n114           1           1      100.00 
-                                              n115           1           1      100.00 
-                                              n116           1           1      100.00 
-                                              n117           1           1      100.00 
-                                              n118           1           1      100.00 
-                                              n119           1           1      100.00 
-                                              n120           1           1      100.00 
-                                              n121           1           1      100.00 
-                                              n122           1           1      100.00 
-                                              n123           1           1      100.00 
-                                              n124           1           1      100.00 
-                                              n125           1           1      100.00 
-                                              n126           1           1      100.00 
-                                              n127           1           1      100.00 
-                                              n128           1           1      100.00 
-                                              n129           1           1      100.00 
-                                              n130           1           1      100.00 
-                                              n131           1           1      100.00 
-                                              n132           1           1      100.00 
-                                              n133           1           1      100.00 
-                                              n134           1           1      100.00 
-                                              n135           1           1      100.00 
-                                              n136           1           1      100.00 
-                                              n137           1           1      100.00 
-                                              n138           1           1      100.00 
-                                              n139           1           1      100.00 
-                                              n140           1           1      100.00 
-                                              n141           1           1      100.00 
-                                              n142           1           1      100.00 
-                                              n143           1           1      100.00 
-                                              n144           1           1      100.00 
-                                              n145           1           1      100.00 
-                                              n146           1           1      100.00 
-                                              n147           1           1      100.00 
-                                              n148           1           1      100.00 
-                                              n149           1           1      100.00 
-                                              n150           1           1      100.00 
-                                              n151           1           1      100.00 
-                                              n152           1           1      100.00 
-                                              n153           1           1      100.00 
-                                              n154           1           1      100.00 
-                                              n155           1           1      100.00 
-                                              n156           1           1      100.00 
-                                              n157           1           1      100.00 
-                                              n158           1           1      100.00 
-                                              n159           1           1      100.00 
-                                              n160           1           1      100.00 
-                                              n161           1           1      100.00 
-                                              n162           1           1      100.00 
-                                              n163           1           1      100.00 
-                                              n164           1           1      100.00 
-                                              n165           1           1      100.00 
-                                              n166           1           1      100.00 
-                                              n167           1           1      100.00 
-                                              n168           1           1      100.00 
-                                              n169           1           1      100.00 
-                                              n170           1           1      100.00 
-                                              n171           1           1      100.00 
-                                              n172           1           1      100.00 
-                                              n173           1           1      100.00 
-                                              n174           1           1      100.00 
-                                              n175           1           1      100.00 
-                                              n176           1           1      100.00 
-                                              n177           1           1      100.00 
-                                              n178           1           1      100.00 
-                                              n179           1           1      100.00 
-                                              n180           1           1      100.00 
-                                              n181           1           1      100.00 
-                                              n182           1           1      100.00 
-                                              n183           1           1      100.00 
-                                              n184           1           1      100.00 
-                                              n185           1           1      100.00 
-                                              n186           1           1      100.00 
-                                              n187           1           1      100.00 
-                                              n188           1           1      100.00 
-                                              n189           1           1      100.00 
-                                              n190           1           1      100.00 
-                                              n191           1           1      100.00 
-                                              n192           1           1      100.00 
-                                              n193           1           1      100.00 
-                                              n194           1           1      100.00 
-                                              n195           1           1      100.00 
-                                              n196           1           1      100.00 
-                                              n197           0           0        0.00 
-                                              n198           1           1      100.00 
-                                              n199           1           1      100.00 
-                                              n200           1           1      100.00 
-                                              n201           1           1      100.00 
-                                              n202           1           1      100.00 
-                                              n203           1           1      100.00 
-                                              n204           1           1      100.00 
-                                              n205           1           1      100.00 
-                                              nRst           1           1      100.00 
+                                              Node      1H->0L      0L->1H                          "Coverage"
+                                              ---------------------------------------------------------------
+                                   ALU_OPCODE(0-4)           1           1                              100.00 
+                                     ALU_OUTREG_EN           1           1                              100.00 
+                                        aluOpcode1               ENUM type       Value       Count 
+                                                                       NOP          38      100.00 
+                                                                    ADD_op          57      100.00 
+                                                                    AND_op          12      100.00 
+                                                                     OR_op          12      100.00 
+                                                                    SGE_op           4      100.00 
+                                                                    SLE_op           3      100.00 
+                                                                    SLL_op           7      100.00 
+                                                                    SNE_op           3      100.00 
+                                                                    SRL_op          15      100.00 
+                                                                    SUB_op           2      100.00 
+                                                                    XOR_op           5      100.00 
+                                                                    SRA_op           1      100.00 
+                                                                   ADDU_op           5      100.00 
+                                                                   SUBU_op           5      100.00 
+                                                                    SEQ_op           3      100.00 
+                                                                    SLT_op           3      100.00 
+                                                                    SGT_op           3      100.00 
+                                                                   SLTU_op          14      100.00 
+                                                                   SGTU_op          10      100.00 
+                                                                   SLEU_op          11      100.00 
+                                                                   SGEU_op           4      100.00 
+                                        aluOpcode2               ENUM type       Value       Count 
+                                                                       NOP          37      100.00 
+                                                                    ADD_op          57      100.00 
+                                                                    AND_op          12      100.00 
+                                                                     OR_op          12      100.00 
+                                                                    SGE_op           4      100.00 
+                                                                    SLE_op           3      100.00 
+                                                                    SLL_op           7      100.00 
+                                                                    SNE_op           3      100.00 
+                                                                    SRL_op          15      100.00 
+                                                                    SUB_op           2      100.00 
+                                                                    XOR_op           5      100.00 
+                                                                    SRA_op           1      100.00 
+                                                                   ADDU_op           5      100.00 
+                                                                   SUBU_op           5      100.00 
+                                                                    SEQ_op           3      100.00 
+                                                                    SLT_op           3      100.00 
+                                                                    SGT_op           3      100.00 
+                                                                   SLTU_op          14      100.00 
+                                                                   SGTU_op          10      100.00 
+                                                                   SLEU_op          10      100.00 
+                                                                   SGEU_op           4      100.00 
+                                        aluOpcode3               ENUM type       Value       Count 
+                                                                       NOP           0        0.00 
+                                                                    ADD_op           0        0.00 
+                                                                    AND_op           0        0.00 
+                                                                     OR_op           0        0.00 
+                                                                    SGE_op           0        0.00 
+                                                                    SLE_op           0        0.00 
+                                                                    SLL_op           0        0.00 
+                                                                    SNE_op           0        0.00 
+                                                                    SRL_op           0        0.00 
+                                                                    SUB_op           0        0.00 
+                                                                    XOR_op           0        0.00 
+                                                                    SRA_op           0        0.00 
+                                                                   ADDU_op           0        0.00 
+                                                                   SUBU_op           0        0.00 
+                                                                    SEQ_op           0        0.00 
+                                                                    SLT_op           0        0.00 
+                                                                    SGT_op           0        0.00 
+                                                                   SLTU_op           0        0.00 
+                                                                   SGTU_op           0        0.00 
+                                                                   SLEU_op           0        0.00 
+                                                                   SGEU_op           0        0.00 
+                                       aluOpcode_i               ENUM type       Value       Count 
+                                                                       NOP          37      100.00 
+                                                                    ADD_op          60      100.00 
+                                                                    AND_op          12      100.00 
+                                                                     OR_op          13      100.00 
+                                                                    SGE_op           4      100.00 
+                                                                    SLE_op           3      100.00 
+                                                                    SLL_op           7      100.00 
+                                                                    SNE_op           3      100.00 
+                                                                    SRL_op          16      100.00 
+                                                                    SUB_op           3      100.00 
+                                                                    XOR_op           5      100.00 
+                                                                    SRA_op           1      100.00 
+                                                                   ADDU_op           7      100.00 
+                                                                   SUBU_op           5      100.00 
+                                                                    SEQ_op           3      100.00 
+                                                                    SLT_op           3      100.00 
+                                                                    SGT_op           3      100.00 
+                                                                   SLTU_op          15      100.00 
+                                                                   SGTU_op          10      100.00 
+                                                                   SLEU_op          11      100.00 
+                                                                   SGEU_op           4      100.00 
+                                               Clk           1           1                              100.00 
+                                         cw1(0-17)           1           1                              100.00 
+                                         cw2(0-15)           1           1                              100.00 
+                                         cw3(0-11)           1           1                              100.00 
+                                          cw4(0-5)           1           1                              100.00 
+                                          cw5(0-1)           1           1                              100.00 
+                                           DRAM_WE           1           1                              100.00 
+                                           EQ_COND           1           1                              100.00 
+                                          EQZ_NEQZ           1           1                              100.00 
+                                     IR_func(0-10)           1           1                              100.00 
+                                       IR_IN(0-31)           1           1                              100.00 
+                                       IR_LATCH_EN           1           1                              100.00 
+                                    IR_opcode(0-5)           1           1                              100.00 
+                                            JAL_EN           1           1                              100.00 
+                                               JMP           1           1                              100.00 
+                                           JUMP_EN           1           1                              100.00 
+                                      LMD_LATCH_EN           1           1                              100.00 
+                                          MUXA_SEL           1           1                              100.00 
+                                          MUXB_SEL           1           1                              100.00 
+                                      NPC_LATCH_EN           1           1                              100.00 
+                                              nRst           1           1                              100.00 
+                                       PC_LATCH_EN           1           1                              100.00 
+                                     RegA_LATCH_EN           1           1                              100.00 
+                                   RegIMM_LATCH_EN           1           1                              100.00 
+                                             RF_WE           1           1                              100.00 
+                                    SIGN_UNSIGN_EN           1           1                              100.00 
+                                        WB_MUX_SEL           1           1                              100.00 
 
-Total Node Count     =        164 
-Toggled Node Count   =        145 
-Untoggled Node Count =         19 
+Total Node Count     =        212 
+Toggled Node Count   =        191 
+Untoggled Node Count =         21 
 
-Toggle Coverage      =      88.41% (290 of 328 bins)
+Toggle Coverage      =      93.82% (319 of 340 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -255,10 +424,10 @@ Toggle Coverage:
 
 Toggle Coverage for instance /Module_topTestbench --
 
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                         globalClk           1           1      100.00 
-                                       globalRst_n           1           1      100.00 
+                                              Node      1H->0L      0L->1H                          "Coverage"
+                                              ---------------------------------------------------------------
+                                         globalClk           1           1                              100.00 
+                                       globalRst_n           1           1                              100.00 
 
 Total Node Count     =          2 
 Toggled Node Count   =          2 
@@ -291,10 +460,10 @@ Name                 File(Line)                   Failure      Pass
                                                         0          1
 /Module_topTestbench_sv_unit/Class_CU_Scoreboard/write/immed__93
                      ../tb/Class_CU_Scoreboard.sv(93)
-                                                     2514          1
+                                                     2566          1
 /Module_topTestbench_sv_unit/Class_CU_Scoreboard/write/immed__81
                      ../tb/Class_CU_Scoreboard.sv(81)
-                                                     2514          1
+                                                     2566          1
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
@@ -335,68 +504,68 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                62         64          -                      
         missing/total bins:                                 2         64          -                      
         % Hit:                                         96.87%        100          -                      
-        bin auto[0:67108863]                             1020          1          -    Covered              
-        bin auto[67108864:134217727]                       18          1          -    Covered              
-        bin auto[134217728:201326591]                     271          1          -    Covered              
-        bin auto[201326592:268435455]                     255          1          -    Covered              
-        bin auto[268435456:335544319]                     270          1          -    Covered              
-        bin auto[335544320:402653183]                     282          1          -    Covered              
-        bin auto[402653184:469762047]                      13          1          -    Covered              
-        bin auto[469762048:536870911]                      26          1          -    Covered              
-        bin auto[536870912:603979775]                      18          1          -    Covered              
-        bin auto[603979776:671088639]                     120          1          -    Covered              
-        bin auto[671088640:738197503]                      13          1          -    Covered              
-        bin auto[738197504:805306367]                     126          1          -    Covered              
-        bin auto[805306368:872415231]                      89          1          -    Covered              
-        bin auto[872415232:939524095]                     123          1          -    Covered              
-        bin auto[939524096:1006632959]                     84          1          -    Covered              
-        bin auto[1006632960:1073741823]                    21          1          -    Covered              
+        bin auto[0:67108863]                             1013          1          -    Covered              
+        bin auto[67108864:134217727]                       21          1          -    Covered              
+        bin auto[134217728:201326591]                     261          1          -    Covered              
+        bin auto[201326592:268435455]                     258          1          -    Covered              
+        bin auto[268435456:335544319]                     285          1          -    Covered              
+        bin auto[335544320:402653183]                     262          1          -    Covered              
+        bin auto[402653184:469762047]                      22          1          -    Covered              
+        bin auto[469762048:536870911]                      16          1          -    Covered              
+        bin auto[536870912:603979775]                      20          1          -    Covered              
+        bin auto[603979776:671088639]                      99          1          -    Covered              
+        bin auto[671088640:738197503]                      14          1          -    Covered              
+        bin auto[738197504:805306367]                     113          1          -    Covered              
+        bin auto[805306368:872415231]                     132          1          -    Covered              
+        bin auto[872415232:939524095]                     128          1          -    Covered              
+        bin auto[939524096:1006632959]                     96          1          -    Covered              
+        bin auto[1006632960:1073741823]                    13          1          -    Covered              
         bin auto[1073741824:1140850687]                    17          1          -    Covered              
-        bin auto[1140850688:1207959551]                    10          1          -    Covered              
-        bin auto[1207959552:1275068415]                    18          1          -    Covered              
-        bin auto[1275068416:1342177279]                    11          1          -    Covered              
+        bin auto[1140850688:1207959551]                    14          1          -    Covered              
+        bin auto[1207959552:1275068415]                    17          1          -    Covered              
+        bin auto[1275068416:1342177279]                    23          1          -    Covered              
         bin auto[1342177280:1409286143]                    88          1          -    Covered              
-        bin auto[1409286144:1476395007]                   108          1          -    Covered              
-        bin auto[1476395008:1543503871]                   101          1          -    Covered              
-        bin auto[1543503872:1610612735]                    20          1          -    Covered              
-        bin auto[1610612736:1677721599]                    22          1          -    Covered              
-        bin auto[1677721600:1744830463]                    21          1          -    Covered              
-        bin auto[1744830464:1811939327]                    17          1          -    Covered              
-        bin auto[1811939328:1879048191]                    15          1          -    Covered              
-        bin auto[1879048192:1946157055]                     7          1          -    Covered              
-        bin auto[1946157056:2013265919]                    20          1          -    Covered              
-        bin auto[2013265920:2080374783]                    18          1          -    Covered              
-        bin auto[2080374784:2147483647]                    14          1          -    Covered              
-        bin auto[2147483648:2214592511]                    17          1          -    Covered              
-        bin auto[2214592512:2281701375]                    15          1          -    Covered              
-        bin auto[2281701376:2348810239]                    17          1          -    Covered              
-        bin auto[2348810240:2415919103]                    17          1          -    Covered              
-        bin auto[2415919104:2483027967]                    14          1          -    Covered              
-        bin auto[2483027968:2550136831]                    15          1          -    Covered              
-        bin auto[2550136832:2617245695]                    24          1          -    Covered              
-        bin auto[2617245696:2684354559]                    17          1          -    Covered              
-        bin auto[2684354560:2751463423]                    20          1          -    Covered              
-        bin auto[2751463424:2818572287]                     9          1          -    Covered              
-        bin auto[2818572288:2885681151]                    14          1          -    Covered              
-        bin auto[2885681152:2952790015]                    19          1          -    Covered              
-        bin auto[2952790016:3019898879]                     9          1          -    Covered              
-        bin auto[3019898880:3087007743]                    17          1          -    Covered              
-        bin auto[3087007744:3154116607]                    14          1          -    Covered              
+        bin auto[1409286144:1476395007]                    93          1          -    Covered              
+        bin auto[1476395008:1543503871]                    92          1          -    Covered              
+        bin auto[1543503872:1610612735]                    18          1          -    Covered              
+        bin auto[1610612736:1677721599]                    21          1          -    Covered              
+        bin auto[1677721600:1744830463]                    14          1          -    Covered              
+        bin auto[1744830464:1811939327]                    14          1          -    Covered              
+        bin auto[1811939328:1879048191]                    20          1          -    Covered              
+        bin auto[1879048192:1946157055]                    19          1          -    Covered              
+        bin auto[1946157056:2013265919]                    11          1          -    Covered              
+        bin auto[2013265920:2080374783]                    17          1          -    Covered              
+        bin auto[2080374784:2147483647]                    12          1          -    Covered              
+        bin auto[2147483648:2214592511]                    15          1          -    Covered              
+        bin auto[2214592512:2281701375]                    21          1          -    Covered              
+        bin auto[2281701376:2348810239]                    12          1          -    Covered              
+        bin auto[2348810240:2415919103]                    10          1          -    Covered              
+        bin auto[2415919104:2483027967]                    16          1          -    Covered              
+        bin auto[2483027968:2550136831]                    14          1          -    Covered              
+        bin auto[2550136832:2617245695]                    13          1          -    Covered              
+        bin auto[2617245696:2684354559]                    22          1          -    Covered              
+        bin auto[2684354560:2751463423]                    14          1          -    Covered              
+        bin auto[2751463424:2818572287]                    11          1          -    Covered              
+        bin auto[2818572288:2885681151]                    12          1          -    Covered              
+        bin auto[2885681152:2952790015]                    12          1          -    Covered              
+        bin auto[2952790016:3019898879]                    14          1          -    Covered              
+        bin auto[3019898880:3087007743]                    10          1          -    Covered              
+        bin auto[3087007744:3154116607]                    20          1          -    Covered              
         bin auto[3154116608:3221225471]                     8          1          -    Covered              
-        bin auto[3221225472:3288334335]                    12          1          -    Covered              
-        bin auto[3288334336:3355443199]                    15          1          -    Covered              
-        bin auto[3355443200:3422552063]                    14          1          -    Covered              
-        bin auto[3422552064:3489660927]                    10          1          -    Covered              
-        bin auto[3489660928:3556769791]                    20          1          -    Covered              
-        bin auto[3556769792:3623878655]                    19          1          -    Covered              
-        bin auto[3623878656:3690987519]                    12          1          -    Covered              
-        bin auto[3690987520:3758096383]                    22          1          -    Covered              
-        bin auto[3758096384:3825205247]                    17          1          -    Covered              
-        bin auto[3825205248:3892314111]                    19          1          -    Covered              
+        bin auto[3221225472:3288334335]                    17          1          -    Covered              
+        bin auto[3288334336:3355443199]                    13          1          -    Covered              
+        bin auto[3355443200:3422552063]                    16          1          -    Covered              
+        bin auto[3422552064:3489660927]                    12          1          -    Covered              
+        bin auto[3489660928:3556769791]                    19          1          -    Covered              
+        bin auto[3556769792:3623878655]                    16          1          -    Covered              
+        bin auto[3623878656:3690987519]                    11          1          -    Covered              
+        bin auto[3690987520:3758096383]                    10          1          -    Covered              
+        bin auto[3758096384:3825205247]                    20          1          -    Covered              
+        bin auto[3825205248:3892314111]                    13          1          -    Covered              
         bin auto[3892314112:3959422975]                   102          1          -    Covered              
-        bin auto[3959422976:4026531839]                    86          1          -    Covered              
-        bin auto[4026531840:4093640703]                    72          1          -    Covered              
-        bin auto[4093640704:4160749567]                    78          1          -    Covered              
+        bin auto[3959422976:4026531839]                   100          1          -    Covered              
+        bin auto[4026531840:4093640703]                   100          1          -    Covered              
+        bin auto[4093640704:4160749567]                    84          1          -    Covered              
         bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
         bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
 Statement Coverage:
@@ -552,6 +721,28 @@ Statement Coverage for instance /Module_topTestbench_sv_unit --
     107             1                          1     
     110             1                          1     
 
+=================================================================================
+=== Instance: /rf_pkg
+=== Design Unit: work.rf_pkg
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         0         5     0.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /rf_pkg --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File ../src/001-pkg-registerfile.vhd
+    30              1                    ***0***     
+    31              1                    ***0***     
+    32              1                    ***0***     
+    33              1                    ***0***     
+    36              1                    ***0***     
+
 COVERGROUP COVERAGE:
 ----------------------------------------------------------------------------------------------------------
 Covergroup                                             Metric       Goal       Bins    Status               
@@ -566,68 +757,68 @@ Covergroup                                             Metric       Goal       B
         covered/total bins:                                62         64          -                      
         missing/total bins:                                 2         64          -                      
         % Hit:                                         96.87%        100          -                      
-        bin auto[0:67108863]                             1020          1          -    Covered              
-        bin auto[67108864:134217727]                       18          1          -    Covered              
-        bin auto[134217728:201326591]                     271          1          -    Covered              
-        bin auto[201326592:268435455]                     255          1          -    Covered              
-        bin auto[268435456:335544319]                     270          1          -    Covered              
-        bin auto[335544320:402653183]                     282          1          -    Covered              
-        bin auto[402653184:469762047]                      13          1          -    Covered              
-        bin auto[469762048:536870911]                      26          1          -    Covered              
-        bin auto[536870912:603979775]                      18          1          -    Covered              
-        bin auto[603979776:671088639]                     120          1          -    Covered              
-        bin auto[671088640:738197503]                      13          1          -    Covered              
-        bin auto[738197504:805306367]                     126          1          -    Covered              
-        bin auto[805306368:872415231]                      89          1          -    Covered              
-        bin auto[872415232:939524095]                     123          1          -    Covered              
-        bin auto[939524096:1006632959]                     84          1          -    Covered              
-        bin auto[1006632960:1073741823]                    21          1          -    Covered              
+        bin auto[0:67108863]                             1013          1          -    Covered              
+        bin auto[67108864:134217727]                       21          1          -    Covered              
+        bin auto[134217728:201326591]                     261          1          -    Covered              
+        bin auto[201326592:268435455]                     258          1          -    Covered              
+        bin auto[268435456:335544319]                     285          1          -    Covered              
+        bin auto[335544320:402653183]                     262          1          -    Covered              
+        bin auto[402653184:469762047]                      22          1          -    Covered              
+        bin auto[469762048:536870911]                      16          1          -    Covered              
+        bin auto[536870912:603979775]                      20          1          -    Covered              
+        bin auto[603979776:671088639]                      99          1          -    Covered              
+        bin auto[671088640:738197503]                      14          1          -    Covered              
+        bin auto[738197504:805306367]                     113          1          -    Covered              
+        bin auto[805306368:872415231]                     132          1          -    Covered              
+        bin auto[872415232:939524095]                     128          1          -    Covered              
+        bin auto[939524096:1006632959]                     96          1          -    Covered              
+        bin auto[1006632960:1073741823]                    13          1          -    Covered              
         bin auto[1073741824:1140850687]                    17          1          -    Covered              
-        bin auto[1140850688:1207959551]                    10          1          -    Covered              
-        bin auto[1207959552:1275068415]                    18          1          -    Covered              
-        bin auto[1275068416:1342177279]                    11          1          -    Covered              
+        bin auto[1140850688:1207959551]                    14          1          -    Covered              
+        bin auto[1207959552:1275068415]                    17          1          -    Covered              
+        bin auto[1275068416:1342177279]                    23          1          -    Covered              
         bin auto[1342177280:1409286143]                    88          1          -    Covered              
-        bin auto[1409286144:1476395007]                   108          1          -    Covered              
-        bin auto[1476395008:1543503871]                   101          1          -    Covered              
-        bin auto[1543503872:1610612735]                    20          1          -    Covered              
-        bin auto[1610612736:1677721599]                    22          1          -    Covered              
-        bin auto[1677721600:1744830463]                    21          1          -    Covered              
-        bin auto[1744830464:1811939327]                    17          1          -    Covered              
-        bin auto[1811939328:1879048191]                    15          1          -    Covered              
-        bin auto[1879048192:1946157055]                     7          1          -    Covered              
-        bin auto[1946157056:2013265919]                    20          1          -    Covered              
-        bin auto[2013265920:2080374783]                    18          1          -    Covered              
-        bin auto[2080374784:2147483647]                    14          1          -    Covered              
-        bin auto[2147483648:2214592511]                    17          1          -    Covered              
-        bin auto[2214592512:2281701375]                    15          1          -    Covered              
-        bin auto[2281701376:2348810239]                    17          1          -    Covered              
-        bin auto[2348810240:2415919103]                    17          1          -    Covered              
-        bin auto[2415919104:2483027967]                    14          1          -    Covered              
-        bin auto[2483027968:2550136831]                    15          1          -    Covered              
-        bin auto[2550136832:2617245695]                    24          1          -    Covered              
-        bin auto[2617245696:2684354559]                    17          1          -    Covered              
-        bin auto[2684354560:2751463423]                    20          1          -    Covered              
-        bin auto[2751463424:2818572287]                     9          1          -    Covered              
-        bin auto[2818572288:2885681151]                    14          1          -    Covered              
-        bin auto[2885681152:2952790015]                    19          1          -    Covered              
-        bin auto[2952790016:3019898879]                     9          1          -    Covered              
-        bin auto[3019898880:3087007743]                    17          1          -    Covered              
-        bin auto[3087007744:3154116607]                    14          1          -    Covered              
+        bin auto[1409286144:1476395007]                    93          1          -    Covered              
+        bin auto[1476395008:1543503871]                    92          1          -    Covered              
+        bin auto[1543503872:1610612735]                    18          1          -    Covered              
+        bin auto[1610612736:1677721599]                    21          1          -    Covered              
+        bin auto[1677721600:1744830463]                    14          1          -    Covered              
+        bin auto[1744830464:1811939327]                    14          1          -    Covered              
+        bin auto[1811939328:1879048191]                    20          1          -    Covered              
+        bin auto[1879048192:1946157055]                    19          1          -    Covered              
+        bin auto[1946157056:2013265919]                    11          1          -    Covered              
+        bin auto[2013265920:2080374783]                    17          1          -    Covered              
+        bin auto[2080374784:2147483647]                    12          1          -    Covered              
+        bin auto[2147483648:2214592511]                    15          1          -    Covered              
+        bin auto[2214592512:2281701375]                    21          1          -    Covered              
+        bin auto[2281701376:2348810239]                    12          1          -    Covered              
+        bin auto[2348810240:2415919103]                    10          1          -    Covered              
+        bin auto[2415919104:2483027967]                    16          1          -    Covered              
+        bin auto[2483027968:2550136831]                    14          1          -    Covered              
+        bin auto[2550136832:2617245695]                    13          1          -    Covered              
+        bin auto[2617245696:2684354559]                    22          1          -    Covered              
+        bin auto[2684354560:2751463423]                    14          1          -    Covered              
+        bin auto[2751463424:2818572287]                    11          1          -    Covered              
+        bin auto[2818572288:2885681151]                    12          1          -    Covered              
+        bin auto[2885681152:2952790015]                    12          1          -    Covered              
+        bin auto[2952790016:3019898879]                    14          1          -    Covered              
+        bin auto[3019898880:3087007743]                    10          1          -    Covered              
+        bin auto[3087007744:3154116607]                    20          1          -    Covered              
         bin auto[3154116608:3221225471]                     8          1          -    Covered              
-        bin auto[3221225472:3288334335]                    12          1          -    Covered              
-        bin auto[3288334336:3355443199]                    15          1          -    Covered              
-        bin auto[3355443200:3422552063]                    14          1          -    Covered              
-        bin auto[3422552064:3489660927]                    10          1          -    Covered              
-        bin auto[3489660928:3556769791]                    20          1          -    Covered              
-        bin auto[3556769792:3623878655]                    19          1          -    Covered              
-        bin auto[3623878656:3690987519]                    12          1          -    Covered              
-        bin auto[3690987520:3758096383]                    22          1          -    Covered              
-        bin auto[3758096384:3825205247]                    17          1          -    Covered              
-        bin auto[3825205248:3892314111]                    19          1          -    Covered              
+        bin auto[3221225472:3288334335]                    17          1          -    Covered              
+        bin auto[3288334336:3355443199]                    13          1          -    Covered              
+        bin auto[3355443200:3422552063]                    16          1          -    Covered              
+        bin auto[3422552064:3489660927]                    12          1          -    Covered              
+        bin auto[3489660928:3556769791]                    19          1          -    Covered              
+        bin auto[3556769792:3623878655]                    16          1          -    Covered              
+        bin auto[3623878656:3690987519]                    11          1          -    Covered              
+        bin auto[3690987520:3758096383]                    10          1          -    Covered              
+        bin auto[3758096384:3825205247]                    20          1          -    Covered              
+        bin auto[3825205248:3892314111]                    13          1          -    Covered              
         bin auto[3892314112:3959422975]                   102          1          -    Covered              
-        bin auto[3959422976:4026531839]                    86          1          -    Covered              
-        bin auto[4026531840:4093640703]                    72          1          -    Covered              
-        bin auto[4093640704:4160749567]                    78          1          -    Covered              
+        bin auto[3959422976:4026531839]                   100          1          -    Covered              
+        bin auto[4026531840:4093640703]                   100          1          -    Covered              
+        bin auto[4093640704:4160749567]                    84          1          -    Covered              
         bin auto[4160749568:4227858431]                     0          1          -    ZERO                 
         bin auto[4227858432:4294967295]                     0          1          -    ZERO                 
 
@@ -652,10 +843,10 @@ Name                 File(Line)                   Failure      Pass
                                                         0          1
 /Module_topTestbench_sv_unit/Class_CU_Scoreboard/write/immed__93
                      ../tb/Class_CU_Scoreboard.sv(93)
-                                                     2514          1
+                                                     2566          1
 /Module_topTestbench_sv_unit/Class_CU_Scoreboard/write/immed__81
                      ../tb/Class_CU_Scoreboard.sv(81)
-                                                     2514          1
+                                                     2566          1
 
-Total Coverage By Instance (filtered view): 67.88%
+Total Coverage By Instance (filtered view): 88.68%
 

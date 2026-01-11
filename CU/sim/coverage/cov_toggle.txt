@@ -7,79 +7,67 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        114        78        36    68.42%
+    Toggles                        114       114         0   100.00%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench/cu_dut_iface --
 
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                     ALU_OUTREG_EN           0           0        0.00 
-                                           DRAM_WE           0           0        0.00 
-                                          EQZ_NEQZ           0           0        0.00 
-                                           EQ_COND           0           0        0.00 
-                                       IR_LATCH_EN           0           0        0.00 
-                                            JAL_EN           0           0        0.00 
-                                               JMP           0           0        0.00 
-                                           JUMP_EN           0           0        0.00 
-                                      LMD_LATCH_EN           0           0        0.00 
-                                          MUXA_SEL           0           0        0.00 
-                                          MUXB_SEL           0           0        0.00 
-                                      NPC_LATCH_EN           0           0        0.00 
-                                       PC_LATCH_EN           0           0        0.00 
-                                             RF_WE           0           0        0.00 
-                                     RegA_LATCH_EN           0           0        0.00 
-                                   RegIMM_LATCH_EN           0           0        0.00 
-                                    SIGN_UNSIGN_EN           0           0        0.00 
-                                        WB_MUX_SEL           0           0        0.00 
+                                              Node      1H->0L      0L->1H                          "Coverage"
+                                              ---------------------------------------------------------------
 
 Total Node Count     =         57 
-Toggled Node Count   =         39 
-Untoggled Node Count =         18 
+Toggled Node Count   =         57 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      68.42% (78 of 114 bins)
+Toggle Coverage      =     100.00% (114 of 114 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/cu_toplevel/DP_CU_inst
-=== Design Unit: work.dlx_cu
+=== Design Unit: work.dlx_cu(dlx_cu_hw)
 =================================================================================
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        328       290        38    88.41%
+    Toggles                        340       319        21    93.82%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst --
 
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                     ALU_OUTREG_EN           0           0        0.00 
-                                           DRAM_WE           0           0        0.00 
-                                          EQZ_NEQZ           0           0        0.00 
-                                           EQ_COND           0           0        0.00 
-                                       IR_LATCH_EN           0           0        0.00 
-                                            JAL_EN           0           0        0.00 
-                                               JMP           0           0        0.00 
-                                           JUMP_EN           0           0        0.00 
-                                      LMD_LATCH_EN           0           0        0.00 
-                                          MUXA_SEL           0           0        0.00 
-                                          MUXB_SEL           0           0        0.00 
-                                      NPC_LATCH_EN           0           0        0.00 
-                                       PC_LATCH_EN           0           0        0.00 
-                                             RF_WE           0           0        0.00 
-                                     RegA_LATCH_EN           0           0        0.00 
-                                   RegIMM_LATCH_EN           0           0        0.00 
-                                    SIGN_UNSIGN_EN           0           0        0.00 
-                                        WB_MUX_SEL           0           0        0.00 
-                                              n197           0           0        0.00 
+                                              Node      1H->0L      0L->1H                          "Coverage"
+                                              ---------------------------------------------------------------
+                                        aluOpcode1               ENUM type       Value       Count 
+                                        aluOpcode2               ENUM type       Value       Count 
+                                        aluOpcode3               ENUM type       Value       Count 
+                                                                       NOP           0        0.00 
+                                                                    ADD_op           0        0.00 
+                                                                    AND_op           0        0.00 
+                                                                     OR_op           0        0.00 
+                                                                    SGE_op           0        0.00 
+                                                                    SLE_op           0        0.00 
+                                                                    SLL_op           0        0.00 
+                                                                    SNE_op           0        0.00 
+                                                                    SRL_op           0        0.00 
+                                                                    SUB_op           0        0.00 
+                                                                    XOR_op           0        0.00 
+                                                                    SRA_op           0        0.00 
+                                                                   ADDU_op           0        0.00 
+                                                                   SUBU_op           0        0.00 
+                                                                    SEQ_op           0        0.00 
+                                                                    SLT_op           0        0.00 
+                                                                    SGT_op           0        0.00 
+                                                                   SLTU_op           0        0.00 
+                                                                   SGTU_op           0        0.00 
+                                                                   SLEU_op           0        0.00 
+                                                                   SGEU_op           0        0.00 
+                                       aluOpcode_i               ENUM type       Value       Count 
 
-Total Node Count     =        164 
-Toggled Node Count   =        145 
-Untoggled Node Count =         19 
+Total Node Count     =        212 
+Toggled Node Count   =        191 
+Untoggled Node Count =         21 
 
-Toggle Coverage      =      88.41% (290 of 328 bins)
+Toggle Coverage      =      93.82% (319 of 340 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -94,8 +82,8 @@ Toggle Coverage:
 
 Toggle Coverage for instance /Module_topTestbench --
 
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
+                                              Node      1H->0L      0L->1H                          "Coverage"
+                                              ---------------------------------------------------------------
 
 Total Node Count     =          2 
 Toggled Node Count   =          2 
@@ -104,5 +92,5 @@ Untoggled Node Count =          0
 Toggle Coverage      =     100.00% (4 of 4 bins)
 
 
-Total Coverage By Instance (filtered view): 83.25%
+Total Coverage By Instance (filtered view): 95.41%
 

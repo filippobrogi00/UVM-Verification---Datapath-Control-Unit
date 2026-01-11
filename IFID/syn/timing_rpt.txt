@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : DP_IFID
 Version: S-2021.06-SP4
-Date   : Mon Dec 15 00:08:01 2025
+Date   : Mon Dec 15 18:56:44 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.

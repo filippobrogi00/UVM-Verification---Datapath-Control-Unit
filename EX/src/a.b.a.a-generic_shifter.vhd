@@ -25,16 +25,16 @@ begin
 	SHIFT: process (A, B, LOGIC_ARITH, LEFT_RIGHT, SHIFT_ROTATE) is
 	begin
 	
---		if SHIFT_ROTATE = '0' then 		-- '0' means ROTATE 
---			if LEFT_RIGHT = '0' then	-- '0' means RIGHT
---				RESULT <= std_logic_vector(rotate_right(unsigned(A), to_integer(unsigned(B)))); 
---			else						-- '1' means LEFT
---				RESULT <= std_logic_vector(rotate_left(unsigned(A), to_integer(unsigned(B))));
---			end if;
+		if SHIFT_ROTATE = '0' then 		-- '0' means ROTATE 
+			if LEFT_RIGHT = '0' then	-- '0' means RIGHT
+				RESULT <= std_logic_vector(rotate_right(unsigned(A), to_integer(unsigned(B)))); 
+			else						-- '1' means LEFT
+				RESULT <= std_logic_vector(rotate_left(unsigned(A), to_integer(unsigned(B))));
+			end if;
 			
---		else							-- '1' means SHIFT
+		else							-- '1' means SHIFT
 		
---		if SHIFT_ROTATE = '1' then 		-- '1' means SHIFT always shift
+		if SHIFT_ROTATE = '1' then 		-- '1' means SHIFT always shift
 			if LEFT_RIGHT = '0' then	-- '0' means RIGHT
 				if LOGIC_ARITH = '0' then	-- '0' means ARITHMETIC
 					RESULT <= std_logic_vector(shift_right(signed(A), to_integer(unsigned(B))));
@@ -50,8 +50,8 @@ begin
 				end if;
 			end if;
 			
---		end if;
---		end if;	
+		end if;
+		end if;	
 	end process;
 end architecture BEHAVIORAL;
 
