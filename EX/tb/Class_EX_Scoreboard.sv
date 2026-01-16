@@ -337,12 +337,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 
 		assert (Expected_S3_FF_JAL_EN_OUT ==? exe_seqitem.S3_FF_JAL_EN_OUT) begin
 			// coverage off b
-			`uvm_info("GREEN", "JAL_EN OK!", UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				save_current_fault_to_file(injected_fault, injected_value, 0);
-			`endif // FAULT_INJECTION_CAMPAIGN
-			
+			`uvm_info("GREEN", "JAL_EN OK!", UVM_MEDIUM);		
 			// coverage on b
 		end
 		else begin
@@ -353,24 +348,12 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				Expected_S3_FF_JAL_EN_OUT,
 				exe_seqitem.S3_FF_JAL_EN_OUT
 				), UVM_MEDIUM); 
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				// Stop fault simulation on error throwing UVM_ERROR
-				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
-				save_current_fault_to_file(injected_fault, injected_value, 1);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 		end
 
 		assert (Expected_S3_REG_ADD_WR_OUT ==? exe_seqitem.S3_REG_ADD_WR_OUT) begin
 			// coverage off b
-			`uvm_info("GREEN", "ADD_WR OK!", UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				save_current_fault_to_file(injected_fault, injected_value, 0);
-			`endif // FAULT_INJECTION_CAMPAIGN
-			
+			`uvm_info("GREEN", "ADD_WR OK!", UVM_MEDIUM);		
 			// coverage on b
 		end
 		else begin
@@ -381,24 +364,12 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				Expected_S3_REG_ADD_WR_OUT,
 				exe_seqitem.S3_REG_ADD_WR_OUT
 				), UVM_MEDIUM); 
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				// Stop fault simulation on error throwing UVM_ERROR
-				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
-				save_current_fault_to_file(injected_fault, injected_value, 1);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 		end
 
 		assert (Expected_S3_FF_COND_OUT ==? exe_seqitem.S3_FF_COND_OUT) begin
 			// coverage off b
 			`uvm_info("GREEN", "COND OK!", UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				save_current_fault_to_file(injected_fault, injected_value, 0);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 		end
 		else begin
@@ -412,24 +383,12 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				Expected_S3_FF_COND_OUT,
 				exe_seqitem.S3_FF_COND_OUT
 				), UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				// Stop fault simulation on error throwing UVM_ERROR
-				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
-				save_current_fault_to_file(injected_fault, injected_value, 1);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 		end
 
 		assert (Expected_S3_REG_ALU_OUT ==? exe_seqitem.S3_REG_ALU_OUT) begin
 			// coverage off b
 			`uvm_info("GREEN", "ALU OK!", UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				save_current_fault_to_file(injected_fault, injected_value, 0);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 		end
 		else begin
@@ -443,24 +402,12 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				Expected_S3_REG_ALU_OUT,
 				exe_seqitem.S3_REG_ALU_OUT
 				), UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				// Stop fault simulation on error throwing UVM_ERROR
-				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
-				save_current_fault_to_file(injected_fault, injected_value, 1);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 		end
 
 		assert (Expected_S3_REG_DATA_OUT ==? exe_seqitem.S3_REG_DATA_OUT) begin
 			// coverage off b
-			`uvm_info("GREEN", "DATA OK!", UVM_MEDIUM);
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				save_current_fault_to_file(injected_fault, injected_value, 0);
-			`endif // FAULT_INJECTION_CAMPAIGN
-			
+			`uvm_info("GREEN", "DATA OK!", UVM_MEDIUM);		
 			// coverage on b
 		end
 		else begin
@@ -471,22 +418,12 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				Expected_S3_REG_DATA_OUT,
 				exe_seqitem.S3_REG_DATA_OUT
 				), UVM_MEDIUM); 
-
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				// Stop fault simulation on error throwing UVM_ERROR
-				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
-				save_current_fault_to_file(injected_fault, injected_value, 1);
-			`endif // FAULT_INJECTION_CAMPAIGN
-
 			// coverage on b
 	end
 
 		assert (Expected_S3_REG_NPC_OUT ==? exe_seqitem.S3_REG_NPC_OUT) begin
 			// coverage off b
 			`uvm_info("GREEN", "PC OK!", UVM_MEDIUM);
-			`ifdef FAULT_INJECTION_CAMPAIGN
-				save_current_fault_to_file(injected_fault, injected_value, 0);
-			`endif // FAULT_INJECTION_CAMPAIGN
 			// coverage on b
 		end
 		else begin
@@ -497,12 +434,6 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				Expected_S3_REG_NPC_OUT,
 				exe_seqitem.S3_REG_NPC_OUT
 				), UVM_MEDIUM); 
-
-		`ifdef FAULT_INJECTION_CAMPAIGN
-			// Stop fault simulation on error throwing UVM_ERROR
-			`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
-			save_current_fault_to_file(injected_fault, injected_value, 1);
-		`endif // FAULT_INJECTION_CAMPAIGN
 		// coverage on b
 	end
 
@@ -510,16 +441,31 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 
 	virtual function void report_phase(uvm_phase phase);
 		super.report_phase(phase);
+
 		if(error > 0) begin
 			// coverage off b
+
 			`uvm_info("RED", $sformatf(
 				"Found %d errors",
 				error
 				), UVM_MEDIUM);
-	    // coverage on b
+
+			`ifdef FAULT_INJECTION_CAMPAIGN
+				// Stop fault simulation on error throwing UVM_ERROR
+				save_current_fault_to_file(injected_fault, injected_value, 1);
+				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
+			`endif // FAULT_INJECTION_CAMPAIGN
+
+	  	// coverage on b
 		end
 		else begin
+
+			`ifdef FAULT_INJECTION_CAMPAIGN
+				save_current_fault_to_file(injected_fault, injected_value, 0);
+			`endif // FAULT_INJECTION_CAMPAIGN
+
 			`uvm_info("GREEN", "No error found", UVM_MEDIUM);
+		
 		end
 	endfunction
 

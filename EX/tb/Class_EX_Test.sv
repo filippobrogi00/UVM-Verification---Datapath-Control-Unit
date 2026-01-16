@@ -151,9 +151,9 @@ class Class_EXE_Test extends uvm_test;
   // 	// ----------------------------------------
   // 	// Write classification to file
   // 	// ----------------------------------------
-  // 	outfile = getenv("DETECTED_FAULTS_FILE");
+  // 	outfile = getenv("CLASSIFIED_FAULTS_FILE");
   // 	if (outfile == "") begin
-  //   	`uvm_error("REPORT", "DETECTED_FAULTS_FILE environment variable not set")
+  //   	`uvm_error("REPORT", "CLASSIFIED_FAULTS_FILE environment variable not set")
   //   	return;
   // 	end
 

@@ -36,8 +36,9 @@ else
 fi
 
 # Utilities for output coloring and systemverilog functions
-source ./sim_colors.sh
-source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
+source ./sim_colors.inc.sh
+source ./systemverilog_utils.inc.sh # get_systemverilog_testbench_module()
+source ./parser.inc.sh
 
 # Script variables - Working directories
 BASENAME_CWD="$(basename $(pwd))"
@@ -67,45 +68,6 @@ mkdir -p $COV_DIR
 SV_COMPILE_LIST="$TB_DIR/Iface_EX.sv $TB_DIR/Module_EX_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 
 #########################################################
-####   FAULT INJECTION CAMPAIGN UTILITY FUNCTIONS    ####
-#########################################################
-# @brief: removes comments from the specified file 
-# @params: $1 -> file to process 
-remove_comments() {
-  file="$1"
-  
-  # Remove single-line comments (// ...)
-  sed -i 's://.*$::' "$file"
-
-  # Remove multi-line inline comments (/* ... */)
-  sed -i 's:/\*.*\*/::g' "$file"
-}
-
-# @brief: removes tabs and spaces from the specified file 
-# @params: $1 -> file to process 
-remove_emptychars() {
-  file="$1"
-  
-  # Remove leading and trailing whitespaces and tabs
-  sed -i 's/^[ \t]*//;s/[ \t]*$//' "$file"
-  
-  # Remove empty lines
-  sed -i '/^$/d' "$file"
-}
-
-# @brief: removes tabs and spaces from the specified file 
-# @params: $1 -> file to process 
-remove_emptychars() {
-  file="$1"
-  
-  # Remove leading and trailing whitespaces and tabs
-  sed -i 's/^[ \t]*//;s/[ \t]*$//' "$file"
-  
-  # Remove empty lines
-  sed -i '/^$/d' "$file"
-}
-
-#########################################################
 ####   FAULT INJECTION CAMPAIGN VARIABLES - BASH     ####
 #########################################################
 # Bash flag to indicate if user wants to fault simulate
@@ -117,11 +79,8 @@ fi
 # File path in which Detected Faults count will be stored by UVM 
 # after fault simulation
 if [[ faultsim_enabled -eq 1 ]]; then 
-  export DETECTED_FAULTS_FILE="$SIM_DIR/classified_faults.txt"
-  [[ -f "$DETECTED_FAULTS_FILE" ]] && rm $DETECTED_FAULTS_FILE
-  # DEBUG: 
-  echo "DETECTED FAULTS FILE = $DETECTED_FAULTS_FILE"
-
+  export CLASSIFIED_FAULTS_FILE="$SIM_DIR/classified_faults.txt"
+  [[ -f "$CLASSIFIED_FAULTS_FILE" ]] && rm $CLASSIFIED_FAULTS_FILE
 fi 
 
 # Path to fault list file passed to UVM testbench as ENVVAR_FAULT_LIST_FILE environment variable
@@ -131,16 +90,16 @@ if [[ faultsim_enabled -eq 1 ]]; then
 fi 
 
 ### Build bash variables to export to UVM testbench ###
-# Get top-level TB module name
+# # Get top-level TB module name
 top_level_tb_file=$(find $TB_DIR -type f -name "*top*.sv" | head -n 1)
 export ENVVAR_TB_TOPLEVEL_NAME="$(get_systemverilog_testbench_module $top_level_tb_file)"
-if [[ faultsim_enabled -eq 1 ]]; then 
-  wrapper_tb_file=$(find $TB_DIR -type f -name "*[wW]rapper*.sv" | head -n 1)
-  export ENVVAR_TB_WRAPPER_NAME="$(grep -o '\w\+_inst' $wrapper_tb_file)"  # found in top level TB file, Wrapper instantiation
-  export ENVVAR_TB_DUT_INST_NAME="" # found in wrapper TB file, DUT instantiation
-  export ENVVAR_TB_SIGNAL_NAME=""   # signal to inject fault on	
-  export ENVVAR_TB_FULL_FAULT=""    # complete fault name to inject
-fi  
+# if [[ faultsim_enabled -eq 1 ]]; then 
+#   wrapper_tb_file=$(find $TB_DIR -type f -name "*[wW]rapper*.sv" | head -n 1)
+#   export ENVVAR_TB_WRAPPER_NAME="$(extract_wrapper_instance_name $wrapper_tb_file)"  # found in top level TB file, Wrapper instantiation
+#   export ENVVAR_TB_DUT_INST_NAME="$(extract_dut_instantiation_name $wrapper_tb_file)" # found in wrapper TB file, DUT instantiation
+#   export ENVVAR_TB_SIGNAL_NAME=""   # signal to inject fault on	
+#   export ENVVAR_TB_FULL_FAULT=""    # complete fault name to inject
+# fi  
 
 
 # TODO: Then sed 
@@ -305,27 +264,19 @@ cov_print() {
   classify_and_print_coverage "$cov" "$out_str"
 }
 
-# name: fault_cov_print
-# desc: Prints fault coverage based on Number of Detected Faults
+# @brief: Prints fault coverage based on Number of Detected Faults
 fault_cov_print() {
 
   # Check if detected faults output file has been created by UVM testbench
   detected=0
-  # if [[ ! -f "$DETECTED_FAULTS_FILE" ]]; then
-  #   print_red "Error: UVM Testbench did not create detected faults output file $DETECTED_FAULTS_FILE!"
-  #   return
-  # fi
+  if [[ ! -f "$CLASSIFIED_FAULTS_FILE" ]]; then
+    print_red "Error: UVM Testbench did not create detected faults output file $CLASSIFIED_FAULTS_FILE!"
+    return
+  fi
 
-  # DEBUG: 
-  echo "DETECTED FAULTS FILE = $DETECTED_FAULTS_FILE"
-
-  # Read detected faults from file
-  detected=$(head -n 1 < $DETECTED_FAULTS_FILE)
+  # Get number of detected and total faults 
+  detected=$(grep "DETECTED" $CLASSIFIED_FAULTS_FILE | wc -l)
   total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
-  echo "ENVVAR_FAULT_LIST_FILE = $ENVVAR_FAULT_LIST_FILE."
-  echo "File contents: "
-  cat $ENVVAR_FAULT_LIST_FILE
-  echo "Detected var: $detected" 
   total_cov=$(( $detected * 100 / $total_faults ))
 
   # Print Fault Coverage 
@@ -414,9 +365,13 @@ SIM_TIMESCALE="10ps"
 SIM_OPTIONS="-sv_seed random -onfinish stop +UVM_NO_RELNOTES"
 NUM_SEQITEMS="100" # Default value, can be overridden by cmdline
 
-# Override number of sequence items by passing in an argument to the script
-if [[ $# -eq 1 || $# -eq 2 ]]; then
+# Sequence Items override
+if [[ $# -eq 1 ]]; then
+  # Override by passing in an argument to the script
   NUM_SEQITEMS="$1"
+elif [[ $# -eq 2 && faultsim_enabled -eq 1 ]]; then 
+  # If fault simulation enabled, set it to 1 for faster simulation
+  NUM_SEQITEMS=1
 fi
 
 SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
@@ -425,23 +380,41 @@ SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 # respective directories ($COV_DIR and $COV_HTML_DIR).
 # If fault simulation is enabled, fault simulate for every line of the fault list file.
 # Else, run a single fault-free simulation.
-# if [[ faultsim_enabled -eq 1 ]]; then 
+if [[ faultsim_enabled -eq 1 ]]; then 
 
-#   total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
-#   for i in $(seq 1 $total_faults); do 
-#     print_green "==== FAULT SIMULATION (#$i / $total_faults) ===="
-#     colorize vsim -c -coverage "$tb_module_opt" \
-#       -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
-#       $EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN \
-#       -do "$VSIM_RUN_AND_REPORT_COV"
-#   done 
+  # Initialization
+  sim_cycle_count=1
+  total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
 
-# else 
+  # Create single-line temporary fault list file 
+  export ENVVAR_FAULT_LIST_FILE_TEMP="$SIM_DIR/fault_list_temp.txt"
+
+  # Loop over all faults in the fault list file
+  for i in $(seq 1 $total_faults); do 
+    print_green "==== FAULT SIMULATION (#$i / $total_faults) ===="
+
+    # Read next fault from file 
+    current_fault_line=$(sed -n "${sim_cycle_count}p" "$ENVVAR_FAULT_LIST_FILE")
+
+    # Create temporary fault file with the current fault to be injected
+    [[ -f "$ENVVAR_FAULT_LIST_FILE_TEMP" ]] && rm "$ENVVAR_FAULT_LIST_FILE_TEMP"
+    echo "$current_fault_line" > "$ENVVAR_FAULT_LIST_FILE_TEMP"
+
+    # Run fault simulation
+    colorize vsim -c -coverage "$tb_module_opt" \
+      -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
+      $EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN \
+      -do "$VSIM_RUN_AND_REPORT_COV"
+
+    sim_cycle_count=$((sim_cycle_count + 1))
+  done 
+
+else 
   colorize vsim -c -coverage "$tb_module_opt" \
   -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
   $EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN \
   -do "$VSIM_RUN_AND_REPORT_COV"
-# fi 
+fi 
 
 
 # For synthesis:
@@ -490,3 +463,7 @@ cov_print "$COV_DIR/cov_toggle.txt"
 if [[ faultsim_enabled -eq 1 ]]; then 
   fault_cov_print
 fi
+
+# TODO: Remove 
+print_blue "CLASSIFIED:"
+cat $CLASSIFIED_FAULTS_FILE

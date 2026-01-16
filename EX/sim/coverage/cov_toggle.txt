@@ -7,7 +7,7 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        628         2       626     0.31%
+    Toggles                        628       627         1    99.84%
 
 ================================Toggle Details================================
 
@@ -15,34 +15,13 @@ Toggle Coverage for instance /Module_topTestbench/exe_dut_iface --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                     ALU_OUTREG_EN           0           0        0.00 
-                                DP_ALU_OPCODE[4-0]           0           0        0.00 
-                                          EQZ_NEQZ           0           0        0.00 
-                                           EQ_COND           0           0        0.00 
-                                               JMP           0           0        0.00 
-                                         MUX_A_SEL           0           0        0.00 
-                                         MUX_B_SEL           0           0        0.00 
-                              S1_REG_NPC_OUT[31-0]           0           0        0.00 
-                                  S2_FF_JAL_EN_OUT           0           0        0.00 
-                            S2_REG_ADD_WR_OUT[4-0]           0           0        0.00 
-                              S2_REG_NPC_OUT[31-0]           0           0        0.00 
-                           S2_REG_SE_IMM_OUT[31-0]           0           0        0.00 
-                           S2_REG_UE_IMM_OUT[31-0]           0           0        0.00 
-                              S2_RFILE_A_OUT[31-0]           0           0        0.00 
-                              S2_RFILE_B_OUT[31-0]           0           0        0.00 
-                                    S3_FF_COND_OUT           0           0        0.00 
-                                  S3_FF_JAL_EN_OUT           0           0        0.00 
-                            S3_REG_ADD_WR_OUT[4-0]           0           0        0.00 
-                              S3_REG_ALU_OUT[31-0]           0           0        0.00 
-                             S3_REG_DATA_OUT[31-0]           0           0        0.00 
-                              S3_REG_NPC_OUT[31-0]           0           0        0.00 
-                                              nRST           0           0        0.00 
+                                S3_REG_ALU_OUT[27]           1           0       50.00 
 
 Total Node Count     =        314 
-Toggled Node Count   =          1 
-Untoggled Node Count =        313 
+Toggled Node Count   =        313 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =       0.31% (2 of 628 bins)
+Toggle Coverage      =      99.84% (627 of 628 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_A
@@ -51,7 +30,7 @@ Toggle Coverage      =       0.31% (2 of 628 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        192         0       192     0.00%
+    Toggles                        192       192         0   100.00%
 
 ================================Toggle Details================================
 
@@ -59,15 +38,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MU
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           A(0-31)           0           0        0.00 
-                                           B(0-31)           0           0        0.00 
-                                           Y(0-31)           0           0        0.00 
 
 Total Node Count     =         96 
-Toggled Node Count   =          0 
-Untoggled Node Count =         96 
+Toggled Node Count   =         96 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 192 bins)
+Toggle Coverage      =     100.00% (192 of 192 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_B
@@ -76,7 +52,7 @@ Toggle Coverage      =       0.00% (0 of 192 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        192         0       192     0.00%
+    Toggles                        192       192         0   100.00%
 
 ================================Toggle Details================================
 
@@ -84,15 +60,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MU
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           A(0-31)           0           0        0.00 
-                                           B(0-31)           0           0        0.00 
-                                           Y(0-31)           0           0        0.00 
 
 Total Node Count     =         96 
-Toggled Node Count   =          0 
-Untoggled Node Count =         96 
+Toggled Node Count   =         96 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 192 bins)
+Toggle Coverage      =     100.00% (192 of 192 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_JMP
@@ -101,7 +74,7 @@ Toggle Coverage      =       0.00% (0 of 192 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        192         0       192     0.00%
+    Toggles                        192       192         0   100.00%
 
 ================================Toggle Details================================
 
@@ -109,15 +82,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MU
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           A(0-31)           0           0        0.00 
-                                           B(0-31)           0           0        0.00 
-                                           Y(0-31)           0           0        0.00 
 
 Total Node Count     =         96 
-Toggled Node Count   =          0 
-Untoggled Node Count =         96 
+Toggled Node Count   =         96 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 192 bins)
+Toggle Coverage      =     100.00% (192 of 192 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU/shifter
@@ -126,7 +96,7 @@ Toggle Coverage      =       0.00% (0 of 192 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        138         0       138     0.00%
+    Toggles                        138        74        64    53.62%
 
 ================================Toggle Details================================
 
@@ -134,15 +104,13 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_AL
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           A(0-31)           0           0        0.00 
-                                            B(0-4)           0           0        0.00 
                                       RESULT(0-31)           0           0        0.00 
 
 Total Node Count     =         69 
-Toggled Node Count   =          0 
-Untoggled Node Count =         69 
+Toggled Node Count   =         37 
+Untoggled Node Count =         32 
 
-Toggle Coverage      =       0.00% (0 of 138 bins)
+Toggle Coverage      =      53.62% (74 of 138 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU
@@ -151,7 +119,7 @@ Toggle Coverage      =       0.00% (0 of 138 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        272        32       240    11.76%
+    Toggles                        272       205        67    75.36%
 
 ================================Toggle Details================================
 
@@ -159,20 +127,16 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_AL
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           A(0-31)           0           0        0.00 
-                                   ALU_OPCODE(0-4)           0           0        0.00 
-                                           B(0-31)           0           0        0.00 
-                                  LEFT_RIGHT_shftr           0           0        0.00 
-                                 LOGIC_ARITH_shftr           0           0        0.00 
+                                  LEFT_RIGHT_shftr           0           1       50.00 
+                                 LOGIC_ARITH_shftr           0           1       50.00 
                                 RESULT_shftr(0-31)           0           0        0.00 
-                                SHIFT_ROTATE_shftr           0           0        0.00 
-                                           Y(0-31)           1           0       50.00 
+                                SHIFT_ROTATE_shftr           0           1       50.00 
 
 Total Node Count     =        136 
-Toggled Node Count   =          0 
-Untoggled Node Count =        136 
+Toggled Node Count   =        101 
+Untoggled Node Count =         35 
 
-Toggle Coverage      =      11.76% (32 of 272 bins)
+Toggle Coverage      =      75.36% (205 of 272 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ALU
@@ -181,7 +145,7 @@ Toggle Coverage      =      11.76% (32 of 272 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        128        32        96    25.00%
+    Toggles                        128       127         1    99.21%
 
 ================================Toggle Details================================
 
@@ -189,14 +153,13 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_RE
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           D(0-31)           1           0       50.00 
-                                           Q(0-31)           0           0        0.00 
+                                             Q(27)           1           0       50.00 
 
 Total Node Count     =         64 
-Toggled Node Count   =          0 
-Untoggled Node Count =         64 
+Toggled Node Count   =         63 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      25.00% (32 of 128 bins)
+Toggle Coverage      =      99.21% (127 of 128 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_DATA
@@ -205,7 +168,7 @@ Toggle Coverage      =      25.00% (32 of 128 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        128         0       128     0.00%
+    Toggles                        128       128         0   100.00%
 
 ================================Toggle Details================================
 
@@ -213,14 +176,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_RE
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           D(0-31)           0           0        0.00 
-                                           Q(0-31)           0           0        0.00 
 
 Total Node Count     =         64 
-Toggled Node Count   =          0 
-Untoggled Node Count =         64 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 128 bins)
+Toggle Coverage      =     100.00% (128 of 128 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_COND
@@ -229,7 +190,7 @@ Toggle Coverage      =       0.00% (0 of 128 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         10         2         8    20.00%
+    Toggles                         10         9         1    90.00%
 
 ================================Toggle Details================================
 
@@ -237,16 +198,13 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_RE
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                              D(0)           0           0        0.00 
-                                             LD_EN           0           0        0.00 
-                                              nRST           0           0        0.00 
-                                              Q(0)           0           0        0.00 
+                                              D(0)           0           1       50.00 
 
 Total Node Count     =          5 
-Toggled Node Count   =          1 
-Untoggled Node Count =          4 
+Toggled Node Count   =          4 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      20.00% (2 of 10 bins)
+Toggle Coverage      =      90.00% (9 of 10 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ZeroCompa
@@ -255,7 +213,7 @@ Toggle Coverage      =      20.00% (2 of 10 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         64         0        64     0.00%
+    Toggles                         64        64         0   100.00%
 
 ================================Toggle Details================================
 
@@ -263,13 +221,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_Ze
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                  NUMtoCHECK(0-31)           0           0        0.00 
 
 Total Node Count     =         32 
-Toggled Node Count   =          0 
-Untoggled Node Count =         32 
+Toggled Node Count   =         32 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 64 bins)
+Toggle Coverage      =     100.00% (64 of 64 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_FF_JAL_EN
@@ -278,7 +235,7 @@ Toggle Coverage      =       0.00% (0 of 64 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         10         2         8    20.00%
+    Toggles                         10         8         2    80.00%
 
 ================================Toggle Details================================
 
@@ -286,16 +243,13 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_FF
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                              D(0)           0           0        0.00 
                                              LD_EN           0           0        0.00 
-                                              nRST           0           0        0.00 
-                                              Q(0)           0           0        0.00 
 
 Total Node Count     =          5 
-Toggled Node Count   =          1 
-Untoggled Node Count =          4 
+Toggled Node Count   =          4 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      20.00% (2 of 10 bins)
+Toggle Coverage      =      80.00% (8 of 10 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_NPC
@@ -304,7 +258,7 @@ Toggle Coverage      =      20.00% (2 of 10 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        128         0       128     0.00%
+    Toggles                        128       128         0   100.00%
 
 ================================Toggle Details================================
 
@@ -312,14 +266,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_RE
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                           D(0-31)           0           0        0.00 
-                                           Q(0-31)           0           0        0.00 
 
 Total Node Count     =         64 
-Toggled Node Count   =          0 
-Untoggled Node Count =         64 
+Toggled Node Count   =         64 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 128 bins)
+Toggle Coverage      =     100.00% (128 of 128 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ADD_WR
@@ -328,7 +280,7 @@ Toggle Coverage      =       0.00% (0 of 128 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         20         0        20     0.00%
+    Toggles                         20        20         0   100.00%
 
 ================================Toggle Details================================
 
@@ -336,14 +288,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_RE
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                            D(0-4)           0           0        0.00 
-                                            Q(0-4)           0           0        0.00 
 
 Total Node Count     =         10 
-Toggled Node Count   =          0 
-Untoggled Node Count =         10 
+Toggled Node Count   =         10 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =       0.00% (0 of 20 bins)
+Toggle Coverage      =     100.00% (20 of 20 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst
@@ -352,7 +302,7 @@ Toggle Coverage      =       0.00% (0 of 20 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        886        34       852     3.83%
+    Toggles                        886       884         2    99.77%
 
 ================================Toggle Details================================
 
@@ -360,39 +310,14 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                     ALU_OUTREG_EN           0           0        0.00 
-                                DP_ALU_OPCODE(0-4)           0           0        0.00 
-                                           EQ_COND           0           0        0.00 
-                                          EQZ_NEQZ           0           0        0.00 
-                                               JMP           0           0        0.00 
-                                         MUX_A_SEL           0           0        0.00 
-                                         MUX_B_SEL           0           0        0.00 
-                                              nRST           0           0        0.00 
-                              S1_REG_NPC_OUT(0-31)           0           0        0.00 
-                                  S2_FF_JAL_EN_OUT           0           0        0.00 
-                            S2_REG_ADD_WR_OUT(0-4)           0           0        0.00 
-                              S2_REG_NPC_OUT(0-31)           0           0        0.00 
-                           S2_REG_SE_IMM_OUT(0-31)           0           0        0.00 
-                           S2_REG_UE_IMM_OUT(0-31)           0           0        0.00 
-                              S2_RFILE_A_OUT(0-31)           0           0        0.00 
-                              S2_RFILE_B_OUT(0-31)           0           0        0.00 
-                                  S3_ALU_OUT(0-31)           1           0       50.00 
-                                    S3_BranchTaken           0           0        0.00 
-                                    S3_FF_COND_OUT           0           0        0.00 
-                                  S3_FF_JAL_EN_OUT           0           0        0.00 
-                                S3_MUX_A_OUT(0-31)           0           0        0.00 
-                                S3_MUX_B_OUT(0-31)           0           0        0.00 
-                              S3_MUX_JMP_OUT(0-31)           0           0        0.00 
-                            S3_REG_ADD_WR_OUT(0-4)           0           0        0.00 
-                              S3_REG_ALU_OUT(0-31)           0           0        0.00 
-                             S3_REG_DATA_OUT(0-31)           0           0        0.00 
-                              S3_REG_NPC_OUT(0-31)           0           0        0.00 
+                                    S3_BranchTaken           0           1       50.00 
+                                S3_REG_ALU_OUT(27)           1           0       50.00 
 
 Total Node Count     =        443 
-Toggled Node Count   =          1 
-Untoggled Node Count =        442 
+Toggled Node Count   =        441 
+Untoggled Node Count =          2 
 
-Toggle Coverage      =       3.83% (34 of 886 bins)
+Toggle Coverage      =      99.77% (884 of 886 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -401,7 +326,7 @@ Toggle Coverage      =       3.83% (34 of 886 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        260         9       251     3.46%
+    Toggles                        260        11       249     4.23%
 
 ================================Toggle Details================================
 
@@ -413,20 +338,20 @@ Toggle Coverage for instance /Module_topTestbench --
                         classified_faults_fd[30-3]           0           0        0.00 
                            classified_faults_fd[2]           0           1       50.00 
                          classified_faults_fd[1-0]           0           0        0.00 
-                           current_inj_value[31-0]           0           0        0.00 
+                           current_inj_value[31-1]           0           0        0.00 
+                              current_inj_value[0]           0           1       50.00 
                                 faults_file_fd[31]           0           1       50.00 
                               faults_file_fd[30-2]           0           0        0.00 
                                faults_file_fd[1-0]           0           1       50.00 
                               faultsim_cycle[31-1]           0           0        0.00 
                                  faultsim_cycle[0]           0           1       50.00 
-                                       globalRst_n           0           1       50.00 
 
 Total Node Count     =        130 
-Toggled Node Count   =          1 
-Untoggled Node Count =        129 
+Toggled Node Count   =          2 
+Untoggled Node Count =        128 
 
-Toggle Coverage      =       3.46% (9 of 260 bins)
+Toggle Coverage      =       4.23% (11 of 260 bins)
 
 
-Total Coverage By Instance (filtered view): 2.42%
+Total Coverage By Instance (filtered view): 82.63%
 

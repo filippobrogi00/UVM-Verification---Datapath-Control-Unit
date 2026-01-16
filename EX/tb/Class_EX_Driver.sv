@@ -62,7 +62,6 @@ class Class_EXE_Driver extends uvm_driver #(Class_EXE_SequenceItem);
 			int    current_inj_value; 
 			uvm_config_db#(string)::get(null, "", "current_fault", current_fault);
 			uvm_config_db#(int)::get(null, "", "current_inj_value", current_inj_value);
-			// uvm_hdl_force("Module_topTestbench.exe_toplevel.DP_EXE_inst.S3_BranchTaken", 0);
 			uvm_hdl_force(current_fault, current_inj_value);
 			`uvm_info("BLUE", $sformatf("Injected fault stuck-at-%0d on %s", current_inj_value, current_fault), "UVM_MEDIUM");
 		`endif // FAULT_INJECTION_CAMPAIGN
@@ -99,21 +98,6 @@ class Class_EXE_Driver extends uvm_driver #(Class_EXE_SequenceItem);
 			exe_dut_iface.JMP				= exe_seqitem.JMP;
 			exe_dut_iface.EQZ_NEQZ			= exe_seqitem.EQZ_NEQZ;
 			exe_dut_iface.DP_ALU_OPCODE		= exe_seqitem.DP_ALU_OPCODE;
-
-			/*
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ADD_WR (NBit_Reg)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_NPC (NBit_Reg)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ZeroCompa (ZeroCompa)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU (ALU)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_JMP (NBit_2to1MUX)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_DATA (NBit_Reg)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ALU (NBit_Reg)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_FF_JAL_EN (nbit_reg)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_A (NBit_2to1MUX)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_COND (nbit_reg)}
-			* {/Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_B (NBit_2to1MUX)}
-			*
-			*/
 
 			// Tell sequence that driver has finished current item
 			seq_item_port.item_done();

@@ -213,39 +213,6 @@ package pkg_const;
    *** FAULT CAMPAIGN FUNCTIONS ***
    *********************************/
 
-  // function void increment_detected_faults();
-  //  // Increment FC shared variable
-  //  int detected_faults;
-	//  uvm_config_db#(int)::get(null, "", "detected_faults", detected_faults);
-	// 	uvm_config_db#(int)::set(null, "", "detected_faults", detected_faults + 1);
-  // endfunction
-
-  // `ifndef SET_CONFIG_DB
-  // `define SET_CONFIG_DB(TYPE, INST, FIELD, VALUE) \
-  //     if (!uvm_config_db#(TYPE)::set(null, INST, FIELD, VALUE)) begin \
-  //         `uvm_error("CONFIG_DB", $sformatf("Failed to set %s in %s", FIELD, INST)) \
-  //     end
-  // `endif
-
-  // `ifndef GET_CONFIG_DB
-  // `define GET_CONFIG_DB(TYPE, INST, FIELD, VAR) \
-  //     if (!uvm_config_db#(TYPE)::get(null, INST, FIELD, VAR)) begin \
-  //         `uvm_error("CONFIG_DB", $sformatf("Failed to get %s from %s", FIELD, INST)) \
-  //     end
-  // `endif
-
-  // task stop_faultsim();
-  //     int local_detected_faults;
-      
-  //     // Finish simulation
-  //     $finish;
-      
-  //     // Increment FC shared variable
-  //     `GET_CONFIG_DB(int, "", "detected_faults", local_detected_faults);
-  //     `SET_CONFIG_DB(int, "", "detected_faults", local_detected_faults + 1);
-  // endtask
-
-
   // @brief Save current detected faults count into file
   // @params:
   //    fault    : injected fault name (hierarchy)
@@ -255,7 +222,7 @@ package pkg_const;
   function void save_current_fault_to_file(string fault, int value, int detected);
     // Save into file (name passed via Bash environment variable)
     int det_fd;
-    automatic string detected_faults_file = getenv("DETECTED_FAULTS_FILE");
+    automatic string detected_faults_file = getenv("CLASSIFIED_FAULTS_FILE");
     automatic string detected_string = (detected == 1) ? "DETECTED" : "UNDETECTED";
     det_fd = $fopen(detected_faults_file, "a");
     if (!(det_fd)) begin
