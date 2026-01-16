@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version S-2021.06-SP4 for linux64 -- Nov 23, 2021
-#@ # Date:   Sat Dec 13 11:27:41 2025
+#@ # Date:   Fri Jan 16 11:39:14 2026
 #@ # Run by: ws25.1@localhost.localdomain
 #@ 
 
@@ -8107,9 +8107,12 @@ source -echo -verbose /home/ws25.1/Task3Maganuco/step-3/EX/syn/synthetize.tcl
 #@ #set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
 #@ #set_load $OLOAD [all_outputs]
 #@ 
+#@ #set_dont_touch [current_design]
+#@ 
 #@ #####################################
 #@ # START THE SYNTHESIS
 #@ #####################################
+#@ set_app_var verilogout_no_tri true
 #@ compile
 #@ 
 #@ #####################################

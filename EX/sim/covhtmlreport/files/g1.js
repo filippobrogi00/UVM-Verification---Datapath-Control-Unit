@@ -1,2 +1,2 @@
-var g_data = {"34":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":4,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_EXE_CoverageTracker/Covergroup_EXE",1,1,35],"cov":[462,451,97.70],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
+var g_data = {"34":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":4,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_EXE_CoverageTracker/Covergroup_EXE",1,1,35],"cov":[462,30,48.75],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
 processCovergroupsData(g_data);

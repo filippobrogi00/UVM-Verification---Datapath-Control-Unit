@@ -46,7 +46,7 @@ class Class_EXE_Monitor extends uvm_monitor;
     if (!uvm_config_db#(virtual Iface_EXE #(NBITS))::get(
             this, "", "exe_dut_iface", exe_dut_iface
         )) begin
-      `uvm_error("[MONITOR]", "Could not get handle to DUT interface!")
+      `uvm_fatal("[MONITOR]", "Could not get handle to DUT interface!")
     end
 
     // coverage on

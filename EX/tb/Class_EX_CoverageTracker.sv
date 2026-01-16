@@ -90,7 +90,7 @@ class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem)
     if (!uvm_config_db#(virtual Iface_EXE #(NBITS))::get(
             this, "", "exe_dut_iface", exe_dut_iface
         )) begin
-      `uvm_error("[COVERAGE TRACKER]", "Failed to get DUT interface")
+      `uvm_fatal("[COVERAGE TRACKER]", "Failed to get DUT interface")
     end
 
     // coverage on

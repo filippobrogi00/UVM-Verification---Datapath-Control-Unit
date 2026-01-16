@@ -47,7 +47,15 @@ class Class_SimpleReportServer extends uvm_report_server;
       "YELLOW":  formattedMessage = $sformatf("%s%s", colors[YELLOW], message);
       "RED":     formattedMessage = $sformatf("%s%s", colors[RED], message);
       "BOLDRED": formattedMessage = $sformatf("%s%s", colors[BOLD_RED], message);
-    endcase
+      default:   
+        case (severity)
+          UVM_INFO:    formattedMessage = $sformatf("%s%s", colors[BLUE], message); 
+          UVM_ERROR: 
+          UVM_FATAL:   formattedMessage = $sformatf("%s%s", colors[RED], message);
+          UVM_WARNING: formattedMessage = $sformatf("%s%s", colors[YELLOW], message);
+          default:     formattedMessage = message;
+        endcase
+      endcase
     // coverage on
 
     // At the end, add ANSI for returning to normal and newline

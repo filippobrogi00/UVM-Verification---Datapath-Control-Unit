@@ -1,23 +1,23 @@
 library IEEE;
-use IEEE.std_logic_1164.all; 
-use IEEE.NUMERIC_STD.all; 
+use IEEE.std_logic_1164.all;
+use IEEE.NUMERIC_STD.all;
 use work.myTypes.all;
 
 entity ALU is
 
 	GENERIC (IR_SIZE: integer := 32);
-	Port (	
-    	A			:	IN	std_logic_vector (IR_SIZE-1 DOWNTO 0);
-		B			: 	IN 	std_logic_vector (IR_SIZE-1 DOWNTO 0);
-		ALU_OPCODE	: 	IN  aluOp;
-		Y			: 	OUT	std_logic_vector (IR_SIZE-1 DOWNTO 0));
+	Port (
+    A           : IN  std_logic_vector (IR_SIZE-1 DOWNTO 0);
+		B           : IN  std_logic_vector (IR_SIZE-1 DOWNTO 0);
+		ALU_OPCODE  : IN  aluOp;
+		Y           : OUT std_logic_vector (IR_SIZE-1 DOWNTO 0));
 
 end ALU;
 
-architecture BEH_COMB of ALU is 
+architecture BEH_COMB of ALU is
 
 	constant N : INTEGER := 32;
-	
+
 	COMPONENT SHIFTER_GENERIC is
 	generic(N: integer := 32);
 	port(	A: in std_logic_vector(N-1 downto 0);
@@ -26,7 +26,7 @@ architecture BEH_COMB of ALU is
 			LEFT_RIGHT: in std_logic;	-- 1 = left, 0 = right
 			SHIFT_ROTATE: in std_logic;	-- 1 = shift, 0 = rotate
 			RESULT: out std_logic_vector(N-1 downto 0));
-	END COMPONENT; 
+	END COMPONENT;
 
 	SIGNAL LOGIC_ARITH_shftr : STD_LOGIC;
 	SIGNAL LEFT_RIGHT_shftr : STD_LOGIC;
@@ -34,7 +34,7 @@ architecture BEH_COMB of ALU is
 	SIGNAL RESULT_shftr : std_logic_vector(N-1 downto 0);
 
 begin
-	
+
 	LOGIC_ARITH_shftr <= '1' WHEN ALU_OPCODE = SLL_op ELSE
             			 '1' WHEN ALU_OPCODE = SRL_op ELSE
             			 '0' WHEN ALU_OPCODE = SRA_op ELSE   -- Pro Version Instruction (SRA)
@@ -64,119 +64,119 @@ shifter: SHIFTER_GENERIC
 
 	process (A, B, ALU_OPCODE, RESULT_shftr)
 	begin
-		case ALU_OPCODE is 	
-		-- *** DLX Basic Version Operations: *** 
+		case ALU_OPCODE is
+		-- *** DLX Basic Version Operations: ***
 			-- Addition - Straightforward implementation
 			WHEN ADD_op => Y <= std_logic_vector(signed(A) + signed(B));
 
 			-- Substraction - Straightforward implementation
 			WHEN SUB_op => Y <= std_logic_vector(signed(A) - signed(B));
-			
+
 			-- Bitwise Operations
-			WHEN AND_op => Y <= A AND B; 
-			WHEN OR_op 	=> Y <= A OR B; 
+			WHEN AND_op => Y <= A AND B;
+			WHEN OR_op 	=> Y <= A OR B;
 			WHEN XOR_op => Y <= A XOR B;
 
-			-- Shift Operations  
+			-- Shift Operations
 			WHEN SLL_op => Y <= RESULT_shftr;        -- Shift Left Logical
 			WHEN SRL_op => Y <= RESULT_shftr;        -- Shift Right Logical
 			WHEN SRA_op => Y <= RESULT_shftr;        -- Shift Right Arithmetic (Pro Version Instruction)
 
 			-- Comparison Operations
 			WHEN SGE_op =>
-					if signed(A) >= signed(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+					if signed(A) >= signed(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
-					END IF; 
+					END IF;
 
 			WHEN SLE_op =>
-					if signed(A) <= signed(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+					if signed(A) <= signed(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
-					END IF;					
+					END IF;
 
 			WHEN SNE_op =>
-					if signed(A) /= signed(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+					if signed(A) /= signed(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
 					END IF;
-					
-			-- NOP 
-			WHEN NOP => Y <= (OTHERS => 'Z'); 
-			
-		-- @@@ DLX Pro Version Operations: @@@ 
-		
+
+			-- NOP
+			WHEN NOP => Y <= (OTHERS => 'Z');
+
+		-- @@@ DLX Pro Version Operations: @@@
+
 		    -- ADDUI - Straightforward Implementation
 		    WHEN ADDU_op => Y <= std_logic_vector(unsigned(A) + unsigned(B));
-		    
+
 		    -- SUBUI - Straightforward Implementation
 		    WHEN SUBU_op => Y <= std_logic_vector(unsigned(A) - unsigned(B));
-		    
+
 		    -- SEQ
-		    WHEN SEQ_op => 
-		            if signed(A) = signed(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+		    WHEN SEQ_op =>
+		            if signed(A) = signed(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
 					END IF;
-		    
+
 		    -- SLT
 		    WHEN SLT_op =>
-					if signed(A) < signed(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+					if signed(A) < signed(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
 					END IF;
-		    
+
 		    -- SGT
 		    WHEN SGT_op =>
-					if signed(A) > signed(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
-					ELSE
-						Y <= (OTHERS => '0');
-					END IF;		    
-		    
-		    -- SLTU
-		    WHEN SLTU_op =>
-					if unsigned(A) < unsigned(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+					if signed(A) > signed(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
 					END IF;
-		    
+
+		    -- SLTU
+		    WHEN SLTU_op =>
+					if unsigned(A) < unsigned(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
+					ELSE
+						Y <= (OTHERS => '0');
+					END IF;
+
 		    -- SGTU
-		    WHEN SGTU_op =>
-					if unsigned(A) > unsigned(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+		  WHEN SGTU_op =>
+					if unsigned(A) > unsigned(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
-					END IF;	
-						    
+					END IF;
+
 		    -- SLEU
-		    WHEN SLEU_op =>
-					if unsigned(A) <= unsigned(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+		  WHEN SLEU_op =>
+					if unsigned(A) <= unsigned(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
-					END IF;		    
-		    
+					END IF;
+
 		    -- SGEU
 			WHEN SGEU_op =>
-					if unsigned(A) >= unsigned(B) THEN 
-						Y <= std_logic_vector(to_unsigned(1, IR_SIZE)); 
+					if unsigned(A) >= unsigned(B) THEN
+						Y <= std_logic_vector(to_unsigned(1, IR_SIZE));
 					ELSE
 						Y <= (OTHERS => '0');
-					END IF;		    		
-			
-			WHEN OTHERS => Y <= (OTHERS => 'Z'); 
+					END IF;
+
+			WHEN OTHERS => Y <= (OTHERS => 'Z');
 		END CASE;
-	 
+
 
 	end process;
-	
+
 
 end BEH_COMB;
 

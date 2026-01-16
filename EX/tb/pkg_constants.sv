@@ -1,8 +1,13 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
-`include "uvm_macros.svh"
-import uvm_pkg::*;
 
 package pkg_const;
+
+  `include "uvm_macros.svh"
+  import uvm_pkg::*;
+
+  // NOTE: Must be imported inside package, otherwise "scope error" arises.
+	import "DPI-C" function string getenv(input string name); 
+
   /* Simulation constants */
   localparam time CLKPERIOD = 10ns;
 
@@ -105,10 +110,8 @@ package pkg_const;
   * FUNCTIONS *
   ************/
 
-
   // NOTE: Disable coverage for these 3 functions because they are
   // only used for CRG, and not in "runtime" code.
-  // TODO: Maybe add simple unit test in top module?
   // coverage off
   // @brief Helper function to check type of instruction.
   // @return One of I_TYPE, R_TYPE, J_TYPE constants.
@@ -206,6 +209,62 @@ package pkg_const;
     end
   endfunction
 
+  /********************************
+   *** FAULT CAMPAIGN FUNCTIONS ***
+   *********************************/
+
+  // function void increment_detected_faults();
+  //  // Increment FC shared variable
+  //  int detected_faults;
+	//  uvm_config_db#(int)::get(null, "", "detected_faults", detected_faults);
+	// 	uvm_config_db#(int)::set(null, "", "detected_faults", detected_faults + 1);
+  // endfunction
+
+  // `ifndef SET_CONFIG_DB
+  // `define SET_CONFIG_DB(TYPE, INST, FIELD, VALUE) \
+  //     if (!uvm_config_db#(TYPE)::set(null, INST, FIELD, VALUE)) begin \
+  //         `uvm_error("CONFIG_DB", $sformatf("Failed to set %s in %s", FIELD, INST)) \
+  //     end
+  // `endif
+
+  // `ifndef GET_CONFIG_DB
+  // `define GET_CONFIG_DB(TYPE, INST, FIELD, VAR) \
+  //     if (!uvm_config_db#(TYPE)::get(null, INST, FIELD, VAR)) begin \
+  //         `uvm_error("CONFIG_DB", $sformatf("Failed to get %s from %s", FIELD, INST)) \
+  //     end
+  // `endif
+
+  // task stop_faultsim();
+  //     int local_detected_faults;
+      
+  //     // Finish simulation
+  //     $finish;
+      
+  //     // Increment FC shared variable
+  //     `GET_CONFIG_DB(int, "", "detected_faults", local_detected_faults);
+  //     `SET_CONFIG_DB(int, "", "detected_faults", local_detected_faults + 1);
+  // endtask
+
+
+  // @brief Save current detected faults count into file
+  // @params:
+  //    fault    : injected fault name (hierarchy)
+  //    value    : injected Stuck-at value (0/1)
+  //    detected : 1 if detected, 0 otherwise
+  // NOTE: Can't use uvm_config_db::get/set
+  function void save_current_fault_to_file(string fault, int value, int detected);
+    // Save into file (name passed via Bash environment variable)
+    int det_fd;
+    automatic string detected_faults_file = getenv("DETECTED_FAULTS_FILE");
+    automatic string detected_string = (detected == 1) ? "DETECTED" : "UNDETECTED";
+    det_fd = $fopen(detected_faults_file, "a");
+    if (!(det_fd)) begin
+      `uvm_fatal("FAULT_CAMPAIGN", $sformatf("Could not open output file %s", detected_faults_file));
+      $finish;
+    end
+    $fwrite(det_fd, $sformatf("%s\tSA-%0d\t%s\n", fault, value, detected_string));
+    $fclose(det_fd);
+  endfunction
 
 // coverage on
 endpackage

@@ -59,9 +59,12 @@ set_dont_touch_network my_clk
 #set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
 #set_load $OLOAD [all_outputs]
 
+#set_dont_touch [current_design]
+
 #####################################
 # START THE SYNTHESIS
 #####################################
+set_app_var verilogout_no_tri true
 compile
 
 #####################################

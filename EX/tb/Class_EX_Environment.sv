@@ -39,7 +39,7 @@ class Class_EXE_Environment extends uvm_env;
     exe_agent = Class_EXE_Agent::type_id::create("exe_agent", this);
     exe_scoreboard = Class_EXE_Scoreboard::type_id::create("exe_scoreboard", this);
     exe_coverage_tracker = Class_EXE_CoverageTracker::type_id::create("exe_coverage_tracker", this);
-  
+
 	// Create Fault Injector
 //    exe_fault_injector = Class_EXE_FaultInjector::type_id::create("exe_fault_injector", this);
 
@@ -59,7 +59,6 @@ class Class_EXE_Environment extends uvm_env;
     // Connect CoverageTracker's Implementation port with Monitor's port
     exe_agent.exe_monitor.analysis_port.connect(exe_coverage_tracker.analysis_port_imp);
   endfunction : connect_phase
-
 
 endclass
 

@@ -1,0 +1,3 @@
+Module_topTestbench.exe_toplevel.DP_EXE_inst.S3_BranchTaken 0 
+Module_topTestbench.exe_toplevel.DP_EXE_inst.S3_BranchTaken 0
+Module_topTestbench.exe_toplevel.DP_EXE_inst.S3_BranchTaken 1

@@ -555,7 +555,7 @@ class Class_EXE_Sequence extends uvm_sequence #(Class_EXE_SequenceItem);
     // Get numSequenceItems from config DB (default or overwritten by user)
     // coverage off
     if (!uvm_config_db#(int)::get(null, "", "numSeqItems", numSequenceItems)) begin
-      `uvm_error("SEQITEM", "Failed to get numSequenceItems from DB")
+      `uvm_fatal("SEQITEM", "Failed to get numSequenceItems from DB")
     end
     // coverage on
   endfunction
@@ -601,6 +601,7 @@ class Class_EXE_Sequence extends uvm_sequence #(Class_EXE_SequenceItem);
 			// now Driver can pick up item using .get_next_item()
 			finish_item(exe_sequenceItem);
 		end	
+		
 		repeat (numSequenceItems) begin
 	
 			// Create instance of a new sequence item
@@ -628,6 +629,7 @@ class Class_EXE_Sequence extends uvm_sequence #(Class_EXE_SequenceItem);
 			// now Driver can pick up item using .get_next_item()
 			finish_item(exe_sequenceItem);
 		end
+
 		repeat (numSequenceItems) begin
 	
 			// Create instance of a new sequence item
