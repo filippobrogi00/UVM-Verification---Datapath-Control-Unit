@@ -11,52 +11,52 @@ cModel Technology
 d/home/ws25.5/Desktop/step-3/MEMWB/sim
 XmyTypes__mti__sv__equiv__implct__pack
 Z0 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z1 !s110 1765844166
+!s110 1768687760
 !i10b 1
 !s100 QjoAfGR?eM7aE1QFb]=Yl2
-Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-Ifzb0jIjB=40m@RH`7d0TL0
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I20Qa7D8H7HJD9VX5E9lh92
 S1
-Z3 d/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim
-Z4 w1765844166
-8/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptZhtXpi
-F/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptZhtXpi
-!i122 16
-Z5 L0 1 0
-Vfzb0jIjB=40m@RH`7d0TL0
-Z6 OL;L;2020.4;71
+Z2 d/home/ws25.1/Task3Mateus/step-3/MEMWB/sim
+Z3 w1768687760
+8/home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptDDUZka
+F/home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptDDUZka
+!i122 238
+Z4 L0 1 0
+V20Qa7D8H7HJD9VX5E9lh92
+Z5 OL;L;2020.4;71
 r1
 !s85 0
 31
-Z7 !s108 1765844166.000000
-!s107 /home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptZhtXpi|
-!s90 -sv|-quiet|/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptZhtXpi|+acc|-nolock|
+Z6 !s108 1768687760.000000
+!s107 /home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptDDUZka|
+!s90 -sv|-quiet|/home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptDDUZka|+acc|-nolock|
 !i113 0
-Z8 o-quiet -sv +acc -nolock -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z9 tCvgOpt 0
+Z7 o-quiet -sv +acc -nolock -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z8 tCvgOpt 0
 nmy@types__mti__sv__equiv__implct__pack
 Xrf_pkg__mti__sv__equiv__implct__pack
 R0
-R1
+!s110 1768687761
 !i10b 1
 !s100 E@553^KLNHe8o8CIzngn20
-R2
-I95QgJW?1EdA]R3hd`Nzgl0
+R1
+IX;GRI]]JQAoBdiB9WTTI?0
 S1
+R2
 R3
+8/home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptFwg1on
+F/home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptFwg1on
+!i122 239
 R4
-8/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptRgaQXL
-F/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptRgaQXL
-!i122 17
+VX;GRI]]JQAoBdiB9WTTI?0
 R5
-V95QgJW?1EdA]R3hd`Nzgl0
-R6
 r1
 !s85 0
 31
-R7
-!s107 /home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptRgaQXL|
-!s90 -sv|-quiet|/home/ws25.1/Task3Maganuco/step-3/MEMWB/sim/qrun.out/work/_data/exemptRgaQXL|+acc|-nolock|
+R6
+!s107 /home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptFwg1on|
+!s90 -sv|-quiet|/home/ws25.1/Task3Mateus/step-3/MEMWB/sim/qrun.out/work/_data/exemptFwg1on|+acc|-nolock|
 !i113 0
+R7
 R8
-R9

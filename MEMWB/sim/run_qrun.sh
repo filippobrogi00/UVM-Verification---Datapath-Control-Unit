@@ -9,12 +9,12 @@ COV_EXCLUDE="work.rf_pkg work.Module_topTestbench work.Module_topTestbench_sv_un
 SEED=0
 DUT_HIERARCHY="/Module_topTestbench/memwb_toplevel/DUT"
 
-FAULT_LIST="stuckat_fault_list.txt"
-FAULT_DURATION="100"
-FAULT_INJECT="n"
+export GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
+export POSTSYN_SIMULATION="y"
 
-GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
-POSTSYN_SIMULATION="n"
+export FAULT_INJECT_CAMPAIGN="y"
+export FAULT_INJECT_LOG_FILE="../sim/fault_log.txt"
+export FAULT_INJECT_FAULT_FILE="../sim/faults.txt"
 
 SYN_FILES=$(find $SYN_DIR -maxdepth 1 -name "*.v")
 echo $SYN_FILES
@@ -24,18 +24,6 @@ TOPLEVEL="Module_topTestbench"
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.cpp")
 #GM_FILES=$(find $GM_DIR -maxdepth 1 -name "*.c")
 #COV_EXCLUDE_COMMAND=$(printf "coverage exclude -du %s; " $COV_EXCLUDE)
-FORCE_COMMAND=""
-
-if [ "$FAULT_INJECT" = "y" ]; then
-for i in $(seq 1 $(cat $FAULT_LIST | wc -l))
-do
-    echo $i
-    FAULT=$(awk -F' ' "NR==$i {print \$1}" $FAULT_LIST | sed "s/sa//")
-    SIGNAL=$(awk -F' ' "NR==$i {print \$3}" $FAULT_LIST)
-    FORCE_COMMAND="$FORCE_COMMAND; force -freeze $DUT_HIERARCHY/$SIGNAL $FAULT $(($FAULT_DURATION*($i - 1))) -cancel $(($FAULT_DURATION*$i))"
-done
-echo $FORCE_COMMAND
-fi
 
 #############################################################
 ###########     SCRIPT INCLUDES AND DIRECTORY     ###########
@@ -64,9 +52,11 @@ source ./systemverilog_utils.sh # get_systemverilog_testbench_module()
 #qrun -clean -coverage -uvm -autoorder -mixedsvvh $PACKAGES $SRC_FILES $SV_COMPILE_LIST $C_FILES -sysc $GM_FILES -top $TOPLEVEL
 rm -rf cov_$SEED.ucdb covhtmlreport
 
+#./gen_fault_file.sh
+
 if [ "$POSTSYN_SIMULATION" = "y" ]; then
-  qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbcexf +define+POSTSYN -timescale=1ns/1ns $GATE_LIBRARY  $SYN_FILES $SV_COMPILE_LIST -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
+  qrun -clean -uvm -autoorder -mixedsvvh -coverage +acc +cover=sbcexf +define+POSTSYN -timescale=1ns/1ns $GATE_LIBRARY  $SYN_FILES $SV_COMPILE_LIST -do "$COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
 else
-  qrun -clean -uvm -autoorder -mixedsvvh -coverage +cover=sbce  $SRC_FILES $SV_COMPILE_LIST -do "$FORCE_COMMAND; $COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
+  qrun -clean -uvm -autoorder -mixedsvvh -coverage +acc +cover=sbce  $SRC_FILES $SV_COMPILE_LIST -do "$COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
 fi
 vcover report -details -html cov_$SEED.ucdb

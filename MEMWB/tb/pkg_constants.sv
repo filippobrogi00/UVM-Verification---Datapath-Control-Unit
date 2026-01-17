@@ -115,7 +115,6 @@ package pkg_const;
 
   // NOTE: Disable coverage for these 3 functions because they are
   // only used for CRG, and not in "runtime" code.
-  // TODO: Maybe add simple unit test in top module?
   // coverage off
 
   // @brief Helper function to check type of instruction.

@@ -22,6 +22,9 @@ int numSeqItems = 100;
 // Custom Report Server for cleaner messages
 //`include "Class_SimpleReportServer.sv"
 
+//Import getenv from DPI C
+import "DPI-C" function string getenv(input string env_name);
+
 // Testbench Class files
 `include "classes/Class_MEMWB_Sequence.sv"
 `include "classes/Class_MEMWB_Driver.sv"
@@ -30,7 +33,9 @@ int numSeqItems = 100;
 `include "classes/Class_MEMWB_CoverageTracker.sv"
 `include "classes/Class_MEMWB_Scoreboard.sv"
 `include "classes/Class_MEMWB_Environment.sv"
+`include "classes/Class_MEMWB_FaultInject_Test.sv"
 `include "classes/Class_MEMWB_Test.sv"
+
 
 module Module_topTestbench;
 
@@ -85,8 +90,11 @@ module Module_topTestbench;
     uvm_config_db#(virtual Iface_MEMWB #(IR_SIZE))::set(
         null, "*", "memwb_dut_iface", memwb_dut_iface);
 
-    // Running test...
-    run_test("Class_MEMWB_Test");
+    if (getenv("FAULT_INJECT_CAMPAIGN") == "y") begin
+      run_test("Class_MEMWB_FaultInject_Test");
+    end else begin
+      run_test("Class_MEMWB_Test");
+    end
 
     // Stop simulation
     $display("################# SIMULATION ENDED #################");

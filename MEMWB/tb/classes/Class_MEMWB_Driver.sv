@@ -34,6 +34,7 @@ class Class_MEMWB_Driver extends uvm_driver #(Class_MEMWB_SequenceItem);
   // Virtual because subclasses may overload it again
   virtual task run_phase(uvm_phase phase);
     Class_MEMWB_SequenceItem memwb_seqitem;
+    int fault_detected = 0;
 
     super.run_phase(phase);
 

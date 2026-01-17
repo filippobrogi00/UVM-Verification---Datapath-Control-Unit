@@ -11,6 +11,7 @@
 
 class Class_MEMWB_Scoreboard extends uvm_scoreboard;
   `uvm_component_utils(Class_MEMWB_Scoreboard)
+  uvm_event signal_fault_detected;
 
 
   function new(string name = "Class_MEMWB_Scoreboard", uvm_component parent = null);
@@ -36,13 +37,18 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
     if (!uvm_config_db#(virtual Iface_MEMWB #(IR_SIZE))::get(
             this, "", "memwb_dut_iface", memwb_dut_iface
         )) begin
-      `uvm_error("[MONITOR]", "Could not get handle to DUT interface!")
+      `uvm_error("[SCOREBOARD]", "Could not get handle to DUT interface!")
     end
 
     analysis_port_imp = new("analysis_port_imp", this);
-
-
   endfunction : build_phase
+
+  virtual function void connect_phase(uvm_phase phase);
+    if (!uvm_config_db#(uvm_event)::get(null, "*", "signal_fault_detected", signal_fault_detected)) begin
+      `uvm_info("[SCOREBOARD]", "Could not get signal_fault_detected handle", UVM_LOW)
+      signal_fault_detected = new();
+    end
+  endfunction
 
   /*
    * WRITE FUNCTION :
@@ -59,14 +65,19 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
     //Check results
 
     if (predictor_result.DP_TO_DLX_PC != memwb_seqitem.DP_TO_DLX_PC) begin
+      signal_fault_detected.trigger();
       `uvm_error(get_type_name(), $sformatf("DP_TO_DLX_PC: expected %h, got %h",
         predictor_result.DP_TO_DLX_PC, memwb_seqitem.DP_TO_DLX_PC))
     end
     if (predictor_result.S4_REG_ADD_WR_OUT != memwb_seqitem.S4_REG_ADD_WR_OUT) begin
+      signal_fault_detected.trigger();
+      uvm_config_db#(int)::set(null, "*", "fault_detected", 1);
       `uvm_error(get_type_name(), $sformatf("S4_REG_ADD_WR_OUT: expected %h, got %h",
            predictor_result.S4_REG_ADD_WR_OUT, memwb_seqitem.S4_REG_ADD_WR_OUT))
     end
     if (predictor_result.S5_MUX_DATAIN_OUT != memwb_seqitem.S5_MUX_DATAIN_OUT) begin
+      signal_fault_detected.trigger();
+      uvm_config_db#(int)::set(null, "*", "fault_detected", 1);
       `uvm_error(get_type_name(), $sformatf("S5_MUX_DATAIN_OUT: expected %h, got %h",
         predictor_result.S5_MUX_DATAIN_OUT, memwb_seqitem.S5_MUX_DATAIN_OUT))
     end
