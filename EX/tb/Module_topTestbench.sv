@@ -48,20 +48,18 @@ int numSeqItems = 100;
 module Module_topTestbench;
 
 		`ifdef FAULT_INJECTION_CAMPAIGN
-			// One file for faults list 
-			// Another for detected faults reporting
 
 			/* FAULT INJECTION RELATED VARIABLES */ 
 			int faultsim_cycle = 0;    
 			int faults_file_fd; 
 			string faults_file_name;
-			string current_fault_line;  // raw line 
-			string current_fault;       // fault hierarchy extracted from current line
-			int    current_inj_value;   // currently injected value for the fault 
+			string current_fault_line;  						// raw line 
+			string current_fault;       						// fault hierarchy extracted from current line
+			int    current_inj_value;   						// currently injected value for the fault 
 			/* FAULT COVERAGE RELATED VARIABLES */
-			int 	 local_detected; 								// to store "detected" UVM DB variable 
-			string current_fault_is_detected; 		// "DETECTED" if detected, "UNDETECTED" otherwise
-			int  	 classified_faults_fd;			    // file descriptor 
+			int 	 local_detected; 									// to store "detected" UVM DB variable 
+			string current_fault_is_detected; 			// "DETECTED" if detected, "UNDETECTED" otherwise
+			int  	 classified_faults_fd;			    	// file descriptor 
 			string classified_faults_file_name;	  
 
 		`endif // FAULT_INJECTION_CAMPAIGN
@@ -92,7 +90,7 @@ module Module_topTestbench;
 		* DUT INTERFACE AND WRAPPER INSTANTIATION *
 		*******************************************/
 		// Interfaces instantiation
-		// NOTE: (parenthesis needed because these are modules!
+		// NOTE: parenthesis needed because these are modules!
 		Iface_EXE #(
 			IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE,
 			J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS
@@ -107,7 +105,7 @@ module Module_topTestbench;
 			IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE,
 			J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS
 		)
-		exe_toplevel (
+		exe_toplevel ( // WARN: PARSER COMMENT, DO NOT CHANGE/REMOVE
 			.exe_iface(exe_dut_iface)
 		);
 
@@ -203,6 +201,9 @@ module Module_topTestbench;
 
 					end
 
+					$fclose(faults_file_fd);
+					$fclose(classified_faults_fd);
+
 			`else 
 
 				/************************************
@@ -214,8 +215,6 @@ module Module_topTestbench;
 
 			`endif // FAULT_INJECTION_CAMPAIGN
 
-			$fclose(faults_file_fd);
-			$fclose(classified_faults_fd);
 
   	end : PROC_GlobalSimulation
 

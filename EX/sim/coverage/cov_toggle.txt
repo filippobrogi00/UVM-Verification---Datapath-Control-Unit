@@ -7,7 +7,7 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        628       627         1    99.84%
+    Toggles                        628       626         2    99.68%
 
 ================================Toggle Details================================
 
@@ -15,294 +15,22 @@ Toggle Coverage for instance /Module_topTestbench/exe_dut_iface --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                S3_REG_ALU_OUT[27]           1           0       50.00 
+                                S3_REG_ALU_OUT[21]           0           0        0.00 
 
 Total Node Count     =        314 
 Toggled Node Count   =        313 
 Untoggled Node Count =          1 
 
-Toggle Coverage      =      99.84% (627 of 628 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_A
-=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        192       192         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_A --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         96 
-Toggled Node Count   =         96 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (192 of 192 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_B
-=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        192       192         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_B --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         96 
-Toggled Node Count   =         96 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (192 of 192 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_JMP
-=== Design Unit: work.NBit_2to1MUX(BEH_NBit_2to1MUX)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        192       192         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_MUX_JMP --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         96 
-Toggled Node Count   =         96 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (192 of 192 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU/shifter
-=== Design Unit: work.SHIFTER_GENERIC(BEHAVIORAL)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        138        74        64    53.62%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU/shifter --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                      RESULT(0-31)           0           0        0.00 
-
-Total Node Count     =         69 
-Toggled Node Count   =         37 
-Untoggled Node Count =         32 
-
-Toggle Coverage      =      53.62% (74 of 138 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU
-=== Design Unit: work.ALU(BEH_COMB)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        272       205        67    75.36%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ALU --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                  LEFT_RIGHT_shftr           0           1       50.00 
-                                 LOGIC_ARITH_shftr           0           1       50.00 
-                                RESULT_shftr(0-31)           0           0        0.00 
-                                SHIFT_ROTATE_shftr           0           1       50.00 
-
-Total Node Count     =        136 
-Toggled Node Count   =        101 
-Untoggled Node Count =         35 
-
-Toggle Coverage      =      75.36% (205 of 272 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ALU
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        128       127         1    99.21%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ALU --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                             Q(27)           1           0       50.00 
-
-Total Node Count     =         64 
-Toggled Node Count   =         63 
-Untoggled Node Count =          1 
-
-Toggle Coverage      =      99.21% (127 of 128 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_DATA
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        128       128         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_DATA --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         64 
-Toggled Node Count   =         64 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (128 of 128 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_COND
-=== Design Unit: work.nbit_reg(beh_nbit_reg)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                         10         9         1    90.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_COND --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                              D(0)           0           1       50.00 
-
-Total Node Count     =          5 
-Toggled Node Count   =          4 
-Untoggled Node Count =          1 
-
-Toggle Coverage      =      90.00% (9 of 10 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ZeroCompa
-=== Design Unit: work.ZeroCompa(BEH_COMB)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                         64        64         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_ZeroCompa --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         32 
-Toggled Node Count   =         32 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (64 of 64 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_FF_JAL_EN
-=== Design Unit: work.nbit_reg(beh_nbit_reg)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                         10         8         2    80.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_FF_JAL_EN --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-                                             LD_EN           0           0        0.00 
-
-Total Node Count     =          5 
-Toggled Node Count   =          4 
-Untoggled Node Count =          1 
-
-Toggle Coverage      =      80.00% (8 of 10 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_NPC
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                        128       128         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_NPC --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         64 
-Toggled Node Count   =         64 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (128 of 128 bins)
-
-=================================================================================
-=== Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ADD_WR
-=== Design Unit: work.NBit_Reg(BEH_NBit_Reg)
-=================================================================================
-Toggle Coverage:
-    Enabled Coverage              Bins      Hits    Misses  Coverage
-    ----------------              ----      ----    ------  --------
-    Toggles                         20        20         0   100.00%
-
-================================Toggle Details================================
-
-Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst/S3_REG_ADD_WR --
-
-                                              Node      1H->0L      0L->1H  "Coverage"
-                                              ---------------------------------------
-
-Total Node Count     =         10 
-Toggled Node Count   =         10 
-Untoggled Node Count =          0 
-
-Toggle Coverage      =     100.00% (20 of 20 bins)
+Toggle Coverage      =      99.68% (626 of 628 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst
-=== Design Unit: work.dp_ex(structural)
+=== Design Unit: work.DP_EX
 =================================================================================
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        886       884         2    99.77%
+    Toggles                       6094      5567       527    91.35%
 
 ================================Toggle Details================================
 
@@ -310,14 +38,278 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                    S3_BranchTaken           0           1       50.00 
-                                S3_REG_ALU_OUT(27)           1           0       50.00 
+                            S3_ALU_RESULT_shftr[2]           0           0        0.00 
+                         S3_ALU_SHIFT_ROTATE_shftr           0           1       50.00 
+                                        S3_ALU_n10           0           0        0.00 
+                                        S3_ALU_n11           0           0        0.00 
+                                        S3_ALU_n13           0           0        0.00 
+                                        S3_ALU_n14           0           0        0.00 
+                                        S3_ALU_n17           0           0        0.00 
+                                        S3_ALU_n20           0           0        0.00 
+                                        S3_ALU_n21           0           0        0.00 
+                                        S3_ALU_n23           0           0        0.00 
+                                        S3_ALU_n24           0           0        0.00 
+                                        S3_ALU_n27           0           0        0.00 
+                                        S3_ALU_n37           0           0        0.00 
+                                        S3_ALU_n42           0           0        0.00 
+                                        S3_ALU_n48           0           0        0.00 
+                                        S3_ALU_n54           0           0        0.00 
+                                        S3_ALU_n60           0           0        0.00 
+                                        S3_ALU_n66           0           0        0.00 
+                                        S3_ALU_n84           0           0        0.00 
+                                        S3_ALU_n96           0           0        0.00 
+                                       S3_ALU_n114           0           0        0.00 
+                                       S3_ALU_n120           0           0        0.00 
+                                       S3_ALU_n138           0           0        0.00 
+                                       S3_ALU_n144           0           0        0.00 
+                                       S3_ALU_n156           0           0        0.00 
+                                       S3_ALU_n162           0           0        0.00 
+                                       S3_ALU_n168           0           0        0.00 
+                                       S3_ALU_n170           0           0        0.00 
+                                       S3_ALU_n174           0           0        0.00 
+                                       S3_ALU_n180           0           0        0.00 
+                                       S3_ALU_n186           0           0        0.00 
+                                       S3_ALU_n192           0           0        0.00 
+                                       S3_ALU_n198           0           0        0.00 
+                                       S3_ALU_n204           0           0        0.00 
+                                       S3_ALU_n206           0           0        0.00 
+                                       S3_ALU_n210           0           0        0.00 
+                                       S3_ALU_n216           0           0        0.00 
+                                       S3_ALU_n222           0           0        0.00 
+                                       S3_ALU_n223           0           0        0.00 
+                                       S3_ALU_n226           0           0        0.00 
+                                       S3_ALU_n227           0           0        0.00 
+                                       S3_ALU_n233           0           0        0.00 
+                                       S3_ALU_n243           0           0        0.00 
+                                       S3_ALU_n246           0           0        0.00 
+                                       S3_ALU_n247           0           0        0.00 
+                                       S3_ALU_n252           0           0        0.00 
+                                       S3_ALU_n256           0           0        0.00 
+                                       S3_ALU_n258           0           0        0.00 
+                                       S3_ALU_n264           0           0        0.00 
+                                       S3_ALU_n299           0           0        0.00 
+                                       S3_ALU_n300           0           0        0.00 
+                                       S3_ALU_n301           0           0        0.00 
+                                       S3_ALU_n302           0           0        0.00 
+                                       S3_ALU_n303           0           0        0.00 
+                                       S3_ALU_n304           0           0        0.00 
+                                       S3_ALU_n305           0           0        0.00 
+                                       S3_ALU_n306           0           0        0.00 
+                                       S3_ALU_n307           0           0        0.00 
+                                    S3_ALU_r396_n6           0           0        0.00 
+                                    S3_ALU_r396_n8           0           0        0.00 
+                                    S3_ALU_r396_n9           0           0        0.00 
+                                   S3_ALU_r396_n11           0           0        0.00 
+                                   S3_ALU_r396_n14           0           0        0.00 
+                                   S3_ALU_r396_n16           0           0        0.00 
+                                   S3_ALU_r396_n17           0           0        0.00 
+                                   S3_ALU_r396_n19           0           0        0.00 
+                                   S3_ALU_r396_n22           0           0        0.00 
+                                   S3_ALU_r396_n24           0           0        0.00 
+                                   S3_ALU_r396_n25           0           0        0.00 
+                                   S3_ALU_r396_n27           0           0        0.00 
+                                   S3_ALU_r396_n30           0           0        0.00 
+                                   S3_ALU_r396_n32           0           0        0.00 
+                                   S3_ALU_r396_n33           0           0        0.00 
+                                   S3_ALU_r396_n35           0           0        0.00 
+                                   S3_ALU_r396_n38           0           0        0.00 
+                                   S3_ALU_r396_n40           0           0        0.00 
+                                   S3_ALU_r396_n41           0           0        0.00 
+                                   S3_ALU_r396_n43           0           0        0.00 
+                                   S3_ALU_r396_n46           0           0        0.00 
+                                   S3_ALU_r396_n48           0           0        0.00 
+                                   S3_ALU_r396_n49           0           0        0.00 
+                                   S3_ALU_r396_n51           0           0        0.00 
+                                   S3_ALU_r396_n54           0           0        0.00 
+                                   S3_ALU_r396_n56           0           0        0.00 
+                                   S3_ALU_r396_n57           0           0        0.00 
+                                   S3_ALU_r396_n59           0           0        0.00 
+                                   S3_ALU_r396_n61           0           0        0.00 
+                                   S3_ALU_r396_n63           0           0        0.00 
+                                   S3_ALU_r396_n65           0           0        0.00 
+                                 S3_ALU_shifter_n3           0           0        0.00 
+                                 S3_ALU_shifter_n5           0           0        0.00 
+                                 S3_ALU_shifter_n6           0           0        0.00 
+                                 S3_ALU_shifter_n7           0           0        0.00 
+                                 S3_ALU_shifter_n8           0           0        0.00 
+                                 S3_ALU_shifter_n9           0           0        0.00 
+                                S3_ALU_shifter_n10           0           0        0.00 
+                                S3_ALU_shifter_n11           1           0       50.00 
+                                S3_ALU_shifter_n12           0           0        0.00 
+                                S3_ALU_shifter_n13           1           0       50.00 
+                                S3_ALU_shifter_n15           0           0        0.00 
+                                S3_ALU_shifter_n16           0           0        0.00 
+                                S3_ALU_shifter_n18           1           0       50.00 
+                                S3_ALU_shifter_n19           0           0        0.00 
+                                S3_ALU_shifter_n68           0           0        0.00 
+                                S3_ALU_shifter_n69           0           0        0.00 
+                                S3_ALU_shifter_n71           0           0        0.00 
+                                S3_ALU_shifter_n73           0           0        0.00 
+                                S3_ALU_shifter_n75           0           0        0.00 
+                                S3_ALU_shifter_n77           0           0        0.00 
+                                S3_ALU_shifter_n78           0           0        0.00 
+                                S3_ALU_shifter_n79           0           0        0.00 
+                                S3_ALU_shifter_n81           0           0        0.00 
+                                S3_ALU_shifter_n83           0           1       50.00 
+                                S3_ALU_shifter_n84           0           0        0.00 
+                                S3_ALU_shifter_n86           0           0        0.00 
+                                S3_ALU_shifter_n88           0           0        0.00 
+                                S3_ALU_shifter_n89           0           0        0.00 
+                                S3_ALU_shifter_n90           0           0        0.00 
+                                S3_ALU_shifter_n91           0           0        0.00 
+                                S3_ALU_shifter_n93           0           0        0.00 
+                                S3_ALU_shifter_n95           0           0        0.00 
+                                S3_ALU_shifter_n96           0           0        0.00 
+                                S3_ALU_shifter_n98           0           0        0.00 
+                                S3_ALU_shifter_n99           0           0        0.00 
+                               S3_ALU_shifter_n100           0           0        0.00 
+                               S3_ALU_shifter_n103           0           0        0.00 
+                               S3_ALU_shifter_n104           0           0        0.00 
+                               S3_ALU_shifter_n107           0           0        0.00 
+                               S3_ALU_shifter_n108           0           0        0.00 
+                               S3_ALU_shifter_n110           0           0        0.00 
+                               S3_ALU_shifter_n112           0           0        0.00 
+                               S3_ALU_shifter_n113           0           0        0.00 
+                               S3_ALU_shifter_n116           0           0        0.00 
+                               S3_ALU_shifter_n118           0           0        0.00 
+                               S3_ALU_shifter_n119           0           0        0.00 
+                               S3_ALU_shifter_n120           0           0        0.00 
+                               S3_ALU_shifter_n121           0           0        0.00 
+                               S3_ALU_shifter_n124           0           0        0.00 
+                               S3_ALU_shifter_n125           0           0        0.00 
+                               S3_ALU_shifter_n127           0           0        0.00 
+                               S3_ALU_shifter_n129           0           0        0.00 
+                               S3_ALU_shifter_n130           0           0        0.00 
+                               S3_ALU_shifter_n132           0           0        0.00 
+                               S3_ALU_shifter_n133           0           0        0.00 
+                               S3_ALU_shifter_n135           0           0        0.00 
+                               S3_ALU_shifter_n136           0           0        0.00 
+                               S3_ALU_shifter_n138           0           0        0.00 
+                               S3_ALU_shifter_n139           0           0        0.00 
+                               S3_ALU_shifter_n141           0           0        0.00 
+                               S3_ALU_shifter_n143           0           0        0.00 
+                               S3_ALU_shifter_n144           0           0        0.00 
+                               S3_ALU_shifter_n146           0           0        0.00 
+                               S3_ALU_shifter_n148           0           0        0.00 
+                               S3_ALU_shifter_n149           0           0        0.00 
+                               S3_ALU_shifter_n151           0           0        0.00 
+                               S3_ALU_shifter_n152           0           0        0.00 
+                               S3_ALU_shifter_n155           0           0        0.00 
+                               S3_ALU_shifter_n156           0           0        0.00 
+                               S3_ALU_shifter_n158           0           0        0.00 
+                               S3_ALU_shifter_n159           0           0        0.00 
+                               S3_ALU_shifter_n160           0           0        0.00 
+                               S3_ALU_shifter_n163           0           0        0.00 
+                               S3_ALU_shifter_n164           0           0        0.00 
+                               S3_ALU_shifter_n165           0           0        0.00 
+                               S3_ALU_shifter_n167           0           0        0.00 
+                               S3_ALU_shifter_n168           0           0        0.00 
+                               S3_ALU_shifter_n170           0           0        0.00 
+                               S3_ALU_shifter_n274           0           0        0.00 
+                               S3_ALU_shifter_n279           0           0        0.00 
+                               S3_ALU_shifter_n282           0           0        0.00 
+                               S3_ALU_shifter_n287           0           0        0.00 
+                               S3_ALU_shifter_n290           0           0        0.00 
+                               S3_ALU_shifter_n294           0           0        0.00 
+                               S3_ALU_shifter_n299           0           0        0.00 
+                               S3_ALU_shifter_n305           0           0        0.00 
+                               S3_ALU_shifter_n309           0           0        0.00 
+                               S3_ALU_shifter_n314           0           0        0.00 
+                               S3_ALU_shifter_n318           0           0        0.00 
+                               S3_ALU_shifter_n321           0           0        0.00 
+                               S3_ALU_shifter_n324           0           0        0.00 
+                               S3_ALU_shifter_n326           0           0        0.00 
+                               S3_ALU_shifter_n328           0           0        0.00 
+                               S3_ALU_shifter_n330           0           0        0.00 
+                               S3_ALU_shifter_n332           0           0        0.00 
+                               S3_ALU_shifter_n334           0           0        0.00 
+                               S3_ALU_shifter_n337           0           0        0.00 
+                               S3_ALU_shifter_n341           0           0        0.00 
+                               S3_ALU_shifter_n343           0           0        0.00 
+                               S3_ALU_shifter_n345           0           0        0.00 
+                               S3_ALU_shifter_n347           0           0        0.00 
+                               S3_ALU_shifter_n349           0           0        0.00 
+                               S3_ALU_shifter_n351           0           0        0.00 
+                               S3_ALU_shifter_n353           0           0        0.00 
+                               S3_ALU_shifter_n355           0           0        0.00 
+                               S3_ALU_shifter_n356           0           0        0.00 
+                               S3_ALU_shifter_n358           0           0        0.00 
+                               S3_ALU_shifter_n362           0           0        0.00 
+                                  S3_ALU_sub_73_n1           0           0        0.00 
+                                  S3_ALU_sub_73_n3           0           0        0.00 
+                                  S3_ALU_sub_73_n7           0           0        0.00 
+                                  S3_ALU_sub_73_n8           0           0        0.00 
+                                 S3_ALU_sub_116_n1           0           0        0.00 
+                                 S3_ALU_sub_116_n2           0           0        0.00 
+                                 S3_ALU_sub_116_n3           0           0        0.00 
+                                 S3_ALU_sub_116_n4           0           0        0.00 
+                                 S3_ALU_sub_116_n5           0           0        0.00 
+                                 S3_ALU_sub_116_n6           0           0        0.00 
+                                 S3_ALU_sub_116_n7           0           0        0.00 
+                                 S3_ALU_sub_116_n8           0           0        0.00 
+                                 S3_ALU_sub_116_n9           0           0        0.00 
+                                S3_ALU_sub_116_n10           0           0        0.00 
+                                S3_ALU_sub_116_n11           0           0        0.00 
+                                S3_ALU_sub_116_n12           0           0        0.00 
+                                S3_ALU_sub_116_n13           0           0        0.00 
+                                S3_ALU_sub_116_n14           0           0        0.00 
+                                S3_ALU_sub_116_n15           0           0        0.00 
+                                S3_ALU_sub_116_n16           0           0        0.00 
+                                S3_ALU_sub_116_n17           0           0        0.00 
+                                S3_ALU_sub_116_n18           0           0        0.00 
+                                S3_ALU_sub_116_n19           0           0        0.00 
+                                S3_ALU_sub_116_n20           0           0        0.00 
+                                S3_ALU_sub_116_n21           0           0        0.00 
+                                S3_ALU_sub_116_n22           0           0        0.00 
+                                S3_ALU_sub_116_n23           0           0        0.00 
+                                S3_ALU_sub_116_n24           0           0        0.00 
+                                S3_ALU_sub_116_n25           0           0        0.00 
+                                S3_ALU_sub_116_n26           0           0        0.00 
+                                S3_ALU_sub_116_n27           0           0        0.00 
+                                S3_ALU_sub_116_n28           0           0        0.00 
+                                S3_ALU_sub_116_n29           0           0        0.00 
+                                S3_ALU_sub_116_n30           0           0        0.00 
+                                S3_ALU_sub_116_n31           0           0        0.00 
+                                S3_ALU_sub_116_n32           0           0        0.00 
+                                S3_ALU_sub_116_n33           0           0        0.00 
+                                   S3_FF_JAL_EN_n1           0           0        0.00 
+                                   S3_FF_JAL_EN_n2           0           0        0.00 
+                                       S3_MUX_A_n1           0           0        0.00 
+                                       S3_MUX_A_n3           0           0        0.00 
+                                       S3_MUX_B_n1           0           0        0.00 
+                                       S3_MUX_B_n3           0           0        0.00 
+                                     S3_MUX_JMP_n1           0           0        0.00 
+                                     S3_MUX_JMP_n3           0           0        0.00 
+                                  S3_REG_ADD_WR_n9           0           0        0.00 
+                                S3_REG_ALU_OUT[21]           0           0        0.00 
+                                     S3_REG_ALU_n2           0           0        0.00 
+                                     S3_REG_ALU_n3           0           0        0.00 
+                                     S3_REG_ALU_n5           0           0        0.00 
+                                     S3_REG_ALU_n7           0           0        0.00 
+                                    S3_REG_ALU_n75           0           0        0.00 
+                                    S3_REG_COND_n1           0           0        0.00 
+                                    S3_REG_DATA_n1           0           0        0.00 
+                                    S3_REG_DATA_n2           0           0        0.00 
+                                    S3_REG_DATA_n3           0           0        0.00 
+                                    S3_REG_DATA_n4           0           0        0.00 
+                                    S3_REG_DATA_n5           0           0        0.00 
+                                    S3_REG_DATA_n7           0           0        0.00 
+                                   S3_REG_DATA_n75           0           0        0.00 
+                                  S3_REG_DATA_n107           0           0        0.00 
+                                     S3_REG_NPC_n1           0           0        0.00 
+                                     S3_REG_NPC_n2           0           0        0.00 
+                                     S3_REG_NPC_n3           0           0        0.00 
+                                     S3_REG_NPC_n4           0           0        0.00 
+                                     S3_REG_NPC_n5           0           0        0.00 
+                                     S3_REG_NPC_n7           0           0        0.00 
+                                    S3_REG_NPC_n75           0           0        0.00 
+                                   S3_REG_NPC_n107           0           0        0.00 
 
-Total Node Count     =        443 
-Toggled Node Count   =        441 
-Untoggled Node Count =          2 
+Total Node Count     =       3047 
+Toggled Node Count   =       2781 
+Untoggled Node Count =        266 
 
-Toggle Coverage      =      99.77% (884 of 886 bins)
+Toggle Coverage      =      91.35% (5567 of 6094 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -326,7 +318,7 @@ Toggle Coverage      =      99.77% (884 of 886 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        260        11       249     4.23%
+    Toggles                        260        10       250     3.84%
 
 ================================Toggle Details================================
 
@@ -338,8 +330,7 @@ Toggle Coverage for instance /Module_topTestbench --
                         classified_faults_fd[30-3]           0           0        0.00 
                            classified_faults_fd[2]           0           1       50.00 
                          classified_faults_fd[1-0]           0           0        0.00 
-                           current_inj_value[31-1]           0           0        0.00 
-                              current_inj_value[0]           0           1       50.00 
+                           current_inj_value[31-0]           0           0        0.00 
                                 faults_file_fd[31]           0           1       50.00 
                               faults_file_fd[30-2]           0           0        0.00 
                                faults_file_fd[1-0]           0           1       50.00 
@@ -350,8 +341,8 @@ Total Node Count     =        130
 Toggled Node Count   =          2 
 Untoggled Node Count =        128 
 
-Toggle Coverage      =       4.23% (11 of 260 bins)
+Toggle Coverage      =       3.84% (10 of 260 bins)
 
 
-Total Coverage By Instance (filtered view): 82.63%
+Total Coverage By Instance (filtered view): 88.83%
 

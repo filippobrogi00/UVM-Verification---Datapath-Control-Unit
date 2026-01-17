@@ -64,7 +64,6 @@ set_dont_touch_network my_clk
 #####################################
 # START THE SYNTHESIS
 #####################################
-set_app_var verilogout_no_tri true
 compile
 
 #####################################

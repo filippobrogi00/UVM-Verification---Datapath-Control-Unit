@@ -1,17 +1,28 @@
 #!/bin/bash
-###################
-###### USAGE ######
-###################
 
-# NOTE: Pass to this script the "cut-down" fault list file!
+#############################################
+###### USAGE AND PARAMETERS PROCESSING ######
+#############################################
+# Use case 1: ./run.sh                       run RTL simulation with default (100) sequence items
+# Use case 2: ./run.sh 1000                  run RTL simulation with 1000 sequence items 
+# Use case 3: ./run.sh 1000 postsyn          run post-synthesis GLN simulation with 1000 sequence items 
+# Use case 4: ./run.sh 1000 faultsim         run fault simulation with 1000 sequence items and fault list file
 
-# Use case 1: ./run.sh                       run with default 100 sequence items
-# Use case 2: ./run.sh 1000                  run with 1000 sequence items 
-# Use case 3: ./run.sh 1000 faultsim         run fault simulation with 1000 sequence items and fault list file
-
+# Print usage 
 if [[ $# -ne 1 && $# -ne 2 ]]; then
-  echo "Usage: $0 <number of sequence items per sequence to generate> [<sim|faultsim>]"
-  exit
+  echo "Usage: $0 <number of sequence items per sequence to generate> [<sim|postsyn|faultsim>]"
+  exit 1
+fi
+
+# If first arg is a string, default to 100 sequence items
+if [[ "$1" =~ ^[a-zA-Z]+$ ]]; then
+  NUM_SEQITEMS=100
+fi 
+
+# Check second argument allowed values 
+if [[ $# -eq 2 && "$2" != "postsyn" && "$2" != "faultsim" ]]; then 
+  print_red "Error: second argument must be either 'postsyn' or 'faultsim'"
+  exit 1
 fi
 
 #############################################################
@@ -46,6 +57,7 @@ ROOT_DIR=""
 SIM_DIR="sim"
 SRC_DIR="src"
 TB_DIR="tb"
+SYN_DIR="syn"
 COV_DIR="$SIM_DIR/coverage"
 COV_HTML_DIR="$SIM_DIR/covhtmlreport"
 
@@ -53,6 +65,7 @@ if [[ $BASENAME_CWD == "$SIM_DIR" || $BASENAME_CWD == "$SRC_DIR" || $BASENAME_CW
   SIM_DIR="../$SIM_DIR"
   SRC_DIR="../$SRC_DIR"
   TB_DIR="../$TB_DIR"
+  SYN_DIR="../$SYN_DIR"
   COV_DIR="$SIM_DIR/coverage"
   COV_HTML_DIR="$SIM_DIR/covhtmlreport"
   ROOT_DIR="../"
@@ -62,10 +75,26 @@ fi
 mkdir -p $SIM_DIR
 mkdir -p $SRC_DIR
 mkdir -p $TB_DIR
+mkdir -p $SYN_DIR
 mkdir -p $COV_DIR
 
 # Script variables - Compilation
 SV_COMPILE_LIST="$TB_DIR/Iface_EX.sv $TB_DIR/Module_EX_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+
+#########################################################
+####       POST-SYNTHESIS SIMULATION VARIABLES       ####
+#########################################################
+# Post-synthesis simulation flag
+postsyn_sim_enabled=0
+if [[ $# -eq 2 && ("$2" == "postsyn" || "$2" == "faultsim") ]]; then 
+  postsyn_sim_enabled=1  
+fi
+
+# Macro defined for compilation use for post-synthesis simulation
+POSTSYN_SIMULATION=""
+if [[ postsyn_sim_enabled -eq 1 ]]; then 
+  export POSTSYN_SIMULATION="+define+POSTSYN_SIMULATION"
+fi
 
 #########################################################
 ####   FAULT INJECTION CAMPAIGN VARIABLES - BASH     ####
@@ -78,33 +107,21 @@ fi
 
 # File path in which Detected Faults count will be stored by UVM 
 # after fault simulation
-if [[ faultsim_enabled -eq 1 ]]; then 
+if [[ $faultsim_enabled -eq 1 ]]; then 
   export CLASSIFIED_FAULTS_FILE="$SIM_DIR/classified_faults.txt"
   [[ -f "$CLASSIFIED_FAULTS_FILE" ]] && rm $CLASSIFIED_FAULTS_FILE
 fi 
 
 # Path to fault list file passed to UVM testbench as ENVVAR_FAULT_LIST_FILE environment variable
 export ENVVAR_FAULT_LIST_FILE=""
-if [[ faultsim_enabled -eq 1 ]]; then 
+if [[ $faultsim_enabled -eq 1 ]]; then 
   export ENVVAR_FAULT_LIST_FILE="$SIM_DIR/fault_list.txt"
 fi 
 
 ### Build bash variables to export to UVM testbench ###
-# # Get top-level TB module name
+# Get top-level TB module name
 top_level_tb_file=$(find $TB_DIR -type f -name "*top*.sv" | head -n 1)
 export ENVVAR_TB_TOPLEVEL_NAME="$(get_systemverilog_testbench_module $top_level_tb_file)"
-# if [[ faultsim_enabled -eq 1 ]]; then 
-#   wrapper_tb_file=$(find $TB_DIR -type f -name "*[wW]rapper*.sv" | head -n 1)
-#   export ENVVAR_TB_WRAPPER_NAME="$(extract_wrapper_instance_name $wrapper_tb_file)"  # found in top level TB file, Wrapper instantiation
-#   export ENVVAR_TB_DUT_INST_NAME="$(extract_dut_instantiation_name $wrapper_tb_file)" # found in wrapper TB file, DUT instantiation
-#   export ENVVAR_TB_SIGNAL_NAME=""   # signal to inject fault on	
-#   export ENVVAR_TB_FULL_FAULT=""    # complete fault name to inject
-# fi  
-
-
-# TODO: Then sed 
-# TODO: se export + DPI getenv() non funge, usare parametri col + in vlog e poi prenderli con $value$plusargs in UVM
-
 
 ##############################################################################
 ####   FAULT INJECTION CAMPAIGN VARIABLES - SYSTEMVERILOG COMPILATION     ####
@@ -112,15 +129,13 @@ export ENVVAR_TB_TOPLEVEL_NAME="$(get_systemverilog_testbench_module $top_level_
 # Fault injection SV #define 
 FAULT_INJECTION_CAMPAIGN="" # Fault-free simulation default value
 
-# Set variables from command line argument
-if [[ faultsim_enabled -eq 1 ]]; then 
+# Macro defined for compilation use for fault simulation
+if [[ $faultsim_enabled -eq 1 ]]; then 
   FAULT_INJECTION_CAMPAIGN="+define+FAULT_INJECTION_CAMPAIGN"
+	# Create single-line temporary fault list file 
+  export ENVVAR_FAULT_LIST_FILE_TEMP="$SIM_DIR/fault_list_temp.txt"
+	echo "$ENVVAR_FAULT_LIST_FILE_TE"	
 fi
-
-# TODO: Remove
-# opt 1 ) run.sh runs K times the initial beign UVM 
-# opt 2 ) run.sh runs a single UVM simulation (forever begin)
-
 
 ########### FUNCTIONS ###########
 
@@ -170,11 +185,18 @@ compile_files() {
 
       if [[ "$compilation" == "TESTBENCH" ]]; then
 
-        # Compile testbench files adding optional fault simulation macros if needed
-        if [[ faultsim_enabled -eq 1 ]]; then 
-          compiler="$compiler $FAULT_INJECTION_CAMPAIGN"
+        # Compile testbench files adding optional post-synthesis and 
+        # fault simulation macros if needed
+        if [[ $postsyn_sim_enabled -eq 1 ]]; then 
+          compiler="$compiler $POSTSYN_SIMULATION"
+
+          if [[ $faultsim_enabled -eq 1 ]]; then 
+            compiler="$compiler $FAULT_INJECTION_CAMPAIGN"
+          fi
+
         fi
 
+        # Compile SV Testbench files 
         colorize $compiler $SV_COMPILE_LIST
 
       else
@@ -280,7 +302,7 @@ fault_cov_print() {
   total_cov=$(( $detected * 100 / $total_faults ))
 
   # Print Fault Coverage 
-  print_blue "============= FAULT COVERAGE REPORT ============="
+  print_green "============= FAULT COVERAGE REPORT ============="
   classify_and_print_coverage "$total_cov" "Fault Coverage: $total_cov%"
 }
 
@@ -304,11 +326,16 @@ compile_files $SRC_DIR VHDL SOURCE
 # Compile Verilog Source Files if present
 compile_files $SRC_DIR VERILOG SOURCE
 
-# Compile gate library
-#vlog -timescale=1ns/1ps -work work /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
-# Compile postsyn netlist
-#vlog -timescale=1ns/1ps -work work ../syn/DP_EX.v
+# Check for RTL or post-synthesis simulation
+if [[ postsyn_sim_enabled -eq 1 || faultsim_enabled -eq 1 ]]; then 
+  # ---- POST-SYNTHESIS SIMULATION ----
 
+  # Compile gate library
+  vlog -timescale=1ns/1ps -work work /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
+  # Compile postsyn netlist
+  vlog -timescale=1ns/1ps -work work ../syn/DP_EX.v
+ 
+fi 
 
 ###############################################
 #### COMPILE SYSTEMVERILOG TESTBENCH FILES ####
@@ -352,8 +379,8 @@ colorize vopt +cover=bcesft "work.$ENVVAR_TB_TOPLEVEL_NAME" -o "$tb_module_opt"
 ###############################################################
 # Simulation exit after first `uvm_error macro used
 EXIT_AFTER_UVM_ERROR="" # Fault-free simulation default value
-if [[ faultsim_enabled -eq 1 ]]; then
-  EXIT_AFTER_UVM_ERROR="+UVM_MAX_QUIT_COUNT=1" # x
+if [[ $faultsim_enabled -eq 1 ]]; then
+  EXIT_AFTER_UVM_ERROR="+UVM_MAX_QUIT_COUNT=1" # Exit after first uvm_error
 fi 
 
 ######################################################
@@ -378,52 +405,68 @@ SIM_SEQITEMS="+NUM_SEQITEMS=${NUM_SEQITEMS}"
 
 # Simulate using Questa and report both text and HTML coverage in their
 # respective directories ($COV_DIR and $COV_HTML_DIR).
-# If fault simulation is enabled, fault simulate for every line of the fault list file.
-# Else, run a single fault-free simulation.
-if [[ faultsim_enabled -eq 1 ]]; then 
 
-  # Initialization
-  sim_cycle_count=1
-  total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
+if [[ postsyn_sim_enabled -eq 1 ]]; then 
+  
+  # Get wrapper instance from top level TB 
+  wrapper_inst=$(extract_wrapper_from_topleveltb "$top_level_tb_file")
 
-  # Create single-line temporary fault list file 
-  export ENVVAR_FAULT_LIST_FILE_TEMP="$SIM_DIR/fault_list_temp.txt"
+  # Get DUT instantiation name from Wrapper TB file 
+  wrapper_file=$(grep "[Ww]rapper" $TB_DIR/*.sv | head -n 1 | cut -d: -f1)
+  dut_inst=$(extract_dut_from_wrappertb "${wrapper_file}")
 
-  # Loop over all faults in the fault list file
-  for i in $(seq 1 $total_faults); do 
-    print_green "==== FAULT SIMULATION (#$i / $total_faults) ===="
+  # If fault simulation is enabled, fault simulate for every line of the fault list file.
+  # Else, run a single post-synthesis simulation.
+  if [[ $faultsim_enabled -eq 1 ]]; then 
 
-    # Read next fault from file 
-    current_fault_line=$(sed -n "${sim_cycle_count}p" "$ENVVAR_FAULT_LIST_FILE")
+     # ---- POST-SYNTHESIS FAULT SIMULATION ----
 
-    # Create temporary fault file with the current fault to be injected
-    [[ -f "$ENVVAR_FAULT_LIST_FILE_TEMP" ]] && rm "$ENVVAR_FAULT_LIST_FILE_TEMP"
-    echo "$current_fault_line" > "$ENVVAR_FAULT_LIST_FILE_TEMP"
+    SIM_FAULTSIM_OPTIONS="$EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN"
 
-    # Run fault simulation
+    # Initialization
+    sim_cycle_count=1
+    total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
+
+    # Loop over all faults in the fault list file
+    for i in $(seq 1 $total_faults); do 
+      print_green "==== FAULT SIMULATION (#$i / $total_faults) ===="
+
+      # Read next fault from file 
+      current_fault_line=$(sed -n "${sim_cycle_count}p" "$ENVVAR_FAULT_LIST_FILE")
+
+      # Create temporary fault file with the current fault to be injected
+      [[ -f "$ENVVAR_FAULT_LIST_FILE_TEMP" ]] && rm "$ENVVAR_FAULT_LIST_FILE_TEMP"
+      echo "$current_fault_line" > "$ENVVAR_FAULT_LIST_FILE_TEMP"
+
+      # Run fault simulation
+      colorize vsim -c -coverage "$tb_module_opt" \
+        -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
+         $SIM_FAULTSIM_OPTIONS \
+        -do "$VSIM_RUN_AND_REPORT_COV"         
+				#-sdftyp /${ENVVAR_TB_TOPLEVEL_NAME}/${wrapper_inst}/${dut_inst}=${SYN_DIR}/DP_EX.sdf # specify SDF file
+
+      sim_cycle_count=$((sim_cycle_count + 1))
+    done 
+
+  else 
+    # ---- POST-SYNTHESIS RTL SIMULATION ----
+
+    # Run post-synthesis simulation with SDF back-annotation
     colorize vsim -c -coverage "$tb_module_opt" \
-      -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
-      $EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN \
-      -do "$VSIM_RUN_AND_REPORT_COV"
+    -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
+    -do "$VSIM_RUN_AND_REPORT_COV" \
+    -sdftyp /${ENVVAR_TB_TOPLEVEL_NAME}/${wrapper_inst}/${dut_inst}=${SYN_DIR}/DP_EX.sdf # specify SDF file
 
-    sim_cycle_count=$((sim_cycle_count + 1))
-  done 
+  fi # faultsim_enabled -eq 1
 
 else 
+
+   # ---- FAULT-FREE RTL SIMULATION ----
   colorize vsim -c -coverage "$tb_module_opt" \
   -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
-  $EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN \
   -do "$VSIM_RUN_AND_REPORT_COV"
-fi 
 
-
-# For synthesis:
-#colorize vsim -c -coverage "$tb_module_opt" \
-# -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
-# $EXIT_AFTER_UVM_ERROR \
-
-# -do "$VSIM_RUN_AND_REPORT_COV" \
-# -sdftyp /Module_topTestbench/exe_toplevel/DP_EXE_inst=../syn/DP_EX.sdf # specify SDF file
+fi  # postsyn_sim_enabled -eq 1
 
 # Create "covhtmlreport" dir from .ucdb coverage file
 [[ -d "$COV_HTML_DIR" ]] && rm -rf $COV_HTML_DIR
@@ -460,10 +503,8 @@ cov_print "$COV_DIR/cov_toggle.txt"
 ###############################################
 ####  FUNCTIONAL FAULT COVERAGE REPORTING  ####
 ###############################################
-if [[ faultsim_enabled -eq 1 ]]; then 
+if [[ $faultsim_enabled -eq 1 ]]; then 
   fault_cov_print
+  print_blue "The list of injected and classified faults can be found in: $CLASSIFIED_FAULTS_FILE"
 fi
 
-# TODO: Remove 
-print_blue "CLASSIFIED:"
-cat $CLASSIFIED_FAULTS_FILE
