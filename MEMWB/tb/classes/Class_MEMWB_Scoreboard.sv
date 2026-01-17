@@ -44,8 +44,10 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
   endfunction : build_phase
 
   virtual function void connect_phase(uvm_phase phase);
+    //Try to get the signal fault detected uvm_event from the uvm_test
     if (!uvm_config_db#(uvm_event)::get(null, "*", "signal_fault_detected", signal_fault_detected)) begin
       `uvm_info("[SCOREBOARD]", "Could not get signal_fault_detected handle", UVM_LOW)
+      //If it can't, it's not a problem, it defines a dummy handler
       signal_fault_detected = new();
     end
   endfunction
@@ -65,19 +67,20 @@ class Class_MEMWB_Scoreboard extends uvm_scoreboard;
     //Check results
 
     if (predictor_result.DP_TO_DLX_PC != memwb_seqitem.DP_TO_DLX_PC) begin
+      // Signal the uvm_test class that a fault has been detected
       signal_fault_detected.trigger();
       `uvm_error(get_type_name(), $sformatf("DP_TO_DLX_PC: expected %h, got %h",
         predictor_result.DP_TO_DLX_PC, memwb_seqitem.DP_TO_DLX_PC))
     end
     if (predictor_result.S4_REG_ADD_WR_OUT != memwb_seqitem.S4_REG_ADD_WR_OUT) begin
+      // Signal the uvm_test class that a fault has been detected
       signal_fault_detected.trigger();
-      uvm_config_db#(int)::set(null, "*", "fault_detected", 1);
       `uvm_error(get_type_name(), $sformatf("S4_REG_ADD_WR_OUT: expected %h, got %h",
            predictor_result.S4_REG_ADD_WR_OUT, memwb_seqitem.S4_REG_ADD_WR_OUT))
     end
     if (predictor_result.S5_MUX_DATAIN_OUT != memwb_seqitem.S5_MUX_DATAIN_OUT) begin
+      // Signal the uvm_test class that a fault has been detected
       signal_fault_detected.trigger();
-      uvm_config_db#(int)::set(null, "*", "fault_detected", 1);
       `uvm_error(get_type_name(), $sformatf("S5_MUX_DATAIN_OUT: expected %h, got %h",
         predictor_result.S5_MUX_DATAIN_OUT, memwb_seqitem.S5_MUX_DATAIN_OUT))
     end
