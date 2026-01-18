@@ -4,6 +4,8 @@ SYN_DIR=../syn
 GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
 export TOPLEVEL="Module_topTestbench"
 export DUT_HIERARCHY="${TOPLEVEL}.memwb_toplevel.DUT"
+export FAULT_LIST_FILE="fault_list.txt"
+
 POSTSYN_SIMULATION="y"
 
 SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")

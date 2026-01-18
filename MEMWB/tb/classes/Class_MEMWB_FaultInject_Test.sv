@@ -11,6 +11,7 @@ class Class_MEMWB_FaultInject_Test extends uvm_test;
   int log_fd;
   int stuckat;
   string signal_name;
+  string signal_tmax_classification;
   uvm_event signal_fault_detected;
 
   // Register to Factory
@@ -104,7 +105,12 @@ class Class_MEMWB_FaultInject_Test extends uvm_test;
     while (!$feof(fault_fd)) begin
       // From the fault file, read the signal to which apply the stuckat fault
       // and to which value to force the value to
-      $fscanf(fault_fd, "%s %d\n", signal_name, stuckat);
+      if (getenv("TETRAMAX_FAULT_FILE") == "y") begin
+        $fscanf(fault_fd, "sa%d %s %d\n", stuckat, signal_tmax_classification, signal_name);
+        signal_name = $sformatf("%s%s", getenv("DUT_HIERARCHY"), signal_name);
+      end else begin
+        $fscanf(fault_fd, "%s %d\n", signal_name, stuckat);
+      end
 
       // Set the fault detected flag to on the config_db
 
@@ -128,11 +134,27 @@ class Class_MEMWB_FaultInject_Test extends uvm_test;
 
       //Check if a fault impacted the output
       if (signal_fault_detected.is_on()) begin
+        if (getenv("TETRAMAX_FAULT_FILE") == "y") begin
+          if (signal_tmax_classification == "--") begin
+            $fdisplay (log_fd, "%s\t%1b\t%s\tDETECTED", signal_name, stuckat, signal_tmax_classification);
+          end else begin
+            $fdisplay (log_fd, "%s\t%1b\t%s\tDETECTED (*)", signal_name, stuckat, signal_tmax_classification);
+          end
+        end else begin
+          $fdisplay (log_fd, "%s\t%1b\tDETECTED", signal_name, stuckat);
+        end
         `uvm_info("[TEST]", $sformatf("Fault detected at signal %s stuck-at %1b", signal_name, stuckat), UVM_MEDIUM)
-        $fdisplay (log_fd, "%s\t%1b\tDETECTED", signal_name, stuckat);
       end else begin
+        if (getenv("TETRAMAX_FAULT_FILE") == "y") begin
+          if (signal_tmax_classification == "--") begin
+            $fdisplay (log_fd, "%s\t%1b\t%s\tDETECTED", signal_name, stuckat, signal_tmax_classification);
+          end else begin
+            $fdisplay (log_fd, "%s\t%1b\t%s\tDETECTED (*)", signal_name, stuckat, signal_tmax_classification);
+          end
+        end else begin
+          $fdisplay (log_fd, "%s\t%1b\tUNDETECTED", signal_name, stuckat);
+        end
         `uvm_info("[TEST]", $sformatf("Fault not detected at signal %s stuck-at %1b", signal_name, stuckat), UVM_MEDIUM)
-        $fdisplay (log_fd, "%s\t%1b\tUNDETECTED", signal_name, stuckat);
       end
       signal_fault_detected.reset(0);
 
