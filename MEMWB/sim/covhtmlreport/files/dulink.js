@@ -1,0 +1,2 @@
+var g_data = {"10":["work.AND2_X1",100.00,1],"11":["work.AOI22_X1",100.00,1],"13":["work.BUF_X1",100.00,1],"15":["work.DFF_X1",70.00,1],"9":["work.DP_MEMWB",95.23,1],"12":["work.INV_X1",100.00,1],"7":["work.Iface_MEMWB",100.00,1],"5":["work.Module_topTestbench",55.35,1],"3":["work.Module_topTestbench_sv_unit",64.16,1],"14":["work.NOR2_X1",100.00,1]};
+processDuLinks(g_data);

@@ -23,7 +23,7 @@ SEED=0
 export POSTSYN_SIMULATION="y"
 
 # Run fault injection campaign?
-export FAULT_INJECT_CAMPAIGN="y"
+export FAULT_INJECT_CAMPAIGN="n"
 # File to which write the cathegorized log files
 export FAULT_INJECT_LOG_FILE="../sim/fault_log.txt"
 # File from which to read the stuck_at faults
