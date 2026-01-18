@@ -13510,4 +13510,3 @@ module DP_IFID ( CLK, nRST, DLX_PC_to_DP, DLX_IR_to_DP, IR_LATCH_EN,
   DFF_X1 S2_REG_NPC_Q_reg_31_ ( .D(S2_REG_NPC_n10), .CK(CLK), .Q(
         S2_REG_NPC_OUT[31]) );
 endmodule
-

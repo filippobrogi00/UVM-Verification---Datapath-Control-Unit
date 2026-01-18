@@ -7,6 +7,7 @@
   * Coverage Tracker, which then samples coverage.
 */
 
+
 class Class_EXE_CoverageTracker extends uvm_subscriber #(Class_EXE_SequenceItem);
   // Register to Factory
     // coverage off

@@ -7,7 +7,7 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        628       626         2    99.68%
+    Toggles                        628       628         0   100.00%
 
 ================================Toggle Details================================
 
@@ -15,13 +15,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_dut_iface --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                                S3_REG_ALU_OUT[21]           0           0        0.00 
 
 Total Node Count     =        314 
-Toggled Node Count   =        313 
-Untoggled Node Count =          1 
+Toggled Node Count   =        314 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      99.68% (626 of 628 bins)
+Toggle Coverage      =     100.00% (628 of 628 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/exe_toplevel/DP_EXE_inst
@@ -30,7 +29,7 @@ Toggle Coverage      =      99.68% (626 of 628 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                       6094      5567       527    91.35%
+    Toggles                       6094      5595       499    91.81%
 
 ================================Toggle Details================================
 
@@ -38,7 +37,8 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                            S3_ALU_RESULT_shftr[2]           0           0        0.00 
+                                       S3_ALU_N324           0           0        0.00 
+                                       S3_ALU_N389           0           0        0.00 
                          S3_ALU_SHIFT_ROTATE_shftr           0           1       50.00 
                                         S3_ALU_n10           0           0        0.00 
                                         S3_ALU_n11           0           0        0.00 
@@ -65,14 +65,12 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
                                        S3_ALU_n156           0           0        0.00 
                                        S3_ALU_n162           0           0        0.00 
                                        S3_ALU_n168           0           0        0.00 
-                                       S3_ALU_n170           0           0        0.00 
                                        S3_ALU_n174           0           0        0.00 
                                        S3_ALU_n180           0           0        0.00 
                                        S3_ALU_n186           0           0        0.00 
                                        S3_ALU_n192           0           0        0.00 
                                        S3_ALU_n198           0           0        0.00 
                                        S3_ALU_n204           0           0        0.00 
-                                       S3_ALU_n206           0           0        0.00 
                                        S3_ALU_n210           0           0        0.00 
                                        S3_ALU_n216           0           0        0.00 
                                        S3_ALU_n222           0           0        0.00 
@@ -134,23 +132,14 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
                                  S3_ALU_shifter_n8           0           0        0.00 
                                  S3_ALU_shifter_n9           0           0        0.00 
                                 S3_ALU_shifter_n10           0           0        0.00 
-                                S3_ALU_shifter_n11           1           0       50.00 
                                 S3_ALU_shifter_n12           0           0        0.00 
-                                S3_ALU_shifter_n13           1           0       50.00 
-                                S3_ALU_shifter_n15           0           0        0.00 
                                 S3_ALU_shifter_n16           0           0        0.00 
-                                S3_ALU_shifter_n18           1           0       50.00 
                                 S3_ALU_shifter_n19           0           0        0.00 
-                                S3_ALU_shifter_n68           0           0        0.00 
-                                S3_ALU_shifter_n69           0           0        0.00 
-                                S3_ALU_shifter_n71           0           0        0.00 
-                                S3_ALU_shifter_n73           0           0        0.00 
-                                S3_ALU_shifter_n75           0           0        0.00 
-                                S3_ALU_shifter_n77           0           0        0.00 
-                                S3_ALU_shifter_n78           0           0        0.00 
-                                S3_ALU_shifter_n79           0           0        0.00 
+                                S3_ALU_shifter_n71           1           0       50.00 
+                                S3_ALU_shifter_n75           1           0       50.00 
+                                S3_ALU_shifter_n77           1           0       50.00 
+                                S3_ALU_shifter_n79           1           0       50.00 
                                 S3_ALU_shifter_n81           0           0        0.00 
-                                S3_ALU_shifter_n83           0           1       50.00 
                                 S3_ALU_shifter_n84           0           0        0.00 
                                 S3_ALU_shifter_n86           0           0        0.00 
                                 S3_ALU_shifter_n88           0           0        0.00 
@@ -281,21 +270,17 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
                                      S3_MUX_JMP_n1           0           0        0.00 
                                      S3_MUX_JMP_n3           0           0        0.00 
                                   S3_REG_ADD_WR_n9           0           0        0.00 
-                                S3_REG_ALU_OUT[21]           0           0        0.00 
                                      S3_REG_ALU_n2           0           0        0.00 
                                      S3_REG_ALU_n3           0           0        0.00 
                                      S3_REG_ALU_n5           0           0        0.00 
                                      S3_REG_ALU_n7           0           0        0.00 
                                     S3_REG_ALU_n75           0           0        0.00 
                                     S3_REG_COND_n1           0           0        0.00 
-                                    S3_REG_DATA_n1           0           0        0.00 
                                     S3_REG_DATA_n2           0           0        0.00 
                                     S3_REG_DATA_n3           0           0        0.00 
-                                    S3_REG_DATA_n4           0           0        0.00 
                                     S3_REG_DATA_n5           0           0        0.00 
                                     S3_REG_DATA_n7           0           0        0.00 
                                    S3_REG_DATA_n75           0           0        0.00 
-                                  S3_REG_DATA_n107           0           0        0.00 
                                      S3_REG_NPC_n1           0           0        0.00 
                                      S3_REG_NPC_n2           0           0        0.00 
                                      S3_REG_NPC_n3           0           0        0.00 
@@ -306,10 +291,10 @@ Toggle Coverage for instance /Module_topTestbench/exe_toplevel/DP_EXE_inst --
                                    S3_REG_NPC_n107           0           0        0.00 
 
 Total Node Count     =       3047 
-Toggled Node Count   =       2781 
-Untoggled Node Count =        266 
+Toggled Node Count   =       2795 
+Untoggled Node Count =        252 
 
-Toggle Coverage      =      91.35% (5567 of 6094 bins)
+Toggle Coverage      =      91.81% (5595 of 6094 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -318,7 +303,7 @@ Toggle Coverage      =      91.35% (5567 of 6094 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        260        10       250     3.84%
+    Toggles                        132         4       128     3.03%
 
 ================================Toggle Details================================
 
@@ -326,23 +311,15 @@ Toggle Coverage for instance /Module_topTestbench --
 
                                               Node      1H->0L      0L->1H  "Coverage"
                                               ---------------------------------------
-                          classified_faults_fd[31]           0           1       50.00 
-                        classified_faults_fd[30-3]           0           0        0.00 
-                           classified_faults_fd[2]           0           1       50.00 
-                         classified_faults_fd[1-0]           0           0        0.00 
                            current_inj_value[31-0]           0           0        0.00 
-                                faults_file_fd[31]           0           1       50.00 
-                              faults_file_fd[30-2]           0           0        0.00 
-                               faults_file_fd[1-0]           0           1       50.00 
-                              faultsim_cycle[31-1]           0           0        0.00 
-                                 faultsim_cycle[0]           0           1       50.00 
+                              faults_file_fd[31-0]           0           0        0.00 
 
-Total Node Count     =        130 
+Total Node Count     =         66 
 Toggled Node Count   =          2 
-Untoggled Node Count =        128 
+Untoggled Node Count =         64 
 
-Toggle Coverage      =       3.84% (10 of 260 bins)
+Toggle Coverage      =       3.03% (4 of 132 bins)
 
 
-Total Coverage By Instance (filtered view): 88.83%
+Total Coverage By Instance (filtered view): 90.84%
 

@@ -7,6 +7,7 @@
   * random constrained sequences to send to the Driver.
 * */
 
+
 // Import bins constants
 import pkg_const::*;
 
@@ -1001,4 +1002,3 @@ class Class_EXE_Sequence extends uvm_sequence #(Class_EXE_SequenceItem);
 	endtask : body
 
 endclass
-

@@ -8,7 +8,6 @@
   * Broadcasts TLOs to both Scoreboard and CoverageTracker components
 * */
 
-
 // Import bins constants
 import pkg_const::*;
 

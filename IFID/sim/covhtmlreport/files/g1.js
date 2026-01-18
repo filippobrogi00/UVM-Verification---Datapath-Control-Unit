@@ -1,0 +1,2 @@
+var g_data = {"6071":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":3,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_IFID_CoverageTracker/Covergroup_IFID",1,1,6072],"cov":[238,32,66.90],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
+processCovergroupsData(g_data);

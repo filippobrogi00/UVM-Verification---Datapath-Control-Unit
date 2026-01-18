@@ -209,9 +209,9 @@ package pkg_const;
     end
   endfunction
 
-  /********************************
-   *** FAULT CAMPAIGN FUNCTIONS ***
-   *********************************/
+  /******************************************
+   *** FAULT INJECTION CAMPAIGN FUNCTIONS ***
+   ******************************************/
 
   // @brief Save current detected faults count into file
   // @params:

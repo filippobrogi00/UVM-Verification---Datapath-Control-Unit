@@ -1,1 +1,0 @@
-# Functional Coverage: 96.88%

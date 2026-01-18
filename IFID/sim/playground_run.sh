@@ -3,7 +3,7 @@
 # $UVM_HOME = /playground_lib/uvm-1.2
 # $QUESTA_HOME = /usr/share/questa/questasim/
 
-SV_COMPILE_LIST="Iface_IFID.sv Module_ifid_Wrapper.sv testbench.sv"
+SV_COMPILE_LIST="Iface_ControlUnit.sv Module_ControlUnit_Wrapper.sv testbench.sv"
 
 tb_entity="Module_topTestbench"
 

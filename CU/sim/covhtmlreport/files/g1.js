@@ -1,2 +1,0 @@
-var g_data = {"19":{"pr":"/Module_topTestbench_sv_unit","ty":2,"dui":5,"dun":"work.Module_topTestbench_sv_unit","cvgs":[{"h":["/Module_topTestbench_sv_unit/Class_CU_CoverageTracker/Covergroup_CU",1,1,20],"cov":[64,62,96.87],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
-processCovergroupsData(g_data);

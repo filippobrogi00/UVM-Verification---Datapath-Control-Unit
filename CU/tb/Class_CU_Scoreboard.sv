@@ -17,9 +17,23 @@ class Class_CU_Scoreboard extends uvm_scoreboard;
   `uvm_component_utils(Class_CU_Scoreboard)
   // coverage on bcs
 
+  /* Scoreboard class variables */
+	int error;
+	`ifdef FAULT_INJECTION_CAMPAIGN
+		string injected_fault;
+		int injected_value;
+	`endif // FAULT_INJECTION_CAMPAIGN
+
   // Constructor
   function new(string name = "Class_CU_Scoreboard", uvm_component parent = null);
     super.new(name, parent);
+    error = 0;
+		
+		`ifdef FAULT_INJECTION_CAMPAIGN
+			// Get current fault line and injected value from UVM DB variables set by top level 
+			uvm_config_db#(string)::get(null, "", "current_fault", injected_fault);
+			uvm_config_db#(int)::get(null, "", "current_inj_value", injected_value);
+		`endif // FAULT_INJECTION_CAMPAIGN
   endfunction
 
   // Analysis Port to receive data objects from other TB components
@@ -84,6 +98,7 @@ class Class_CU_Scoreboard extends uvm_scoreboard;
       // coverage on b
     end else begin
       // coverage off b
+			error++;
       `uvm_info("RED", $sformatf(
                 "Control Word mismatch:\nExpected %0h, got %0h", expectedCW, currentCW), UVM_MEDIUM)
       // coverage on b
@@ -96,6 +111,7 @@ class Class_CU_Scoreboard extends uvm_scoreboard;
       // coverage on b
     end else begin
       // coverage off b
+			error++;
       `uvm_info("RED", $sformatf(
                 "Alu Opcode mismatch:\nExpected %0h, got %0h", expectedAluOpcode, currentAluOpcode),
                 UVM_MEDIUM)
@@ -103,6 +119,41 @@ class Class_CU_Scoreboard extends uvm_scoreboard;
     end
 
   endfunction : write
+
+  /*
+	* REPORT PHASE: 
+		* Update error count after simulation cycle, and, if fault-simulating, 
+	  * save the current fault and injected value to file
+	*/
+	virtual function void report_phase(uvm_phase phase);
+		super.report_phase(phase);
+
+		if(error > 0) begin
+			// coverage off b
+
+			`uvm_info("RED", $sformatf(
+				"Found %d errors",
+				error
+				), UVM_MEDIUM);
+
+			`ifdef FAULT_INJECTION_CAMPAIGN
+				// Stop fault simulation on error throwing UVM_ERROR
+				save_current_fault_to_file(injected_fault, injected_value, 1);
+				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
+			`endif // FAULT_INJECTION_CAMPAIGN
+
+	  	// coverage on b
+		end
+		else begin
+
+			`ifdef FAULT_INJECTION_CAMPAIGN
+				save_current_fault_to_file(injected_fault, injected_value, 0);
+			`endif // FAULT_INJECTION_CAMPAIGN
+
+			`uvm_info("GREEN", "No error found", UVM_MEDIUM);
+		
+		end
+	endfunction : report_phase
 
 endclass
 

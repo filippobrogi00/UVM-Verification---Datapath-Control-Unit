@@ -15,14 +15,19 @@ module Module_CU_Wrapper #(
 
   // Instantiate DUT (cu_sv SV wrapper inside design.sv) and connect each of its pins
   // to an interface's signals
-
-  dlx_cu #(
-/*      .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
-      .FUNC_SIZE         (FUNC_SIZE),
-      .OP_CODE_SIZE      (OP_CODE_SIZE),
-      .IR_SIZE           (IR_SIZE),
-      .CW_SIZE           (CW_SIZE)
-  */) DP_CU_inst (
+  dlx_cu 
+  `ifndef POSTSYN_SIMULATION   		
+	  `ifndef FAULT_INJECTION_CAMPAIGN		
+      #(
+        .MICROCODE_MEM_SIZE(MICROCODE_MEM_SIZE),
+        .FUNC_SIZE         (FUNC_SIZE),
+        .OP_CODE_SIZE      (OP_CODE_SIZE),
+        .IR_SIZE           (IR_SIZE),
+        .CW_SIZE           (CW_SIZE)
+      ) 
+    `endif // FAULT_INJECTION_CAMPAIGN
+  `endif // POSTSYN_SIMULATION
+  DP_CU_inst ( // WARN: PARSER COMMENT, DO NOT CHANGE/REMOVE
       /* Inputs */
       .Clk            (cu_iface.Clk),
       .nRst           (cu_iface.nRst),

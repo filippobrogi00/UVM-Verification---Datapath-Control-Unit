@@ -6,6 +6,7 @@
   * Driver drives them to the design via the interface signals
 * */
 
+
 class Class_EXE_Driver extends uvm_driver #(Class_EXE_SequenceItem);
 
   // coverage off
@@ -110,6 +111,4 @@ class Class_EXE_Driver extends uvm_driver #(Class_EXE_SequenceItem);
 
 	endtask : run_phase
 endclass
-
-
 

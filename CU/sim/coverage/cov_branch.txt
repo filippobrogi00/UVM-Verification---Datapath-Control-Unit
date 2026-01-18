@@ -1,84 +1,80 @@
 Coverage Report by instance with details
 
 =================================================================================
-=== Instance: /Module_topTestbench/cu_toplevel/DP_CU_inst
-=== Design Unit: work.dlx_cu(dlx_cu_hw)
+=== Instance: /Module_topTestbench
+=== Design Unit: work.Module_topTestbench
 =================================================================================
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        52        52         0   100.00%
+    Branches                        20         6        14    30.00%
 
 ================================Branch Details================================
 
-Branch Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst
+Branch Coverage for instance /Module_topTestbench
 
     Line         Item                      Count     Source 
     ----         ----                      -----     ------ 
-  File ../src/a.a-CU_HW.vhd
+  File ../tb/Module_topTestbench.sv
 ------------------------------------IF Branch------------------------------------
-    199                                     4002     Count coming in to IF
-    199             1                         12     
-    209             1                       3990     
-Branch totals: 2 hits of 2 branches = 100.00%
+    150                                        1     Count coming in to IF
+    150             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
 
-------------------------------------CASE Branch------------------------------------
-    237                                     8001     Count coming in to CASE
-    240             1                       2029     
-    270             1                        522     
-    271             1                        516     
-    272             1                        570     
-    273             1                        524     
-    274             1                         40     
-    275             1                         28     
-    276             1                        264     
-    277             1                        256     
-    278             1                        192     
-    279             1                        176     
-    280             1                        184     
-    281             1                        184     
-    282             1                         28     
-    283             1                         38     
-    284             1                         22     
-    285             1                         20     
-    286             1                         24     
-    289             1                        198     
-    290             1                        226     
-    291             1                         36     
-    292             1                         42     
-    293             1                         28     
-    294             1                         40     
-    295             1                        204     
-    296             1                        200     
-    297             1                        200     
-    298             1                        168     
-    299             1                       1042     
-Branch totals: 29 hits of 29 branches = 100.00%
+------------------------------------IF Branch------------------------------------
+    151                                  ***0***     Count coming in to IF
+    151             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
 
-------------------------------------CASE Branch------------------------------------
-    241                                     2029     Count coming in to CASE
-    243             1                         96     
-    244             1                        118     
-    245             1                         84     
-    246             1                         90     
-    247             1                         96     
-    248             1                        106     
-    249             1                        100     
-    250             1                         90     
-    251             1                         92     
-    252             1                        130     
-    255             1                         80     
-    256             1                         84     
-    257             1                        108     
-    258             1                         96     
-    259             1                         90     
-    260             1                        108     
-    261             1                        104     
-    262             1                        116     
-    263             1                         94     
-    264             1                        118     
-    265             1                         29     
-Branch totals: 21 hits of 21 branches = 100.00%
+------------------------------------IF Branch------------------------------------
+    156                                        1     Count coming in to IF
+    156             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    157                                  ***0***     Count coming in to IF
+    157             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    163                                        1     Count coming in to IF
+    163             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    164                                  ***0***     Count coming in to IF
+    164             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    169                                        1     Count coming in to IF
+    169             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    170                                  ***0***     Count coming in to IF
+    170             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
+
+------------------------------------IF Branch------------------------------------
+    191                                        1     Count coming in to IF
+    191             1                          1     
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    192                                        1     Count coming in to IF
+    192             1                          1     
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
 
 
 
@@ -89,7 +85,7 @@ Branch totals: 21 hits of 21 branches = 100.00%
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                         5         0         5     0.00%
+    Branches                        11         5         6    45.45%
 
 ================================Branch Details================================
 
@@ -99,16 +95,38 @@ Branch Coverage for instance /Module_topTestbench_sv_unit
     ----         ----                      -----     ------ 
   File ../tb/Module_topTestbench.sv
 ------------------------------------CASE Branch------------------------------------
-    130                                  ***0***     Count coming in to CASE
-    130             1                    ***0***     
-    130             1                    ***0***     
-    130             1                    ***0***     
-    130             1                    ***0***     
-    130             1                    ***0***     
-Branch totals: 0 hits of 5 branches = 0.00%
+    221                                       28     Count coming in to CASE
+    221             1                          4     
+    221             1                          6     
+    221             1                    ***0***     
+    221             1                          5     
+    221             1                    ***0***     
+Branch totals: 3 hits of 5 branches = 60.00%
+
+
+  File ../tb/Class_CU_Driver.sv
+------------------------------------IF Branch------------------------------------
+    66                                         1     Count coming in to IF
+    66              1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+  File ../tb/Class_CU_Scoreboard.sv
+------------------------------------IF Branch------------------------------------
+    131                                        1     Count coming in to IF
+    131             1                          1     
+    147             1                    ***0***     
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    153                                  ***0***     Count coming in to IF
+    153             1                    ***0***     
+                                         ***0***     All False Count
+Branch totals: 0 hits of 2 branches = 0.00%
 
 
 
 
-Total Coverage By Instance (filtered view): 91.22%
+Total Coverage By Instance (filtered view): 35.48%
 

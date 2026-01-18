@@ -1,0 +1,2 @@
+var g_data = {"data":[{"n":"work.DP_IFID","id":8,"zf":1,"tc":8.65,"t":8.65},{"n":"work.Iface_IFID","id":6,"zf":1,"tc":69.41,"s":100.00,"t":38.82},{"n":"work.Module_topTestbench","id":5,"zf":1,"tc":24.07,"s":62.85,"b":30.00,"fc":0.00,"t":3.46},{"n":"work.Module_topTestbench_sv_unit","id":3,"zf":1,"tc":56.61,"s":93.03,"b":63.15,"fc":0.00,"g":66.90,"a":60.00}]};
+processDuData(g_data);

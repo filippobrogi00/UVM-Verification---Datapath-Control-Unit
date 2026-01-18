@@ -56,6 +56,16 @@ class Class_CU_Driver extends uvm_driver #(Class_CU_SequenceItem);
     // Transaction Object used to store (current) data sent from Sequencer
     Class_CU_SequenceItem cu_seqitem;
 
+    `ifdef FAULT_INJECTION_CAMPAIGN
+			// Get current fault from UVM DB variable
+			string current_fault;
+			int    current_inj_value; 
+			uvm_config_db#(string)::get(null, "", "current_fault", current_fault);
+			uvm_config_db#(int)::get(null, "", "current_inj_value", current_inj_value);
+			uvm_hdl_force(current_fault, current_inj_value);
+			`uvm_info("BLUE", $sformatf("Injected fault stuck-at-%0d on %s", current_inj_value, current_fault), "UVM_MEDIUM");
+		`endif // FAULT_INJECTION_CAMPAIGN
+
     // Just like in C, in SV, statements must follow variable declarations!
     super.run_phase(phase);
 
@@ -75,7 +85,12 @@ class Class_CU_Driver extends uvm_driver #(Class_CU_SequenceItem);
       // Tell sequence that driver has finished current item
       seq_item_port.item_done();
 
-    end
+    end // forever begin 
+
+    `ifdef FAULT_INJECTION_CAMPAIGN
+      uvm_hdl_release(current_fault);
+    `endif // FAULT_INJECTION_CAMPAIGN
+
   endtask : run_phase
 endclass
 

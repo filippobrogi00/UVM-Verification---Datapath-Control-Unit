@@ -7,67 +7,205 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        114       114         0   100.00%
+    Toggles                        114        36        78    31.57%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench/cu_dut_iface --
 
-                                              Node      1H->0L      0L->1H                          "Coverage"
-                                              ---------------------------------------------------------------
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   ALU_OPCODE[4-0]           0           0        0.00 
+                                     ALU_OUTREG_EN           0           0        0.00 
+                                           DRAM_WE           0           0        0.00 
+                                          EQZ_NEQZ           0           0        0.00 
+                                           EQ_COND           0           0        0.00 
+                                         IR_IN[31]           0           0        0.00 
+                                         IR_IN[30]           1           0       50.00 
+                                         IR_IN[29]           0           0        0.00 
+                                         IR_IN[28]           1           0       50.00 
+                                         IR_IN[27]           0           1       50.00 
+                                      IR_IN[26-24]           0           0        0.00 
+                                         IR_IN[23]           0           1       50.00 
+                                         IR_IN[20]           0           1       50.00 
+                                         IR_IN[18]           1           0       50.00 
+                                         IR_IN[17]           0           0        0.00 
+                                      IR_IN[14-13]           0           0        0.00 
+                                         IR_IN[12]           0           1       50.00 
+                                         IR_IN[11]           1           0       50.00 
+                                          IR_IN[9]           0           1       50.00 
+                                          IR_IN[7]           0           1       50.00 
+                                          IR_IN[3]           0           0        0.00 
+                                          IR_IN[2]           1           0       50.00 
+                                          IR_IN[0]           1           0       50.00 
+                                       IR_LATCH_EN           0           0        0.00 
+                                            JAL_EN           0           0        0.00 
+                                               JMP           0           0        0.00 
+                                           JUMP_EN           0           0        0.00 
+                                      LMD_LATCH_EN           0           0        0.00 
+                                          MUXA_SEL           0           0        0.00 
+                                          MUXB_SEL           0           0        0.00 
+                                      NPC_LATCH_EN           0           0        0.00 
+                                       PC_LATCH_EN           0           0        0.00 
+                                             RF_WE           0           0        0.00 
+                                     RegA_LATCH_EN           0           0        0.00 
+                                   RegIMM_LATCH_EN           0           0        0.00 
+                                    SIGN_UNSIGN_EN           0           0        0.00 
+                                        WB_MUX_SEL           0           0        0.00 
+                                              nRst           0           0        0.00 
 
 Total Node Count     =         57 
-Toggled Node Count   =         57 
-Untoggled Node Count =          0 
+Toggled Node Count   =         12 
+Untoggled Node Count =         45 
 
-Toggle Coverage      =     100.00% (114 of 114 bins)
+Toggle Coverage      =      31.57% (36 of 114 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench/cu_toplevel/DP_CU_inst
-=== Design Unit: work.dlx_cu(dlx_cu_hw)
+=== Design Unit: work.dlx_cu
 =================================================================================
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        340       319        21    93.82%
+    Toggles                        328       102       226    31.09%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench/cu_toplevel/DP_CU_inst --
 
-                                              Node      1H->0L      0L->1H                          "Coverage"
-                                              ---------------------------------------------------------------
-                                        aluOpcode1               ENUM type       Value       Count 
-                                        aluOpcode2               ENUM type       Value       Count 
-                                        aluOpcode3               ENUM type       Value       Count 
-                                                                       NOP           0        0.00 
-                                                                    ADD_op           0        0.00 
-                                                                    AND_op           0        0.00 
-                                                                     OR_op           0        0.00 
-                                                                    SGE_op           0        0.00 
-                                                                    SLE_op           0        0.00 
-                                                                    SLL_op           0        0.00 
-                                                                    SNE_op           0        0.00 
-                                                                    SRL_op           0        0.00 
-                                                                    SUB_op           0        0.00 
-                                                                    XOR_op           0        0.00 
-                                                                    SRA_op           0        0.00 
-                                                                   ADDU_op           0        0.00 
-                                                                   SUBU_op           0        0.00 
-                                                                    SEQ_op           0        0.00 
-                                                                    SLT_op           0        0.00 
-                                                                    SGT_op           0        0.00 
-                                                                   SLTU_op           0        0.00 
-                                                                   SGTU_op           0        0.00 
-                                                                   SLEU_op           0        0.00 
-                                                                   SGEU_op           0        0.00 
-                                       aluOpcode_i               ENUM type       Value       Count 
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                     ALU_OPCODE[0]           0           0        0.00 
+                                   ALU_OPCODE[1-2]           0           1       50.00 
+                                   ALU_OPCODE[3-4]           0           0        0.00 
+                                     ALU_OUTREG_EN           0           0        0.00 
+                                           DRAM_WE           0           0        0.00 
+                                          EQZ_NEQZ           0           0        0.00 
+                                           EQ_COND           0           0        0.00 
+                                          IR_IN[0]           1           0       50.00 
+                                        IR_IN[2-3]           0           0        0.00 
+                                          IR_IN[7]           0           1       50.00 
+                                          IR_IN[9]           0           1       50.00 
+                                         IR_IN[11]           1           0       50.00 
+                                         IR_IN[12]           0           1       50.00 
+                                      IR_IN[13-14]           0           0        0.00 
+                                         IR_IN[17]           0           0        0.00 
+                                         IR_IN[18]           1           0       50.00 
+                                         IR_IN[20]           0           1       50.00 
+                                         IR_IN[23]           0           1       50.00 
+                                      IR_IN[24-26]           0           0        0.00 
+                                         IR_IN[27]           0           1       50.00 
+                                         IR_IN[28]           1           0       50.00 
+                                         IR_IN[29]           0           0        0.00 
+                                         IR_IN[30]           1           0       50.00 
+                                         IR_IN[31]           0           0        0.00 
+                                       IR_LATCH_EN           0           0        0.00 
+                                            JAL_EN           0           0        0.00 
+                                               JMP           0           0        0.00 
+                                           JUMP_EN           0           0        0.00 
+                                      LMD_LATCH_EN           0           0        0.00 
+                                          MUXA_SEL           0           0        0.00 
+                                          MUXB_SEL           0           0        0.00 
+                                      NPC_LATCH_EN           0           0        0.00 
+                                       PC_LATCH_EN           0           0        0.00 
+                                             RF_WE           0           0        0.00 
+                                     RegA_LATCH_EN           0           0        0.00 
+                                   RegIMM_LATCH_EN           0           0        0.00 
+                                    SIGN_UNSIGN_EN           0           0        0.00 
+                                        WB_MUX_SEL           0           0        0.00 
+                                     aluOpcode1[0]           0           1       50.00 
+                                     aluOpcode1[2]           0           1       50.00 
+                                   aluOpcode1[3-4]           0           0        0.00 
+                                    aluOpcode_i[0]           0           1       50.00 
+                                  aluOpcode_i[1-2]           1           0       50.00 
+                                  aluOpcode_i[3-4]           0           0        0.00 
+                                                n2           0           0        0.00 
+                                                n5           1           0       50.00 
+                                              n111           0           0        0.00 
+                                              n113           0           0        0.00 
+                                              n114           0           0        0.00 
+                                              n115           0           0        0.00 
+                                              n116           0           1       50.00 
+                                              n117           0           0        0.00 
+                                              n118           1           0       50.00 
+                                              n119           0           0        0.00 
+                                              n120           0           0        0.00 
+                                              n121           0           0        0.00 
+                                              n122           0           0        0.00 
+                                              n123           0           0        0.00 
+                                              n124           0           0        0.00 
+                                              n125           0           0        0.00 
+                                              n126           0           0        0.00 
+                                              n127           0           0        0.00 
+                                              n128           0           0        0.00 
+                                              n130           0           0        0.00 
+                                              n131           1           0       50.00 
+                                              n132           0           0        0.00 
+                                              n133           0           0        0.00 
+                                              n134           0           1       50.00 
+                                              n135           0           1       50.00 
+                                              n137           0           1       50.00 
+                                              n138           0           0        0.00 
+                                              n139           0           0        0.00 
+                                              n140           0           0        0.00 
+                                              n141           0           0        0.00 
+                                              n145           0           0        0.00 
+                                              n146           0           0        0.00 
+                                              n147           0           0        0.00 
+                                              n149           0           0        0.00 
+                                              n150           0           0        0.00 
+                                              n151           0           0        0.00 
+                                              n152           0           0        0.00 
+                                              n153           0           0        0.00 
+                                              n154           0           0        0.00 
+                                              n155           0           1       50.00 
+                                              n156           1           0       50.00 
+                                              n157           0           0        0.00 
+                                              n158           0           0        0.00 
+                                              n159           0           0        0.00 
+                                              n160           0           0        0.00 
+                                              n161           1           0       50.00 
+                                              n162           0           1       50.00 
+                                              n163           0           0        0.00 
+                                              n164           0           0        0.00 
+                                              n165           0           0        0.00 
+                                              n166           0           0        0.00 
+                                              n167           0           1       50.00 
+                                              n168           0           0        0.00 
+                                              n169           0           0        0.00 
+                                              n170           1           0       50.00 
+                                              n171           0           1       50.00 
+                                              n172           0           0        0.00 
+                                              n173           1           0       50.00 
+                                              n177           0           0        0.00 
+                                              n178           0           0        0.00 
+                                              n179           0           0        0.00 
+                                              n181           0           0        0.00 
+                                              n183           0           0        0.00 
+                                              n184           0           0        0.00 
+                                              n185           0           0        0.00 
+                                              n188           0           0        0.00 
+                                              n191           1           0       50.00 
+                                              n192           0           1       50.00 
+                                              n194           0           0        0.00 
+                                              n195           0           0        0.00 
+                                              n196           1           0       50.00 
+                                              n197           0           0        0.00 
+                                              n198           1           0       50.00 
+                                              n199           1           0       50.00 
+                                              n200           1           0       50.00 
+                                              n201           0           1       50.00 
+                                              n202           1           0       50.00 
+                                              n203           0           0        0.00 
+                                              n204           1           0       50.00 
+                                              n205           0           0        0.00 
+                                              nRst           0           0        0.00 
 
-Total Node Count     =        212 
-Toggled Node Count   =        191 
-Untoggled Node Count =         21 
+Total Node Count     =        164 
+Toggled Node Count   =         30 
+Untoggled Node Count =        134 
 
-Toggle Coverage      =      93.82% (319 of 340 bins)
+Toggle Coverage      =      31.09% (102 of 328 bins)
 
 =================================================================================
 === Instance: /Module_topTestbench
@@ -76,21 +214,33 @@ Toggle Coverage      =      93.82% (319 of 340 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                          4         4         0   100.00%
+    Toggles                        260        10       250     3.84%
 
 ================================Toggle Details================================
 
 Toggle Coverage for instance /Module_topTestbench --
 
-                                              Node      1H->0L      0L->1H                          "Coverage"
-                                              ---------------------------------------------------------------
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                          classified_faults_fd[31]           0           1       50.00 
+                        classified_faults_fd[30-3]           0           0        0.00 
+                           classified_faults_fd[2]           0           1       50.00 
+                         classified_faults_fd[1-0]           0           0        0.00 
+                           current_inj_value[31-1]           0           0        0.00 
+                              current_inj_value[0]           0           1       50.00 
+                                faults_file_fd[31]           0           1       50.00 
+                              faults_file_fd[30-2]           0           0        0.00 
+                               faults_file_fd[1-0]           0           1       50.00 
+                              faultsim_cycle[31-1]           0           0        0.00 
+                                 faultsim_cycle[0]           0           1       50.00 
+                                       globalRst_n           0           1       50.00 
 
-Total Node Count     =          2 
-Toggled Node Count   =          2 
-Untoggled Node Count =          0 
+Total Node Count     =        130 
+Toggled Node Count   =          1 
+Untoggled Node Count =        129 
 
-Toggle Coverage      =     100.00% (4 of 4 bins)
+Toggle Coverage      =       3.84% (10 of 260 bins)
 
 
-Total Coverage By Instance (filtered view): 95.41%
+Total Coverage By Instance (filtered view): 20.91%
 

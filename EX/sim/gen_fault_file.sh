@@ -1,9 +1,15 @@
 SRC_DIR=../src
 TB_DIR=../tb
-TOPLEVEL="Module_topTestbench"
+SYN_DIR=../syn
+GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
+export TOPLEVEL="Module_topTestbench"
+export DUT_HIERARCHY="${TOPLEVEL}.exe_toplevel.DP_EXE_inst"
+export FAULT_LIST_FILE="fault_list.txt"
+POSTSYN_SIMULATION="y"
 
 SRC_FILES=$(find $SRC_DIR -maxdepth 1 -name "*.vhd")
-SV_FILES="$(find $TB_DIR -maxdepth 1 -name "*.sv")"
+SV_FILES="$(find $TB_DIR -maxdepth 1 -name "Module*.sv") $(find $TB_DIR -maxdepth 1 -name "Iface*.sv")"
+SYN_FILES=$(find $SYN_DIR -maxdepth 1 -name "*.v")
 
 #############################################################
 ###########     SCRIPT INCLUDES AND DIRECTORY     ###########
@@ -25,4 +31,8 @@ else
   source "/eda/scripts/init_design_vision"
 fi
 
-qrun -clean -uvm -autoorder -mixedsvvh $SRC_FILES $SV_FILES -do gen_fault_file_2.do -top $TOPLEVEL
+if [ "$POSTSYN_SIMULATION" = "y" ]; then
+  qrun -clean -uvm -autoorder -mixedsvvh +acc +define+POSTSYN_SIMULATION +define+FAULT_INJECTION_CAMPAIGN -timescale=1ns/1ns $GATE_LIBRARY $SYN_FILES $SV_FILES -do gen_fault_file.do -top $TOPLEVEL
+else
+  qrun -clean -uvm -autoorder -mixedsvvh +acc $SRC_FILES $SV_FILES -do gen_fault_file.do -do -top $TOPLEVEL
+fi

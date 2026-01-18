@@ -10,7 +10,7 @@
 
 # Print usage 
 if [[ $# -ne 1 && $# -ne 2 ]]; then
-  echo "Usage: $0 <number of sequence items per sequence to generate> [<sim|postsyn|faultsim>]"
+  echo "Usage: $0 <number of sequence items per sequence to generate> [postsyn|faultsim]"
   exit 1
 fi
 
@@ -79,7 +79,7 @@ mkdir -p $SYN_DIR
 mkdir -p $COV_DIR
 
 # Script variables - Compilation
-SV_COMPILE_LIST="$TB_DIR/Iface_EX.sv $TB_DIR/Module_EX_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
+export SV_COMPILE_LIST="$TB_DIR/Iface_EX.sv $TB_DIR/Module_EX_Wrapper.sv $TB_DIR/Module_topTestbench.sv"
 
 #########################################################
 ####       POST-SYNTHESIS SIMULATION VARIABLES       ####
@@ -131,10 +131,12 @@ FAULT_INJECTION_CAMPAIGN="" # Fault-free simulation default value
 
 # Macro defined for compilation use for fault simulation
 if [[ $faultsim_enabled -eq 1 ]]; then 
-  FAULT_INJECTION_CAMPAIGN="+define+FAULT_INJECTION_CAMPAIGN"
+	FAULT_INJECTION_CAMPAIGN="+define+FAULT_INJECTION_CAMPAIGN"
 	# Create single-line temporary fault list file 
   export ENVVAR_FAULT_LIST_FILE_TEMP="$SIM_DIR/fault_list_temp.txt"
-	echo "$ENVVAR_FAULT_LIST_FILE_TE"	
+
+	export FAULT_INJECT_FAULT_FILE="$SIM_DIR/fault_list.txt"
+	export FAULT_INJECT_LOG_FILE="$SIM_DIR/fault_list_log.txt"
 fi
 
 ########### FUNCTIONS ###########
@@ -162,7 +164,7 @@ compile_files() {
     ;;
   VERILOG)
     ext="v"
-    compiler="vlog -work work"
+    compiler="vlog -work work -timescale=1ns/1ns"
     language="VERILOG"
     ;;
   SYSTEMVERILOG)
@@ -293,11 +295,11 @@ fault_cov_print() {
   detected=0
   if [[ ! -f "$CLASSIFIED_FAULTS_FILE" ]]; then
     print_red "Error: UVM Testbench did not create detected faults output file $CLASSIFIED_FAULTS_FILE!"
-    return
+    exit 1
   fi
 
   # Get number of detected and total faults 
-  detected=$(grep "DETECTED" $CLASSIFIED_FAULTS_FILE | wc -l)
+  detected=$(grep " DETECTED" $CLASSIFIED_FAULTS_FILE | wc -l)
   total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
   total_cov=$(( $detected * 100 / $total_faults ))
 
@@ -330,10 +332,12 @@ compile_files $SRC_DIR VERILOG SOURCE
 if [[ postsyn_sim_enabled -eq 1 || faultsim_enabled -eq 1 ]]; then 
   # ---- POST-SYNTHESIS SIMULATION ----
 
-  # Compile gate library
-  vlog -timescale=1ns/1ps -work work /eda/dk/nangate45/verilog/NangateOpenCellLibrary.v
-  # Compile postsyn netlist
-  vlog -timescale=1ns/1ps -work work ../syn/DP_EX.v
+   GATE_LIBRARY="/eda/dk/nangate45/verilog/NangateOpenCellLibrary.v"
+  # Compile gate library 
+  # compile_files "$(dirname $GATE_LIBRARY)" VERILOG GATE_LIBRARY
+  colorize vlog -work work -timescale=1ns/1ns $GATE_LIBRARY
+  # Compile post-synthesis netlist
+  compile_files $SYN_DIR VERILOG POSTSYNTH_SOURCE
  
 fi 
 
@@ -410,9 +414,8 @@ if [[ postsyn_sim_enabled -eq 1 ]]; then
   
   # Get wrapper instance from top level TB 
   wrapper_inst=$(extract_wrapper_from_topleveltb "$top_level_tb_file")
-
   # Get DUT instantiation name from Wrapper TB file 
-  wrapper_file=$(grep "[Ww]rapper" $TB_DIR/*.sv | head -n 1 | cut -d: -f1)
+  wrapper_file="$TB_DIR/Module_EX_Wrapper.sv"
   dut_inst=$(extract_dut_from_wrappertb "${wrapper_file}")
 
   # If fault simulation is enabled, fault simulate for every line of the fault list file.
@@ -421,15 +424,10 @@ if [[ postsyn_sim_enabled -eq 1 ]]; then
 
      # ---- POST-SYNTHESIS FAULT SIMULATION ----
 
+    # Build fault simulation vsim options 
     SIM_FAULTSIM_OPTIONS="$EXIT_AFTER_UVM_ERROR $FAULT_INJECTION_CAMPAIGN"
 
-    # Initialization
-    sim_cycle_count=1
-    total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
-
-    # Loop over all faults in the fault list file
-    for i in $(seq 1 $total_faults); do 
-      print_green "==== FAULT SIMULATION (#$i / $total_faults) ===="
+      print_green "==== FAULT SIMULATION ===="
 
       # Read next fault from file 
       current_fault_line=$(sed -n "${sim_cycle_count}p" "$ENVVAR_FAULT_LIST_FILE")
@@ -439,14 +437,36 @@ if [[ postsyn_sim_enabled -eq 1 ]]; then
       echo "$current_fault_line" > "$ENVVAR_FAULT_LIST_FILE_TEMP"
 
       # Run fault simulation
-      colorize vsim -c -coverage "$tb_module_opt" \
+      vsim -c -coverage "$tb_module_opt" \
         -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
          $SIM_FAULTSIM_OPTIONS \
-        -do "$VSIM_RUN_AND_REPORT_COV"         
-				#-sdftyp /${ENVVAR_TB_TOPLEVEL_NAME}/${wrapper_inst}/${dut_inst}=${SYN_DIR}/DP_EX.sdf # specify SDF file
+        -do "$VSIM_RUN_AND_REPORT_COV"       
+    # Initialization
+    	sim_cycle_count=1
+	    total_faults=$(wc -l < $ENVVAR_FAULT_LIST_FILE)
 
-      sim_cycle_count=$((sim_cycle_count + 1))
-    done 
+    # Loop over all faults in the fault list file
+#    for i in $(seq 1 $total_faults); do 
+#      print_green "==== FAULT SIMULATION (#$i / $total_faults) ===="
+
+      # Read next fault from file 
+#      current_fault_line=$(sed -n "${sim_cycle_count}p" "$ENVVAR_FAULT_LIST_FILE")
+
+      # Create temporary fault file with the current fault to be injected
+#      [[ -f "$ENVVAR_FAULT_LIST_FILE_TEMP" ]] && rm "$ENVVAR_FAULT_LIST_FILE_TEMP"
+#      echo "$current_fault_line" > "$ENVVAR_FAULT_LIST_FILE_TEMP"
+
+      # Run fault simulation
+ #     vsim -c -coverage "$tb_module_opt" \
+ #       -t $SIM_TIMESCALE $SIM_SEQITEMS $SIM_OPTIONS \
+ #        $SIM_FAULTSIM_OPTIONS \
+ #       -do "$VSIM_RUN_AND_REPORT_COV"         
+ #
+ #     sim_cycle_count=$((sim_cycle_count + 1))
+ #   done 
+
+    # Delete last temporary fault list file
+    [[ -f "$ENVVAR_FAULT_LIST_FILE_TEMP" ]] && rm "$ENVVAR_FAULT_LIST_FILE_TEMP"
 
   else 
     # ---- POST-SYNTHESIS RTL SIMULATION ----
@@ -486,6 +506,7 @@ fi
 [ -f vsim.wlf ] && rm vsim.wlf
 [ -f vish_stacktrace.vstf ] && rm vish_stacktrace.vstf
 [ -f vsim_stacktrace.vstf ] && rm vsim_stacktrace.vstf
+[ -f modelsim.ini ] && rm modelsim.ini
 
 ##################################################
 ####  FUNCTIONAL AND CODE COVERAGE REPORTING  ####

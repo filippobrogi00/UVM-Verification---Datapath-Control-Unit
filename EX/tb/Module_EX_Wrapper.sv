@@ -24,9 +24,9 @@ module Module_EXE_Wrapper #(
 				.J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),      					
 				.RF_REGBITS     (RF_REGBITS),      					
 				.RF_NUMREGS     (RF_NUMREGS)  					
-				)			
-			`endif // FAULT_INJECTION_CAMPAIGN
-		`endif // POSTSYN_SIMULATION
+      )			
+    `endif // FAULT_INJECTION_CAMPAIGN
+  `endif // POSTSYN_SIMULATION
   DP_EXE_inst (   // WARN: PARSER COMMENT, DO NOT CHANGE/REMOVE			
     .CLK              	(exe_iface.CLK),      				
     .nRST             	(exe_iface.nRST),      				

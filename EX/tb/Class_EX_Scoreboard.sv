@@ -1,11 +1,13 @@
 // Copyright (c) 2025 Filippo Brogi, Giuseppe Maganuco, Mateus Ferreira. All Rights Reserved.
 
+
 // Standard UVM packages for UVM macros and functions
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
 // Package includes
 import pkg_const::*;
+
 
 
 // Function to convert aluOp enum value to string
@@ -51,6 +53,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 	// Register to Factory
   // coverage off
 	`uvm_component_utils(Class_EXE_Scoreboard)
+  uvm_event signal_fault_detected;
   // coverage on
 	
 	/* Scoreboard class variables */
@@ -86,9 +89,17 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 	endfunction : build_phase
 
 
+  virtual function void connect_phase(uvm_phase phase);
+    //Try to get the signal fault detected uvm_event from the uvm_test
+    if (!uvm_config_db#(uvm_event)::get(null, "*", "signal_fault_detected", signal_fault_detected)) begin
+      `uvm_info("[SCOREBOARD]", "Could not get signal_fault_detected handle", UVM_LOW)
+      //If it can't, it's not a problem, it defines a dummy handler
+      signal_fault_detected = new();
+    end
+  endfunction
 	/*
 	* WRITE FUNCTION :
-    * Monitor sends via Analysis Port a complete transaction to the Scoreboard
+		* Monitor sends via Analysis Port a complete transaction to the Scoreboard
     * Here we re-compute the Expected Result and check it against DUTs'
 	* */
 	virtual function void write(Class_EXE_SequenceItem exe_seqitem);
@@ -330,11 +341,6 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 
 		exe_seqitem.print();
 
-		// Initialize "detected" UVM shared variable to 0 
-		// `ifdef FAULT_INJECTION_CAMPAIGN
-		// 	uvm_config_db#(int)::set(null, "", "detected", 0);
-		// `endif // FAULT_INJECTION_CAMPAIGN
-
 		assert (Expected_S3_FF_JAL_EN_OUT ==? exe_seqitem.S3_FF_JAL_EN_OUT) begin
 			// coverage off b
 			`uvm_info("GREEN", "JAL_EN OK!", UVM_MEDIUM);		
@@ -343,6 +349,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 		else begin
 		  // coverage off b
 			error++;
+				signal_fault_detected.trigger();
 			`uvm_info("RED", $sformatf(
 				"JAL_EN mismatch: expected 0x%0h, got 0x%0h",
 				Expected_S3_FF_JAL_EN_OUT,
@@ -359,6 +366,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 		else begin
 		  // coverage off b
 			error++;
+				signal_fault_detected.trigger();
 			`uvm_info("RED", $sformatf(
 				"ADD_WR mismatch: expected 0x%0h, got 0x%0h",
 				Expected_S3_REG_ADD_WR_OUT,
@@ -375,6 +383,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 		else begin
 		  // coverage off b
 			error++;
+				signal_fault_detected.trigger();
 			`uvm_info("RED", $sformatf(
 				"COND mismatch: JMP: %b, EQZ_NEQZ: %b, RFILE_A: 0x%0h, expected 0x%0h, got 0x%0h",
 				exe_seqitem.JMP,
@@ -394,6 +403,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 		else begin
 		  // coverage off b
 			error++;
+				signal_fault_detected.trigger();
 			`uvm_info("RED", $sformatf(
 				"ALU mismatch: OP: %s, MUX_A: 0x%0h, MUX_B: 0x%0h expected 0x%0h, got 0x%0h",
 				aluOp_to_string(exe_seqitem.DP_ALU_OPCODE),
@@ -413,6 +423,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 		else begin
 		  // coverage off b
 			error++;
+				signal_fault_detected.trigger();
 			`uvm_info("RED", $sformatf(
 				"DATA mismatch: expected 0x%0h, got 0x%0h",
 				Expected_S3_REG_DATA_OUT,
@@ -429,6 +440,7 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 		else begin
 		  // coverage off b
 			error++;
+				signal_fault_detected.trigger();
 			`uvm_info("RED", $sformatf(
 				"PC mismatch: expected 0x%0h, got 0x%0h",
 				Expected_S3_REG_NPC_OUT,
@@ -439,6 +451,11 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 
 	endfunction : write
 
+	/*
+	* REPORT PHASE: 
+		* Update error count after simulation cycle, and, if fault-simulating, 
+	  * save the current fault and injected value to file
+	*/
 	virtual function void report_phase(uvm_phase phase);
 		super.report_phase(phase);
 
@@ -451,11 +468,14 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 				), UVM_MEDIUM);
 
 			`ifdef FAULT_INJECTION_CAMPAIGN
-				// Stop fault simulation on error throwing UVM_ERROR
-				save_current_fault_to_file(injected_fault, injected_value, 1);
+				if(1) begin
+				signal_fault_detected.trigger();
+				end else begin
+					// Stop fault simulation on error throwing UVM_ERROR
+					save_current_fault_to_file(injected_fault, injected_value, 1);
 				`uvm_error("SCOREBOARD", "[SCOREBOARD] ========== FAULT SIMULATION ENDED ==========");
+				end
 			`endif // FAULT_INJECTION_CAMPAIGN
-
 	  	// coverage on b
 		end
 		else begin
@@ -467,9 +487,8 @@ class Class_EXE_Scoreboard extends uvm_scoreboard;
 			`uvm_info("GREEN", "No error found", UVM_MEDIUM);
 		
 		end
-	endfunction
+	endfunction : report_phase
 
 endclass
-
 
 

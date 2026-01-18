@@ -1,6 +1,6 @@
 */work
-*.toml
-*.yaml
+*/*.toml
+*/*.yaml
 */coverage
 */covhtmlreport
 Session.vim
@@ -11,3 +11,6 @@ work/
 */*.txt
 */*.log
 */modelsim.ini
+*stacktrace*
+*/*.vstf
+*/*.ini

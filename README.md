@@ -55,3 +55,24 @@ Both scripts are divided by comments in different steps:
 
 6. **Coverage reporting**: This last section basically takes every coverage file created before, and outputs everything on screen. Looking at the raw report files is left for "debugging" low coverage. A coverage report for each type of coverage gets created inside the `sim/coverage` directory. They are mainly used for "debugging" coverage and improving it, while the "cov_all.txt" report contents get extracted from the script and then output to the screen.
 
+### Step 3 Testing Assignment additions
+#### IFID, CU Organization
+- **Updated `run.sh` script**: The script was updated to handle RTL simulation, Post-Synthesis simulation using the synthesized GLN, and Post-Synthesis Fault Simulation, fault-simulating each fault found in the file `sim/fault_list.txt`. 
+To handle these, some bash variables have been defined (`postsyn_sim_enabled`, `faultsim_enabled`) which direct the flow of the script, and also define some macros (`POSTSYN_SIMULATION`, `FAULT_INJECTION_CAMPAIGN`) when compiling SV testbench files, to enable conditional testbench code execution.
+When fault simulating, `vsim` is run as many times as the number of faults inside the faults list file, to perform fault simulation of every fault, and at the end of the whole process, the run script computes and reports Fault Coverage to the terminal.
+
+- **Post-synthesis-aware and Fault-aware Testbench**: Testbench files, where needed, now verify the presence of the previously cited macros  to conditionally execute code.
+Moreover, Bash->Testbench communication is obtained by `export`ing some Bash variables with fault-related filename paths (`ENVVAR_FAULT_LIST_FILE`, `ENVVAR_FAULT_LIST_FILE_TEMP`), the former storing handpicked faults selected from a TetraMAX fault injection (and collaption) list. The latter holds the filename of a temporary file, created for memorizing the currently-injected fault (changes at each `vsim` run). Retreiving values of these environment variables is achieved inside testbench files by using DPI-C `getenv()` function.
+Testbench->Bash communication is obtained by writing fault results to a file called `sim/classified_faults.txt`.
+
+#### EX, MEMWB Organization
+
+- **Updated `run.sh` script**: The script was updated with some exports in order to control the fault injection procedure (such as filenames, or a flag to switch on the fault injection mode, all of which are documented), but the core of the file is still the same.
+
+- **Added scripts to generate the stuck-at faults without TetraMax**: the files `gen_fault_file.sh` and `gen_fault_file.do` are responsible for the generation of the stuck-at fault list to be applied to the testbench. `gen_fault_file.do` is able to be executed in the same command as the simulation as long as the right environment variables are set, but generating the file more than once is undesireable, so `gen_fault_file.sh` serves as a wrapper for `gen_fault_file.do`. While the script works with RTL netlists, it was designed to work with post-synthesis netlists.
+
+- **Added a second test class to handle fault-injection**: A second test class, called ```Class_EXE_FaultInject_Test``` was added, so that the top-level module can execute either the normal test or the fault-injection test according to an environment variable.
+
+- **Minimal modifications to the original testbench**: The only things that were modified on the original testbench were:
+  - The top level module: An if statement was added to switch between the two tests;
+  - The Scoreboard: Some logic was added to the Scoreboard in order to signal to the Test class if an error was detected, so that sequencer can be restarted with a new stuck-at fault. Even if the fault injection class were not to be active (or even exist), the Scoreboard would still function as before.

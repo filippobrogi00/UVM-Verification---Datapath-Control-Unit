@@ -19,10 +19,6 @@ import pkg_const::*;
 // NOTE: Both "timeunit" (unit of time for delays) and "timeprecision",
 // simulation time-steps
 `timescale 1ns / 1ns
-// Unit of time for delays
-// `timeunit(CLKPERIOD / 4);
-// Simulation time-steps
-// `timeprecision(CLKPERIOD / 4);
 
 // Number of sequence items to generate (default value, can be overridden via
 // cmdline)
@@ -43,6 +39,7 @@ int numSeqItems = 100;
 `include "Class_EX_Scoreboard.sv"
 `include "Class_EX_Environment.sv"
 `include "Class_EX_Test.sv"
+`include "Class_EX_FaultInject_Test.sv"
 
 
 module Module_topTestbench;
@@ -138,16 +135,18 @@ module Module_topTestbench;
 			uvm_config_db#(virtual Iface_EXE #(
 				IR_SIZE, OPERAND_SIZE, I_TYPE_IMM_SIZE,
 				J_TYPE_IMM_SIZE, RF_REGBITS, RF_NUMREGS
-		) )::set(null, "*", "exe_dut_iface", exe_dut_iface);
+			) )::set(null, "*", "exe_dut_iface", exe_dut_iface);
 
 
 			`ifdef FAULT_INJECTION_CAMPAIGN
-
+				
+				if(1)begin 
+				run_test("Class_EXE_FaultInject_Test");
+			end else begin
+			 
 				// Open faults file in read mode
-				// faults_file_name = getenv("ENVVAR_FAULT_LIST_FILE");
 				faults_file_name = getenv("ENVVAR_FAULT_LIST_FILE_TEMP");
 				if (faults_file_name == "") begin
-					// `uvm_fatal("TOPLEVEL", "ENVVAR_FAULT_LIST_FILE environment variable not set!");
 					`uvm_fatal("TOPLEVEL", "ENVVAR_FAULT_LIST_FILE_TEMP environment variable not set!");
 					$finish;
 				end
@@ -175,36 +174,36 @@ module Module_topTestbench;
 				* FAULT INJECTION AND SIMULATION CAMPAIGN PROCESS *
 				***************************************************/
 
-					// Get current fault from file if not eof 
-					while (!($feof(faults_file_fd))) begin
-						// Get first line from faults file
-						$fgets(current_fault_line, faults_file_fd);
+				// Get current fault from file if not eof 
+				while (!($feof(faults_file_fd))) begin
+					// Get first line from faults file
+					$fgets(current_fault_line, faults_file_fd);
 
-						// Parse current line and split it into fault + injected value
-						$sscanf(current_fault_line, "%s %d", current_fault, current_inj_value);
-						`uvm_info("GREEN", $sformatf("### READ FAULT LINE: %s SA-%0d ###", current_fault, current_inj_value), UVM_MEDIUM);
+					// Parse current line and split it into fault + injected value
+					$sscanf(current_fault_line, "%s %d", current_fault, current_inj_value);
 
-						// Memorize both in shared UVM DB variables "current_fault" and "current_inj_value" 
-						uvm_config_db#(string)::set(null, "", "current_fault", current_fault);
-						uvm_config_db#(int)::set(null, "", "current_inj_value", current_inj_value);
+					// Memorize both in shared UVM DB variables "current_fault" and "current_inj_value" 
+					uvm_config_db#(string)::set(null, "", "current_fault", current_fault);
+					uvm_config_db#(int)::set(null, "", "current_inj_value", current_inj_value);
 
-						// Log
-						`uvm_info("GREEN", $sformatf("### INJECTING FAULT: %s ###", current_fault), UVM_MEDIUM);
-						`uvm_info("GREEN", $sformatf("### FAULT SIM CYCLE %0d ###", faultsim_cycle), UVM_MEDIUM);
+					// Log
+					`uvm_info("BLUE", $sformatf("### Injecting fault: %s ###", current_fault), UVM_MEDIUM);
+					`uvm_info("BLUE", $sformatf("### Fault sim cycle %0d ###", faultsim_cycle), UVM_MEDIUM);
 
-						// Update fault simulation cycle
-						faultsim_cycle++;  
-						
-						// Run current fault simulation test 
-						// WARN: Do not put any code after test! 
-						run_test("Class_EXE_Test");
+					// Update fault simulation cycle
+					faultsim_cycle++;  
+					
+					// Run current fault simulation test 
+					// WARN: Do not put any code after test! 
+					run_test("Class_EXE_Test");
 
-					end
+				end
 
-					$fclose(faults_file_fd);
-					$fclose(classified_faults_fd);
+				$fclose(faults_file_fd);
+				$fclose(classified_faults_fd);
+			end
+			`elsif 
 
-			`else 
 
 				/************************************
 				* STANDARD (FAULT-FREE) SIMULATION  *

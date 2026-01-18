@@ -1,2 +1,0 @@
-var g_data = {"8":["work.Iface_CU",100.00,1],"7":["work.Module_topTestbench",100.00,1],"5":["work.Module_topTestbench_sv_unit",63.61,1],"11":["work.dlx_cu(dlx_cu_hw)",97.94,1],"1":["work.rf_pkg",0.00,1]};
-processDuLinks(g_data);

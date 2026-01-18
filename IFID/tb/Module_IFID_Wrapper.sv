@@ -15,14 +15,20 @@ module Module_IFID_Wrapper #(
   // Instantiate DUT (ifid_sv SV wrapper inside design.sv) and connect each of its pins
   // to an interface's signals
 
-  DP_IFID #(
-/*      .IR_SIZE        (IR_SIZE),
-      .OPERAND_SIZE   (OPERAND_SIZE),
-      .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
-      .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
-      .RF_REGBITS     (RF_REGBITS),
-      .RF_NUMREGS     (RF_NUMREGS)
-  */) DP_IFID_inst (
+  DP_IFID 
+  `ifndef POSTSYN_SIMULATION   		
+		`ifndef FAULT_INJECTION_CAMPAIGN			
+      #(
+          .IR_SIZE        (IR_SIZE),
+          .OPERAND_SIZE   (OPERAND_SIZE),
+          .I_TYPE_IMM_SIZE(I_TYPE_IMM_SIZE),
+          .J_TYPE_IMM_SIZE(J_TYPE_IMM_SIZE),
+          .RF_REGBITS     (RF_REGBITS),
+          .RF_NUMREGS     (RF_NUMREGS)
+        )
+    `endif // FAULT_INJECTION_CAMPAIGN
+  `endif // POSTSYN_SIMULATION
+   DP_IFID_inst ( // WARN: PARSER COMMENT, DO NOT CHANGE/REMOVE			
       // Inputs
       .CLK              (ifid_iface.CLK),
       .nRST             (ifid_iface.nRST),
