@@ -71,3 +71,11 @@ else
   qrun -clean -uvm -autoorder -mixedsvvh -coverage +acc +cover=sbce  $SRC_FILES $SV_COMPILE_LIST $FAULT_INJECT -do "$COV_EXCLUDE_COMMAND; run -all" -top $TOPLEVEL
 fi
 vcover report -details -html cov_$SEED.ucdb
+
+if [ "$FAULT_INJECT_CAMPAIGN" = "y" ]; then
+  detected=$(grep -E "\sDETECTED" $FAULT_INJECT_LOG_FILE | wc -l)
+  total_faults=$(cat $FAULT_INJECT_LOG_FILE | wc -l)
+  total_cov=$(( $detected * 100 / $total_faults ))
+  echo "Total fault coverage: $total_cov"
+fi
+
