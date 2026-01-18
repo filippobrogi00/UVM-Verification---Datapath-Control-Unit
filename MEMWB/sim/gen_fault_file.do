@@ -1,8 +1,6 @@
 run -init
 
-#set signals [string map {/ .} [find signals -r "Module_topTestbench.exe_toplevel.DP_EXE_inst.*"]]
-set signals [string map {/ .} [find signals $env(DUT_HIERARCHY).*]]
-#set signals [string map {/ .} [find signals "/*/$env(TOPLEVEL)/*"]]
+set signals "[string map {/ .} [find signals $env(DUT_HIERARCHY).*]] [string map {/ .} [find signals -r -in $env(DUT_HIERARCHY).*]] [string map {/ .} [find signals -r -out $env(DUT_HIERARCHY).*]]"
 set fo [open $env(FAULT_LIST_FILE) "w"]	
 
 puts $env(DUT_HIERARCHY)
@@ -37,4 +35,4 @@ foreach signal $signals {
   #puts $fo "$signal 0"
   #puts $fo "$signal 1"
 }
-exit
+

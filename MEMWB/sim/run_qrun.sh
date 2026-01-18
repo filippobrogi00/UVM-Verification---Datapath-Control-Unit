@@ -14,7 +14,7 @@ export POSTSYN_SIMULATION="y"
 
 export FAULT_INJECT_CAMPAIGN="y"
 export FAULT_INJECT_LOG_FILE="../sim/fault_log.txt"
-export FAULT_INJECT_FAULT_FILE="../sim/faults.txt"
+export FAULT_INJECT_FAULT_FILE="../sim/fault_list.txt"
 #if [ "$POSTSYN_SIMULATION" = "y" ]; then
 #  FAULT_INJECT="-do gen_fault_file.do"
 #fi
