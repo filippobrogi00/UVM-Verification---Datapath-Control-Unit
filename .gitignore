@@ -14,3 +14,4 @@ work/
 *stacktrace*
 */*.vstf
 */*.ini
+.DS_Store
