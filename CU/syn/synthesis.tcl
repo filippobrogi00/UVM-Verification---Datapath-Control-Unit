@@ -1,0 +1,75 @@
+#####################################
+# READING SOURCE FILES
+#####################################
+analyze -f vhdl -lib WORK ../src/001-pkg-registerfile.vhd
+analyze -f vhdl -lib WORK ../src/000-pkg-globals.vhd
+
+analyze -f vhdl -lib WORK ../src/a.a-CU_HW.vhd
+
+# To preserve rtl names in the netlist to ease the procedure for power consumption estimation
+set power_preserve_rtl_hier_names true
+
+elaborate dlx_cu -lib WORK
+
+
+#####################################
+# APPLYING CONSTRAINTS
+#####################################
+# Setting clk_period
+#try {
+#    set clk_period [getenv CLK_PERIOD]
+#} on error {msg} {
+#    puts "ERROR: missing CLK_PERIOD environment variable"
+#    puts "Message: $msg"
+#    exit 1
+#}
+#create_clock -name my_clk -period $clk_period CLK
+create_clock -name my_clk -period 10 CLK
+
+# Since the clock is a “special” signal in the design, we set the dont touch property
+set_dont_touch_network my_clk
+
+# Since the clock could be affected by jitter we set the uncertainty
+#set_clock_uncertainty 0.07 [get_clocks my_clk]
+
+# Each input signal could arrive with a certain delay with respect to the clock.
+# Assuming that all input signals have the same maximum input delay, we can set their input delay
+#set_input_delay 0.5 -max -clock my_clk [remove_from_collection [all_inputs] CLK]
+
+# In general the input delay must be lower than the clock period to avoid slow input paths.
+# Similarly, we can set the maximum delay of output ports
+#set_output_delay 0.5 -max -clock my_clk [all_outputs]
+
+# We can set the load of each output in our design. For the sake of simplicity we assume that
+# the load of each output is the input capacitance of a buffer. Among the buffers available
+# in this technology we choose the BUF X4, which input port is named A
+#set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
+#set_load $OLOAD [all_outputs]
+
+#####################################
+# START THE SYNTHESIS
+#####################################
+compile
+
+#####################################
+# REPORTING
+#####################################
+report_timing > ./timing_rpt.txt
+report_area > ./area_rpt.txt
+
+# To ease the reading of power consumption?
+ungroup -all -flatten
+
+# Imposing verilog rules for the names of the internal signals
+change_names -hierarchy -rules verilog
+
+# Saving the Standard Delay Format file
+write_sdf ./CU.sdf
+
+# Saving the Synopsys Design Constraints
+write_sdc ./CU.sdc
+
+# Saving the verilog netlist
+write -f verilog -hierarchy -output ./CU.v
+
+quit

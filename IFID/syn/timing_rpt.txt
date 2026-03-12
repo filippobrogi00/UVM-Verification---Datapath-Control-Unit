@@ -1,0 +1,57 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'DP_IFID' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : DP_IFID
+Version: S-2021.06-SP4
+Date   : Mon Dec 15 18:56:44 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: S2_RFILE/REGISTERS_reg[14][31]
+              (rising edge-triggered flip-flop clocked by my_clk)
+  Endpoint: S2_RFILE/OUT1_reg[31]
+            (rising edge-triggered flip-flop clocked by my_clk)
+  Path Group: my_clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  DP_IFID            5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock my_clk (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  S2_RFILE/REGISTERS_reg[14][31]/CK (DFF_X1)              0.00 #     0.00 r
+  S2_RFILE/REGISTERS_reg[14][31]/Q (DFF_X1)               0.09       0.09 f
+  S2_RFILE/U3707/ZN (AOI22_X1)                            0.06       0.14 r
+  S2_RFILE/U3709/ZN (NAND4_X1)                            0.05       0.19 f
+  S2_RFILE/U3710/ZN (AOI22_X1)                            0.06       0.25 r
+  S2_RFILE/U3711/ZN (OAI221_X1)                           0.05       0.30 f
+  S2_RFILE/U765/ZN (AOI22_X1)                             0.05       0.35 r
+  S2_RFILE/U764/ZN (INV_X1)                               0.02       0.37 f
+  S2_RFILE/OUT1_reg[31]/D (DFF_X1)                        0.01       0.38 f
+  data arrival time                                                  0.38
+
+  clock my_clk (rise edge)                               10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  S2_RFILE/OUT1_reg[31]/CK (DFF_X1)                       0.00      10.00 r
+  library setup time                                     -0.04       9.96
+  data required time                                                 9.96
+  --------------------------------------------------------------------------
+  data required time                                                 9.96
+  data arrival time                                                 -0.38
+  --------------------------------------------------------------------------
+  slack (MET)                                                        9.58
+
+
+1

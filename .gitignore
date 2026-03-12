@@ -1,0 +1,16 @@
+*/work
+*/*.toml
+*/*.yaml
+*/coverage
+*/covhtmlreport
+Session.vim
+work/
+*/qrun.out
+*/*.sdc
+*/*.sdf
+*/*.txt
+*/*.log
+*/modelsim.ini
+*stacktrace*
+*/*.vstf
+*/*.ini

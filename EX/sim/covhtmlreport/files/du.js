@@ -1,0 +1,2 @@
+var g_data = {"data":[{"n":"work.DP_EX","id":8,"zf":1,"tc":91.81,"t":91.81},{"n":"work.Iface_EXE","id":6,"zf":1,"tc":100.00,"s":100.00,"t":100.00},{"n":"work.Module_topTestbench","id":5,"zf":1,"tc":51.51,"s":100.00,"t":3.03},{"n":"work.Module_topTestbench_sv_unit","id":3,"zf":1,"tc":52.18,"s":69.88,"b":33.33,"fc":0.00,"g":97.70,"a":60.00}]};
+processDuData(g_data);

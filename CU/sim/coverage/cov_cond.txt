@@ -1,0 +1,76 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /Module_topTestbench
+=== Design Unit: work.Module_topTestbench
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         0         2     0.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /Module_topTestbench --
+
+  File ../tb/Module_topTestbench.sv
+----------------Focused Condition View-------------------
+Line       150 Item    1  (faults_file_name == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+               Input Term   Covered  Reason for no coverage   Hint
+              -----------  --------  -----------------------  --------------
+  (faults_file_name == 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                 Non-masking condition(s)      
+ ---------  ---------  --------------------       -------------------------     
+  Row   1:          1  (faults_file_name == 0)_0  -                             
+  Row   2:    ***0***  (faults_file_name == 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       163 Item    1  (classified_faults_file_name == 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                          Input Term   Covered  Reason for no coverage   Hint
+                         -----------  --------  -----------------------  --------------
+  (classified_faults_file_name == 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                            Non-masking condition(s)      
+ ---------  ---------  --------------------                  -------------------------     
+  Row   1:          1  (classified_faults_file_name == 0)_0  -                             
+  Row   2:    ***0***  (classified_faults_file_name == 0)_1  -                             
+
+
+
+=================================================================================
+=== Instance: /Module_topTestbench_sv_unit
+=== Design Unit: work.Module_topTestbench_sv_unit
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       1         0         1     0.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /Module_topTestbench_sv_unit --
+
+  File ../tb/Class_CU_Scoreboard.sv
+----------------Focused Condition View-------------------
+Line       131 Item    1  (this.error > 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (this.error > 0)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:    ***0***  (this.error > 0)_0    -                             
+  Row   2:          1  (this.error > 0)_1    -                             
+
+
+
+
+Total Coverage By Instance (filtered view): 0.00%
+
