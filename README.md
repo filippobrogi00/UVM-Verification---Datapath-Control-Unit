@@ -1,5 +1,6 @@
 # Datapath & Control Unit UVM Verification Testbench
 
+## Description
 The first project task was to divide the DLX CPU Datapath (https://github.com/filippobrogi00/DLX_CPU) into sub-components (called **Stages** here) for verifying them independetly of one another:
 - Fetch+Decode Stage, called `IFID`
 - Execute Stage, called `EX`
