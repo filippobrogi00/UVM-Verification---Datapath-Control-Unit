@@ -84,3 +84,6 @@ Testbench->Bash communication is obtained by writing fault results to a file cal
 - **Minimal modifications to the original testbench**: The only things that were modified on the original testbench were:
   - The top level module: An if statement was added to switch between the two tests;
   - The Scoreboard: Some logic was added to the Scoreboard in order to signal to the Test class if an error was detected, so that sequencer can be restarted with a new stuck-at fault. Even if the fault injection class were not to be active (or even exist), the Scoreboard would still function as before.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
