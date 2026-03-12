@@ -1,4 +1,12 @@
-# Step 3
+# Datapath & Control Unit UVM Verification Testbench
+
+The first project task was to divide the DLX CPU Datapath (https://github.com/filippobrogi00/DLX_CPU) into sub-components (called **Stages** here) for verifying them independetly of one another:
+- Fetch+Decode Stage, called `IFID`
+- Execute Stage, called `EX`
+- Memory+Writeback Stage, called `MEMWB`
+
+The next task was to build UVM Testbenches for each Stage.
+Finally, a post-synthesis fault simulation campaign was integrated into the UVM Testbench architecture and run script to inject faults from a Fault List, perform fault simulation for each one, and computing the total Fault Coverage at the end of the campaign.
 
 ## Project Structure
 `IFID` contains the (Fetch + Decode) testbench.
@@ -57,7 +65,7 @@ Both scripts are divided by comments in different steps:
 
 ### Step 3 Testing Assignment additions
 #### IFID, CU Organization
-- **Updated `run.sh` script**: The script was updated to handle RTL simulation, Post-Synthesis simulation using the synthesized GLN, and Post-Synthesis Fault Simulation, fault-simulating each fault found in the file `sim/fault_list.txt`. 
+- **Updated `run.sh` script**: The script was updated to handle RTL simulation, Post-Synthesis simulation using the synthesized GLN, and Post-Synthesis Fault Simulation, fault-simulating each fault found in the file `sim/fault_list.txt`.
 To handle these, some bash variables have been defined (`postsyn_sim_enabled`, `faultsim_enabled`) which direct the flow of the script, and also define some macros (`POSTSYN_SIMULATION`, `FAULT_INJECTION_CAMPAIGN`) when compiling SV testbench files, to enable conditional testbench code execution.
 When fault simulating, `vsim` is run as many times as the number of faults inside the faults list file, to perform fault simulation of every fault, and at the end of the whole process, the run script computes and reports Fault Coverage to the terminal.
 
