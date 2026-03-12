@@ -9,6 +9,8 @@ The first project task was to divide the DLX CPU Datapath (https://github.com/fi
 The next task was to build UVM Testbenches for each Stage.
 Finally, a post-synthesis fault simulation campaign was integrated into the UVM Testbench architecture and run script to inject faults from a Fault List, perform fault simulation for each one, and computing the total Fault Coverage at the end of the campaign.
 
+More detailed information can be found in `Technical Report.pdf`.
+
 ## Project Structure
 `IFID` contains the (Fetch + Decode) testbench.
 `EX` contains the Execute Stage testbench.
